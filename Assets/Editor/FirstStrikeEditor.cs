@@ -35,6 +35,7 @@ public class FirstStrikeEditor : Editor
                 EditorGUILayout.PropertyField(successThreshold_prop, new GUIContent("successThreshold"));
                 break;
             case FirstStrikeChance.CheckType.RandomInfluencedByAnATTR:
+                EditorGUILayout.PropertyField(successThreshold_prop, new GUIContent("successThreshold"));
                 EditorGUILayout.PropertyField(attribute_prop, new GUIContent("attribute"));
                 break;
         }

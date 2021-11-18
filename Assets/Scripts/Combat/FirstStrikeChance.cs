@@ -58,7 +58,9 @@ public class FirstStrikeChance : MonoBehaviour
             case CheckType.Random:
                 return Random.Range(1.0f, 100.0f) > m_successThreshold;
             case CheckType.RandomInfluencedByAnATTR:
-                return Random.Range(1.0f, 100.0f) > m_successThreshold - (m_attribute.Value / 2.0f);
+                float maxAttrInfluence = m_attribute.Value / 2.0f;
+                if (maxAttrInfluence > 40.0f) maxAttrInfluence = 40.0f;
+                return Random.Range(1.0f, 100.0f) > m_successThreshold - maxAttrInfluence;
             default:
                 return false;
         }
