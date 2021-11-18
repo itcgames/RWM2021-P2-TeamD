@@ -11,6 +11,7 @@ public static class Utilities
         }
 
         dict.Remove(oldKey);
+
         dict.Add(newKey, value);
         return true;
     }
