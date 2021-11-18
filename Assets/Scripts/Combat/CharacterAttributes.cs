@@ -13,6 +13,7 @@ public class CharacterAttributes : MonoBehaviour
     public string Name
     {
         get { return m_name; }
+        set { m_name = value; }
     }
     
     public bool Playable

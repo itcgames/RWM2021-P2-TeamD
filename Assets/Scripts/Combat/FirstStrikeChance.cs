@@ -49,6 +49,11 @@ public class FirstStrikeChance : MonoBehaviour
         m_attribute.Value = val;
     }
 
+    public void SetSuccessTest(float succ)
+    {
+        m_successThreshold = succ;
+    }
+
     public bool FirstStrikeCheck()
     {
         switch(m_type)
