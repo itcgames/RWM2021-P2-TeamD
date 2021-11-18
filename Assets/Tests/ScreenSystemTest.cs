@@ -44,5 +44,17 @@ namespace Tests
 
             Assert.AreEqual(2, SceneManager.GetActiveScene().buildIndex);
         }
+
+        [UnityTest]
+        public IEnumerator SwitchToPauseFromGame()
+        {
+            ScreenSystem t_system = new ScreenSystem();
+
+            t_system.GoToPauseScreen();
+
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreEqual(3, SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

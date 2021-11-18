@@ -26,4 +26,9 @@ public class ScreenSystem : MonoBehaviour
         //load saved info here
         GoToGameplayScene();
     }
+
+    public void GoToPauseScreen()
+    {
+        SceneManager.LoadScene(3);
+    }
 }
