@@ -10,6 +10,11 @@ public class CharacterAttributes : MonoBehaviour
     [SerializeField]
     private bool m_playable;
 
+    public string Name
+    {
+        get { return m_name; }
+    }
+    
     public bool Playable
     {
         get { return m_playable; }
