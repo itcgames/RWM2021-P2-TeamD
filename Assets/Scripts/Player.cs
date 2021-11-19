@@ -39,12 +39,12 @@ public class Player : MonoBehaviour
     IEnumerator Move(Vector3 t_targetPos)
         {
             m_isMoving = true;
-            while ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, t_targetPos, m_speed * Time.deltaTime);
-                yield return null;
-            }
-            transform.position = t_targetPos;
+        if ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, t_targetPos, m_speed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = t_targetPos;
             m_isMoving = false;
         }
 
