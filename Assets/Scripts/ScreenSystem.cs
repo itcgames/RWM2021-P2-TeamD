@@ -8,7 +8,8 @@ public class ScreenSystem : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (this.gameObject.name != "Canvas")
+            DontDestroyOnLoad(this.gameObject);
     }
 
     public void GoToCharacterSelcetionScene()
@@ -30,5 +31,17 @@ public class ScreenSystem : MonoBehaviour
     public void GoToPauseScreen()
     {
         SceneManager.LoadScene(3);
+    }
+
+    public void GoToInventoryScreen(int t_i)
+    {
+        if(this.gameObject.name == "Canvas")
+        {
+            for (int i = 0; i < this.transform.childCount; i++)
+            {
+                this.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            this.transform.GetChild(t_i).gameObject.SetActive(true);
+        }
     }
 }

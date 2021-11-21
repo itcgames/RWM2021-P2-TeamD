@@ -56,5 +56,20 @@ namespace Tests
 
             Assert.AreEqual(3, SceneManager.GetActiveScene().buildIndex);
         }
+
+        [UnityTest]
+        public IEnumerator SwitchToItemScreen()
+        {
+            ScreenSystem t_system = new ScreenSystem();
+
+            t_system.GoToPauseScreen();
+            GameObject pauseScreen = Resources.Load<GameObject>("Pause"); /*GameObject.Find("Canvas")*/
+            GameObject inventories = pauseScreen.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
+            inventories.GetComponent<ScreenSystem>().GoToInventoryScreen(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreEqual(true, inventories.transform.GetChild(0).gameObject.activeInHierarchy);
+        }
     }
 }
