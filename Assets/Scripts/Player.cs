@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -46,13 +47,28 @@ public class Player : MonoBehaviour
         }
         transform.position = t_targetPos;
             m_isMoving = false;
+
+        CombatEncounter();
         }
 
+    public void moveUp()
+    {
+        transform.Translate(Vector2.up * Time.deltaTime * 1000);
+    }
 
-        public void moveUp()
+
+    void CombatEncounter()
+    {
+
+        if(SceneManager.GetActiveScene().buildIndex == 0)
         {
-            transform.Translate(Vector2.up * Time.deltaTime * 1000);
+            if (Random.Range(1, 101) <= 5)
+            {
+                Debug.Log("You have encountered an enemy!");
+                // add scene for battle
+            }
         }
+    }
 
 
 }
