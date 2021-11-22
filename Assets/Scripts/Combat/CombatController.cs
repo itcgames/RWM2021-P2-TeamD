@@ -10,13 +10,17 @@ public class CombatController : MonoBehaviour
     [SerializeField]
     public List<GameObject> m_party;
     
-    public List<GameObject> m_enemies;
+    private List<GameObject> m_enemies;
 
     // Start is called before the first frame update
     void Start()
     {
         // run first strike check in start() for now
+        GenerateEnemies();
         StartCombat();
+        GetComponent<GenerateGrids>().CreatePartyGrid();
+        GetComponent<GenerateGrids>().CreateEnemyGrid();
+        PositionOnGrid();
     }
 
     // Update is called once per frame
@@ -68,6 +72,19 @@ public class CombatController : MonoBehaviour
             {
                 Debug.Log(item.Key + ": " + item.Value.GetComponent<CharacterAttributes>().Name);
             }
+        }
+    }
+
+    public void GenerateEnemies()
+    {
+        m_enemies = new List<GameObject>();
+    }
+
+    public void PositionOnGrid()
+    {
+        for (int i = 0; i < m_party.Count; ++i)
+        {
+            m_party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
         }
     }
 }

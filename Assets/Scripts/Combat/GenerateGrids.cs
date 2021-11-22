@@ -10,18 +10,13 @@ public class GenerateGrids : MonoBehaviour
     private int m_columnEnemy;
     private int m_rowEnemy;
 
-    private Vector3[,] m_partyGrid;
     private Vector3[,] m_enemyGrid;
 
-    public Vector3[,] PartyGrid
-    {
-        get { return m_partyGrid; }
-    }
+    public Vector3[,] PartyGrid { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        CreatePartyGrid();
     }
 
     // Update is called once per frame
@@ -33,16 +28,32 @@ public class GenerateGrids : MonoBehaviour
     public void CreatePartyGrid()
     {
         Vector3 firstTile = new Vector3();
-        firstTile.Set(0.10f, 0.24f, 0.0f);
+        firstTile.Set(0.5f, 0.6f, 0.0f);
 
-        m_partyGrid = new Vector3[row, column];
+        PartyGrid = new Vector3[row, column];
 
         for (int i = 0; i < row; ++i)
         {
             for (int j = 0; j < column; ++j)
             {
-                m_partyGrid[row, column].Set(firstTile.x + (0.22f * i), firstTile.y - (0.24f * j), 0.0f);
+                PartyGrid[i, j].Set(firstTile.x + (0.22f * j), firstTile.y - (0.28f * i), -1.0f);
             }
         }
+    }
+
+    public void CreateEnemyGrid()
+    {
+        /*Vector3 firstTile = new Vector3();
+        firstTile.Set(0.10f, 0.6f, 0.0f);
+
+        PartyGrid = new Vector3[row, column];
+
+        for (int i = 0; i < row; ++i)
+        {
+            for (int j = 0; j < column; ++j)
+            {
+                PartyGrid[i, j].Set(firstTile.x + (0.22f * i), firstTile.y - (0.24f * j), -1.0f);
+            }
+        }*/
     }
 }
