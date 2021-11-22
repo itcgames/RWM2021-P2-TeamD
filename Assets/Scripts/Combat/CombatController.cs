@@ -9,7 +9,7 @@ public class CombatController : MonoBehaviour
 
     [SerializeField]
     public List<GameObject> m_party;
-    
+
     private List<GameObject> m_enemies;
 
     // Start is called before the first frame update
@@ -20,13 +20,14 @@ public class CombatController : MonoBehaviour
         StartCombat();
         GetComponent<GenerateGrids>().CreatePartyGrid();
         GetComponent<GenerateGrids>().CreateEnemyGrid();
-        PositionOnGrid();
+        PositionPartyOnGrid();
+        PositionEnemyOnGrid();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartCombat()
@@ -39,7 +40,7 @@ public class CombatController : MonoBehaviour
         {
             Debug.Log("You get to strike first.");
 
-            for(int i = 0; i < m_party.Count; ++i)
+            for (int i = 0; i < m_party.Count; ++i)
             {
                 m_battleOrder.Add(i + 1, m_party[i]);
             }
@@ -78,13 +79,59 @@ public class CombatController : MonoBehaviour
     public void GenerateEnemies()
     {
         m_enemies = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = Random.Range(1, 10);
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyType enemyType = EnemyType.Imp;
+
+            switch (enemyType)
+            {
+                case EnemyType.Imp:
+                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                    break;
+                case EnemyType.Wolf:
+                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                    break;
+                case EnemyType.Spider:
+                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                    break;
+                default:
+                    break;
+            }
+
+            m_enemies.Add(enemy);
+        }
     }
 
-    public void PositionOnGrid()
+    public void PositionPartyOnGrid()
     {
         for (int i = 0; i < m_party.Count; ++i)
         {
             m_party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
+        }
+    }
+
+    public void PositionEnemyOnGrid()
+    {
+        int k = 0;
+
+        for (int i = 0; i < GetComponent<GenerateGrids>().RowEnemy; ++i)
+        {
+            for (int j = 0; j < GetComponent<GenerateGrids>().ColumnEnemy; ++j)
+            {
+                m_enemies[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
+                ++k;
+
+                if (k >= m_enemies.Count) break;
+            }
+            if (k >= m_enemies.Count) break;
         }
     }
 }

@@ -22,8 +22,24 @@ public class CharacterAttributes : MonoBehaviour
         set { m_playable = value; }
     }
 
+    private int m_gil;
+    private int m_xp;
+
+    public int Gil
+    {
+        get { return m_gil; }
+        set { m_gil = value; }
+    }
+
+    public int Xp
+    {
+        get { return m_xp; }
+        set { m_xp = value; }
+    }
+
     [SerializeField]
     private List<Attribute> m_attributes;
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +70,16 @@ public class CharacterAttributes : MonoBehaviour
     public Attribute FindAttribute(string name)
     {
         return m_attributes.Find(attribute => attribute.Name == name);
+    }
+
+    public void RemoveAttribute(string name)
+    {
+        Attribute toRemove = m_attributes.Find(attribute => attribute.Name == name);
+        m_attributes.Remove(toRemove);
+    }
+
+    public void ClearAttributes()
+    {
+        m_attributes.Clear();
     }
 }

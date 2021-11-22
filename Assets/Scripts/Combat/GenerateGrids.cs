@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class GenerateGrids : MonoBehaviour
 {
-    public int column;
-    public int row;
+    private int m_column = 2;
+    private int m_row = 4;
 
-    private int m_columnEnemy;
-    private int m_rowEnemy;
+    private int m_columnEnemy = 3;
+    private int m_rowEnemy = 3;
 
-    private Vector3[,] m_enemyGrid;
+    public Vector3[,] EnemyGrid { get; private set; }
 
     public Vector3[,] PartyGrid { get; private set; }
+
+    public int ColumnEnemy
+    {
+        get { return m_columnEnemy; }
+    }
+    public int RowEnemy
+    {
+        get { return m_rowEnemy; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +39,11 @@ public class GenerateGrids : MonoBehaviour
         Vector3 firstTile = new Vector3();
         firstTile.Set(0.5f, 0.6f, 0.0f);
 
-        PartyGrid = new Vector3[row, column];
+        PartyGrid = new Vector3[m_row, m_column];
 
-        for (int i = 0; i < row; ++i)
+        for (int i = 0; i < m_row; ++i)
         {
-            for (int j = 0; j < column; ++j)
+            for (int j = 0; j < m_column; ++j)
             {
                 PartyGrid[i, j].Set(firstTile.x + (0.22f * j), firstTile.y - (0.28f * i), -1.0f);
             }
@@ -43,17 +52,17 @@ public class GenerateGrids : MonoBehaviour
 
     public void CreateEnemyGrid()
     {
-        /*Vector3 firstTile = new Vector3();
-        firstTile.Set(0.10f, 0.6f, 0.0f);
+        Vector3 firstTile = new Vector3();
+        firstTile.Set(-0.90f, 0.5f, 0.0f);
 
-        PartyGrid = new Vector3[row, column];
+        EnemyGrid = new Vector3[m_rowEnemy, m_columnEnemy];
 
-        for (int i = 0; i < row; ++i)
+        for (int i = 0; i < m_rowEnemy; ++i)
         {
-            for (int j = 0; j < column; ++j)
+            for (int j = 0; j < m_columnEnemy; ++j)
             {
-                PartyGrid[i, j].Set(firstTile.x + (0.22f * i), firstTile.y - (0.24f * j), -1.0f);
+                EnemyGrid[i, j].Set(firstTile.x + (0.34f * j), firstTile.y - (0.34f * i), -1.0f);
             }
-        }*/
+        }
     }
 }
