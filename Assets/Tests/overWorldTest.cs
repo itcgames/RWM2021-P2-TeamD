@@ -63,9 +63,9 @@ namespace Tests
             Debug.Log("Has entered Town");
             m_intance = GameObject.Find("Overworld");
             m_intance.transform.position = m_player.transform.position;
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(4.0f);
             int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(0, m_sceneNum);
+            Assert.AreEqual(4, m_sceneNum);
         }
 
         [UnityTest]
@@ -79,9 +79,9 @@ namespace Tests
             Debug.Log("Has entered Overworld");
             m_intance = GameObject.Find("Town");
             m_intance.transform.position = m_player.transform.position;
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(4.0f);
             int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(2, m_sceneNum);
+            Assert.AreEqual(6, m_sceneNum);
         }
 
         [UnityTest]
