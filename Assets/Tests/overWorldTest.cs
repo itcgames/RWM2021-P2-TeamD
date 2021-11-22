@@ -91,11 +91,22 @@ namespace Tests
             m_player = GameObject.Find("Player");
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
             m_intance.transform.position = m_player.transform.position;
+            m_animator.GetBool("Start");
             Debug.Log("Has entered Town");
             m_intance = GameObject.Find("Overworld");
             m_intance.transform.position = m_player.transform.position;
-            yield return new WaitForSeconds(3.0f);
-            
+            yield return new WaitForSeconds(1.0f);
+            Assert.True(m_animator.GetBool("Start"));
+        }
+
+        [UnityTest]
+        public IEnumerator CombatEncounter()
+        {
+            m_player = GameObject.Find("Player");
+            bool check = m_player.GetComponent<Player>().ForceCombatEncounter();
+            yield return new WaitForSeconds(1.0f);
+            Assert.True(check);
+
         }
 
     }

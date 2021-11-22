@@ -62,10 +62,8 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    void Checkindex()
+    public bool ForceCombatEncounter()
     {
-        Debug.Log("Scene number: " + SceneManager.GetActiveScene().buildIndex);
+        return true;
     }
-
 }

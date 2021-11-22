@@ -23,4 +23,12 @@ public class SceneChange : MonoBehaviour
         SceneManager.LoadScene(m_scene);
     }
 
+    public bool Faded()
+    {
+
+        m_animator.SetTrigger("Start");
+        bool check = true;
+        return check;
+    }
+
 }
