@@ -15,19 +15,34 @@ public class CombatController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // run first strike check in start() for now
-        GenerateEnemies();
-        StartCombat();
-        GetComponent<GenerateGrids>().CreatePartyGrid();
-        GetComponent<GenerateGrids>().CreateEnemyGrid();
-        PositionPartyOnGrid();
-        PositionEnemyOnGrid();
+        Combat();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void Combat()
+    {
+        if (!Utilities.s_testMode)
+        {
+            // run first strike check in start() for now
+            GenerateEnemies();
+            StartCombat();
+            GetComponent<GenerateGrids>().CreatePartyGrid();
+            GetComponent<GenerateGrids>().CreateEnemyGrid();
+            PositionPartyOnGrid();
+            PositionEnemyOnGrid();
+        }
+        else
+        {
+            GenerateEnemies();
+            StartCombat();
+            GetComponent<GenerateGrids>().CreatePartyGrid();
+            GetComponent<GenerateGrids>().CreateEnemyGrid();
+        }
     }
 
     public void StartCombat()
@@ -108,6 +123,41 @@ public class CombatController : MonoBehaviour
 
             m_enemies.Add(enemy);
         }
+    }
+
+    public List<GameObject> GenerateEnemiesTest()
+    {
+        List<GameObject> enemyTest = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 1;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyType enemyType = EnemyType.Imp;
+
+            switch (enemyType)
+            {
+                case EnemyType.Imp:
+                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                    break;
+                case EnemyType.Wolf:
+                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                    break;
+                case EnemyType.Spider:
+                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                    break;
+                default:
+                    break;
+            }
+
+            enemyTest.Add(enemy);
+        }        
+        return enemyTest;
     }
 
     public void PositionPartyOnGrid()

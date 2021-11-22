@@ -65,4 +65,22 @@ public class GenerateGrids : MonoBehaviour
             }
         }
     }
+
+    public Vector3[,] CreateEnemyGridTest()
+    {
+        Vector3 firstTile = new Vector3();
+        firstTile.Set(-0.90f, 0.5f, 0.0f);
+
+        Vector3[,] test = new Vector3[m_rowEnemy, m_columnEnemy];
+
+        for (int i = 0; i < m_rowEnemy; ++i)
+        {
+            for (int j = 0; j < m_columnEnemy; ++j)
+            {
+                test[i, j].Set(firstTile.x + (0.34f * j), firstTile.y - (0.34f * i), -1.0f);
+            }
+        }
+
+        return test;
+    }
 }

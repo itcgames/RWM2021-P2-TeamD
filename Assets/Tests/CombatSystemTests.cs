@@ -15,6 +15,8 @@ public class CharacterTemplateTests
     [SetUp]
     public void Setup()
     {
+        Utilities.s_testMode = true;
+
         m_party = new List<GameObject>();
         m_enemies = new List<GameObject>();
 
@@ -51,7 +53,7 @@ public class CharacterTemplateTests
         GameObject en1 = Object.Instantiate(m_characterPrefab);
         GameObject en2 = Object.Instantiate(m_characterPrefab);
         GameObject en3 = Object.Instantiate(m_characterPrefab);
-        
+
         m_party.Add(char1);
         m_party.Add(char2);
         m_party.Add(char3);
@@ -119,5 +121,34 @@ public class CharacterTemplateTests
         yield return new WaitForSeconds(0.1f);
 
         Assert.AreEqual(recievedOrder, expectedOrder);
+    }
+
+    [UnityTest]
+    public IEnumerator EnemySpawnTest()
+    {
+        m_combatPrefab = Object.Instantiate(m_combatPrefab);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
+
+        GameObject char1 = Object.Instantiate(m_characterPrefab);
+        GameObject char2 = Object.Instantiate(m_characterPrefab);
+        GameObject char3 = Object.Instantiate(m_characterPrefab);
+        GameObject char4 = Object.Instantiate(m_characterPrefab);
+
+        m_party.Add(char1);
+        m_party.Add(char2);
+        m_party.Add(char3);
+        m_party.Add(char4);
+
+        Vector3[,] enemyGrid = m_combatPrefab.GetComponent<GenerateGrids>().CreateEnemyGridTest();
+
+        List<GameObject> enemyList = m_combatPrefab.GetComponent<CombatController>().GenerateEnemiesTest();
+
+        enemyList[0].transform.position = enemyGrid[0, 0];
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(enemyList[0].transform.position, enemyGrid[0, 0]);
+
     }
 }

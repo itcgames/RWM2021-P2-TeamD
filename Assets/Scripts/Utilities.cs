@@ -15,5 +15,7 @@ public static class Utilities
         dict.Add(newKey, value);
         return true;
     }
+
+    public static bool s_testMode = false;
     
 }
