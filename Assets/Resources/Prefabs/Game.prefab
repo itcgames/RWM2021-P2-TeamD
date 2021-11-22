@@ -143,6 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isGameOver: 0
   m_playerModel: {fileID: 2907898076218006150}
+  m_animator: {fileID: 6648524557524430022, guid: a741ca250b7ddf5459d1dbea8bd60773,
+    type: 3}
 --- !u!1 &2907898076218006150
 GameObject:
   m_ObjectHideFlags: 0

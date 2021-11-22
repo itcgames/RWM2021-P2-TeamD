@@ -355,6 +355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 2907898075677882332, guid: 72e3345d425a63046af0cd946e516de9,
+        type: 3}
+      propertyPath: m_animator
+      value: 
+      objectReference: {fileID: 1431040136}
     - target: {fileID: 2907898075677882333, guid: 72e3345d425a63046af0cd946e516de9,
         type: 3}
       propertyPath: m_RootOrder

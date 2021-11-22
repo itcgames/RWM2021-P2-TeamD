@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    [SerializeField]
-    private int m_scene;
+    public int m_scene;
     public Animator m_animator;
 
 

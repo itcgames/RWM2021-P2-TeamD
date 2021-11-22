@@ -10,16 +10,41 @@ namespace Tests
     public class overworldSystemTest
     {
         private Game m_game;
+        private GameObject m_intance;
+        private GameObject m_player;
+        private Animator m_animator;
+        
 
 
         [SetUp]
         public void Setup()
         {
+            SceneManager.LoadScene("OverworldScene", LoadSceneMode.Single);
             GameObject gameGameObject =
                 MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Game"));
             m_game = gameGameObject.GetComponent<Game>();
+            m_intance = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Instance"));
+            m_animator = MonoBehaviour.Instantiate(Resources.Load<Animator>("Prefabs/Fade"));
         }
+        [TearDown]
+        public void Teardown()
+        {
+            if (m_game)
+            {
+                Object.Destroy(m_game);
+            }
 
+            if(m_intance)
+            {
+                Object.Destroy(m_intance);
+            }
+
+           if(m_animator)
+            {
+                Object.Destroy(m_animator);
+            }
+
+        }
         [UnityTest]
         public IEnumerator SpawnPlayer()
         {
@@ -28,22 +53,49 @@ namespace Tests
             Assert.AreEqual(true, m_check);
         }
 
-/*        [UnityTest] 
-        public IEnumerator OverWorld()
+        [UnityTest]
+        public IEnumerator EnterTown()
         {
+            m_intance = GameObject.Find("Town");
+            m_player = GameObject.Find("Player");
+            m_animator = GameObject.Find("Fade").GetComponent<Animator>();
+            m_intance.transform.position = m_player.transform.position;
+            Debug.Log("Has entered Town");
+            m_intance = GameObject.Find("Overworld");
+            m_intance.transform.position = m_player.transform.position;
+            yield return new WaitForSeconds(3.0f);
             int m_sceneNum = m_game.GetActiveIndex();
-            yield return new WaitForSeconds(1.0f);
             Assert.AreEqual(0, m_sceneNum);
-        }*/
+        }
 
         [UnityTest]
-        public IEnumerator Town()
+        public IEnumerator EnterOverworld()
         {
-            m_game.getPlayerModel().moveUp();
+            SceneManager.LoadScene("Town", LoadSceneMode.Single);
+            m_intance = GameObject.Find("Overworld");
+            m_player = GameObject.Find("Player");
+            m_animator = GameObject.Find("Fade").GetComponent<Animator>();
+            m_intance.transform.position = m_player.transform.position;
+            Debug.Log("Has entered Overworld");
+            m_intance = GameObject.Find("Town");
+            m_intance.transform.position = m_player.transform.position;
             yield return new WaitForSeconds(3.0f);
-
             int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(1, m_sceneNum);
+            Assert.AreEqual(2, m_sceneNum);
+        }
+
+        [UnityTest]
+        public IEnumerator Transition()
+        {
+            m_intance = GameObject.Find("Town");
+            m_player = GameObject.Find("Player");
+            m_animator = GameObject.Find("Fade").GetComponent<Animator>();
+            m_intance.transform.position = m_player.transform.position;
+            Debug.Log("Has entered Town");
+            m_intance = GameObject.Find("Overworld");
+            m_intance.transform.position = m_player.transform.position;
+            yield return new WaitForSeconds(3.0f);
+            
         }
 
     }

@@ -11,19 +11,24 @@ public class Game : MonoBehaviour
     private GameObject m_playerModel;
 
     private static Game m_gameInstance;
-    int m_sceneNum;
+
+    [SerializeField]
+    public GameObject m_animator;
 
     // Start is called before the first frame update
     private void Start()
     {
         int m_sceneNum = SceneManager.GetActiveScene().buildIndex;
         m_gameInstance = this;
+        m_animator = GameObject.FindWithTag("Fade");
+
     }
 
     // Creates a new game for testing purposes
     public void NewGame()
     {
         m_isGameOver = false;
+        SceneManager.LoadScene("OverworldScene", LoadSceneMode.Single);
         int m_sceneNum = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -34,7 +39,8 @@ public class Game : MonoBehaviour
 
     public int GetActiveIndex()
     {
-        return m_sceneNum;
+        int m_sceneName = SceneManager.GetActiveScene().buildIndex;
+        return m_sceneName;
     }
 
     public bool CheckPlayer()
@@ -50,5 +56,4 @@ public class Game : MonoBehaviour
         }
 
     }
-
 }

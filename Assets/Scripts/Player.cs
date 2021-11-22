@@ -38,28 +38,21 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator Move(Vector3 t_targetPos)
-        {
-            m_isMoving = true;
+    {
+        m_isMoving = true;
         if ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, t_targetPos, m_speed * Time.deltaTime);
             yield return null;
         }
         transform.position = t_targetPos;
-            m_isMoving = false;
+        m_isMoving = false;
 
         CombatEncounter();
-        }
-
-    public void moveUp()
-    {
-        transform.Translate(Vector2.up * Time.deltaTime * 1000);
     }
-
 
     void CombatEncounter()
     {
-
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
             if (Random.Range(1, 101) <= 5)
@@ -70,5 +63,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Checkindex()
+    {
+        Debug.Log("Scene number: " + SceneManager.GetActiveScene().buildIndex);
+    }
 
 }
