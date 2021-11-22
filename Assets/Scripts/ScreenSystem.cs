@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ScreenSystem : MonoBehaviour
 {
+    int m_currentInventory = 0;
 
     private void Awake()
     {
@@ -35,13 +36,21 @@ public class ScreenSystem : MonoBehaviour
 
     public void GoToInventoryScreen(int t_i)
     {
-        if(this.gameObject.name == "Canvas")
-        {
-            for (int i = 0; i < this.transform.childCount; i++)
+        m_currentInventory = t_i;
+
+        if(this.gameObject != null)
+            if(this.gameObject.name == "Canvas")
             {
-                this.transform.GetChild(i).gameObject.SetActive(false);
+                for (int i = 0; i < this.transform.childCount; i++)
+                {
+                    this.transform.GetChild(i).gameObject.SetActive(false);
+                }
+                this.transform.GetChild(t_i).gameObject.SetActive(true);
             }
-            this.transform.GetChild(t_i).gameObject.SetActive(true);
-        }
+    }
+
+    public int GetCurrentInventory()
+    {
+        return m_currentInventory;
     }
 }
