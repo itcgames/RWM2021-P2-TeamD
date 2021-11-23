@@ -4,34 +4,30 @@ using UnityEngine.UI;
 public class UseItem : MonoBehaviour
 {
     public GameObject Item;
-    public int amount;
-    public string itemName;
-    public int healAmount;
-    public int PlayerHealth;
-    public int max_health;
-    public string playername;
-   public Text playerHP;
+    public int healAmount = 5;
+    public int PlayerHealth = 55;
+    public int max_health= 68;
+    public string playername= "Player";
+    public Text playerHP;
 
     // Start is called before the first frame update
     void Start()
     {
       
     }
-    private void OnEnable()
+     void OnEnable()
     {
+        playerHP = this.gameObject.GetComponent<Text>();
         playerHP.text = playername + " \n HP" + PlayerHealth.ToString() + "/ " + max_health.ToString();
+     
       
     }
     // Update is called once per frame
     void Update()
     {
-        amount = Item.GetComponent<setupItem>().getAmount();
-        Item.GetComponentInChildren<Text>().GetComponentInChildren<Text>().text = itemName +" x " + amount.ToString();
-        
-        if(amount == 0)
-        {
-            Destroy(Item);
-        }
+
+    
+
     }
 
     public void heal()
@@ -49,9 +45,14 @@ public class UseItem : MonoBehaviour
     }
     public void use()
     {
-        if (amount> 0 && PlayerHealth != 0)
+        if (Item.GetComponent<setupItem>().getAmount() > 0 && PlayerHealth != 0)
         {
-            Item.GetComponent<setupItem>().changeAmount(1);
+            Item.GetComponent<setupItem>().changeAmount(-1);
+
+        }
+        if (Item.GetComponent<setupItem>().getAmount() == 0)
+        {
+            Destroy(Item);
         }
     }
 
