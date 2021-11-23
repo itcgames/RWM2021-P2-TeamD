@@ -48,5 +48,23 @@ namespace Tests
           
 
         }
+        [UnityTest]
+        public IEnumerator Healamount()
+        {
+
+            GameObject camera = GameObject.Find("Main Camera");
+            camera.GetComponent<ActivateAndDeactivate>().ChangeInventory(true);
+            camera.GetComponent<ActivateAndDeactivate>().ChangeUse(true);
+            GameObject playerTest = GameObject.Find("playerData");
+            GameObject itemTest = GameObject.Find("item");
+            playerTest.GetComponent<UseItem>().heal();
+            int expected = playerTest.GetComponent<UseItem>().PlayerHealth + playerTest.GetComponent<UseItem>().healAmount;
+
+
+            yield return null;
+            Assert.Less(expected, 60);
+
+
+        }
     }
 }
