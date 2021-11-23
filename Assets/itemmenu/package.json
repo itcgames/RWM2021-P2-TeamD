@@ -1,0 +1,7 @@
+{
+    "name": "itemmenu",
+    "version": "0.1.0",
+    "displayName": "ItemMenu",
+    "description": "An item menu that lets you use items in an inventory",
+    "unity": "2019.4"
+} 
