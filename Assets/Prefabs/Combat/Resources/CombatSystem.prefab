@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: -2666636866168589787}
   - component: {fileID: -6409415445938539510}
   - component: {fileID: -4889222765547374951}
+  - component: {fileID: 6061856901027104896}
+  - component: {fileID: -1228403482912762114}
   m_Layer: 0
   m_Name: CombatSystem
   m_TagString: Untagged
@@ -74,5 +76,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bd06d3d6df95da4da29f9a49aff152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6061856901027104896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385336650581335170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bd8eafcd5fc614085d2d402ca166b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1228403482912762114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385336650581335170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508de5f892000c4489cf3d3c83133b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

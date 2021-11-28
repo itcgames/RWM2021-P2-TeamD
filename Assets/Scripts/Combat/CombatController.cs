@@ -35,6 +35,11 @@ public class CombatController : MonoBehaviour
             GetComponent<GenerateGrids>().CreateEnemyGrid();
             PositionPartyOnGrid();
             PositionEnemyOnGrid();
+
+            GetComponent<CombatUIController>().SetupNameTexts(m_party);
+            GetComponent<CombatUIController>().UpdateHpTexts(m_party);
+
+            GetComponent<CombatCursorController>().EnterActionSelect();
         }
         else
         {
