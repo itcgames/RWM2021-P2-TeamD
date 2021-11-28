@@ -102,4 +102,65 @@ public class CombatCursorController : MonoBehaviour
 
         m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
     }
+
+    public void MoveRow(int amount)
+    {
+        if (m_currentRow + amount >= m_currentMaxRow) m_currentRow = m_currentMaxRow - 1;
+        else if (m_currentRow + amount < 0) m_currentRow = 0;
+        else m_currentRow += amount;
+
+        if(m_decideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
+        else if(m_choosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
+        else if(m_chooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
+    }
+
+    public void MoveCol(int amount)
+    {
+
+        if (m_currentCol + amount >= m_currentMaxCol) m_currentCol = m_currentMaxCol - 1;
+        else if (m_currentCol + amount < 0) m_currentCol = 0;
+        else m_currentCol += amount;
+
+        if (m_decideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
+        else if (m_choosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
+        else if (m_chooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
+    }
+
+    public void ChooseAction(int partyMemberIndex)
+    {
+        // Attack
+        if (m_currentRow == 0 && m_currentCol == 0)
+        {
+            GetComponent<CombatController>().ChangeActivePartyMember();
+        }
+
+        // Flee
+        else if (m_currentRow == 0 && m_currentCol == 1)
+        {
+            GetComponent<CombatController>().ChangeActivePartyMember();
+        }
+
+        // Magic
+        else if(m_currentRow == 1 && m_currentCol == 0)
+        {
+            Debug.Log("Magic");
+        }
+
+        // Drink
+        else if (m_currentRow == 2 && m_currentCol == 0)
+        {
+            Debug.Log("Drink");
+        }
+
+        // Item
+        else if (m_currentRow == 3 && m_currentCol == 0)
+        {
+            Debug.Log("Item");
+        }
+
+        else
+        {
+            Debug.Log("Nothing");
+        }
+    }
 }
