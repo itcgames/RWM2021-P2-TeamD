@@ -38,7 +38,7 @@ namespace Tests
         public IEnumerator UseAmount()
         {
 
-            GameObject camera = GameObject.Find("Main Camera");
+            GameObject camera = GameObject.Find("inven");
             camera.GetComponent<ActivateAndDeactivate>().ChangeInventory(true);
             camera.GetComponent<ActivateAndDeactivate>().ChangeUse(true);
             GameObject playerTest = GameObject.Find("playerData");
@@ -56,7 +56,7 @@ namespace Tests
         public IEnumerator Healamount()
         {
 
-            GameObject camera = GameObject.Find("Main Camera");
+            GameObject camera = GameObject.Find("inven");
             camera.GetComponent<ActivateAndDeactivate>().ChangeInventory(true);
             camera.GetComponent<ActivateAndDeactivate>().ChangeUse(true);
             GameObject playerTest = GameObject.Find("playerData");
