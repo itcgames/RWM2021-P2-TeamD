@@ -22,12 +22,18 @@ public enum WhiteSpells
 
 public class Spells : MonoBehaviour
 {
-    List<WhiteSpells> currentWhiteSpells;
-    List<BlackSpells> currentBlackSpells;
+    public List<WhiteSpells> currentWhiteSpells;
+    public List<BlackSpells> currentBlackSpells;
     int spellUses = 0;
     int MaxUses = 2;
 
-    public void AddSpell(SpellType t_type /* character type*/)
+    private void Start()
+    {
+        currentWhiteSpells = new List<WhiteSpells>();
+        currentBlackSpells = new List<BlackSpells>();
+    }
+
+    public void AddSpell(SpellType t_type /*character type*/)
     {
         if(t_type.ToString() == "WhiteSpells")
         {
