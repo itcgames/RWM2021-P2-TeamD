@@ -56,8 +56,19 @@ public class Spells : MonoBehaviour
 
     public void useSpell()
     {
-        spellUses--;
-        if (spellUses < 0)
-            spellUses = 0;
+        if (spellUses != 0)
+        {
+            if (currentBlackSpells != null)
+            {
+                //damage enemy
+            }
+            else if (currentWhiteSpells != null)
+            {
+                //heal character
+            }
+            spellUses--;
+        }
+        //if (spellUses < 0)
+        //    spellUses = 0;
     }
 }
