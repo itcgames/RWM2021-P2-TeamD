@@ -34,6 +34,18 @@ public class ScreenSystem : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    public void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        { 
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                GoToGameplayScene();
+            }
+        }
+
+    }
+
     public void GoToInventoryScreen(int t_i)
     {
         m_currentInventory = t_i;
