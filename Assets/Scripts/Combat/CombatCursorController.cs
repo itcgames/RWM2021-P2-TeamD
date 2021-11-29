@@ -138,7 +138,6 @@ public class CombatCursorController : MonoBehaviour
         if (m_currentRow == 0 && m_currentCol == 0)
         {
             EnterTargetSelect();
-            //GetComponent<CombatController>().ChangeActivePartyMember();
         }
 
         // Flee
