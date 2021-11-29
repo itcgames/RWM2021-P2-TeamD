@@ -8,9 +8,9 @@ public class CombatController : MonoBehaviour
     private Dictionary<int, GameObject> m_battleOrder;
 
     [SerializeField]
-    public List<GameObject> m_party;
+    public List<GameObject> Party { get; set; }
 
-    private List<GameObject> m_enemies;
+    public List<GameObject> EnemyList { get; set; }
 
     private int m_currentChar;
 
@@ -31,8 +31,18 @@ public class CombatController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.UpArrow)) GetComponent<CombatCursorController>().MoveRow(-1);
             if (Input.GetKeyUp(KeyCode.DownArrow)) GetComponent<CombatCursorController>().MoveRow(1);
 
-            if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseAction(0);
+            if(GetComponent<CombatCursorController>().DecideAction)
+            {
+                if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
+            }
+
+            else if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
+            {
+                if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
+            }
         }
+
+        
 
         else if(CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
         {
@@ -52,10 +62,11 @@ public class CombatController : MonoBehaviour
             PositionPartyOnGrid();
             PositionEnemyOnGrid();
 
-            GetComponent<CombatUIController>().SetupNameTexts(m_party);
-            GetComponent<CombatUIController>().UpdateHpTexts(m_party);
+            GetComponent<CombatUIController>().SetupNameTexts(Party);
+            GetComponent<CombatUIController>().UpdateHpTexts(Party);
 
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+            GetComponent<CombatCursorController>().SetupCursor();
             GetComponent<CombatCursorController>().EnterActionSelect();
 
             m_currentChar = -1;
@@ -80,14 +91,14 @@ public class CombatController : MonoBehaviour
         {
             Debug.Log("You get to strike first.");
 
-            for (int i = 0; i < m_party.Count; ++i)
+            for (int i = 0; i < Party.Count; ++i)
             {
-                m_battleOrder.Add(i + 1, m_party[i]);
+                m_battleOrder.Add(i + 1, Party[i]);
             }
 
-            for (int i = 0; i < m_enemies.Count; ++i)
+            for (int i = 0; i < EnemyList.Count; ++i)
             {
-                m_battleOrder.Add(i + m_party.Count + 1, m_enemies[i]);
+                m_battleOrder.Add(i + Party.Count + 1, EnemyList[i]);
             }
 
             foreach (var item in m_battleOrder)
@@ -99,14 +110,14 @@ public class CombatController : MonoBehaviour
         {
             Debug.Log("Enemies strike first.");
 
-            for (int i = 0; i < m_enemies.Count; ++i)
+            for (int i = 0; i < EnemyList.Count; ++i)
             {
-                m_battleOrder.Add(i + 1, m_enemies[i]);
+                m_battleOrder.Add(i + 1, EnemyList[i]);
             }
 
-            for (int i = 0; i < m_party.Count; ++i)
+            for (int i = 0; i < Party.Count; ++i)
             {
-                m_battleOrder.Add(i + m_enemies.Count + 1, m_party[i]);
+                m_battleOrder.Add(i + EnemyList.Count + 1, Party[i]);
             }
 
             foreach (var item in m_battleOrder)
@@ -118,7 +129,7 @@ public class CombatController : MonoBehaviour
 
     public void GenerateEnemies()
     {
-        m_enemies = new List<GameObject>();
+        EnemyList = new List<GameObject>();
 
         GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
 
@@ -146,7 +157,7 @@ public class CombatController : MonoBehaviour
                     break;
             }
 
-            m_enemies.Add(enemy);
+            EnemyList.Add(enemy);
         }
     }
 
@@ -187,9 +198,9 @@ public class CombatController : MonoBehaviour
 
     public void PositionPartyOnGrid()
     {
-        for (int i = 0; i < m_party.Count; ++i)
+        for (int i = 0; i < Party.Count; ++i)
         {
-            m_party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
+            Party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
         }
     }
 
@@ -201,37 +212,45 @@ public class CombatController : MonoBehaviour
         {
             for (int j = 0; j < GetComponent<GenerateGrids>().ColumnEnemy; ++j)
             {
-                m_enemies[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
+                EnemyList[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
                 ++k;
 
-                if (k >= m_enemies.Count) break;
+                if (k >= EnemyList.Count) break;
             }
-            if (k >= m_enemies.Count) break;
+            if (k >= EnemyList.Count) break;
         }
     }
 
     public void ChangeActivePartyMember()
     {
         // shift previous character back
-        if(m_currentChar != -1) m_party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+        if(m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
 
         m_currentChar++;
 
         // if current character is the last character, return to first character and start battle
-        if(m_currentChar >= m_party.Count)
+        if(m_currentChar >= Party.Count)
         {
-            m_party[m_party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_party.Count - 1, 1];
+            Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
             m_currentChar = 0;
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Battle;
             return;
         }
-        m_party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
+        Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
     }
 
     public void ExecuteBattleOrder()
     {
         foreach (var character in m_battleOrder)
         {
+            if(character.Value.GetComponent<CharacterAttributes>().Playable)
+            {
+                if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight)
+                {
+                    // do stuff
+                }
+            }
+
             character.Value.GetComponent<ActionController>().ExecuteAction();
         }
     }

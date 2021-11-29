@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ActionController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ActionController : MonoBehaviour
         Item
     }
 
-    private GameObject m_target;
+    public GameObject Target { get; set; }
 
     public CombatAction Action { get; set; } = CombatAction.None;
 
@@ -51,16 +52,27 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    private void Fight()
+    private IEnumerator Fight()
     {
-        m_target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+
+        yield return new WaitForSeconds(4);
     }
 
-    private void Flee()
+    private IEnumerator Flee()
     {
         int success = Random.Range(1, 101);
 
-        if (success > 50) Debug.Log("Successfully escaped!");
-        else Debug.Log("failed to escape...");
+        if (success > 50)
+        {
+            Debug.Log("Successfully escaped!");
+            yield return new WaitForSeconds(2);
+        }
+
+        else
+        {
+            Debug.Log("failed to escape...");
+            yield return new WaitForSeconds(2);
+        }
     }
 }

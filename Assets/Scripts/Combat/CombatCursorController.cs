@@ -6,9 +6,9 @@ public class CombatCursorController : MonoBehaviour
 {
     public GameObject m_cursor;
 
-    private bool m_decideAction = false;
-    private bool m_choosePartyChar = false;
-    private bool m_chooseEnemyTarget = false;
+    public bool DecideAction { get; set; } = false;
+    public bool ChoosePartyChar { get; set; } = false;
+    public bool ChooseEnemyTarget { get; set; } = false;
 
     private Vector3[,] m_actionSelectGrid;
     private const int m_actionGridRow = 4;
@@ -29,6 +29,17 @@ public class CombatCursorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void SetupCursor()
+    {
         m_actionSelectGrid = new Vector3[m_actionGridRow, m_actionGridCol]
         {
             { new Vector3(-0.15f, -0.54f, 0), new Vector3(0.32f, -0.54f, 0),  },
@@ -36,6 +47,7 @@ public class CombatCursorController : MonoBehaviour
             { new Vector3(-0.15f, -0.80f, 0), new Vector3(0.32f, -0.80f, 0),  },
             { new Vector3(-0.15f, -0.94f, 0), new Vector3(0.32f, -0.94f, 0),  },
         };
+
         m_partyCharSelectGrid = new Vector3[m_partyCharGridRow]
         {
             new Vector3(0.5f, 0.5f, 0),
@@ -52,17 +64,11 @@ public class CombatCursorController : MonoBehaviour
         };
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void EnterActionSelect()
     {
-        m_decideAction = true;
-        m_choosePartyChar = false;
-        m_chooseEnemyTarget = false;
+        DecideAction = true;
+        ChoosePartyChar = false;
+        ChooseEnemyTarget = false;
         
         m_currentRow = 0;
         m_currentCol = 0;
@@ -75,9 +81,9 @@ public class CombatCursorController : MonoBehaviour
 
     public void EnterPartyCharSelect()
     {
-        m_decideAction = false;
-        m_choosePartyChar = true;
-        m_chooseEnemyTarget = false;
+        DecideAction = false;
+        ChoosePartyChar = true;
+        ChooseEnemyTarget = false;
 
         m_currentRow = 0;
         m_currentCol = 0;
@@ -90,9 +96,9 @@ public class CombatCursorController : MonoBehaviour
 
     public void EnterTargetSelect()
     {
-        m_decideAction = false;
-        m_choosePartyChar = false;
-        m_chooseEnemyTarget = true;
+        DecideAction = false;
+        ChoosePartyChar = false;
+        ChooseEnemyTarget = true;
 
         m_currentRow = 0;
         m_currentCol = 0;
@@ -109,9 +115,9 @@ public class CombatCursorController : MonoBehaviour
         else if (m_currentRow + amount < 0) m_currentRow = 0;
         else m_currentRow += amount;
 
-        if(m_decideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
-        else if(m_choosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
-        else if(m_chooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
+        if(DecideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
+        else if(ChoosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
+        else if(ChooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
     }
 
     public void MoveCol(int amount)
@@ -121,9 +127,9 @@ public class CombatCursorController : MonoBehaviour
         else if (m_currentCol + amount < 0) m_currentCol = 0;
         else m_currentCol += amount;
 
-        if (m_decideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
-        else if (m_choosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
-        else if (m_chooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
+        if (DecideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
+        else if (ChoosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
+        else if (ChooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
     }
 
     public void ChooseAction(int partyMemberIndex)
@@ -131,12 +137,14 @@ public class CombatCursorController : MonoBehaviour
         // Attack
         if (m_currentRow == 0 && m_currentCol == 0)
         {
-            GetComponent<CombatController>().ChangeActivePartyMember();
+            EnterTargetSelect();
+            //GetComponent<CombatController>().ChangeActivePartyMember();
         }
 
         // Flee
         else if (m_currentRow == 0 && m_currentCol == 1)
         {
+            GetComponent<CombatController>().Party[partyMemberIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Flee;
             GetComponent<CombatController>().ChangeActivePartyMember();
         }
 
@@ -162,5 +170,63 @@ public class CombatCursorController : MonoBehaviour
         {
             Debug.Log("Nothing");
         }
+    }
+
+    public void ChooseTarget(int partyMemberIndex)
+    {
+        GetComponent<CombatController>().Party[partyMemberIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+        GetComponent<CombatController>().Party[partyMemberIndex].GetComponent<ActionController>().Target = GetTarget();
+        GetComponent<CombatController>().ChangeActivePartyMember();
+        EnterActionSelect();
+    }
+
+    public GameObject GetTarget()
+    {
+        if(m_currentRow == 0 && m_currentCol == 0)
+        {
+            return GetComponent<CombatController>().EnemyList[0];
+        }
+
+        if (m_currentRow == 1 && m_currentCol == 0)
+        {
+            return GetComponent<CombatController>().EnemyList[1];
+        }
+
+        if (m_currentRow == 2 && m_currentCol == 0)
+        {
+            return GetComponent<CombatController>().EnemyList[2];
+        }
+
+        if (m_currentRow == 0 && m_currentCol == 1)
+        {
+            return GetComponent<CombatController>().EnemyList[3];
+        }
+
+        if (m_currentRow == 1 && m_currentCol == 1)
+        {
+            return GetComponent<CombatController>().EnemyList[4];
+        }
+
+        if (m_currentRow == 2 && m_currentCol == 1)
+        {
+            return GetComponent<CombatController>().EnemyList[5];
+        }
+
+        if (m_currentRow == 0 && m_currentCol == 2)
+        {
+            return GetComponent<CombatController>().EnemyList[6];
+        }
+
+        if (m_currentRow == 1 && m_currentCol == 2)
+        {
+            return GetComponent<CombatController>().EnemyList[7];
+        }
+
+        if (m_currentRow == 2 && m_currentCol == 2)
+        {
+            return GetComponent<CombatController>().EnemyList[8];
+        }
+
+        return null;
     }
 }
