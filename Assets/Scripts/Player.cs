@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     void Start()
     {
       /*  m_movePoint.parent = null;        */
+
     }
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(Move(m_targetPos));
             }
         }
+        PlayerMenu();
     }
 
     IEnumerator Move(Vector3 t_targetPos)
@@ -62,6 +64,16 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void PlayerMenu()
+    {
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToPauseScreen();
+        }
+    }
+
+
     public bool ForceCombatEncounter()
     {
         return true;
