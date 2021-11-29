@@ -31,7 +31,8 @@ public class CombatUIController : MonoBehaviour
     {
         for (int i = 0; i < party.Count; i++)
         {
-            m_hpTextList[i].text = party[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value.ToString();
+            if (!party[i].activeSelf) m_hpTextList[i].text = "0";
+            else m_hpTextList[i].text = party[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value.ToString();
         }
     }
 }

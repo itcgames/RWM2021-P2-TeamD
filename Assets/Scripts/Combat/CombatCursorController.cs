@@ -29,13 +29,13 @@ public class CombatCursorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetupCursor()
@@ -69,7 +69,7 @@ public class CombatCursorController : MonoBehaviour
         DecideAction = true;
         ChoosePartyChar = false;
         ChooseEnemyTarget = false;
-        
+
         m_currentRow = 0;
         m_currentCol = 0;
 
@@ -115,9 +115,9 @@ public class CombatCursorController : MonoBehaviour
         else if (m_currentRow + amount < 0) m_currentRow = 0;
         else m_currentRow += amount;
 
-        if(DecideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
-        else if(ChoosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
-        else if(ChooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
+        if (DecideAction) m_cursor.transform.position = m_actionSelectGrid[m_currentRow, m_currentCol];
+        else if (ChoosePartyChar) m_cursor.transform.position = m_partyCharSelectGrid[m_currentRow];
+        else if (ChooseEnemyTarget) m_cursor.transform.position = m_targetSelectGrid[m_currentRow, m_currentCol];
     }
 
     public void MoveCol(int amount)
@@ -149,7 +149,7 @@ public class CombatCursorController : MonoBehaviour
         }
 
         // Magic
-        else if(m_currentRow == 1 && m_currentCol == 0)
+        else if (m_currentRow == 1 && m_currentCol == 0)
         {
             Debug.Log("Magic");
         }
@@ -182,49 +182,73 @@ public class CombatCursorController : MonoBehaviour
 
     public GameObject GetTarget()
     {
-        if(m_currentRow == 0 && m_currentCol == 0)
+        if (m_currentRow == 0 && m_currentCol == 0)
         {
             return GetComponent<CombatController>().EnemyList[0];
         }
 
         if (m_currentRow == 1 && m_currentCol == 0)
         {
-            return GetComponent<CombatController>().EnemyList[1];
+            if (GetComponent<CombatController>().EnemyList.Count >= 1)
+            {
+                return GetComponent<CombatController>().EnemyList[1];
+            }
         }
 
         if (m_currentRow == 2 && m_currentCol == 0)
         {
-            return GetComponent<CombatController>().EnemyList[2];
+            if (GetComponent<CombatController>().EnemyList.Count >= 2)
+            {
+                return GetComponent<CombatController>().EnemyList[2];
+            }
         }
 
         if (m_currentRow == 0 && m_currentCol == 1)
         {
-            return GetComponent<CombatController>().EnemyList[3];
+            if (GetComponent<CombatController>().EnemyList.Count >= 3)
+            {
+                return GetComponent<CombatController>().EnemyList[3];
+            }
         }
 
         if (m_currentRow == 1 && m_currentCol == 1)
         {
-            return GetComponent<CombatController>().EnemyList[4];
+            if (GetComponent<CombatController>().EnemyList.Count >= 4)
+            {
+                return GetComponent<CombatController>().EnemyList[4];
+            }
         }
 
         if (m_currentRow == 2 && m_currentCol == 1)
         {
-            return GetComponent<CombatController>().EnemyList[5];
+            if (GetComponent<CombatController>().EnemyList.Count >= 5)
+            {
+                return GetComponent<CombatController>().EnemyList[5];
+            }
         }
 
         if (m_currentRow == 0 && m_currentCol == 2)
         {
-            return GetComponent<CombatController>().EnemyList[6];
+            if (GetComponent<CombatController>().EnemyList.Count >= 6)
+            {
+                return GetComponent<CombatController>().EnemyList[6];
+            }
         }
 
         if (m_currentRow == 1 && m_currentCol == 2)
         {
-            return GetComponent<CombatController>().EnemyList[7];
+            if (GetComponent<CombatController>().EnemyList.Count >= 7)
+            {
+                return GetComponent<CombatController>().EnemyList[7];
+            }
         }
 
         if (m_currentRow == 2 && m_currentCol == 2)
         {
-            return GetComponent<CombatController>().EnemyList[8];
+            if (GetComponent<CombatController>().EnemyList.Count >= 8)
+            {
+                return GetComponent<CombatController>().EnemyList[8];
+            }
         }
 
         return null;

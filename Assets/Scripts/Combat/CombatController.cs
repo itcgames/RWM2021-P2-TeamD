@@ -8,7 +8,8 @@ public class CombatController : MonoBehaviour
     private Dictionary<int, GameObject> m_battleOrder;
 
     [SerializeField]
-    public List<GameObject> Party { get; set; }
+    private List<GameObject> m_party;
+    public List<GameObject> Party { get { return m_party; } set { m_party = value; } }
 
     public List<GameObject> EnemyList { get; set; }
 
@@ -46,7 +47,11 @@ public class CombatController : MonoBehaviour
 
         else if(CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
         {
+            GenEnemyActions();
             ExecuteBattleOrder();
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+            m_currentChar = -1;
+            ChangeActivePartyMember();
         }
     }
 
@@ -228,6 +233,11 @@ public class CombatController : MonoBehaviour
 
         m_currentChar++;
 
+        while(m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
+        {
+            m_currentChar++;
+        }
+
         // if current character is the last character, return to first character and start battle
         if(m_currentChar >= Party.Count)
         {
@@ -239,19 +249,41 @@ public class CombatController : MonoBehaviour
         Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
     }
 
+    public void GenEnemyActions()
+    {
+        foreach (var enemy in EnemyList)
+        {
+            enemy.GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+
+            int targetPartyMember = Random.Range(0, 4);
+
+            enemy.GetComponent<ActionController>().Target = Party[targetPartyMember];
+        }
+    }
+
     public void ExecuteBattleOrder()
     {
         foreach (var character in m_battleOrder)
         {
             if(character.Value.GetComponent<CharacterAttributes>().Playable)
             {
-                if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight)
+                if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight && character.Value.activeSelf)
                 {
-                    // do stuff
+                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
+                    character.Value.GetComponent<ActionController>().ExecuteAction();
+                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 1];
+                }
+                else if (character.Value.activeSelf)
+                {
+                    character.Value.GetComponent<ActionController>().ExecuteAction();
                 }
             }
-
-            character.Value.GetComponent<ActionController>().ExecuteAction();
+            else if (character.Value.activeSelf)
+            {
+                character.Value.GetComponent<ActionController>().ExecuteAction();
+            }
         }
+
+        GetComponent<CombatUIController>().UpdateHpTexts(Party);
     }
 }

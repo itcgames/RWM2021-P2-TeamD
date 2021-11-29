@@ -20,13 +20,13 @@ public class ActionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ExecuteAction()
@@ -36,10 +36,10 @@ public class ActionController : MonoBehaviour
             case CombatAction.None:
                 break;
             case CombatAction.Fight:
-                Fight();
+                StartCoroutine(Fight());
                 break;
             case CombatAction.Flee:
-                Flee();
+                StartCoroutine(Flee());
                 break;
             case CombatAction.Magic:
                 break;
@@ -54,9 +54,24 @@ public class ActionController : MonoBehaviour
 
     private IEnumerator Fight()
     {
-        Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        if (Target != null)
+        {
+            Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
-        yield return new WaitForSeconds(4);
+            if (Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
+            {
+                Target.SetActive(false);
+            }
+            else
+            {
+                Debug.Log(GetComponent<CharacterAttributes>().Name + " Dealt " + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value +
+                    " to " + Target.GetComponent<CharacterAttributes>().Name);
+            }
+            yield return new WaitForSeconds(4);
+        }
+
+        Action = CombatAction.None;
     }
 
     private IEnumerator Flee()
@@ -74,5 +89,7 @@ public class ActionController : MonoBehaviour
             Debug.Log("failed to escape...");
             yield return new WaitForSeconds(2);
         }
+
+        Action = CombatAction.None;
     }
 }
