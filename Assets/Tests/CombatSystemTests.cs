@@ -151,4 +151,22 @@ public class CharacterTemplateTests
         Assert.AreEqual(enemyList[0].transform.position, enemyGrid[0, 0]);
 
     }
+
+    [UnityTest]
+    public IEnumerator PlayerActionsTest()
+    {
+        m_combatPrefab = Object.Instantiate(m_combatPrefab);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
+
+        GameObject char1 = Object.Instantiate(m_characterPrefab);
+
+        char1.GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+
+        m_party.Add(char1);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(m_party[0].GetComponent<ActionController>().Action, ActionController.CombatAction.Fight);
+    }
 }
