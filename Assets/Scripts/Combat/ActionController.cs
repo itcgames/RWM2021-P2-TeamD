@@ -81,6 +81,8 @@ public class ActionController : MonoBehaviour
         if (success > 50)
         {
             Debug.Log("Successfully escaped!");
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
+
             yield return new WaitForSeconds(2);
         }
 

@@ -8,6 +8,7 @@
         Battle,
         Victory,
         Failure,
+        Escape,
     }
 
     public static CombatState s_currentCombatState = CombatState.Inactive;
