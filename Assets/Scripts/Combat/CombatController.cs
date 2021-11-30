@@ -24,7 +24,7 @@ public class CombatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
+        if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
             if (Input.GetKeyUp(KeyCode.LeftArrow)) GetComponent<CombatCursorController>().MoveCol(-1);
             if (Input.GetKeyUp(KeyCode.RightArrow)) GetComponent<CombatCursorController>().MoveCol(1);
@@ -32,7 +32,7 @@ public class CombatController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.UpArrow)) GetComponent<CombatCursorController>().MoveRow(-1);
             if (Input.GetKeyUp(KeyCode.DownArrow)) GetComponent<CombatCursorController>().MoveRow(1);
 
-            if(GetComponent<CombatCursorController>().DecideAction)
+            if (GetComponent<CombatCursorController>().DecideAction)
             {
                 if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
             }
@@ -43,9 +43,7 @@ public class CombatController : MonoBehaviour
             }
         }
 
-        
-
-        else if(CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
+        else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
         {
             GenEnemyActions();
             ExecuteBattleOrder();
@@ -64,14 +62,23 @@ public class CombatController : MonoBehaviour
             CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState ||
             CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
         {
-            if(Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                if(CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
+                if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
                     // implement rewards here
                 }
 
                 // switch scenes here
+            }
+
+            else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
+            {
+                GenEnemyActions();
+                ExecuteBattleOrder();
+                CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+                m_currentChar = -1;
+                ChangeActivePartyMember();
             }
         }
     }
@@ -218,7 +225,7 @@ public class CombatController : MonoBehaviour
             }
 
             enemyTest.Add(enemy);
-        }        
+        }
         return enemyTest;
     }
 
@@ -250,17 +257,17 @@ public class CombatController : MonoBehaviour
     public void ChangeActivePartyMember()
     {
         // shift previous character back
-        if(m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+        if (m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
 
         m_currentChar++;
 
-        while(m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
+        while (m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
         {
             m_currentChar++;
         }
 
         // if current character is the last character, return to first character and start battle
-        if(m_currentChar >= Party.Count)
+        if (m_currentChar >= Party.Count)
         {
             Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
             m_currentChar = 0;
@@ -286,9 +293,9 @@ public class CombatController : MonoBehaviour
     {
         foreach (var character in m_battleOrder)
         {
-            if(character.Value.GetComponent<CharacterAttributes>().Playable)
+            if (character.Value.GetComponent<CharacterAttributes>().Playable)
             {
-                if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight && character.Value.activeSelf)
+                if (character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight && character.Value.activeSelf)
                 {
                     //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
                     character.Value.GetComponent<ActionController>().ExecuteAction();
@@ -318,7 +325,7 @@ public class CombatController : MonoBehaviour
         foreach (var member in Party)
         {
             if (!member.activeSelf) partyCount++;
-            if(partyCount >= Party.Count)
+            if (partyCount >= Party.Count)
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
                 Debug.Log("You have lost the battle...");
@@ -329,7 +336,7 @@ public class CombatController : MonoBehaviour
         foreach (var enemy in EnemyList)
         {
             if (!enemy.activeSelf) enemyCount++;
-            if(enemyCount >= EnemyList.Count)
+            if (enemyCount >= EnemyList.Count)
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");

@@ -82,6 +82,7 @@ public class ActionController : MonoBehaviour
         {
             Debug.Log("Successfully escaped!");
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
+
             yield return new WaitForSeconds(2);
         }
 
