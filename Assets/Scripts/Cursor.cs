@@ -8,7 +8,7 @@ public class Cursor : MonoBehaviour
     List<Vector2> cursorCharPositions;
     int currentInvPos = 0;
     int currentCharPos = 0;
-    ScreenSystem t_screenSystem;
+    public ScreenSystem t_screenSystem;
     bool pickChar;
     bool activeInventories;
 
@@ -44,13 +44,11 @@ public class Cursor : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (currentInvPos > 0)
-                    currentInvPos--;
+                MoveUp();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if (currentInvPos < 4)
-                    currentInvPos++;
+                MoveDown();
             }
             else if (Input.GetKeyDown(KeyCode.X))
             {
@@ -63,69 +61,32 @@ public class Cursor : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if(currentCharPos != 0 && currentCharPos != 1)
-                {
-                    if (currentCharPos == 2)
-                        currentCharPos = 0;
-                    else
-                        currentCharPos = 1;
-                }
+                MoveUp1();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if (currentCharPos != 2 && currentCharPos != 3)
-                {
-                    if (currentCharPos == 0)
-                        currentCharPos = 2;
-                    else
-                        currentCharPos = 3;
-                }
+                MoveDown1();
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (currentCharPos != 1 && currentCharPos != 3)
-                {
-                    if (currentCharPos == 0)
-                        currentCharPos = 1;
-                    else
-                        currentCharPos = 3;
-                }
+                MoveRight();
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (currentCharPos != 0 && currentCharPos != 2)
-                {
-                    if (currentCharPos == 1)
-                        currentCharPos = 0;
-                    else
-                        currentCharPos = 2;
-                }
+                MoveLeft();
             }
             else if (Input.GetKeyDown(KeyCode.X))
             {
-                t_screenSystem.GoToInventoryScreen(currentInvPos);
+                GoToCharInventory();
             }
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            for(int i = 0; i <= 4; i++)
-            {
-                if (this.transform.parent.transform.GetChild(i).gameObject.activeInHierarchy)
-                {
-                    activeInventories = true;
-                    break;
-                }
-                else
-                    activeInventories = false;
-            }
-            if (activeInventories)
-                t_screenSystem.GoToPauseScreen();
-            else
-                t_screenSystem.GoToGameplayScene();
+            GoBack();
         }
     }
 
-    void UseFunctionality()
+    public void UseFunctionality()
     {
         switch (currentInvPos)
         {
@@ -147,5 +108,76 @@ public class Cursor : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void GoToCharInventory()
+    {
+        t_screenSystem.GoToInventoryScreen(currentInvPos);
+    }
+    public void MoveUp()
+    {
+        if (currentInvPos > 0)
+            currentInvPos--;
+    }
+    public void MoveDown()
+    {
+        if (currentInvPos < 4)
+            currentInvPos++;
+    }
+    public void MoveRight()
+    {
+        if (currentCharPos != 1 && currentCharPos != 3)
+        {
+            if (currentCharPos == 0)
+                currentCharPos = 1;
+            else
+                currentCharPos = 3;
+        }
+    }
+    public void MoveLeft()
+    {
+        if (currentCharPos != 0 && currentCharPos != 2)
+        {
+            if (currentCharPos == 1)
+                currentCharPos = 0;
+            else
+                currentCharPos = 2;
+        }
+    }
+    public void MoveUp1()
+    {
+        if (currentCharPos != 0 && currentCharPos != 1)
+        {
+            if (currentCharPos == 2)
+                currentCharPos = 0;
+            else
+                currentCharPos = 1;
+        }
+    }
+    public void MoveDown1()
+    {
+        if (currentCharPos != 2 && currentCharPos != 3)
+        {
+            if (currentCharPos == 0)
+                currentCharPos = 2;
+            else
+                currentCharPos = 3;
+        }
+    }
+    public void GoBack()
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+            if (this.transform.parent.transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                activeInventories = true;
+                break;
+            }
+            else
+                activeInventories = false;
+        }
+        if (activeInventories)
+            t_screenSystem.GoToPauseScreen();
+        else
+            t_screenSystem.GoToGameplayScene();
     }
 }

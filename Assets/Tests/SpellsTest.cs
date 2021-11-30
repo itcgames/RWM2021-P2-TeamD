@@ -37,5 +37,128 @@ namespace Tests
             Assert.AreEqual(1, t_spells.currentBlackSpells.Count);
             Assert.AreEqual(0, t_spells.currentWhiteSpells.Count);
         }
+
+        [UnityTest]
+        public IEnumerator PickTheItemInventory()
+        {
+            GameObject gameObject = new GameObject();
+            gameObject.AddComponent<ScreenSystem>();
+            gameObject.AddComponent<RectTransform>();
+            ScreenSystem t_system = new ScreenSystem();
+            t_system.GoToPauseScreen();
+
+            yield return new WaitForSeconds(0.1f);
+
+            gameObject.AddComponent<Cursor>();
+            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+
+            yield return new WaitForSeconds(0.1f);
+            ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
+            t_cursor.UseFunctionality();
+
+            Assert.AreEqual(0, t_cursScreenSys.GetCurrentInventory());
+        }
+
+        [UnityTest]
+        public IEnumerator PickTheWeaponsInventory()
+        {
+            GameObject gameObject = new GameObject();
+            gameObject.AddComponent<ScreenSystem>();
+            gameObject.AddComponent<RectTransform>();
+            ScreenSystem t_system = new ScreenSystem();
+            t_system.GoToPauseScreen();
+
+            yield return new WaitForSeconds(0.1f);
+
+            gameObject.AddComponent<Cursor>();
+            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+
+            yield return new WaitForSeconds(0.1f);
+            ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.UseFunctionality();
+
+            Assert.AreEqual(2, t_cursScreenSys.GetCurrentInventory());
+        }
+
+        [UnityTest]
+        public IEnumerator PickTheArmourInventory()
+        {
+            GameObject gameObject = new GameObject();
+            gameObject.AddComponent<ScreenSystem>();
+            gameObject.AddComponent<RectTransform>();
+            ScreenSystem t_system = new ScreenSystem();
+            t_system.GoToPauseScreen();
+
+            yield return new WaitForSeconds(0.1f);
+
+            gameObject.AddComponent<Cursor>();
+            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+
+            yield return new WaitForSeconds(0.1f);
+            ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.UseFunctionality();
+
+            Assert.AreEqual(3, t_cursScreenSys.GetCurrentInventory());
+        }
+
+        [UnityTest]
+        public IEnumerator PickTheMagicInventory()
+        {
+            GameObject gameObject = new GameObject();
+            gameObject.AddComponent<ScreenSystem>();
+            gameObject.AddComponent<RectTransform>();
+            ScreenSystem t_system = new ScreenSystem();
+            t_system.GoToPauseScreen();
+
+            yield return new WaitForSeconds(0.1f);
+
+            gameObject.AddComponent<Cursor>();
+            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+
+            yield return new WaitForSeconds(0.1f);
+            ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
+            t_cursor.MoveDown();
+            t_cursor.UseFunctionality();
+            t_cursor.MoveRight();
+            t_cursor.GoToCharInventory();
+
+
+            Assert.AreEqual(1, t_cursScreenSys.GetCurrentInventory());
+        }
+
+        [UnityTest]
+        public IEnumerator PickTheStatusInventory()
+        {
+            GameObject gameObject = new GameObject();
+            gameObject.AddComponent<ScreenSystem>();
+            gameObject.AddComponent<RectTransform>();
+            ScreenSystem t_system = new ScreenSystem();
+            t_system.GoToPauseScreen();
+
+            yield return new WaitForSeconds(0.1f);
+
+            gameObject.AddComponent<Cursor>();
+            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+
+            yield return new WaitForSeconds(0.1f);
+            ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.MoveDown();
+            t_cursor.UseFunctionality();
+            t_cursor.MoveRight();
+            t_cursor.MoveDown1();
+            t_cursor.GoToCharInventory();
+
+
+            Assert.AreEqual(4, t_cursScreenSys.GetCurrentInventory());
+        }
     }
 }
