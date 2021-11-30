@@ -346,4 +346,32 @@ public class CombatController : MonoBehaviour
 
         return false;
     }
+
+    public bool BattleEndTest(List<GameObject> party, List<GameObject> enemies)
+    {
+        int enemyCount = 0;
+        int partyCount = 0;
+
+        foreach (var member in party)
+        {
+            if (!member.activeSelf) partyCount++;
+            if (partyCount >= party.Count)
+            {
+                CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
+                return true;
+            }
+        }
+
+        foreach (var enemy in enemies)
+        {
+            if (!enemy.activeSelf) enemyCount++;
+            if (enemyCount >= enemies.Count)
+            {
+                CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

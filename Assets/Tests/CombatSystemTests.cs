@@ -169,4 +169,41 @@ public class CharacterTemplateTests
 
         Assert.AreEqual(m_party[0].GetComponent<ActionController>().Action, ActionController.CombatAction.Fight);
     }
+
+    [UnityTest]
+    public IEnumerator BattleEndTest()
+    {
+        m_combatPrefab = Object.Instantiate(m_combatPrefab);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
+
+        GameObject char1 = Object.Instantiate(m_characterPrefab);
+        GameObject char2 = Object.Instantiate(m_characterPrefab);
+        GameObject char3 = Object.Instantiate(m_characterPrefab);
+        GameObject char4 = Object.Instantiate(m_characterPrefab);
+
+        GameObject en1 = Object.Instantiate(m_characterPrefab);
+        GameObject en2 = Object.Instantiate(m_characterPrefab);
+        GameObject en3 = Object.Instantiate(m_characterPrefab);
+
+        m_party.Add(char1);
+        m_party.Add(char2);
+        m_party.Add(char3);
+        m_party.Add(char4);
+
+        m_enemies.Add(en1);
+        m_enemies.Add(en2);
+        m_enemies.Add(en3);
+
+        foreach (var member in m_party)
+        {
+            member.SetActive(false);
+        }
+
+        m_combatPrefab.GetComponent<CombatController>().BattleEndTest(m_party, m_enemies);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(CombatEnum.s_currentCombatState, CombatEnum.CombatState.Failure);
+    }
 }
