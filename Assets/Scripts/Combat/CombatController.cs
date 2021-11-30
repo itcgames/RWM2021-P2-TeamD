@@ -49,9 +49,30 @@ public class CombatController : MonoBehaviour
         {
             GenEnemyActions();
             ExecuteBattleOrder();
-            CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
-            m_currentChar = -1;
-            ChangeActivePartyMember();
+
+            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+            {
+                CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+                m_currentChar = -1;
+                ChangeActivePartyMember();
+            }
+        }
+
+        else if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState ||
+            CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState ||
+            CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
+        {
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                if(CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
+                {
+                    // implement rewards here
+                }
+
+                // switch scenes here
+            }
         }
     }
 
@@ -282,8 +303,40 @@ public class CombatController : MonoBehaviour
             {
                 character.Value.GetComponent<ActionController>().ExecuteAction();
             }
+
+            if (CombatEnum.s_currentCombatState == CombatEnum.CombatState.Escape || BattleEnd()) return;
         }
 
         GetComponent<CombatUIController>().UpdateHpTexts(Party);
+    }
+
+    private bool BattleEnd()
+    {
+        int enemyCount = 0;
+        int partyCount = 0;
+
+        foreach (var member in Party)
+        {
+            if (!member.activeSelf) partyCount++;
+            if(partyCount >= Party.Count)
+            {
+                CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
+                Debug.Log("You have lost the battle...");
+                return true;
+            }
+        }
+
+        foreach (var enemy in EnemyList)
+        {
+            if (!enemy.activeSelf) enemyCount++;
+            if(enemyCount >= EnemyList.Count)
+            {
+                CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
+                Debug.Log("All enemies terminated!");
+                return true;
+            }
+        }
+
+        return false;
     }
 }
