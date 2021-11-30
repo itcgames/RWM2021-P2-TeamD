@@ -8,9 +8,12 @@ public class CombatController : MonoBehaviour
     private Dictionary<int, GameObject> m_battleOrder;
 
     [SerializeField]
-    public List<GameObject> m_party;
+    private List<GameObject> m_party;
+    public List<GameObject> Party { get { return m_party; } set { m_party = value; } }
 
-    private List<GameObject> m_enemies;
+    public List<GameObject> EnemyList { get; set; }
+
+    private int m_currentChar;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,35 @@ public class CombatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
+        {
+            if (Input.GetKeyUp(KeyCode.LeftArrow)) GetComponent<CombatCursorController>().MoveCol(-1);
+            if (Input.GetKeyUp(KeyCode.RightArrow)) GetComponent<CombatCursorController>().MoveCol(1);
 
+            if (Input.GetKeyUp(KeyCode.UpArrow)) GetComponent<CombatCursorController>().MoveRow(-1);
+            if (Input.GetKeyUp(KeyCode.DownArrow)) GetComponent<CombatCursorController>().MoveRow(1);
+
+            if(GetComponent<CombatCursorController>().DecideAction)
+            {
+                if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
+            }
+
+            else if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
+            {
+                if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
+            }
+        }
+
+        
+
+        else if(CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
+        {
+            GenEnemyActions();
+            ExecuteBattleOrder();
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+            m_currentChar = -1;
+            ChangeActivePartyMember();
+        }
     }
 
     public void Combat()
@@ -35,6 +66,16 @@ public class CombatController : MonoBehaviour
             GetComponent<GenerateGrids>().CreateEnemyGrid();
             PositionPartyOnGrid();
             PositionEnemyOnGrid();
+
+            GetComponent<CombatUIController>().SetupNameTexts(Party);
+            GetComponent<CombatUIController>().UpdateHpTexts(Party);
+
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+            GetComponent<CombatCursorController>().SetupCursor();
+            GetComponent<CombatCursorController>().EnterActionSelect();
+
+            m_currentChar = -1;
+            ChangeActivePartyMember();
         }
         else
         {
@@ -55,14 +96,14 @@ public class CombatController : MonoBehaviour
         {
             Debug.Log("You get to strike first.");
 
-            for (int i = 0; i < m_party.Count; ++i)
+            for (int i = 0; i < Party.Count; ++i)
             {
-                m_battleOrder.Add(i + 1, m_party[i]);
+                m_battleOrder.Add(i + 1, Party[i]);
             }
 
-            for (int i = 0; i < m_enemies.Count; ++i)
+            for (int i = 0; i < EnemyList.Count; ++i)
             {
-                m_battleOrder.Add(i + m_party.Count + 1, m_enemies[i]);
+                m_battleOrder.Add(i + Party.Count + 1, EnemyList[i]);
             }
 
             foreach (var item in m_battleOrder)
@@ -74,14 +115,14 @@ public class CombatController : MonoBehaviour
         {
             Debug.Log("Enemies strike first.");
 
-            for (int i = 0; i < m_enemies.Count; ++i)
+            for (int i = 0; i < EnemyList.Count; ++i)
             {
-                m_battleOrder.Add(i + 1, m_enemies[i]);
+                m_battleOrder.Add(i + 1, EnemyList[i]);
             }
 
-            for (int i = 0; i < m_party.Count; ++i)
+            for (int i = 0; i < Party.Count; ++i)
             {
-                m_battleOrder.Add(i + m_enemies.Count + 1, m_party[i]);
+                m_battleOrder.Add(i + EnemyList.Count + 1, Party[i]);
             }
 
             foreach (var item in m_battleOrder)
@@ -93,7 +134,7 @@ public class CombatController : MonoBehaviour
 
     public void GenerateEnemies()
     {
-        m_enemies = new List<GameObject>();
+        EnemyList = new List<GameObject>();
 
         GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
 
@@ -121,7 +162,7 @@ public class CombatController : MonoBehaviour
                     break;
             }
 
-            m_enemies.Add(enemy);
+            EnemyList.Add(enemy);
         }
     }
 
@@ -162,9 +203,9 @@ public class CombatController : MonoBehaviour
 
     public void PositionPartyOnGrid()
     {
-        for (int i = 0; i < m_party.Count; ++i)
+        for (int i = 0; i < Party.Count; ++i)
         {
-            m_party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
+            Party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
         }
     }
 
@@ -176,12 +217,73 @@ public class CombatController : MonoBehaviour
         {
             for (int j = 0; j < GetComponent<GenerateGrids>().ColumnEnemy; ++j)
             {
-                m_enemies[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
+                EnemyList[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
                 ++k;
 
-                if (k >= m_enemies.Count) break;
+                if (k >= EnemyList.Count) break;
             }
-            if (k >= m_enemies.Count) break;
+            if (k >= EnemyList.Count) break;
         }
+    }
+
+    public void ChangeActivePartyMember()
+    {
+        // shift previous character back
+        if(m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+
+        m_currentChar++;
+
+        while(m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
+        {
+            m_currentChar++;
+        }
+
+        // if current character is the last character, return to first character and start battle
+        if(m_currentChar >= Party.Count)
+        {
+            Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
+            m_currentChar = 0;
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.Battle;
+            return;
+        }
+        Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
+    }
+
+    public void GenEnemyActions()
+    {
+        foreach (var enemy in EnemyList)
+        {
+            enemy.GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+
+            int targetPartyMember = Random.Range(0, 4);
+
+            enemy.GetComponent<ActionController>().Target = Party[targetPartyMember];
+        }
+    }
+
+    public void ExecuteBattleOrder()
+    {
+        foreach (var character in m_battleOrder)
+        {
+            if(character.Value.GetComponent<CharacterAttributes>().Playable)
+            {
+                if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight && character.Value.activeSelf)
+                {
+                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
+                    character.Value.GetComponent<ActionController>().ExecuteAction();
+                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 1];
+                }
+                else if (character.Value.activeSelf)
+                {
+                    character.Value.GetComponent<ActionController>().ExecuteAction();
+                }
+            }
+            else if (character.Value.activeSelf)
+            {
+                character.Value.GetComponent<ActionController>().ExecuteAction();
+            }
+        }
+
+        GetComponent<CombatUIController>().UpdateHpTexts(Party);
     }
 }
