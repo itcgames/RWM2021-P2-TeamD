@@ -3,7 +3,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "GameTest"
+        "GameTest",
+        "ItemMenu"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
