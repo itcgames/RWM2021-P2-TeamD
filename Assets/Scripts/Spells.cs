@@ -24,7 +24,7 @@ public class Spells : MonoBehaviour
 {
     public List<WhiteSpells> currentWhiteSpells;
     public List<BlackSpells> currentBlackSpells;
-    int spellUses = 0;
+    int spellUses = 2;
     int MaxUses = 2;
 
     private void Start()
@@ -49,6 +49,21 @@ public class Spells : MonoBehaviour
     {
         return spellUses; 
     }
+    public int MaxUsesAmount()
+    {
+        return MaxUses;
+    }
+
+    public List<WhiteSpells> GetWhiteSpells()
+    {
+        return currentWhiteSpells;
+    }
+
+    public List<BlackSpells> GetBlackSpells()
+    {
+        return currentBlackSpells;
+    }
+
 
     public void RechargeUses()
     {

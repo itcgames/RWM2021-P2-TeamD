@@ -19,17 +19,17 @@ public class Cursor : MonoBehaviour
         pickChar = false;
         cursorInvPositions = new List<Vector2>();
 
-        cursorInvPositions.Add(new Vector2(-425, 100));
-        cursorInvPositions.Add(new Vector2(-425, 50));
-        cursorInvPositions.Add(new Vector2(-425, 0));
-        cursorInvPositions.Add(new Vector2(-425, -50));
-        cursorInvPositions.Add(new Vector2(-425, -100));
+        cursorInvPositions.Add(new Vector2(-425, -90));
+        cursorInvPositions.Add(new Vector2(-425, -140));
+        cursorInvPositions.Add(new Vector2(-425, -190));
+        cursorInvPositions.Add(new Vector2(-425, -240));
+        cursorInvPositions.Add(new Vector2(-425, -290));
 
         cursorCharPositions = new List<Vector2>();
-        cursorCharPositions.Add(new Vector2(-100, 300));
+        cursorCharPositions.Add(new Vector2(-150, 300));
         cursorCharPositions.Add(new Vector2(200,300));
-        cursorCharPositions.Add(new Vector2(-100, 0));
-        cursorCharPositions.Add(new Vector2(200, 0));
+        cursorCharPositions.Add(new Vector2(-150, -50));
+        cursorCharPositions.Add(new Vector2(200, -50));
 
         t_screenSystem = GameObject.Find("Canvas").GetComponent<ScreenSystem>();
         
