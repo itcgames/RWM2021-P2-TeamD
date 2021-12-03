@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/itemmenu/Editor/Prefabs/inven.prefab.meta
 guid: 5e6335eb5b5bc2845b53e8dcf1c6066a
 PrefabImporter:
+=======
+guid: c14636d807b425b488d418d1b12c5810
+DefaultImporter:
+>>>>>>> master:Assets/Scenes/CombatScene.unity.meta
+=======
+guid: 5e6335eb5b5bc2845b53e8dcf1c6066a
+PrefabImporter:
+>>>>>>> master
   externalObjects: {}
   userData: 
   assetBundleName: 
