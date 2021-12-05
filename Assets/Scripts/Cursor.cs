@@ -4,85 +4,129 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    List<Vector2> cursorInvPositions;
-    List<Vector2> cursorCharPositions;
+    public List<Vector2> cursorInvPositions;
+    public List<Vector2> cursorCharPositions;
     int currentInvPos = 0;
     int currentCharPos = 0;
     public ScreenSystem t_screenSystem;
-    bool pickChar;
-    bool activeInventories;
+    public bool pickChar;
+    public bool activeInventories;
+    public bool isInventory;
+    public List<GameObject> charAndImg;
+    CharacterInfo info;
 
+    CheckpointSystem checkpointSystem;
     // Start is called before the first frame update
     void Start()
     {
-        activeInventories = false;
-        pickChar = false;
-        cursorInvPositions = new List<Vector2>();
+        //activeInventories = false;
+        //pickChar = false;
+        //cursorInvPositions = new List<Vector2>();
 
-        cursorInvPositions.Add(new Vector2(-425, -90));
-        cursorInvPositions.Add(new Vector2(-425, -140));
-        cursorInvPositions.Add(new Vector2(-425, -190));
-        cursorInvPositions.Add(new Vector2(-425, -240));
-        cursorInvPositions.Add(new Vector2(-425, -290));
+        //cursorInvPositions.Add(new Vector2(-425, -90));
+        //cursorInvPositions.Add(new Vector2(-425, -140));
+        //cursorInvPositions.Add(new Vector2(-425, -190));
+        //cursorInvPositions.Add(new Vector2(-425, -240));
+        //cursorInvPositions.Add(new Vector2(-425, -290));
 
-        cursorCharPositions = new List<Vector2>();
-        cursorCharPositions.Add(new Vector2(-150, 300));
-        cursorCharPositions.Add(new Vector2(200,300));
-        cursorCharPositions.Add(new Vector2(-150, -50));
-        cursorCharPositions.Add(new Vector2(200, -50));
+        //cursorCharPositions = new List<Vector2>();
+        //cursorCharPositions.Add(new Vector2(-150, 300));
+        //cursorCharPositions.Add(new Vector2(200,300));
+        //cursorCharPositions.Add(new Vector2(-150, -50));
+        //cursorCharPositions.Add(new Vector2(200, -50));
 
         t_screenSystem = GameObject.Find("Canvas").GetComponent<ScreenSystem>();
-        
+
+        info = new CharacterInfo();
+
+        checkpointSystem = GameObject.FindObjectOfType<CheckpointSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!pickChar)
+        if (isInventory)
         {
-            this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
+            if (!pickChar)
+            {
+                this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                MoveUp();
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    MoveUp();
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    MoveDown();
+                }
+                else if (Input.GetKeyDown(KeyCode.X))
+                {
+                    UseFunctionality();
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else
             {
-                MoveDown();
+                this.gameObject.GetComponent<RectTransform>().localPosition = cursorCharPositions[currentCharPos];
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    MoveUp1();
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    MoveDown1();
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    MoveRight();
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    MoveLeft();
+                }
+                else if (Input.GetKeyDown(KeyCode.X))
+                {
+                    GoToCharInventory();
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                UseFunctionality();
+                GoBack();
             }
         }
         else
         {
-            this.gameObject.GetComponent<RectTransform>().localPosition = cursorCharPositions[currentCharPos];
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                MoveUp1();
+                if (currentCharPos == 3)
+                {
+                    GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(4, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+
+                    FindObjectOfType<CheckpointSystem>().SaveData(JsonUtility.ToJson(FindObjectOfType<PlayerAndGameInfo>().GetCharInfo()));
+                    GameObject.FindObjectOfType<ScreenSystem>().GoToGameplayScene();
+                }
+                else
+                {
+                    
+                    GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos+1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                    currentCharPos++;
+                }
+
+                this.gameObject.GetComponent<RectTransform>().localPosition = cursorCharPositions[currentCharPos];
+            }
+
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                charAndImg[currentCharPos].GetComponent<CharNameAndImg>().Next();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                MoveDown1();
+                charAndImg[currentCharPos].GetComponent<CharNameAndImg>().Previous();
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                MoveRight();
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                MoveLeft();
-            }
-            else if (Input.GetKeyDown(KeyCode.X))
-            {
-                GoToCharInventory();
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            GoBack();
         }
     }
 
