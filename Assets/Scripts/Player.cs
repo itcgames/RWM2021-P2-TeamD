@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float m_speed = 5.0f;
+    private float m_speed = 5.0f;  
+    [SerializeField]
+    private int m_gil = 500;
     private bool m_isMoving;
     private Vector2 m_input;
 
@@ -77,5 +79,15 @@ public class Player : MonoBehaviour
     public bool ForceCombatEncounter()
     {
         return true;
+    }
+
+    public int getGil()
+    {
+        return m_gil;
+    }
+
+    public void setGil(int t_num)
+    {
+        m_gil += t_num;
     }
 }
