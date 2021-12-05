@@ -12,6 +12,7 @@ public class ItemCost : MonoBehaviour
     GameObject m_confirmSelection;
 
     int cost;
+    int selling;
  
     public void Buy()
     {
@@ -20,11 +21,24 @@ public class ItemCost : MonoBehaviour
         m_confirmSelection.SetActive(true);
     }
 
+    public void Sell()
+    {
+        selling = EventSystem.current.currentSelectedGameObject.GetComponent<ItemID>().getCost() - 3;
+        m_dialog.text = selling.ToString() + "\nGold\nOK?";
+        m_confirmSelection.SetActive(true);
+    }
+
     public int costProduct()
     {
         return cost;
     }
 
- 
+
+    public int sellProduct()
+    {
+        return selling;
+    }
+
+
 }
  

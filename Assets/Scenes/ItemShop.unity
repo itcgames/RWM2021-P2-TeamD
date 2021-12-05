@@ -2351,6 +2351,8 @@ MonoBehaviour:
   m_gilText: {fileID: 171810236}
   m_player: {fileID: 7169813452949590301, guid: 4bb2e10765b6d4245afb2dfe543d1611,
     type: 3}
+  m_inventory: {fileID: 8287932046639881558, guid: 5e6335eb5b5bc2845b53e8dcf1c6066a,
+    type: 3}
 --- !u!1 &7312329026747684680
 GameObject:
   m_ObjectHideFlags: 0
