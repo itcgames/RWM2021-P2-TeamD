@@ -15,7 +15,7 @@ public class CheckpointSystem : MonoBehaviour
     }
 
     //save file location
-    string filename;
+    public string filename;
 
     //player data lists
     public List<SavaData<int>> playerDataInt;

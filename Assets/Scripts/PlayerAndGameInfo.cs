@@ -29,11 +29,13 @@ public class PlayerAndGameInfo : MonoBehaviour
 
 
     public CharacterInfo infos;
+    public CheckpointSystem t_system;
 
     // Start is called before the first frame update
     void Start()
     {
         infos = new CharacterInfo();
+        t_system = new CheckpointSystem();
 
         DontDestroyOnLoad(this);
     }
@@ -73,5 +75,10 @@ public class PlayerAndGameInfo : MonoBehaviour
     public CharacterInfo GetCharInfo()
     {
         return infos;
+    }
+
+    public string JsonLoadString()
+    {
+        return t_system.LoadData().ToString();
     }
 }
