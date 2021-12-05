@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerAndGameInfo : MonoBehaviour
 {
-    [System.Serializable]
     public class CharacterInfo
     {
         public int m_gil = 400;
