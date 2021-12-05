@@ -27,10 +27,10 @@ public class Player : MonoBehaviour
                 m_input.x = Input.GetAxisRaw("Horizontal");
                 m_input.y = Input.GetAxisRaw("Vertical");
 
-                if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.A) &&
-                    Input.GetKeyDown(KeyCode.D) && Input.GetKeyDown(KeyCode.S) &&
-                    Input.GetKeyDown(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.RightArrow) &&
-                    Input.GetKeyDown(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.DownArrow))
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
+                    Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
+                    Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                    Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     GetComponent<InteractionController>().SetDirection(m_input);
                 }
