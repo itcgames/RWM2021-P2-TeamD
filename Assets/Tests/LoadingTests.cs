@@ -24,5 +24,21 @@ namespace Tests
             Assert.AreEqual(2, SceneManager.GetActiveScene().buildIndex);
             UnityEngine.Assertions.Assert.IsNotNull(GameObject.FindObjectOfType<PlayerAndGameInfo>().infos);
         }
+
+        [UnityTest]
+        public IEnumerator CallLoadAfterLosing()
+        {
+            ScreenSystem t_system = new ScreenSystem();
+            t_system.LoadSaveAfterLose();
+
+            yield return new WaitForSeconds(0.1f);
+
+            //t_system.ContinueGame();
+
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreEqual(2, SceneManager.GetActiveScene().buildIndex);
+            UnityEngine.Assertions.Assert.IsNotNull(GameObject.FindObjectOfType<PlayerAndGameInfo>().infos);
+        }
     }
 }
