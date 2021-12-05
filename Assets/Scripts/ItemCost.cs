@@ -2,34 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ItemCost : MonoBehaviour
 {
-    [SerializeField]
-    private string m_itemName;
-    [SerializeField]
-    private int m_cost;
     [SerializeField]
     private Text m_dialog;
     [SerializeField]
     GameObject m_confirmSelection;
 
-    GameObject m_player;
-
-    private void Start()
-    {
-        m_player = GameObject.Find("Player");
-    }
-
+    int cost;
+ 
     public void Buy()
     {
-        m_dialog.text = m_cost.ToString() + "\nGold\nOK?";
+        m_dialog.text = EventSystem.current.currentSelectedGameObject.GetComponent<ItemID>().getCost().ToString() + "\nGold\nOK?";
+        cost = -EventSystem.current.currentSelectedGameObject.GetComponent<ItemID>().getCost();
         m_confirmSelection.SetActive(true);
     }
 
-    public void costProduct()
+    public int costProduct()
     {
-        m_player.GetComponent<Player>().setGil(-m_cost);
+        return cost;
     }
 
  

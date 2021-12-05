@@ -510,8 +510,8 @@ GameObject:
   - component: {fileID: 1144596825}
   - component: {fileID: 1144596827}
   - component: {fileID: 1144596826}
-  - component: {fileID: 1144596828}
   - component: {fileID: 1144596829}
+  - component: {fileID: 1144596828}
   m_Layer: 5
   m_Name: Pure
   m_TagString: Untagged
@@ -589,13 +589,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1144596824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c8021b62eff914dba5f9fc40e626aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 29f898beaab66024388284d1c824d90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: Pure
+  m_ID: 1
   m_cost: 75
-  m_dialog: {fileID: 66656875}
-  m_confirmSelection: {fileID: 1647522650}
+  m_name: Pure
 --- !u!114 &1144596829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,7 +638,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1144596828}
+      - m_Target: {fileID: 2053914972}
         m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
@@ -783,51 +782,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145151618}
   m_CullTransparentMesh: 0
---- !u!1 &1206532416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1206532418}
-  - component: {fileID: 1206532417}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1206532417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206532416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c54f167a720344e9dccb5ef6e4d5bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 0
-  m_gil: 500
---- !u!4 &1206532418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206532416}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 426.58902, y: 482.83237, z: -1225.3135}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1246476065
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,8 +793,8 @@ GameObject:
   - component: {fileID: 1246476066}
   - component: {fileID: 1246476068}
   - component: {fileID: 1246476067}
-  - component: {fileID: 1246476069}
   - component: {fileID: 1246476070}
+  - component: {fileID: 1246476069}
   m_Layer: 5
   m_Name: Heal
   m_TagString: Untagged
@@ -918,13 +872,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1246476065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c8021b62eff914dba5f9fc40e626aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 29f898beaab66024388284d1c824d90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: Heal
+  m_ID: 0
   m_cost: 60
-  m_dialog: {fileID: 66656875}
-  m_confirmSelection: {fileID: 1647522650}
+  m_name: Heal
 --- !u!114 &1246476070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,7 +921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1246476069}
+      - m_Target: {fileID: 2053914972}
         m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
@@ -990,8 +943,8 @@ GameObject:
   - component: {fileID: 1406529976}
   - component: {fileID: 1406529978}
   - component: {fileID: 1406529977}
-  - component: {fileID: 1406529979}
   - component: {fileID: 1406529980}
+  - component: {fileID: 1406529979}
   m_Layer: 5
   m_Name: Tent
   m_TagString: Untagged
@@ -1069,13 +1022,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1406529975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c8021b62eff914dba5f9fc40e626aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 29f898beaab66024388284d1c824d90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemName: Tent
+  m_ID: 2
   m_cost: 75
-  m_dialog: {fileID: 66656875}
-  m_confirmSelection: {fileID: 1647522650}
+  m_name: Tent
 --- !u!114 &1406529980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,7 +1071,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1406529979}
+      - m_Target: {fileID: 2053914972}
         m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
@@ -1398,17 +1350,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1704404300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,6 +1536,7 @@ GameObject:
   - component: {fileID: 2053914975}
   - component: {fileID: 2053914974}
   - component: {fileID: 2053914973}
+  - component: {fileID: 2053914972}
   m_Layer: 5
   m_Name: ItemsManager
   m_TagString: Untagged
@@ -1624,6 +1566,20 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: 0}
   m_SizeDelta: {x: 200, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2053914972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053914970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c8021b62eff914dba5f9fc40e626aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dialog: {fileID: 66656875}
+  m_confirmSelection: {fileID: 1647522650}
 --- !u!114 &2053914973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2171,7 +2127,6 @@ GameObject:
   - component: {fileID: 7312329025553831062}
   - component: {fileID: 7312329025553831063}
   - component: {fileID: 7312329025553831056}
-  - component: {fileID: 7312329025553831058}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2179,22 +2134,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7312329025553831058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312329025553831057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c8021b62eff914dba5f9fc40e626aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_itemName: 
-  m_cost: 0
-  m_dialog: {fileID: 0}
-  m_confirmSelection: {fileID: 0}
 --- !u!224 &7312329025553831061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2410,6 +2349,8 @@ MonoBehaviour:
   m_confirmSelection: {fileID: 1647522650}
   m_dialog: {fileID: 66656875}
   m_gilText: {fileID: 171810236}
+  m_player: {fileID: 7169813452949590301, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+    type: 3}
 --- !u!1 &7312329026747684680
 GameObject:
   m_ObjectHideFlags: 0

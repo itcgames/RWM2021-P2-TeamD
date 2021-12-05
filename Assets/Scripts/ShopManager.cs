@@ -17,7 +17,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     Text m_gilText;
 
-
+    [SerializeField]
     GameObject m_player;
 
     bool m_purchase;
@@ -26,7 +26,6 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         m_dialog.text = "Welcome!";
-        m_player = GameObject.Find("Player");
         m_gilText.text = m_player.GetComponent<Player>().getGil().ToString() + " G";
     }
 
@@ -69,13 +68,24 @@ public class ShopManager : MonoBehaviour
 
     public void checkPurchase()
     {
+
         if (m_purchase)
         {
-            m_dialog.text = "Thank you!\nWhat else?";
-            // subtract the gil here
-            m_gilText.text = m_player.GetComponent<Player>().getGil().ToString() + " G";
-            // add the item here
+            // 500 > 60/75
+            if (m_player.GetComponent<Player>().getGil() > m_shopItems.GetComponent<ItemCost>().costProduct() + 100)
+            {
+                m_dialog.text = "Thank you!\nWhat else?";
+                // subtract the gil here
+                m_player.GetComponent<Player>().setGil(m_shopItems.GetComponent<ItemCost>().costProduct());
+                m_gilText.text = m_player.GetComponent<Player>().getGil().ToString() + " G";
+                // add the item here
 
+
+            }
+            else
+            {
+                m_dialog.text = "You can't\nafford that.";
+            }
         }
         else
         {
