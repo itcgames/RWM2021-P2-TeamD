@@ -15,7 +15,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon1_2 = "";
         public string m_weapon1_3 = "";
         public string m_weapon1_4 = "";
-        public armor m_armor1_1 = new armor("",0);
+        public armor m_armor1_1 = new armor("Leather", 5);
         public armor m_armor1_2 = new armor("", 0);
         public armor m_armor1_3 = new armor("", 0);
         public armor m_armor1_4 = new armor("", 0);
@@ -28,7 +28,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon2_3 = "";
         public string m_weapon2_4 = "";
         public armor m_armor2_1 = new armor("", 0);
-        public armor m_armor2_2 = new armor("", 0);
+        public armor m_armor2_2 = new armor("Iron", 7);
         public armor m_armor2_3 = new armor("", 0);
         public armor m_armor2_4 = new armor("", 0);
         public Attribute m_attributeHP2;
@@ -41,7 +41,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon3_4 = "";
         public armor m_armor3_1 = new armor("", 0);
         public armor m_armor3_2 = new armor("", 0);
-        public armor m_armor3_3 = new armor("", 0);
+        public armor m_armor3_3 = new armor("Mythril", 12);
         public armor m_armor3_4 = new armor("", 0);
         public Attribute m_attributeHP3;
         public Attribute m_attributeDam3;
@@ -54,7 +54,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         public armor m_armor4_1 = new armor("", 0);
         public armor m_armor4_2 = new armor("", 0);
         public armor m_armor4_3 = new armor("", 0);
-        public armor m_armor4_4 = new armor("", 0);
+        public armor m_armor4_4 = new armor("Orichalcum", 16);
         public Attribute m_attributeHP4;
         public Attribute m_attributeDam4;
     }
