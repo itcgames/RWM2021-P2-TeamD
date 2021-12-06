@@ -25,7 +25,8 @@ public class ScreenSystem : MonoBehaviour
 
     public void ContinueGame()
     {
-        //load saved info here
+        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
         GoToGameplayScene();
     }
 
@@ -67,5 +68,18 @@ public class ScreenSystem : MonoBehaviour
     public int GetCurrentInventory()
     {
         return m_currentInventory;
+    }
+
+    public void GoToScene(int t_i)
+    {
+        SceneManager.LoadScene(t_i);
+    }
+
+    public void LoadSaveAfterLose()
+    {
+        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+
+        GoToScene(FindObjectOfType<PlayerAndGameInfo>().infos.m_currentScene);
     }
 }

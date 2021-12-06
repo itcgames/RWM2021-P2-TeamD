@@ -3133,7 +3133,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ec411c48c7d8b4d8029b9c6ff9a9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorInvPositions:
+  - {x: -425, y: -90}
+  - {x: -425, y: -140}
+  - {x: -425, y: -190}
+  - {x: -425, y: -240}
+  - {x: -425, y: -290}
+  cursorCharPositions:
+  - {x: -150, y: 300}
+  - {x: 200, y: 300}
+  - {x: -150, y: -50}
+  - {x: 200, y: -50}
   t_screenSystem: {fileID: 0}
+  pickChar: 0
+  activeInventories: 0
+  isInventory: 1
 --- !u!1 &1081812286
 GameObject:
   m_ObjectHideFlags: 0
