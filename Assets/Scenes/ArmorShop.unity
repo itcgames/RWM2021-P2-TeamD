@@ -1493,6 +1493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: 200
   m_cost: 10
+  m_amount: 0
   m_name: Cloth
 --- !u!114 &965601795
 MonoBehaviour:
@@ -1776,6 +1777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: 202
   m_cost: 80
+  m_amount: 0
   m_name: Chain
 --- !u!114 &1070014579
 MonoBehaviour:
@@ -1872,6 +1874,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070014576}
   m_CullTransparentMesh: 0
+--- !u!1001 &1150879350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7169813452949590301, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169813452949590302, guid: 4bb2e10765b6d4245afb2dfe543d1611,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bb2e10765b6d4245afb2dfe543d1611, type: 3}
 --- !u!1 &1215410834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,6 +2914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ID: 201
   m_cost: 50
+  m_amount: 0
   m_name: Wooden
 --- !u!114 &1521464464
 MonoBehaviour:

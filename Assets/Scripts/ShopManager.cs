@@ -96,7 +96,7 @@ public class ShopManager : MonoBehaviour
         if (m_purchase)
         {
             // 500 > 60/75
-            if (m_player.GetComponent<Player>().getGil() > m_shopItems.GetComponent<ItemCost>().costProduct() + 100)
+            if (m_player.GetComponent<Player>().getGil() >= m_shopItems.GetComponent<ItemCost>().costProduct() + 100)
             {
                 m_dialog.text = "Thank you!\nWhat else?";
                 // subtract the gil here
@@ -124,7 +124,7 @@ public class ShopManager : MonoBehaviour
         if (m_sell)
         {
             // checks the inventory of the member
-            if (m_player.GetComponent<Player>().getGil() > m_shopItems.GetComponent<ItemCost>().costProduct() + 100)
+            if (m_player.GetComponent<Player>().getGil() >= m_shopItems.GetComponent<ItemCost>().costProduct() + 100)
             {
                 m_dialog.text = "Thank you!\nWhat else?";
                 // add the gil here
@@ -147,6 +147,8 @@ public class ShopManager : MonoBehaviour
         m_confirmSelection.SetActive(false);
         m_shopSelection.SetActive(true);
     }
+
+
 
 
 

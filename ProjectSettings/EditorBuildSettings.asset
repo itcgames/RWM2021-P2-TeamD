@@ -11,12 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharacterSelection.unity
     guid: 2941c6e09516f354384fd6edbc1f9282
-  - enabled: 1
-    path: Assets/Scenes/OverworldScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/Gameplay.unity
-    guid: 72bbbbcbc799b39459a2827e063d126e
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Pause.unity
     guid: 589a6238e8139dc45abc16daf8d04ad9
@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/item.unity
     guid: 0f00014fd6b520a498ed95690f215c4e
+  - enabled: 1
+    path: Assets/Scenes/ItemShop.unity
+    guid: 4291660479e16394b8a90ec00457f9ab
+  - enabled: 1
+    path: Assets/Scenes/ArmorShop.unity
+    guid: 61d8cf702dc73374fb40d37ebf8ff74a
+  - enabled: 1
+    path: Assets/Scenes/WeaponShop.unity
+    guid: 14672f95cdbfec94b8c35f324192b3ce
   m_configObjects: {}
