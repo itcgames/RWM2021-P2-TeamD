@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 5
+  m_gil: 100
 --- !u!61 &7169813452949590273
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,3 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950ec57157b27904f939441651228701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionBox: {fileID: 7496133602443125921, guid: 81323995627832a4f9b3eaf1d4b875ae,
+    type: 3}
+  Interactables: []

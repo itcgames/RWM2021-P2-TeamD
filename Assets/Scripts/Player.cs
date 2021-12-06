@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float m_speed = 5.0f;
+    private float m_speed = 5.0f;  
+    [SerializeField]
+    private int m_gil = 500;
     private bool m_isMoving;
     private Vector2 m_input;
 
@@ -29,15 +31,15 @@ public class Player : MonoBehaviour
                     m_input.x = Input.GetAxisRaw("Horizontal");
                     m_input.y = Input.GetAxisRaw("Vertical");
 
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
-                        Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
-                        Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-                        Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        GetComponent<InteractionController>().SetDirection(m_input);
-                    }
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
+                Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
+                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                GetComponent<InteractionController>().SetDirection(m_input);
+            }
 
-                    if (m_input.x != 0) m_input.y = 0;
+            if (m_input.x != 0) m_input.y = 0;
 
                     if (m_input != Vector2.zero)
                     {
@@ -113,5 +115,15 @@ public class Player : MonoBehaviour
     public bool ForceCombatEncounter()
     {
         return true;
+    }
+
+    public int getGil()
+    {
+        return m_gil;
+    }
+
+    public void setGil(int t_num)
+    {
+        m_gil += t_num;
     }
 }

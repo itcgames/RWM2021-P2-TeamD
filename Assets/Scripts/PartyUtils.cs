@@ -40,4 +40,21 @@ public class PartyUtil
         else
             return new Attribute("Dmg", 3);
     }
+
+    public static float MaxHealth(int t_s)
+    {
+        switch (t_s)
+        {
+            case ((int)PartyType.BL_Belt):
+                return 33.0f;
+            case ((int)PartyType.Fighter):
+                return 35.0f;
+            case ((int)PartyType.Thief):
+                return 30.0f;
+            case ((int)PartyType.B_Mage):
+                return 25.0f;
+            default:
+                return 0.0f;
+        }
+    }
 }
