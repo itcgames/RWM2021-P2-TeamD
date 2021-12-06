@@ -12,6 +12,7 @@ public class Cursor : MonoBehaviour
     public bool pickChar;
     public bool activeInventories;
     public bool isInventory;
+    public bool isMenu;
     public List<GameObject> charAndImg;
     CharacterInfo info;
 
@@ -94,6 +95,33 @@ public class Cursor : MonoBehaviour
                 GoBack();
             }
         }
+        else if (isMenu)
+        {
+            this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (currentInvPos == 0)
+                    currentInvPos = 1;
+                else
+                    currentInvPos--;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (currentInvPos == 1)
+                    currentInvPos = 0;
+                else
+                    currentInvPos++;
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (currentInvPos == 0)
+                    GameObject.FindObjectOfType<ScreenSystem>().ContinueGame();
+                else
+                    GameObject.FindObjectOfType<ScreenSystem>().GoToCharacterSelcetionScene();
+            }
+        }
         else
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -109,8 +137,8 @@ public class Cursor : MonoBehaviour
                 }
                 else
                 {
-                    
-                    GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos+1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
+
+                    GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos + 1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
                     currentCharPos++;
@@ -119,7 +147,7 @@ public class Cursor : MonoBehaviour
                 this.gameObject.GetComponent<RectTransform>().localPosition = cursorCharPositions[currentCharPos];
             }
 
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 charAndImg[currentCharPos].GetComponent<CharNameAndImg>().Next();
             }
