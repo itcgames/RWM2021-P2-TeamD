@@ -51,10 +51,32 @@ public class Player : MonoBehaviour
                 PlayerMenu();
             }
         }
+        else
+        {
+            if (!m_isMoving)
+            {
+                m_input.x = Input.GetAxisRaw("Horizontal");
+                m_input.y = Input.GetAxisRaw("Vertical");
+
+                if (m_input.x != 0) m_input.y = 0;
+
+                if (m_input != Vector2.zero)
+                {
+                    var m_targetPos = transform.position;
+                    m_targetPos.x += m_input.x / 32;
+                    m_targetPos.y += m_input.y / 32;
+
+                    StartCoroutine(Move(m_targetPos));
+                }
+            }
+            PlayerMenu();
+        }
     }
 
     IEnumerator Move(Vector3 t_targetPos)
     {
+        CombatEncounter();
+
         m_isMoving = true;
         if ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
@@ -64,18 +86,17 @@ public class Player : MonoBehaviour
         transform.position = t_targetPos;
         m_isMoving = false;
 
-        CombatEncounter();
     }
 
     void CombatEncounter()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if(SceneManager.GetActiveScene().buildIndex == 2)
         {
             if (Random.Range(1, 101) <= 5)
             {
                 Debug.Log("You have encountered an enemy!");
                 // add scene for battle
-                //GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToCombatScene();
+                GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToCombatScene();
             }
         }
     }

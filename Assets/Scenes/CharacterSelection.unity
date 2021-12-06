@@ -615,7 +615,9 @@ MonoBehaviour:
   names:
   - Richard
   - Mike
-  attributes: []
+  partyTypes:
+  - Fighter
+  - B_Mage
 --- !u!1 &757963395
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +893,9 @@ MonoBehaviour:
   names:
   - Jeff
   - Bob
-  attributes: []
+  partyTypes:
+  - B_Mage
+  - Fighter
 --- !u!1 &986957857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1135,9 @@ MonoBehaviour:
   names:
   - Ben
   - Neb
-  attributes: []
+  partyTypes:
+  - Fighter
+  - B_Mage
 --- !u!1 &1239546925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1538,9 @@ MonoBehaviour:
   names:
   - Baba
   - Jaeger
-  attributes: []
+  partyTypes:
+  - B_Mage
+  - Fighter
 --- !u!1 &2022518170
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,9 +7,8 @@ public class CharNameAndImg : MonoBehaviour
 {
     public List<Sprite> images;
     public List<string> names;
-    public Attribute attribute1;
-    public Attribute attribute2;
     int listPos;
+    public List<string> partyTypes;
 
     private void Start()
     {
@@ -62,10 +61,45 @@ public class CharNameAndImg : MonoBehaviour
 
     public Attribute GetAttribute1()
     {
-        return attribute1;
+        if(partyTypes[listPos] == PartyType.B_Mage.ToString())
+        {
+            return PartyUtil.SetupMage("HP");
+        }
+        else if (partyTypes[listPos] == PartyType.BL_Belt.ToString())
+        {
+            return PartyUtil.SetupBlackBelt("HP");
+        }
+        else if (partyTypes[listPos] == PartyType.Fighter.ToString())
+        {
+            return PartyUtil.SetupFighter("HP");
+        }
+        else if (partyTypes[listPos] == PartyType.Thief.ToString())
+        {
+            return PartyUtil.SetupThief("HP");
+        }
+        return null;
     }
     public Attribute GetAttribute2()
     {
-        return attribute2;
+        if (partyTypes[listPos] == PartyType.B_Mage.ToString())
+        {
+            return PartyUtil.SetupMage("DMG");
+        }
+        else if (partyTypes[listPos] == PartyType.BL_Belt.ToString())
+        {
+            return PartyUtil.SetupBlackBelt("DMG");
+        }
+        else if (partyTypes[listPos] == PartyType.Fighter.ToString())
+        {
+            return PartyUtil.SetupFighter("DMG");
+        }
+        else if (partyTypes[listPos] == PartyType.Thief.ToString())
+        {
+            return PartyUtil.SetupThief("DMG");
+        }
+        return null;
     }
+
+
+
 }

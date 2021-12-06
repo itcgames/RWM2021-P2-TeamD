@@ -61,6 +61,7 @@ public class ActionController : MonoBehaviour
 
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
             {
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value = 0.0f;
                 Target.SetActive(false);
             }
             else
