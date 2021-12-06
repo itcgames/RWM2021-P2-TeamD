@@ -13,6 +13,7 @@ public class Cursor : MonoBehaviour
     public bool pickChar;
     public bool activeInventories;
     public bool isInventory;
+    public bool isMenu;
     public bool isArmour= false;
     public bool isNavi = false;
     public List<GameObject> charAndImg;
@@ -125,144 +126,6 @@ public class Cursor : MonoBehaviour
                 GoBack();
             }
         }
-        else if (isNavi)
-        {
-            this.gameObject.GetComponent<RectTransform>().localPosition = useNavi[col2];
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-
-
-                if (col2 == 2)
-                {
-                    col2 = 0;
-                }
-                else
-                {
-                    col2++;
-                }
-
-
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                if (col2 == 0)
-                {
-                    col2 = 2;
-                }
-                else
-                {
-                    col2--;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                switch (col2)
-                {
-                    case 0:
-                        FindObjectOfType<DropTradeEquip>().setEquip(true);
-                        FindObjectOfType<DropTradeEquip>().setTrade(false);
-                        FindObjectOfType<DropTradeEquip>().setDrop(false);
-                        break;
-                    case 1:
-                        FindObjectOfType<DropTradeEquip>().setEquip(false);
-                        FindObjectOfType<DropTradeEquip>().setTrade(true);
-                        FindObjectOfType<DropTradeEquip>().setDrop(false);
-                        break;
-                    case 2:
-                        FindObjectOfType<DropTradeEquip>().setEquip(false);
-                        FindObjectOfType<DropTradeEquip>().setTrade(false);
-                        FindObjectOfType<DropTradeEquip>().setDrop(true);
-                        break;
-                }
-                isNavi = false;
-                isArmour = true;
-            }
-
-
-        }
-        else if (isArmour)
-        {
-            this.gameObject.GetComponent<RectTransform>().localPosition = naviArmor[row, col];
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-
-
-                if (row == 1)
-                {
-                    row = 0;
-                }
-                else
-                {
-                    row++;
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-
-
-                if (row == 0)
-                {
-                    row = 1;
-                }
-                else
-                {
-                    row--;
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-
-
-                if (col == 7)
-                {
-                    col = 0;
-                }
-                else
-                {
-                    col++;
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-
-
-                if (col == 0)
-                {
-                    col = 7;
-                }
-                else
-                {
-                    col--;
-                }
-
-
-            }
-
-            else if (Input.GetKeyDown(KeyCode.X))
-            {
-                if (FindObjectOfType<DropTradeEquip>().Equip())
-                {
-                    FindObjectOfType<DropTradeEquip>().Equiping(col * 2 + row);
-                }
-                if (FindObjectOfType<DropTradeEquip>().Drop())
-                {
-                    FindObjectOfType<DropTradeEquip>().dropping(col * 2 + row);
-                }
-                if (FindObjectOfType<DropTradeEquip>().Trade())
-                {
-                 
-                    FindObjectOfType<DropTradeEquip>().Trading(col *2 + row);
-                }
-                isNavi = true;
-                isArmour = false;
-            }
-        }
         else
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -271,7 +134,9 @@ public class Cursor : MonoBehaviour
                 {
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(4, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
+
 
                     FindObjectOfType<CheckpointSystem>().SaveData(JsonUtility.ToJson(FindObjectOfType<PlayerAndGameInfo>().GetCharInfo()));
                     GameObject.FindObjectOfType<ScreenSystem>().GoToGameplayScene();
@@ -281,7 +146,8 @@ public class Cursor : MonoBehaviour
 
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos + 1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
                     currentCharPos++;
                 }
 

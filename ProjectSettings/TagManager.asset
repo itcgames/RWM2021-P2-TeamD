@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fade
+  - NPC
+  - Board
   layers:
   - Default
   - TransparentFX
@@ -53,4 +55,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 336516775
+    locked: 0
+  - name: UI
+    uniqueID: 1871312309
     locked: 0
