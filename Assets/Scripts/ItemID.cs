@@ -30,7 +30,6 @@ public class ItemID : MonoBehaviour
 
     public void removeAmount()
     {
-
         m_amount--;
     }
     public int getAmount()
@@ -41,7 +40,7 @@ public class ItemID : MonoBehaviour
 
     public GameObject GetItem()
     {
-        return this.gameObject;
+        return gameObject;
     }
 
 }

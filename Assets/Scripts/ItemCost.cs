@@ -12,9 +12,6 @@ public class ItemCost : MonoBehaviour
     GameObject m_confirmSelection;
 
     GameObject m_itemObject;
-
-
-
     int cost;
     int selling;
  
@@ -22,13 +19,13 @@ public class ItemCost : MonoBehaviour
     {
         m_itemObject = EventSystem.current.currentSelectedGameObject.GetComponent<ItemID>().GetItem();
         m_dialog.text = m_itemObject.GetComponent<ItemID>().getCost().ToString() + "\nGold\nOK?";
-        cost = -m_itemObject.GetComponent<ItemID>().getCost();
+        cost = m_itemObject.GetComponent<ItemID>().getCost();
         m_confirmSelection.SetActive(true);
     }
 
     public void Sell()
     {
-        selling = m_itemObject.GetComponent<ItemID>().getCost() - 3;
+        selling = m_itemObject.GetComponent<ItemID>().getCost() / 2;
         m_dialog.text = selling.ToString() + "\nGold\nOK?";
         m_confirmSelection.SetActive(true);
     }
@@ -52,6 +49,11 @@ public class ItemCost : MonoBehaviour
     public void removeInventory()
     {
         m_itemObject.GetComponent<ItemID>().removeAmount();
+    }
+
+    public int GetInventory()
+    {
+        return m_itemObject.GetComponent<ItemID>().getAmount();
     }
 
 

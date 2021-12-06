@@ -19,8 +19,6 @@ public class UseItem : MonoBehaviour
     {
         playerHP = this.gameObject.GetComponent<Text>();
         playerHP.text = playername + " \n HP" + PlayerHealth.ToString() + "/ " + max_health.ToString();
-     
-      
     }
     // Update is called once per frame
     void Update()

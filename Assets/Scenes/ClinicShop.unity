@@ -381,7 +381,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2089847543}
-        m_MethodName: leaveShop
+        m_MethodName: ReviveMember
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -514,7 +514,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2089847543}
-        m_MethodName: openShop
+        m_MethodName: ReviveMember
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -781,6 +781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496133603994045017, guid: 81323995627832a4f9b3eaf1d4b875ae,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81323995627832a4f9b3eaf1d4b875ae, type: 3}
@@ -1080,7 +1085,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2089847543}
-        m_MethodName: leaveShop
+        m_MethodName: ReviveMember
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1291,7 +1296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2089847543}
-        m_MethodName: openShop
+        m_MethodName: ReviveMember
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1840,10 +1845,15 @@ MonoBehaviour:
   m_confirmSelection: {fileID: 2095249502}
   m_dialog: {fileID: 1758913820}
   m_gilText: {fileID: 1242606638}
+  m_member1: {fileID: 0}
+  m_member2: {fileID: 0}
+  m_member3: {fileID: 0}
+  m_member4: {fileID: 0}
   m_player: {fileID: 7169813452949590301, guid: 4bb2e10765b6d4245afb2dfe543d1611,
     type: 3}
-  m_inventory: {fileID: 8287932046639881558, guid: 5e6335eb5b5bc2845b53e8dcf1c6066a,
-    type: 3}
+  m_data: {fileID: 0}
+  m_itemArea: {fileID: 0}
+  m_itemPrefab: {fileID: 0}
 --- !u!222 &2089847544
 CanvasRenderer:
   m_ObjectHideFlags: 0

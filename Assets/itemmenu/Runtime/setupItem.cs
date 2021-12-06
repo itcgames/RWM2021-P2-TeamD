@@ -7,7 +7,6 @@ public class setupItem : MonoBehaviour
 {
 	
 	public int itemAmount;
-	public int cost;
 	public string itemName;
 	private int amount;
 	public bool clicked;

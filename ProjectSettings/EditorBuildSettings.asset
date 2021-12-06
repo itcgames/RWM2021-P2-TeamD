@@ -38,8 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WeaponShop.unity
     guid: 14672f95cdbfec94b8c35f324192b3ce
-    path: Assets/Scenes/CombatScene.unity
-    guid: c14636d807b425b488d418d1b12c5810
+  - enabled: 1
+    path: Assets/Scenes/ClinicShop.unity
+    guid: 634817862f53de3478ac2824b909e8ef
   - enabled: 1
     path: Assets/Scenes/InteractionTempScene.unity
     guid: 883f364f0cc4c394490f6af6dd6d3a7b

@@ -22,15 +22,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Town" || SceneManager.GetActiveScene().name == "Castle")
-        {
-            if (!GetComponent<InteractionController>().InInteractMode)
-            {
+/*        if (SceneManager.GetActiveScene().name == "Town" || SceneManager.GetActiveScene().name == "Castle")
+        {*/
+/*            if (!GetComponent<InteractionController>().InInteractMode)
+            {*/
                 if (!m_isMoving)
                 {
                     m_input.x = Input.GetAxisRaw("Horizontal");
                     m_input.y = Input.GetAxisRaw("Vertical");
-
+/*
                     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
                         Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
                         Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
                     {
                         GetComponent<InteractionController>().SetDirection(m_input);
                     }
-
+*/
                     if (m_input.x != 0) m_input.y = 0;
 
                     if (m_input != Vector2.zero)
@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
                     }
                 }
                 PlayerMenu();
-            }
-        }
+/*            }*/
+/*        }*/
     }
 
     IEnumerator Move(Vector3 t_targetPos)
