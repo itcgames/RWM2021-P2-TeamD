@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7268018269007455125}
   - component: {fileID: -4022589529447548241}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: InteractableObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,13 +72,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -4279557429521532404, guid: bbdf556d37e40c543a8e3c5b0966f79b,
+  m_Sprite: {fileID: -3747453992867999221, guid: bbdf556d37e40c543a8e3c5b0966f79b,
     type: 3}
   m_Color: {r: 0.1452893, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacfcb4b0c510344d8b7b23a5d79fb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!61 &-4022589529447548241
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

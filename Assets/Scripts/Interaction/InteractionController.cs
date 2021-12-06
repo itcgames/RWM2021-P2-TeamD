@@ -35,7 +35,7 @@ public class InteractionController : MonoBehaviour
             if (isInteracted) break;
         }
 
-        if (Input.GetKeyUp(KeyCode.Return))
+        if (Input.GetKeyUp(KeyCode.X))
         {
             InteractionBox.transform.position = GetComponent<Player>().transform.position + new Vector3(0.0f, 0.5f);
             InInteractMode = !InInteractMode;
