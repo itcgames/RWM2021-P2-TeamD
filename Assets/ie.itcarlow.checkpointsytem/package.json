@@ -1,0 +1,7 @@
+{
+    "name": "ie.itcarlow.checkpointsystem",
+    "version": "0.1.0",
+	"displayName": "Checkpoint System",
+	"description": "A package that allows for easier implementation of checkpoints and varied way to activate them",
+	"unity": "2019.4" 
+}
