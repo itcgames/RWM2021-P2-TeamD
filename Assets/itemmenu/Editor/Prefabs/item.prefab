@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af21ed5df0bc1646a90c165d25cd1d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemAmount: 99
+  itemAmount: 55
+  cost: 0
   itemName: Heal
   clicked: 0
+  use: {fileID: 0}

@@ -81,7 +81,7 @@ namespace Tests
             m_intance.transform.position = m_player.transform.position;
             yield return new WaitForSeconds(4.0f);
             int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(5, m_sceneNum);
+            Assert.AreEqual(6, m_sceneNum);
         }
 
         [UnityTest]
