@@ -14,12 +14,34 @@ public class Cursor : MonoBehaviour
     public bool isInventory;
     public bool isArmour= false;
     public List<GameObject> charAndImg;
+    [SerializeField]
+    public Vector2[,] naviArmor;
     CharacterInfo info;
-
+    int row = 0;
+    int col = 0;
     CheckpointSystem checkpointSystem;
     // Start is called before the first frame update
     void Start()
     {
+        naviArmor = new Vector2[2,8];
+
+        naviArmor[0, 0] = new Vector2( -180, 120 );
+        naviArmor[1, 0] = new Vector2(116, 120);
+        naviArmor[0, 1] = new Vector2(-180, 60);
+        naviArmor[1, 1] = new Vector2(116, 60);
+        naviArmor[0, 2] = new Vector2(-180, -17);
+        naviArmor[1, 2] = new Vector2(116, -17);
+        naviArmor[0, 3] = new Vector2(-180, -64);
+        naviArmor[1, 3] = new Vector2(116, -64);
+        naviArmor[0, 4] = new Vector2(-180, -148);
+        naviArmor[1, 4] = new Vector2(116, -148);
+        naviArmor[0, 5] = new Vector2(-180, -200);
+        naviArmor[1, 5] = new Vector2(116, -200);
+        naviArmor[0, 6] = new Vector2(-180, -267);
+        naviArmor[1, 6] = new Vector2(116, -267);
+        naviArmor[0, 7] = new Vector2(-180, -328);
+        naviArmor[1, 7] = new Vector2(116, -328);
+
         //activeInventories = false;
         //pickChar = false;
         //cursorInvPositions = new List<Vector2>();
@@ -97,14 +119,66 @@ public class Cursor : MonoBehaviour
         }
         else if(isArmour)
         {
-            this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
+            this.gameObject.GetComponent<RectTransform>().localPosition = naviArmor[row,col];
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                currentInvPos++;
-                if(currentInvPos%2 !=0)
+                 
+                
+                if(row ==1)
                 {
-                    currentInvPos  -= 1;
+                    row = 0;
                 }
+                else
+                {
+                    row++;
+                }
+                
+
+            }
+          else  if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+
+
+                if (row == 0)
+                {
+                    row = 1;
+                }
+                else
+                {
+                    row--;
+                }
+
+
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+
+
+                if (col == 7)
+                {
+                    col = 0;
+                }
+                else
+                {
+                    col++;
+                }
+
+
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+
+
+                if (col == 0)
+                {
+                    col = 7;
+                }
+                else
+                {
+                    col--;
+                }
+
+
             }
         }
         else
