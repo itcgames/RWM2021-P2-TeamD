@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 2)
         {
-            if (Random.Range(1, 101) <= 5)
+            if (Random.Range(1.0f, 100.0f) <= 1.1f)
             {
                 Debug.Log("You have encountered an enemy!");
                 // add scene for battle

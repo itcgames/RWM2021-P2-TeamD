@@ -34,12 +34,12 @@ public class CombatController : MonoBehaviour
 
             if (GetComponent<CombatCursorController>().DecideAction)
             {
-                if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
+                if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
             }
 
             else if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
             {
-                if (Input.GetKeyUp(KeyCode.Return)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
+                if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
             }
         }
 
@@ -62,7 +62,7 @@ public class CombatController : MonoBehaviour
             CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState ||
             CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {

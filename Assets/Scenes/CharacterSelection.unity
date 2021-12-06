@@ -612,12 +612,18 @@ MonoBehaviour:
   images:
   - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
   - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
+  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
   names:
   - Richard
   - Mike
+  - Creek
+  - Spoons
   partyTypes:
   - Fighter
   - B_Mage
+  - Thief
+  - BL_Belt
 --- !u!1 &757963395
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,12 +896,18 @@ MonoBehaviour:
   images:
   - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
   - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
+  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
   names:
   - Jeff
   - Bob
+  - Sour
+  - Shot
   partyTypes:
   - B_Mage
   - Fighter
+  - BL_Belt
+  - Thief
 --- !u!1 &986957857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,12 +1144,18 @@ MonoBehaviour:
   images:
   - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
   - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
+  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
   names:
   - Ben
   - Neb
+  - Yes
+  - Perhaps
   partyTypes:
   - Fighter
   - B_Mage
+  - Thief
+  - BL_Belt
 --- !u!1 &1239546925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,12 +1553,18 @@ MonoBehaviour:
   images:
   - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
   - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
+  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
   names:
   - Baba
   - Jaeger
+  - Monke
+  - Allexwa
   partyTypes:
   - B_Mage
   - Fighter
+  - BL_Belt
+  - Thief
 --- !u!1 &2022518170
 GameObject:
   m_ObjectHideFlags: 0
