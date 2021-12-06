@@ -25,21 +25,22 @@ namespace Tests
         [UnityTest]
         public IEnumerator buyItem()
         {
-            m_player = GameObject.Find("Player");
             m_item = GameObject.Find("Heal");
-            m_player.GetComponent<Player>().setGil(200);
-            m_player.GetComponent<Player>().setGil(-m_item.GetComponent<ItemID>().getCost());
+            int gil = 400;
+
+            gil -= m_item.GetComponent<ItemID>().getCost();
+
             yield return new WaitForSeconds(0.5f);
-            Assert.AreEqual(140, m_player.GetComponent<Player>().getGil());
+            Assert.AreEqual(340, gil);
         }
         [UnityTest]
         public IEnumerator CheckGil()
         {
-            m_player = GameObject.Find("Player");
             m_item = GameObject.Find("Heal");
-            m_player.GetComponent<Player>().setGil(200);
+            int gil = 200;
+
             yield return new WaitForSeconds(0.5f);
-            Assert.Greater(m_player.GetComponent<Player>().getGil(), m_item.GetComponent<ItemID>().getCost());
+            Assert.Greater(gil, m_item.GetComponent<ItemID>().getCost());
         }
         [UnityTest]
         public IEnumerator CheckInventory()
@@ -52,12 +53,13 @@ namespace Tests
         [UnityTest]
         public IEnumerator BuyingCheckout()
         {
-            m_player = GameObject.Find("Player");
+            int gil = 200;
             m_item = GameObject.Find("Heal");
-            m_player.GetComponent<Player>().setGil(200);
-            m_player.GetComponent<Player>().setGil(-m_item.GetComponent<ItemID>().getCost());
+
+            gil -= m_item.GetComponent<ItemID>().getCost();
+
             yield return new WaitForSeconds(0.5f);
-            Assert.Less(m_player.GetComponent<Player>().getGil(), 200);
+            Assert.Less(gil, 200);
         }
     }
 
@@ -80,12 +82,11 @@ namespace Tests
         [UnityTest]
         public IEnumerator SellWeapon()
         {
-            m_player = GameObject.Find("Player");
             m_item = GameObject.Find("Wooden");
-            m_player.GetComponent<Player>().setGil(200);
-            m_player.GetComponent<Player>().setGil(m_item.GetComponent<ItemID>().getCost() - 2);
+            int gil = 200;
+            gil += m_item.GetComponent<ItemID>().getCost() / 2;
             yield return new WaitForSeconds(0.5f);
-            Assert.AreEqual(203, m_player.GetComponent<Player>().getGil());
+            Assert.AreEqual(202, gil);
         }
         [UnityTest]
         public IEnumerator CheckItemInventory()
@@ -98,23 +99,20 @@ namespace Tests
         [UnityTest]
         public IEnumerator RemoveItem()
         {
-            m_player = GameObject.Find("Player");
             m_item = GameObject.Find("Wooden");
             m_item.GetComponent<ItemID>().addAmount();
             m_item.GetComponent<ItemID>().removeAmount();
-            m_player.GetComponent<Player>().setGil(200);
             yield return new WaitForSeconds(0.5f);
             Assert.AreEqual(0, m_item.GetComponent<ItemID>().getAmount());
         }
         [UnityTest]
         public IEnumerator SellingCheckout()
         {
-            m_player = GameObject.Find("Player");
             m_item = GameObject.Find("Wooden");
-            m_player.GetComponent<Player>().setGil(200);
-            m_player.GetComponent<Player>().setGil(m_item.GetComponent<ItemID>().getCost());
+            int gil = 200;
+            gil += m_item.GetComponent<ItemID>().getCost();
             yield return new WaitForSeconds(0.5f);
-            Assert.Greater(m_player.GetComponent<Player>().getGil(), 200);
+            Assert.Greater(gil, 200);
         }
 
 

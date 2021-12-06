@@ -47,7 +47,8 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         m_dialog.text = "Welcome!";
-        m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
+        if (!Utilities.s_testMode) m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
+        else m_gilText.text = ""; // don't need for testing
 
         if (SceneManager.GetActiveScene().name == "ClinicShop")
         {
@@ -165,6 +166,7 @@ public class ShopManager : MonoBehaviour
                     //m_inventory
                 }
                 m_shopItems.GetComponent<ItemCost>().addInventory();
+                m_confirmSelection.SetActive(false);
             }
             else
             {
@@ -175,6 +177,7 @@ public class ShopManager : MonoBehaviour
         {
             m_dialog.text = "Too bad\n...\nSomething else?";
         }
+        m_purchase = false;
         m_confirmSelection.SetActive(false);
         m_shopSelection.SetActive(true);
 
@@ -185,19 +188,20 @@ public class ShopManager : MonoBehaviour
         if (m_sell)
         {
             // checks the armor inventory of the member
-            if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil > m_shopItems.GetComponent<ItemCost>().costProduct()) //!Change THIS FOR ARMOR/WEAPON
+            if (m_shopItems.GetComponent<ItemCost>().GetInventory() > 1) //!Change THIS FOR ARMOR/WEAPON
             {
                 m_dialog.text = "Thank you!\nWhat else?";
                 // add the gil here
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_shopItems.GetComponent<ItemCost>().sellProduct();
                 m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
                 // remove the item here
-                if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
+                if (m_shopItems.GetComponent<ItemCost>().GetInventory() <= 0)
                 {
                     GameObject gameObject = m_itemPrefab;
                     Destroy(gameObject);
                 }
                 m_shopItems.GetComponent<ItemCost>().removeInventory();
+                m_confirmSelection.SetActive(false);
 
             }
             else
@@ -209,7 +213,9 @@ public class ShopManager : MonoBehaviour
         else
         {
             m_dialog.text = "Too bad\n...\nSomething else?";
+            m_confirmSelection.SetActive(false);
         }
+        m_sell = false;
         m_confirmSelection.SetActive(false);
         m_shopSelection.SetActive(true);
     }
@@ -262,12 +268,12 @@ public class ShopManager : MonoBehaviour
         m_confirmSelection.SetActive(false);
         m_shopSelection.SetActive(true);
         fullHealth();
+        m_clinicPaid = false;
 
     }
 
     public void setupClinic()
     {
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = 0;
         Debug.Log(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value);
         m_member1 = GameObject.Find("Member1");
         checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member1, FindObjectOfType<PlayerAndGameInfo>().infos.m_name1);
