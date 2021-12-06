@@ -11,9 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharacterSelection.unity
     guid: 2941c6e09516f354384fd6edbc1f9282
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Scenes/OverworldScene.unity
     guid: eed29f72d24dadd43ae2ffa9346b6051
+=======
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+>>>>>>> 86fb7880847d19161e3c736ffeec82a95165d14b
   - enabled: 1
     path: Assets/Scenes/Pause.unity
     guid: 589a6238e8139dc45abc16daf8d04ad9
