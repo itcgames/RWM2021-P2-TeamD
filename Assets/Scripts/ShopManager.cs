@@ -187,11 +187,11 @@ public class ShopManager : MonoBehaviour
         m_member1 = GameObject.Find("Member1");
         checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member1, FindObjectOfType<PlayerAndGameInfo>().infos.m_name1);
         m_member2 = GameObject.Find("Member2");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member2, FindObjectOfType<PlayerAndGameInfo>().infos.m_name2);
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value, m_member2, FindObjectOfType<PlayerAndGameInfo>().infos.m_name2);
         m_member3 = GameObject.Find("Member3");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member3, FindObjectOfType<PlayerAndGameInfo>().infos.m_name3);
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value, m_member3, FindObjectOfType<PlayerAndGameInfo>().infos.m_name3);
         m_member4 = GameObject.Find("Member4");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member4, FindObjectOfType<PlayerAndGameInfo>().infos.m_name4);
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value, m_member4, FindObjectOfType<PlayerAndGameInfo>().infos.m_name4);
     }
 
     public void checkHealth(float t_health, GameObject t_data, string t_name)
@@ -209,7 +209,7 @@ public class ShopManager : MonoBehaviour
 
     public void ReviveMember()
     {
-        m_data = EventSystem.current.currentSelectedGameObject.gameObject;
+       
     }
 
 }
