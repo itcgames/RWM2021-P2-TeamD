@@ -20,23 +20,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_isMoving)
+        if (!GetComponent<InteractionController>().InInteractMode)
         {
-            m_input.x = Input.GetAxisRaw("Horizontal");
-            m_input.y = Input.GetAxisRaw("Vertical");
-
-            if (m_input.x != 0) m_input.y = 0;
-
-            if (m_input != Vector2.zero)
+            if (!m_isMoving)
             {
-                var m_targetPos = transform.position;
-                m_targetPos.x += m_input.x / 32;
-                m_targetPos.y += m_input.y / 32;
+                m_input.x = Input.GetAxisRaw("Horizontal");
+                m_input.y = Input.GetAxisRaw("Vertical");
 
-                StartCoroutine(Move(m_targetPos));
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
+                    Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
+                    Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                    Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    GetComponent<InteractionController>().SetDirection(m_input);
+                }
+
+                if (m_input.x != 0) m_input.y = 0;
+
+                if (m_input != Vector2.zero)
+                {
+                    var m_targetPos = transform.position;
+                    m_targetPos.x += m_input.x / 32;
+                    m_targetPos.y += m_input.y / 32;
+
+                    StartCoroutine(Move(m_targetPos));
+                }
             }
+            PlayerMenu();
         }
-        PlayerMenu();
     }
 
     IEnumerator Move(Vector3 t_targetPos)
@@ -61,6 +72,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("You have encountered an enemy!");
                 // add scene for battle
+                //GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToCombatScene();
             }
         }
     }
