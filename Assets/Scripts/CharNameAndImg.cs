@@ -100,6 +100,27 @@ public class CharNameAndImg : MonoBehaviour
         return null;
     }
 
+    public int GetType()
+    {
+        if (partyTypes[listPos] == PartyType.B_Mage.ToString())
+        {
+            return 1;
+        }
+        else if (partyTypes[listPos] == PartyType.BL_Belt.ToString())
+        {
+            return 3;
+        }
+        else if (partyTypes[listPos] == PartyType.Fighter.ToString())
+        {
+            return 0;
+        }
+        else if (partyTypes[listPos] == PartyType.Thief.ToString())
+        {
+            return 2;
+        }
+        return 0;
+    }
+
 
 
 }

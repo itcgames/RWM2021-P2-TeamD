@@ -56,5 +56,12 @@ public class ItemCost : MonoBehaviour
         return m_itemObject.GetComponent<ItemID>().getAmount();
     }
 
+    public int GetClinicCost()
+    {
+        cost = 40;
+        m_dialog.text = cost + "\nGold\nOK?";
+        return cost;
+    }
+
 
 }

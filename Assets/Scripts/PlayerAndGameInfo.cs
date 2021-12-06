@@ -13,18 +13,22 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Sprite m_charImage1;
         public Attribute m_attributeHP1;
         public Attribute m_attributeDam1;
+        public int m_type1;
         public string m_name2;
         public Sprite m_charImage2;
         public Attribute m_attributeHP2;
         public Attribute m_attributeDam2;
+        public int m_type2;
         public string m_name3;
         public Sprite m_charImage3;
         public Attribute m_attributeHP3;
         public Attribute m_attributeDam3;
+        public int m_type3;
         public string m_name4;
         public Sprite m_charImage4;
         public Attribute m_attributeHP4;
         public Attribute m_attributeDam4;
+        public int m_type4;
     }
 
 
@@ -40,7 +44,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void SetCharacter(int charNum, string name, Sprite sprite, Attribute attributeHP, Attribute attributeDam )
+    public void SetCharacter(int charNum, string name, Sprite sprite, Attribute attributeHP, Attribute attributeDam, int type)
     {
         if(charNum == 1)
         {
@@ -48,6 +52,7 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_charImage1 = sprite;
             infos.m_attributeHP1 = attributeHP;
             infos.m_attributeDam1 = attributeDam;
+            infos.m_type1 = type;
         }
         else if (charNum == 2)
         {
@@ -55,6 +60,7 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_charImage2 = sprite;
             infos.m_attributeHP2 = attributeHP;
             infos.m_attributeDam2 = attributeDam;
+            infos.m_type2 = type;
         }
         else if (charNum == 3)
         {
@@ -62,13 +68,15 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_charImage3 = sprite;
             infos.m_attributeHP3 = attributeHP;
             infos.m_attributeDam3 = attributeDam;
+            infos.m_type3 = type;
         }
         else if (charNum == 4)
         {
             infos.m_name4 = name;
             infos.m_charImage4 = sprite;
             infos.m_attributeHP4 = attributeHP;
-            infos.m_attributeDam4 = attributeDam;
+            infos.m_attributeDam4 = attributeDam; 
+            infos.m_type4 = type;
         }
     }
 

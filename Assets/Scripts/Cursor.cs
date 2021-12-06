@@ -130,7 +130,9 @@ public class Cursor : MonoBehaviour
                 {
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(4, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
+
 
                     FindObjectOfType<CheckpointSystem>().SaveData(JsonUtility.ToJson(FindObjectOfType<PlayerAndGameInfo>().GetCharInfo()));
                     GameObject.FindObjectOfType<ScreenSystem>().GoToGameplayScene();
@@ -140,7 +142,8 @@ public class Cursor : MonoBehaviour
 
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos + 1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
                     currentCharPos++;
                 }
 

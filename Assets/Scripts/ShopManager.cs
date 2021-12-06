@@ -33,11 +33,15 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     GameObject m_data;
 
-    public GameObject m_itemArea; 
+    public GameObject m_itemArea;
     public GameObject m_itemPrefab;
+
+
+    int type;
 
     bool m_purchase;
     bool m_sell;
+    bool m_clinicPaid;
 
 
     private void Start()
@@ -54,6 +58,23 @@ public class ShopManager : MonoBehaviour
     private void Update()
     {
         backSelection();
+
+        if (SceneManager.GetActiveScene().name == "ClinicShop")
+        {
+            if (fullHealth())
+            {
+                m_dialog.text = "Who shall be revived....";
+            }
+            else
+            {
+                m_dialog.text = "You do not need my help now.";
+                m_shopSelection.SetActive(false);
+                if (Input.anyKey)
+                {
+                    leaveShop();
+                }
+            }
+        }
     }
 
 
@@ -69,6 +90,12 @@ public class ShopManager : MonoBehaviour
         m_sellItems.SetActive(true);
         m_shopSelection.SetActive(false);
         m_dialog.text = "Whose item do want to sell?";
+    }
+
+    public void ClinicPayment()
+    {
+        m_confirmSelection.SetActive(true);
+        m_shopSelection.SetActive(false);
     }
 
     public void leaveShop()
@@ -107,9 +134,20 @@ public class ShopManager : MonoBehaviour
         checkPurchase();
     }
 
+    public void ClinicPaid()
+    {
+        m_clinicPaid = true;
+        checkClinicPaid();
+    }
+
+    public void ClinicNoPay()
+    {
+        m_clinicPaid = false;
+        checkClinicPaid();
+    }
+
     public void checkPurchase()
     {
-
         if (m_purchase)
         {
             // 400 > 60/75
@@ -119,7 +157,7 @@ public class ShopManager : MonoBehaviour
                 // subtract the gil here
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= m_shopItems.GetComponent<ItemCost>().costProduct();
                 m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
-                
+
                 // add the item here
                 if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
                 {
@@ -151,7 +189,7 @@ public class ShopManager : MonoBehaviour
             {
                 m_dialog.text = "Thank you!\nWhat else?";
                 // add the gil here
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_gil = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil + m_shopItems.GetComponent<ItemCost>().sellProduct();
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_shopItems.GetComponent<ItemCost>().sellProduct();
                 m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
                 // remove the item here
                 if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
@@ -176,14 +214,61 @@ public class ShopManager : MonoBehaviour
         m_shopSelection.SetActive(true);
     }
 
-
-    public void checkPlayerHealth()
+    public void checkClinicPaid()
     {
+
+        if (m_clinicPaid)
+        {
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= 40)
+            {
+                type = FindButton();
+                //health max here
+                switch (type)
+                {
+                    case 1:
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type1);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value);
+                        break;
+                    case 2:
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type2);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value);
+                        break;
+                    case 3:
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type3);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value);
+                        break;
+                    case 4:
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type4);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value);
+                        break;
+                    default:
+                        break;
+                }
+
+                m_dialog.text = "Thank you!\nWhat else?";
+                // subtract the gil here
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= 40;
+                m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
+            }
+            else
+            {
+                m_dialog.text = "You can't\nafford that.";
+            }
+        }
+        else
+        {
+            m_dialog.text = "Who shall be revived....";
+        }
+        m_confirmSelection.SetActive(false);
         m_shopSelection.SetActive(true);
+        fullHealth();
+
     }
 
     public void setupClinic()
     {
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = 0;
+        Debug.Log(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value);
         m_member1 = GameObject.Find("Member1");
         checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member1, FindObjectOfType<PlayerAndGameInfo>().infos.m_name1);
         m_member2 = GameObject.Find("Member2");
@@ -196,7 +281,7 @@ public class ShopManager : MonoBehaviour
 
     public void checkHealth(float t_health, GameObject t_data, string t_name)
     {
-        if(t_health <= 0)
+        if (t_health <= 0)
         {
             t_data.GetComponent<Text>().text = t_name;
             t_data.SetActive(true);
@@ -207,9 +292,42 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void ReviveMember()
+    public bool fullHealth()
     {
-       
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value <= 0 || FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value <= 0 ||
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value <= 0 || FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
+    public int FindButton()
+    {
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value <= 0)
+        {
+            Button btn = m_member1.GetComponent<Button>();
+            type = 1;
+        }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value <= 0)
+        {
+            Button btn = m_member2.GetComponent<Button>();
+            type = 2;
+        }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value <= 0)
+        {
+            Button btn = m_member3.GetComponent<Button>();
+            type = 3;
+        }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value <= 0)
+        {
+            Button btn = m_member4.GetComponent<Button>();
+            type = 4;
+        }
+
+        return type;
+    }
 }
