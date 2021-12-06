@@ -103,7 +103,7 @@ public class ShopManager : MonoBehaviour
                 m_player.GetComponent<Player>().setGil(m_shopItems.GetComponent<ItemCost>().costProduct());
                 m_gilText.text = m_player.GetComponent<Player>().getGil().ToString() + " G";
                 // add the item here
-                
+                m_shopItems.GetComponent<ItemCost>().addInventory();
             }
             else
             {
@@ -131,6 +131,7 @@ public class ShopManager : MonoBehaviour
                 m_player.GetComponent<Player>().setGil(m_shopItems.GetComponent<ItemCost>().sellProduct());
                 m_gilText.text = m_player.GetComponent<Player>().getGil().ToString() + " G";
                 // remove the item here
+                m_shopItems.GetComponent<ItemCost>().removeInventory();
 
             }
             else

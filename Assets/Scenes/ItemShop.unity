@@ -2346,6 +2346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shopSelection: {fileID: 1784885479492309584}
   m_shopItems: {fileID: 2053914970}
+  m_sellItems: {fileID: 0}
   m_confirmSelection: {fileID: 1647522650}
   m_dialog: {fileID: 66656875}
   m_gilText: {fileID: 171810236}
