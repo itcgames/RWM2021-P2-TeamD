@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CombatScene.unity
     guid: c14636d807b425b488d418d1b12c5810
+  - enabled: 1
+    path: Assets/Scenes/InteractionTempScene.unity
+    guid: 883f364f0cc4c394490f6af6dd6d3a7b
   m_configObjects: {}
