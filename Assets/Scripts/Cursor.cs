@@ -12,6 +12,7 @@ public class Cursor : MonoBehaviour
     public bool pickChar;
     public bool activeInventories;
     public bool isInventory;
+    public bool isArmour= false;
     public List<GameObject> charAndImg;
     CharacterInfo info;
 
@@ -92,6 +93,18 @@ public class Cursor : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 GoBack();
+            }
+        }
+        else if(isArmour)
+        {
+            this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                currentInvPos++;
+                if(currentInvPos%2 !=0)
+                {
+                    currentInvPos  -= 1;
+                }
             }
         }
         else
