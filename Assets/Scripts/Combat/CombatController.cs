@@ -130,6 +130,8 @@ public class CombatController : MonoBehaviour
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
 
+        m_firstStrikeScript.SetOnAdvantage(CombatEnum.s_advantage);
+
         if (m_firstStrikeScript.FirstStrikeCheck())
         {
             Debug.Log("You get to strike first.");
