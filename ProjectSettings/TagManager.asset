@@ -7,6 +7,8 @@ TagManager:
   - Fade
   - NPC
   - Board
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
