@@ -31,21 +31,21 @@ public class Player : MonoBehaviour
                     m_input.x = Input.GetAxisRaw("Horizontal");
                     m_input.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
-                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-                Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                GetComponent<InteractionController>().SetDirection(m_input);
-            }
+                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
+                        Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
+                        Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                        Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        GetComponent<InteractionController>().SetDirection(m_input);
+                    }
 
-            if (m_input.x != 0) m_input.y = 0;
+                    if (m_input.x != 0) m_input.y = 0;
 
                     if (m_input != Vector2.zero)
                     {
                         var m_targetPos = transform.position;
-                        m_targetPos.x += m_input.x / 32;
-                        m_targetPos.y += m_input.y / 32;
+                        m_targetPos.x += (m_input.x / 16);
+                        m_targetPos.y += (m_input.y / 16);
 
                         StartCoroutine(Move(m_targetPos));
                     }
@@ -65,8 +65,8 @@ public class Player : MonoBehaviour
                 if (m_input != Vector2.zero)
                 {
                     var m_targetPos = transform.position;
-                    m_targetPos.x += m_input.x / 32;
-                    m_targetPos.y += m_input.y / 32;
+                    m_targetPos.x += (m_input.x / 16);
+                    m_targetPos.y += (m_input.y / 16);
 
                     StartCoroutine(Move(m_targetPos));
                 }
@@ -83,11 +83,10 @@ public class Player : MonoBehaviour
         if ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, t_targetPos, m_speed * Time.deltaTime);
-            yield return null;
+            yield return new WaitForSeconds(0.05f);
         }
         transform.position = t_targetPos;
         m_isMoving = false;
-
     }
 
     void CombatEncounter()
