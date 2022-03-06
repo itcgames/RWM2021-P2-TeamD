@@ -87,4 +87,9 @@ public class ScreenSystem : MonoBehaviour
     {
         SceneManager.LoadScene(7);
     }
+
+    public void EndpointHit()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
