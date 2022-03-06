@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CheckType
+{
+    BooleanExpressions,
+    Random,
+    RandomInfluencedByAnATTR
+}
+
 public class FirstStrikeChance : MonoBehaviour
 {
-    public enum CheckType
-    {
-        BooleanExpressions,
-        Random,
-        RandomInfluencedByAnATTR
-    }
-
     [SerializeField]
     private CheckType m_type;
 

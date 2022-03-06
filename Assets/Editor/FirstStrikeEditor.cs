@@ -24,17 +24,17 @@ public class FirstStrikeEditor : Editor
 
         EditorGUILayout.PropertyField(type_prop);
 
-        FirstStrikeChance.CheckType type = (FirstStrikeChance.CheckType)type_prop.enumValueIndex;
+        CheckType type = (CheckType)type_prop.enumValueIndex;
 
         switch (type)
         {
-            case FirstStrikeChance.CheckType.BooleanExpressions:
+            case CheckType.BooleanExpressions:
                 EditorGUILayout.PropertyField(onAdvantage_prop, new GUIContent("onAdvantage"));
                 break;
-            case FirstStrikeChance.CheckType.Random:
+            case CheckType.Random:
                 EditorGUILayout.PropertyField(successThreshold_prop, new GUIContent("successThreshold"));
                 break;
-            case FirstStrikeChance.CheckType.RandomInfluencedByAnATTR:
+            case CheckType.RandomInfluencedByAnATTR:
                 EditorGUILayout.PropertyField(successThreshold_prop, new GUIContent("successThreshold"));
                 EditorGUILayout.PropertyField(attribute_prop, new GUIContent("attribute"));
                 break;
