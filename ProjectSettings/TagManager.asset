@@ -8,6 +8,8 @@ TagManager:
   - NPC
   - Board
   - Enemy
+  - Player Bullet
+  - Enemy Bullet
   - Bullet
   layers:
   - Default
