@@ -352,6 +352,7 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
+                FindObjectOfType<EndPoint>().FightWon();
                 return true;
             }
         }
