@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Move(Vector3 t_targetPos)
     {
-        CombatEncounter();
+        //CombatEncounter();
 
         m_isMoving = true;
         if ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
