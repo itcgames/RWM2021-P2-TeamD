@@ -15,9 +15,15 @@ public class CombatController : MonoBehaviour
 
     private int m_currentChar;
 
+    // analytics
+    CombatData data;
+
     // Start is called before the first frame update
     void Start()
     {
+        // for testing 
+        data = new CombatData {enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
+
         Combat();
     }
 
@@ -69,17 +75,23 @@ public class CombatController : MonoBehaviour
                     // implement rewards here
                     UpdateStats();
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
+
+                    DataCollectionUtility.PostData(data, this);
                 }
-                else if(CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
+                else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
                 {
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
+
+                    DataCollectionUtility.PostData(data, this);
                 }
                 else
                 {
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
+
+                    DataCollectionUtility.PostData(data, this);
                 }
-                    
-          
+
+
             }
 
             else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
@@ -134,6 +146,8 @@ public class CombatController : MonoBehaviour
         {
             Debug.Log("You get to strike first.");
 
+            data.onAdvantage = 1;
+
             for (int i = 0; i < Party.Count; ++i)
             {
                 m_battleOrder.Add(i + 1, Party[i]);
@@ -152,6 +166,8 @@ public class CombatController : MonoBehaviour
         else
         {
             Debug.Log("Enemies strike first.");
+
+            data.onAdvantage = 0;
 
             for (int i = 0; i < EnemyList.Count; ++i)
             {
@@ -177,6 +193,8 @@ public class CombatController : MonoBehaviour
         GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
 
         int m_enemyCount = Random.Range(1, 10);
+
+        data.enemyCount = m_enemyCount;
 
         for (int i = 0; i < m_enemyCount; i++)
         {
@@ -325,6 +343,8 @@ public class CombatController : MonoBehaviour
         }
 
         GetComponent<CombatUIController>().UpdateHpTexts(Party);
+
+        data.turnTotal++;
     }
 
     private bool BattleEnd()
@@ -339,6 +359,7 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
                 Debug.Log("You have lost the battle...");
+                data.victory = 0;
                 return true;
             }
         }
@@ -350,6 +371,7 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
+                data.victory = 1;
                 return true;
             }
         }
@@ -409,7 +431,7 @@ public class CombatController : MonoBehaviour
 
         foreach (var member in m_party)
         {
-            if(member.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
+            if (member.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
             {
                 member.SetActive(false);
             }

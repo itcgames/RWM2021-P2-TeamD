@@ -8,10 +8,13 @@ public class GameState
     public int id;
 }
 
+[System.Serializable]
 public class CombatData : GameState
 {
-    public int advantageAmt;
-    public int disAdvantageAmt;
+    public int onAdvantage;
+    public int enemyCount;
+    public int turnTotal;
+    public int victory;
 }
 
 public class DataCollectionUtility : MonoBehaviour

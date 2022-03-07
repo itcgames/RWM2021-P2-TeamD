@@ -8,7 +8,9 @@ public class AnalyticsManager : MonoBehaviour
 {
     public static IEnumerator PostMethod(string json)
     {
-        string url = "https://localhost:5000/upload_data";
+        string url = "http://52.19.232.105:80/upload_data";
+
+        Debug.Log("Post Method Launched");
 
         using (UnityWebRequest request = UnityWebRequest.Put(url, json))
         {
