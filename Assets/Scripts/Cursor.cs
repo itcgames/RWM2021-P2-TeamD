@@ -118,14 +118,14 @@ public class Cursor : MonoBehaviour
                 GoBack();
             }
         }
-        else if(isArmour)
+        else if (isArmour)
         {
-            this.gameObject.GetComponent<RectTransform>().localPosition = naviArmor[row,col];
+            this.gameObject.GetComponent<RectTransform>().localPosition = naviArmor[row, col];
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                 
-                
-                if(row ==1)
+
+
+                if (row == 1)
                 {
                     row = 0;
                 }
@@ -133,10 +133,10 @@ public class Cursor : MonoBehaviour
                 {
                     row++;
                 }
-                
+
 
             }
-          else  if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
 
 
@@ -179,8 +179,12 @@ public class Cursor : MonoBehaviour
                     col--;
                 }
             }
-        }
 
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                Debug.Log("Yeet");
+            }
+        }
         else if (isMenu)
         {
             this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
@@ -262,6 +266,8 @@ public class Cursor : MonoBehaviour
                 break;
             case 3:
                 t_screenSystem.GoToInventoryScreen(currentInvPos);
+                pickChar = true;
+
                 break;
             case 4:
                 pickChar = true;
