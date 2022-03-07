@@ -142,6 +142,8 @@ public class CombatController : MonoBehaviour
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
 
+        m_firstStrikeScript.SetOnAdvantage(CombatEnum.s_advantage);
+
         if (m_firstStrikeScript.FirstStrikeCheck())
         {
             Debug.Log("You get to strike first.");
@@ -371,7 +373,10 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
+                
                 data.victory = 1;
+                
+                FindObjectOfType<EndPoint>().FightWon();
                 return true;
             }
         }

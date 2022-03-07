@@ -42,7 +42,7 @@ public class CharacterTemplateTests
     public IEnumerator SetupCombatValuesTest()
     {
         m_combatPrefab = Object.Instantiate(m_combatPrefab);
-        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(CheckType.Random);
         m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
 
         GameObject char1 = Object.Instantiate(m_characterPrefab);
@@ -127,7 +127,7 @@ public class CharacterTemplateTests
     public IEnumerator EnemySpawnTest()
     {
         m_combatPrefab = Object.Instantiate(m_combatPrefab);
-        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(CheckType.Random);
         m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
 
         GameObject char1 = Object.Instantiate(m_characterPrefab);
@@ -156,7 +156,7 @@ public class CharacterTemplateTests
     public IEnumerator PlayerActionsTest()
     {
         m_combatPrefab = Object.Instantiate(m_combatPrefab);
-        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(CheckType.Random);
         m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
 
         GameObject char1 = Object.Instantiate(m_characterPrefab);
@@ -174,7 +174,7 @@ public class CharacterTemplateTests
     public IEnumerator BattleEndTest()
     {
         m_combatPrefab = Object.Instantiate(m_combatPrefab);
-        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(FirstStrikeChance.CheckType.Random);
+        m_combatPrefab.GetComponent<FirstStrikeChance>().SetType(CheckType.Random);
         m_combatPrefab.GetComponent<FirstStrikeChance>().SetSuccessTest(50.0f);
 
         GameObject char1 = Object.Instantiate(m_characterPrefab);
