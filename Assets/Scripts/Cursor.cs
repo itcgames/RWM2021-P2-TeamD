@@ -8,6 +8,7 @@ public class Cursor : MonoBehaviour
     public List<Vector2> cursorCharPositions;
     int currentInvPos = 0;
     int currentCharPos = 0;
+    int col2 = 0;
     public ScreenSystem t_screenSystem;
     public bool pickChar;
     public bool activeInventories;
@@ -15,8 +16,8 @@ public class Cursor : MonoBehaviour
     public bool isArmour= false;
     public bool isMenu;
     public List<GameObject> charAndImg;
-    [SerializeField]
     public Vector2[,] naviArmor;
+    public Vector2[] useNavi;
     CharacterInfo info;
     int row = 0;
     int col = 0;
@@ -42,6 +43,12 @@ public class Cursor : MonoBehaviour
         naviArmor[1, 6] = new Vector2(116, -267);
         naviArmor[0, 7] = new Vector2(-180, -328);
         naviArmor[1, 7] = new Vector2(116, -328);
+
+        useNavi = new Vector2[3];
+        useNavi[0] = new Vector2(-180, 300);
+        useNavi[1] = new Vector2(25, 300);
+        useNavi[2] = new Vector2(220, 300);
+
 
         //activeInventories = false;
         //pickChar = false;
