@@ -82,4 +82,14 @@ public class ScreenSystem : MonoBehaviour
 
         GoToScene(FindObjectOfType<PlayerAndGameInfo>().infos.m_currentScene);
     }
+
+    public void GoToCombatScene()
+    {
+        SceneManager.LoadScene(7);
+    }
+
+    public void EndpointHit()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -254,12 +254,12 @@ PrefabInstance:
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.2971698
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.3969223
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -547,12 +547,12 @@ PrefabInstance:
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.25096765
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.09019607
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f942d04a9b9567a46afe794e3c30cebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 1
+  m_type: 0
   m_onAdvantage: 0
   m_attribute:
     m_name: Speed
@@ -976,12 +976,12 @@ PrefabInstance:
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.10849059
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.8551593
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6126278272539080962, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -1097,6 +1097,16 @@ PrefabInstance:
     - target: {fileID: 5270884439605841229, guid: 169c3852ef5957943b8ccf9bc6bb55e3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718438790933203307, guid: 169c3852ef5957943b8ccf9bc6bb55e3,
+        type: 3}
+      propertyPath: m_type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718438790933203307, guid: 169c3852ef5957943b8ccf9bc6bb55e3,
+        type: 3}
+      propertyPath: m_onAdvantage
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -13,6 +13,7 @@ public class Cursor : MonoBehaviour
     public bool activeInventories;
     public bool isInventory;
     public bool isArmour= false;
+    public bool isMenu;
     public List<GameObject> charAndImg;
     [SerializeField]
     public Vector2[,] naviArmor;
@@ -177,8 +178,34 @@ public class Cursor : MonoBehaviour
                 {
                     col--;
                 }
+            }
+        }
 
+        else if (isMenu)
+        {
+            this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
 
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (currentInvPos == 0)
+                    currentInvPos = 1;
+                else
+                    currentInvPos--;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (currentInvPos == 1)
+                    currentInvPos = 0;
+                else
+                    currentInvPos++;
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (currentInvPos == 0)
+                    GameObject.FindObjectOfType<ScreenSystem>().ContinueGame();
+                else
+                    GameObject.FindObjectOfType<ScreenSystem>().GoToCharacterSelcetionScene();
             }
         }
         else
@@ -189,24 +216,27 @@ public class Cursor : MonoBehaviour
                 {
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(4, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
+
 
                     FindObjectOfType<CheckpointSystem>().SaveData(JsonUtility.ToJson(FindObjectOfType<PlayerAndGameInfo>().GetCharInfo()));
                     GameObject.FindObjectOfType<ScreenSystem>().GoToGameplayScene();
                 }
                 else
                 {
-                    
-                    GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos+1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
+
+                    GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos + 1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
                     currentCharPos++;
                 }
 
                 this.gameObject.GetComponent<RectTransform>().localPosition = cursorCharPositions[currentCharPos];
             }
 
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 charAndImg[currentCharPos].GetComponent<CharNameAndImg>().Next();
             }
