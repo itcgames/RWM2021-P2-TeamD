@@ -3149,11 +3149,7 @@ MonoBehaviour:
   activeInventories: 0
   isInventory: 1
   isArmour: 0
-<<<<<<< HEAD
   isMenu: 0
-=======
-  isNavi: 0
->>>>>>> 5dab5488c3543558c8bd44620a33f879dcc90c3a
   charAndImg: []
   useNavi: []
 --- !u!1 &1081812286
@@ -8308,7 +8304,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -290
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1809021443877122024, guid: 3a6feec9b5129e24fa9a523241b7ae33, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3a6feec9b5129e24fa9a523241b7ae33, type: 3}
 --- !u!4 &1774688058 stripped
 Transform:

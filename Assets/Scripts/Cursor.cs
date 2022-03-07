@@ -14,6 +14,8 @@ public class Cursor : MonoBehaviour
     public bool activeInventories;
     public bool isInventory;
     public bool isArmour= false;
+    public bool isNavi = false;
+
     public bool isMenu;
     public List<GameObject> charAndImg;
     public Vector2[,] naviArmor;
@@ -127,69 +129,123 @@ public class Cursor : MonoBehaviour
         }
         else if (isArmour)
         {
-            this.gameObject.GetComponent<RectTransform>().localPosition = naviArmor[row, col];
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-
-
-                if (row == 1)
-                {
-                    row = 0;
-                }
-                else
-                {
-                    row++;
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-
-
-                if (row == 0)
-                {
-                    row = 1;
-                }
-                else
-                {
-                    row--;
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-
-
-                if (col == 7)
-                {
-                    col = 0;
-                }
-                else
-                {
-                    col++;
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-
-
-                if (col == 0)
-                {
-                    col = 7;
-                }
-                else
-                {
-                    col--;
-                }
+                isInventory = true;
+                GoBack();
             }
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (isNavi)
             {
-                Debug.Log("Yeet");
+
+                this.gameObject.GetComponent<RectTransform>().localPosition = useNavi[row];
+
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    Debug.Log("Move right");
+
+                    if (row == 2)
+                    {
+                        row = 0;
+                    }
+                    else
+                    {
+                        row++;
+                    }
+
+
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    Debug.Log("Move right");
+
+                    if (row == 0)
+                    {
+                        row = 2;
+                    }
+                    else
+                    {
+                        row--;
+                    }
+
+
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    isNavi = false;
+                }
+            }
+            else
+            {
+
+                this.gameObject.GetComponent<RectTransform>().localPosition = naviArmor[row, col];
+
+
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    Debug.Log("Move right");
+
+                    if (row == 1)
+                    {
+                        row = 0;
+                    }
+                    else
+                    {
+                        row++;
+                    }
+
+
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    Debug.Log("Move right");
+
+                    if (row == 0)
+                    {
+                        row = 1;
+                    }
+                    else
+                    {
+                        row--;
+                    }
+
+
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+
+
+                    if (col == 7)
+                    {
+                        col = 0;
+                    }
+                    else
+                    {
+                        col++;
+                    }
+
+
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+
+                    if (col == 0)
+                    {
+                        col = 7;
+                    }
+                    else
+                    {
+                        col--;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    isNavi = true;
+                }
             }
         }
         else if (isMenu)
@@ -272,9 +328,12 @@ public class Cursor : MonoBehaviour
                 t_screenSystem.GoToInventoryScreen(currentInvPos);
                 break;
             case 3:
+                isInventory = false;
+                isArmour = true;
+                isNavi = true;
                 t_screenSystem.GoToInventoryScreen(currentInvPos);
-                pickChar = true;
-
+                
+               
                 break;
             case 4:
                 pickChar = true;

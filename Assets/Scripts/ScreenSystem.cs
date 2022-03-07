@@ -58,8 +58,8 @@ public class ScreenSystem : MonoBehaviour
                 {
                     if(i < this.transform.childCount-1)
                         this.transform.GetChild(i).gameObject.SetActive(false);
-                    else
-                        this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    //else
+                       // this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 }
                 this.transform.GetChild(t_i).gameObject.SetActive(true);
             }

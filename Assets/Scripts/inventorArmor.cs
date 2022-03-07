@@ -46,7 +46,7 @@ public class inventorArmor : MonoBehaviour
         switch (i)
         {
             case 0:
-        this.transform.GetChild(0).transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "";
+            this.transform.GetChild(0).transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "";
 
 
                 break;
