@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Grass Sprite
+  m_Name: path-tileset_3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 3df662fe15a5db84c92d0cbe3c56312c, type: 3}
+  m_Sprite: {fileID: 5187620644604787352, guid: e8fc3393f04939b428835521542ed62b,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
