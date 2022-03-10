@@ -51,6 +51,9 @@ TagManager:
   - name: Desert
     uniqueID: 3519895001
     locked: 0
+  - name: River
+    uniqueID: 344954987
+    locked: 0
   - name: Path
     uniqueID: 1499381023
     locked: 0
