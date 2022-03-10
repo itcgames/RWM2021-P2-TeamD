@@ -48,13 +48,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Grass
+  - name: Desert
     uniqueID: 3519895001
     locked: 0
-  - name: Tree
+  - name: Path
     uniqueID: 1499381023
     locked: 0
-  - name: Castle and Town
+  - name: Objects
     uniqueID: 4191299507
     locked: 0
   - name: Player
