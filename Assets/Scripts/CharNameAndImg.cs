@@ -8,6 +8,7 @@ public class CharNameAndImg : MonoBehaviour
     public List<Sprite> images;
     public List<string> names;
     int listPos;
+    public int charNum;
     public List<string> partyTypes;
 
     private void Start()
@@ -15,6 +16,9 @@ public class CharNameAndImg : MonoBehaviour
         listPos = 0;
         this.transform.GetChild(0).GetComponent<Text>().text = names[listPos];
         this.transform.GetChild(1).GetComponent<Image>().sprite = images[listPos];
+
+        GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(charNum, GetName(), GetImage(), GetAttribute1(),
+                        GetAttribute2(), GetType());
     }
 
     public void Next()
@@ -31,6 +35,9 @@ public class CharNameAndImg : MonoBehaviour
             this.transform.GetChild(0).GetComponent<Text>().text = names[listPos];
             this.transform.GetChild(1).GetComponent<Image>().sprite = images[listPos];
         }
+
+        GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(charNum, GetName(), GetImage(), GetAttribute1(),
+                        GetAttribute2(), GetType());
     }
 
     public void Previous()
@@ -47,6 +54,9 @@ public class CharNameAndImg : MonoBehaviour
             this.transform.GetChild(0).GetComponent<Text>().text = names[listPos];
             this.transform.GetChild(1).GetComponent<Image>().sprite = images[listPos];
         }
+
+        GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(charNum, GetName(), GetImage(), GetAttribute1(),
+                       GetAttribute2(), GetType());
     }
 
     public Sprite GetImage()

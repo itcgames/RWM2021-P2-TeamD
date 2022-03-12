@@ -472,7 +472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1019571376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -549,8 +549,11 @@ MonoBehaviour:
   pickChar: 0
   activeInventories: 0
   isInventory: 0
+  isArmour: 0
+  isNavi: 0
   isMenu: 1
   charAndImg: []
+  useNavi: []
 --- !u!1 &1148881751
 GameObject:
   m_ObjectHideFlags: 0
