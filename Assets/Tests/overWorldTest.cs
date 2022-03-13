@@ -56,7 +56,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator EnterTown()
         {
-            m_intance = GameObject.Find("Town");
+            m_intance = GameObject.Find("TownNorth");
             m_player = GameObject.Find("Player");
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
             m_intance.transform.position = m_player.transform.position;
@@ -77,7 +77,6 @@ namespace Tests
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
             m_intance.transform.position = m_player.transform.position;
             Debug.Log("Has entered Overworld");
-            m_intance = GameObject.Find("Town");
             m_intance.transform.position = m_player.transform.position;
             yield return new WaitForSeconds(4.0f);
             int m_sceneNum = m_game.GetActiveIndex();
@@ -87,7 +86,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator Transition()
         {
-            m_intance = GameObject.Find("Town");
+            m_intance = GameObject.Find("TownNorth");
             m_player = GameObject.Find("Player");
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
             m_intance.transform.position = m_player.transform.position;
