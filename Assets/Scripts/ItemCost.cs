@@ -63,5 +63,8 @@ public class ItemCost : MonoBehaviour
         return cost;
     }
 
-
+    public ItemID getInventoryID()
+    {
+        return m_itemObject.GetComponent<ItemID>();
+    }
 }

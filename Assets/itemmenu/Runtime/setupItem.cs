@@ -11,6 +11,7 @@ public class setupItem : MonoBehaviour
 	private int amount;
 	public bool clicked;
 	public GameObject use;
+	public GameObject ItemId;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -18,8 +19,6 @@ public class setupItem : MonoBehaviour
 		amount = itemAmount;
 		GetComponent<Text>().text = itemName;
 		GetComponent<Text>().text = itemName + " x " + amount.ToString();
-
-
 	}
     // Update is called once per frame
     void Update()

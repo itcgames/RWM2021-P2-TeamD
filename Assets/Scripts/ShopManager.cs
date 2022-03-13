@@ -35,6 +35,7 @@ public class ShopManager : MonoBehaviour
 
     public GameObject m_itemArea;
     public GameObject m_itemPrefab;
+    InventoryManager m_inventoryManager;
 
 
     int type;
@@ -47,8 +48,11 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         m_dialog.text = "Welcome!";
-        if (!Utilities.s_testMode) m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
-        else m_gilText.text = ""; // don't need for testing
+        if (!Utilities.s_testMode)
+        {
+            m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
+        }
+        else { m_gilText.text = ""; } // don't need for testing
 
         if (SceneManager.GetActiveScene().name == "ClinicShop")
         {
@@ -162,8 +166,9 @@ public class ShopManager : MonoBehaviour
                 // add the item here
                 if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
                 {
-                    GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
-                    //m_inventory
+                    m_inventoryManager.addItem(m_shopItems.GetComponent<ItemCost>().getInventoryID());
+                    Debug.Log("I'm in weeee");
+                    // gone in
                 }
                 m_shopItems.GetComponent<ItemCost>().addInventory();
                 m_confirmSelection.SetActive(false);
@@ -199,6 +204,7 @@ public class ShopManager : MonoBehaviour
                 {
                     GameObject gameObject = m_itemPrefab;
                     Destroy(gameObject);
+                    // remove the item here 14/03/22
                 }
                 m_shopItems.GetComponent<ItemCost>().removeInventory();
                 m_confirmSelection.SetActive(false);
