@@ -77,10 +77,13 @@ public class Cursor : MonoBehaviour
 
         checkpointSystem = GameObject.FindObjectOfType<CheckpointSystem>();
 
-        charPickButtons[0].SetActive(false);
-        charPickButtons[1].SetActive(false);
-        charPickButtons[2].SetActive(false);
-        charPickButtons[3].SetActive(false);
+        if (charPickButtons != null)
+        {
+            charPickButtons[0].SetActive(false);
+            charPickButtons[1].SetActive(false);
+            charPickButtons[2].SetActive(false);
+            charPickButtons[3].SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -330,6 +333,11 @@ public class Cursor : MonoBehaviour
                 charAndImg[currentCharPos].GetComponent<CharNameAndImg>().Previous();
             }
         }
+    }
+
+    public void SetIsNavi(bool navi)
+    {
+        isNavi = navi;
     }
 
     public void UseFunctionality(int invPos)
