@@ -68,14 +68,18 @@ MonoBehaviour:
   - {x: -180, y: 0}
   - {x: 116, y: 0}
   cursorCharPositions: []
+  currentInvPos: 0
+  currentCharPos: 0
   t_screenSystem: {fileID: 0}
   pickChar: 0
   activeInventories: 0
   isInventory: 0
   isArmour: 0
   isNavi: 1
+  isMenu: 0
   charAndImg: []
   useNavi: []
+  charPickButtons: []
 --- !u!222 &2661385018769398435
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1690,7 +1694,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8065688400356747059}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

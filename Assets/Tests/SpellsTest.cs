@@ -55,7 +55,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
 
             Assert.AreEqual(0, t_cursScreenSys.GetCurrentInventory());
         }
@@ -78,7 +78,7 @@ namespace Tests
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
             t_cursor.MoveDown();
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
 
             Assert.AreEqual(2, t_cursScreenSys.GetCurrentInventory());
         }
@@ -102,7 +102,7 @@ namespace Tests
             t_cursor.MoveDown();
             t_cursor.MoveDown();
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
 
             Assert.AreEqual(3, t_cursScreenSys.GetCurrentInventory());
         }
@@ -124,9 +124,9 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
             t_cursor.MoveRight();
-            t_cursor.GoToCharInventory();
+            t_cursor.GoToCharInventory(t_cursor.currentCharPos);
 
 
             Assert.AreEqual(1, t_cursScreenSys.GetCurrentInventory());
@@ -153,10 +153,10 @@ namespace Tests
             t_cursor.MoveDown();
             t_cursor.MoveDown();
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
             t_cursor.MoveRight();
             t_cursor.MoveDown1();
-            t_cursor.GoToCharInventory();
+            t_cursor.GoToCharInventory(t_cursor.currentCharPos);
 
 
             Assert.AreEqual(4, t_cursScreenSys.GetCurrentInventory());
@@ -179,9 +179,9 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
             t_cursor.MoveRight();
-            t_cursor.GoToCharInventory();
+            t_cursor.GoToCharInventory(t_cursor.currentCharPos);
 
             yield return new WaitForSeconds(0.1f);
 
@@ -215,9 +215,9 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
             t_cursor.MoveRight();
-            t_cursor.GoToCharInventory();
+            t_cursor.GoToCharInventory(t_cursor.currentCharPos);
 
             yield return new WaitForSeconds(0.1f);
 
@@ -253,9 +253,9 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
             t_cursor.MoveDown();
-            t_cursor.UseFunctionality();
+            t_cursor.UseFunctionality(t_cursor.currentInvPos);
             t_cursor.MoveRight();
-            t_cursor.GoToCharInventory();
+            t_cursor.GoToCharInventory(t_cursor.currentCharPos);
 
             yield return new WaitForSeconds(0.1f);
 
