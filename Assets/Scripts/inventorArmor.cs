@@ -4,18 +4,53 @@ using UnityEngine;
 using UnityEngine.UI;
 public class inventorArmor : MonoBehaviour
 {
-
+    private GameObject armour;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip);
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.isEquiped(FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip);
+
+
+        this.transform.GetChild(0).transform.GetChild(0).GetChild(0).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name;
+        this.transform.GetChild(0).transform.GetChild(0).GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name;
+        this.transform.GetChild(0).transform.GetChild(0).GetChild(2).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name;
+        this.transform.GetChild(0).transform.GetChild(0).GetChild(3).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name;
+        this.transform.GetChild(1).transform.GetChild(0).GetChild(0).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name;
+        this.transform.GetChild(1).transform.GetChild(0).GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name;
+        this.transform.GetChild(1).transform.GetChild(0).GetChild(2).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name;
+        this.transform.GetChild(1).transform.GetChild(0).GetChild(3).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name;
+        this.transform.GetChild(2).transform.GetChild(0).GetChild(0).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name;
+        this.transform.GetChild(2).transform.GetChild(0).GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name;
+        this.transform.GetChild(2).transform.GetChild(0).GetChild(2).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name;
+        this.transform.GetChild(2).transform.GetChild(0).GetChild(3).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name;
+        this.transform.GetChild(3).transform.GetChild(0).GetChild(0).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name;
+        this.transform.GetChild(3).transform.GetChild(0).GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name;
+        this.transform.GetChild(3).transform.GetChild(0).GetChild(2).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name;
+        this.transform.GetChild(3).transform.GetChild(0).GetChild(3).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name;
+
     }
     private void OnEnable()
     {
@@ -113,5 +148,5 @@ public class inventorArmor : MonoBehaviour
 
         }
     }
-
+    
 }
