@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScreenSystem : MonoBehaviour
 {
     int m_currentInventory = 0;
+    bool m_switchToGameplay = true;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class ScreenSystem : MonoBehaviour
 
     public void GoToGameplayScene()
     {
+        m_switchToGameplay = true;
         SceneManager.LoadScene(2);
     }
 
@@ -43,6 +45,11 @@ public class ScreenSystem : MonoBehaviour
             {
                 GoToGameplayScene();
             }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2 && m_switchToGameplay)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = FindObjectOfType<PlayerAndGameInfo>().infos.player_pos;
+            m_switchToGameplay = false;
         }
 
     }
@@ -85,6 +92,7 @@ public class ScreenSystem : MonoBehaviour
 
     public void GoToCombatScene()
     {
+        FindObjectOfType<PlayerAndGameInfo>().infos.player_pos = GameObject.FindGameObjectWithTag("Player").transform.position;
         SceneManager.LoadScene(7);
     }
 

@@ -9,6 +9,7 @@ public class PlayerAndGameInfo : MonoBehaviour
     {
         public int m_gil = 400;
         public int m_currentScene = 2;
+        public Vector2 player_pos = new Vector2(-0.75f, 2.5f);
         public string m_name1;
         public Sprite m_charImage1;
         public string m_weapon1_1 = "";
