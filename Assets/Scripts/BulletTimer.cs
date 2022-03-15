@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletTimer : MonoBehaviour
 {
-    private float m_timeToDie = 4.0f;
+    private float m_timeToDie = 0.5f;
 
     // Update is called once per frame
     void Update()
