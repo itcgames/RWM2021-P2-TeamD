@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
         Vector2 pos = transform.position;
         Vector2 direction = (target - pos).normalized;
 
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * 2.0f;
+        bullet.GetComponent<Rigidbody2D>().velocity = direction * 1.7f;
 
         m_readyToFire = false;
         shotCooldown = initialShotDelay;
