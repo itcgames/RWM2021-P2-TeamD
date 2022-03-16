@@ -41,22 +41,11 @@ public class CombatController : MonoBehaviour
         if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
             m_statusTxt.text = "CHOOSE ACTION";
-            /*if (Input.GetKeyUp(KeyCode.LeftArrow)) GetComponent<CombatCursorController>().MoveCol(-1);
-            if (Input.GetKeyUp(KeyCode.RightArrow)) GetComponent<CombatCursorController>().MoveCol(1);
-
-            if (Input.GetKeyUp(KeyCode.UpArrow)) GetComponent<CombatCursorController>().MoveRow(-1);
-            if (Input.GetKeyUp(KeyCode.DownArrow)) GetComponent<CombatCursorController>().MoveRow(1);*/
-
-           /* if (GetComponent<CombatCursorController>().DecideAction)
-            {
-                //if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
-            }*/
-
+               
             if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
             {
                 m_statusTxt.text = "CHOOSE ENEMY";
 
-                //if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
             }
         }
 
@@ -89,7 +78,9 @@ public class CombatController : MonoBehaviour
                 m_statusTxt.text = "ESCAPED!";
             }
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.Return) ||
+                Input.GetKeyDown(KeyCode.Escape) ||
+                Input.GetMouseButtonDown(0))
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
@@ -141,8 +132,6 @@ public class CombatController : MonoBehaviour
             GetComponent<CombatUIController>().UpdateHpTexts(Party);
 
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
-            GetComponent<CombatCursorController>().SetupCursor();
-            GetComponent<CombatCursorController>().EnterActionSelect();
 
             m_currentChar = -1;
             ChangeActivePartyMember();
