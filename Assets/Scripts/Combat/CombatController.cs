@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatController : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class CombatController : MonoBehaviour
     public List<GameObject> EnemyList { get; set; }
 
     private int m_currentChar;
+
+    public Text m_statusTxt;
+    public Text m_rewardTxt;
+
+    private int m_goldReward = 0;
 
     // analytics
     CombatData data;
@@ -32,6 +38,7 @@ public class CombatController : MonoBehaviour
     {
         if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
+            m_statusTxt.text = "CHOOSE ACTION";
             if (Input.GetKeyUp(KeyCode.LeftArrow)) GetComponent<CombatCursorController>().MoveCol(-1);
             if (Input.GetKeyUp(KeyCode.RightArrow)) GetComponent<CombatCursorController>().MoveCol(1);
 
@@ -45,6 +52,8 @@ public class CombatController : MonoBehaviour
 
             else if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
             {
+                m_statusTxt.text = "CHOOSE ENEMY";
+
                 if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
             }
         }
@@ -68,11 +77,20 @@ public class CombatController : MonoBehaviour
             CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState ||
             CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
         {
+            if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
+            {
+                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G';
+            }
+
+            else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
+            {
+                m_statusTxt.text = "ESCAPED!";
+            }
+
             if (Input.GetKeyDown(KeyCode.X))
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
-                    // implement rewards here
                     UpdateStats();
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
@@ -361,6 +379,7 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
                 Debug.Log("You have lost the battle...");
+                m_statusTxt.text = "YOU LOST THE BATTLE...";
                 data.victory = 0;
                 return true;
             }
@@ -373,7 +392,8 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
-                
+                m_statusTxt.text = "YOU WON THE BATTLE!";
+
                 data.victory = 1;
                 
                 FindObjectOfType<EndPoint>().FightWon();
