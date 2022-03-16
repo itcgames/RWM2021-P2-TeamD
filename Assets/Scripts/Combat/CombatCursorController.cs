@@ -26,6 +26,8 @@ public class CombatCursorController : MonoBehaviour
     private int m_currentMaxRow;
     private int m_currentMaxCol;
 
+    public int CurrentPartyIndex;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,8 +145,7 @@ public class CombatCursorController : MonoBehaviour
         // Flee
         else if (m_currentRow == 0 && m_currentCol == 1)
         {
-            GetComponent<CombatController>().Party[partyMemberIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Flee;
-            GetComponent<CombatController>().ChangeActivePartyMember();
+            
         }
 
         // Magic
@@ -171,17 +172,39 @@ public class CombatCursorController : MonoBehaviour
         }
     }
 
-    public void ChooseTarget(int partyMemberIndex)
+    public void AttackAction()
     {
-        GetComponent<CombatController>().Party[partyMemberIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
-        GetComponent<CombatController>().Party[partyMemberIndex].GetComponent<ActionController>().Target = GetTarget();
-        GetComponent<CombatController>().ChangeActivePartyMember();
-        EnterActionSelect();
+        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            ChooseEnemyTarget = true;
+        }
     }
 
-    public GameObject GetTarget()
+    public void FleeAction()
     {
-        if (m_currentRow == 0 && m_currentCol == 0)
+        if (!ChooseEnemyTarget)
+        {
+            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+            {
+                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Flee;
+                GetComponent<CombatController>().ChangeActivePartyMember();
+            }
+        }
+    }
+
+    public void ChooseTarget()
+    {
+        GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+        GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Target = null;
+
+        GetComponent<CombatController>().ChangeActivePartyMember();
+        //EnterActionSelect();
+    }
+       /* if (m_currentRow == 0 && m_currentCol == 0)
         {
             return GetComponent<CombatController>().EnemyList[0];
         }
@@ -250,6 +273,5 @@ public class CombatCursorController : MonoBehaviour
             }
         }
 
-        return null;
-    }
+        return null;*/
 }
