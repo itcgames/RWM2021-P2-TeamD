@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class EnemyBehaviours : MonoBehaviour
 {
-	public float m_movement_speed = 1;
+	public float m_movement_speed = 0.5f;
 
-	bool m_wander = true;
-	bool m_player_detected = false;
-	bool m_player_prev_detected = false;
+	public bool m_wander = true;
+	public bool m_player_detected = false;
 
-	public float m_radius_view_distance = 1;
-	public float m_view_distance = 1;
+	public float m_radius_view_distance = 0.1f;
+	public float m_view_distance = 1.0f;
 	public float m_FoV = 90;
 
 	private Rigidbody2D rb;
-	private Vector3 direction;
+	public Vector3 direction;
 
 	GameObject m_player;
 
-	public const float NEW_WANDER_DIR_WAIT = 5;
-	float m_current_wait_time = 0;
+	public const float NEW_WANDER_DIR_WAIT = 10;
+	float m_current_wait_time = NEW_WANDER_DIR_WAIT;
 
 	void Start()
 	{
@@ -28,6 +27,9 @@ public class EnemyBehaviours : MonoBehaviour
 		direction = new Vector3(0, 0, 0);
 
 		m_player = GameObject.FindGameObjectWithTag("Player");
+
+		Physics2D.queriesStartInColliders = false;
+		Physics2D.queriesHitTriggers = false;
 	}
 
 	void Update()
@@ -40,20 +42,22 @@ public class EnemyBehaviours : MonoBehaviour
 
 		rb.velocity = direction * m_movement_speed;
 
-		if (m_wander && m_current_wait_time == 0)
+		if (m_wander && m_current_wait_time <= 0)
 			GetWanderDirection();
 
-		if (m_current_wait_time > 0)
+		if (m_wander && m_current_wait_time > 0)
 			m_current_wait_time -= Time.deltaTime;
 		else
 			m_current_wait_time = NEW_WANDER_DIR_WAIT;
+
+		transform.rotation = Quaternion.Euler(
+				new Vector3(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
 	}
 
 	void DetectPlayer()
 	{
 		if (Vector3.Distance(transform.position, m_player.transform.position) < m_view_distance)
 		{
-
 			Vector3 dirToPlayer = (m_player.transform.position - transform.position).normalized;
 
 			if (Vector3.Angle(direction, dirToPlayer) < m_FoV / 2)
@@ -67,7 +71,6 @@ public class EnemyBehaviours : MonoBehaviour
 					if (raycastHit2D.collider.gameObject.GetComponent<Player>() != null)
 					{
 						m_player_detected = true;
-						m_player_prev_detected = true;
 						direction = dirToPlayer;
 					}
 					else
@@ -80,7 +83,6 @@ public class EnemyBehaviours : MonoBehaviour
 
 		if (Vector3.Distance(transform.position, m_player.transform.position) < m_radius_view_distance)
 		{
-
 			Vector3 dirToPlayer = (m_player.transform.position - transform.position).normalized;
 
 			RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, dirToPlayer, m_radius_view_distance);
@@ -90,7 +92,6 @@ public class EnemyBehaviours : MonoBehaviour
 				if (raycastHit2D.collider.gameObject.GetComponent<Player>() != null)
 				{
 					m_player_detected = true;
-					m_player_prev_detected = true;
 					direction = dirToPlayer;
 				}
 				else
@@ -105,7 +106,7 @@ public class EnemyBehaviours : MonoBehaviour
 	{
 		if (m_player_detected)
 			m_wander = false;
-		else if (!m_player_detected && m_player_prev_detected)
+		else 
 			m_wander = true;
 	}
 
