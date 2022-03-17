@@ -324,13 +324,19 @@ public class CombatController : MonoBehaviour
 
     public void GenEnemyActions()
     {
-        foreach (var enemy in EnemyList)
+        for (int i = 0; i < EnemyList.Count; ++i)
         {
-            enemy.GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+            EnemyList[i].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
 
             int targetPartyMember = Random.Range(0, 4);
 
-            enemy.GetComponent<ActionController>().Target = Party[targetPartyMember];
+            if(!Party[targetPartyMember].activeSelf)
+            {
+                --i;
+                continue;
+            }
+
+            EnemyList[i].GetComponent<ActionController>().Target = Party[targetPartyMember];
         }
     }
 
