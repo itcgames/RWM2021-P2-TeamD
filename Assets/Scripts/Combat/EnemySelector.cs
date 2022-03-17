@@ -19,17 +19,15 @@ public class EnemySelector : MonoBehaviour
     {
         if (m_combatCursorScript.ChooseEnemyTarget)
         {
-            if(m_combatScript == null)
+            if (m_combatScript.EnemyList[id - 1].activeSelf)
             {
-                Debug.Log("oof");
+                Debug.Log("Enemy: " + id + " selected");
+                m_combatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+                m_combatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Target = m_combatScript.EnemyList[id - 1];
+
+                m_combatScript.ChangeActivePartyMember();
+                m_combatCursorScript.ChooseEnemyTarget = false;
             }
-
-            Debug.Log("Enemy: " + id + " selected");
-            m_combatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
-            m_combatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Target = m_combatScript.EnemyList[id - 1];
-
-            m_combatScript.ChangeActivePartyMember();
-            m_combatCursorScript.ChooseEnemyTarget = false;
         }
     }
 }
