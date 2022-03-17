@@ -25,6 +25,7 @@ namespace Tests
             m_game = gameGameObject.GetComponent<Game>();
             m_intance = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Instance"));
             m_animator = MonoBehaviour.Instantiate(Resources.Load<Animator>("Prefabs/Fade"));
+           
         }
         [TearDown]
         public void Teardown()

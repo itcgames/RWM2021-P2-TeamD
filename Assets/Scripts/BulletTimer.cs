@@ -21,7 +21,7 @@ public class BulletTimer : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && tag == "Player Bullet")
         {
-            Debug.Log("You have encountered an enemy!");
+            //Debug.Log("You have encountered an enemy!");
             CombatEnum.s_advantage = true;
             // add scene for battle
             GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToCombatScene();
@@ -29,7 +29,7 @@ public class BulletTimer : MonoBehaviour
 
         else if (other.CompareTag("Player") && tag == "Enemy Bullet")
         {
-            Debug.Log("You have encountered an enemy!");
+            //Debug.Log("You have encountered an enemy!");
             CombatEnum.s_advantage = false;
             // add scene for battle
 
