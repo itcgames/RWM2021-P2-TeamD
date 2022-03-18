@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 enum EnemyType
 {
-    Imp,
-    Wolf,
-    Spider
+    Bandit,
+    DesertWarrior,
+    Cactus,
+    DesertShinobi,
+    DarkShinobi,
+    ShadeShinobi,
+    Snail
 }
 
 public class EnemyUtil
@@ -22,11 +26,11 @@ public class EnemyUtil
 
     
 
-    public static void SetupImp(CharacterAttributes attrs)
+    public static void SetupBandit(CharacterAttributes attrs)
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Imp";
+        attrs.Name = "Bandit";
         attrs.Playable = false;
         attrs.Gil = 6;
         attrs.Xp = 8;
@@ -37,32 +41,92 @@ public class EnemyUtil
         attrs.AddAttribute(dmg);
     }
 
-    public static void SetupWolf(CharacterAttributes attrs)
+    public static void SetupWarrior(CharacterAttributes attrs)
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Wolf";
+        attrs.Name = "Desert Warrior";
         attrs.Playable = false;
-        attrs.Gil = 6;
-        attrs.Xp = 24;
+        attrs.Gil = 10;
+        attrs.Xp = 10;
 
-        Attribute hp = new Attribute("HP", 20);
+        Attribute hp = new Attribute("HP", 10);
+        Attribute dmg = new Attribute("Dmg", 6);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+    }
+
+    public static void SetupCactus(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "Cactus";
+        attrs.Playable = false;
+        attrs.Gil = 3;
+        attrs.Xp = 4;
+
+        Attribute hp = new Attribute("HP", 5);
+        Attribute dmg = new Attribute("Dmg", 3);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+    }
+
+    public static void SetupShinobiDesert(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "Desert Shinobi";
+        attrs.Playable = false;
+        attrs.Gil = 20;
+        attrs.Xp = 40;
+
+        Attribute hp = new Attribute("HP", 15);
+        Attribute dmg = new Attribute("Dmg", 6);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+    }
+
+    public static void SetupShinobiDark(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "Dark Shinobi";
+        attrs.Playable = false;
+        attrs.Gil = 30;
+        attrs.Xp = 45;
+
+        Attribute hp = new Attribute("HP", 25);
         Attribute dmg = new Attribute("Dmg", 8);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
     }
 
-    public static void SetupSpider(CharacterAttributes attrs)
+    public static void SetupShinobiShade(CharacterAttributes attrs)
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Spider";
+        attrs.Name = "Shade Shinobi";
         attrs.Playable = false;
-        attrs.Gil = 8;
-        attrs.Xp = 30;
+        attrs.Gil = 50;
+        attrs.Xp = 65;
 
-        Attribute hp = new Attribute("HP", 28);
-        Attribute dmg = new Attribute("Dmg", 10);
+        Attribute hp = new Attribute("HP", 10);
+        Attribute dmg = new Attribute("Dmg", 15);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+    }
+
+    public static void SetupSnail(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "Snail";
+        attrs.Playable = false;
+        attrs.Gil = 2;
+        attrs.Xp = 1;
+
+        Attribute hp = new Attribute("HP", 2);
+        Attribute dmg = new Attribute("Dmg", 1);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
     }
