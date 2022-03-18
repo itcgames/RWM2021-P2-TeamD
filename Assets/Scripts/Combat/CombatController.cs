@@ -87,7 +87,7 @@ public class CombatController : MonoBehaviour
                 else
                 {
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
-
+                    EnemyUtil.ResetEnemyStatus();
                     DataCollectionUtility.PostData(data, this);
                 }
 

@@ -21,10 +21,18 @@ public class BulletTimer : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && tag == "Player Bullet")
         {
+            EnemyUtil.s_currentEnemyID = other.GetComponent<EnemyID>().ID;
+            EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
+
             //Debug.Log("You have encountered an enemy!");
             CombatEnum.s_advantage = true;
             // add scene for battle
-            GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToCombatScene();
+            GameObject sceneManager = GameObject.Find("SceneManager");
+
+            if (sceneManager != null)
+            {
+                sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+            }
         }
 
         else if (other.CompareTag("Player") && tag == "Enemy Bullet")
@@ -32,6 +40,9 @@ public class BulletTimer : MonoBehaviour
             //Debug.Log("You have encountered an enemy!");
             CombatEnum.s_advantage = false;
             // add scene for battle
+
+            EnemyUtil.s_currentEnemyID = GetComponent<EnemyID>().ID;
+            EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
 
             GameObject sceneManager = GameObject.Find("SceneManager");
 
