@@ -1,4 +1,5 @@
-﻿enum EnemyType
+﻿using System.Collections.Generic;
+enum EnemyType
 {
     Imp,
     Wolf,
@@ -7,6 +8,19 @@
 
 public class EnemyUtil
 {
+    public static int s_currentEnemyID = 0;
+
+    public static bool[] s_enemyAliveStatus = new bool[20];
+
+    public static void ResetEnemyStatus()
+    {
+        for (int i = 0; i < s_enemyAliveStatus.Length; ++i)
+        {
+            s_enemyAliveStatus[i] = true;
+        }
+    }
+
+    
 
     public static void SetupImp(CharacterAttributes attrs)
     {

@@ -18,6 +18,13 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!EnemyUtil.s_enemyAliveStatus[GetComponent<EnemyID>().ID - 1])
+        {
+            Debug.Log("Enemy " + GetComponent<EnemyID>().ID + " inactive");
+            gameObject.SetActive(false);
+        }
+        
+
         if (shotCooldown >= 0.0f)
         {
             shotCooldown -= Time.deltaTime;
@@ -43,6 +50,8 @@ public class EnemyController : MonoBehaviour
     public void Fire(Vector2 target)
     {
         GameObject bullet = Instantiate(m_bullet, transform.position, Quaternion.identity);
+
+        bullet.SendMessage("SetID", GetComponent<EnemyID>().ID);
 
         Vector2 pos = transform.position;
         Vector2 direction = (target - pos).normalized;
