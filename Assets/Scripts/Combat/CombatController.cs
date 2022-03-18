@@ -40,11 +40,29 @@ public class CombatController : MonoBehaviour
         if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
             m_statusTxt.text = "CHOOSE ACTION";
-               
+
             if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
             {
                 m_statusTxt.text = "CHOOSE ENEMY";
 
+            }
+            else
+            {
+                // action selection shortcuts
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    GetComponent<CombatCursorController>().AttackAction();
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    GetComponent<CombatCursorController>().FleeAction();
+                }
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    GetComponent<CombatCursorController>().ItemsAction();
+                }
             }
         }
 
