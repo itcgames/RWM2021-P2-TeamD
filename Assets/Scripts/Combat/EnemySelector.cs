@@ -11,11 +11,14 @@ public class EnemySelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics2D.queriesStartInColliders = true;
+        Physics2D.queriesHitTriggers = true;
+
         m_combatScript = GameObject.Find("CombatSystem").GetComponent<CombatController>();
         m_combatCursorScript = GameObject.Find("CombatSystem").GetComponent<CombatCursorController>();
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         if (m_combatCursorScript.ChooseEnemyTarget)
         {

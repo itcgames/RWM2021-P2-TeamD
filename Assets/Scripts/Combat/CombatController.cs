@@ -28,7 +28,6 @@ public class CombatController : MonoBehaviour
     void Start()
     {
         GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
-        Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
 
         // for testing 
         data = new CombatData {enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
@@ -85,6 +84,8 @@ public class CombatController : MonoBehaviour
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
                     UpdateStats();
+                    Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
+                    EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
@@ -97,8 +98,8 @@ public class CombatController : MonoBehaviour
                 }
                 else
                 {
-                    FindObjectOfType<ScreenSystem>().GoToScene(0);
                     EnemyUtil.ResetEnemyStatus();
+                    FindObjectOfType<ScreenSystem>().GoToScene(0);
                     DataCollectionUtility.PostData(data, this);
                 }
 
@@ -300,7 +301,6 @@ public class CombatController : MonoBehaviour
 
         m_currentChar++;
         GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
-        Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
 
         while (m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
         {

@@ -12,6 +12,7 @@ public class ScreenSystem : MonoBehaviour
     {
         if (this.gameObject.name != "Canvas")
             DontDestroyOnLoad(this.gameObject);
+        EnemyUtil.ResetEnemyStatus();
     }
 
     public void GoToCharacterSelcetionScene()
@@ -29,6 +30,7 @@ public class ScreenSystem : MonoBehaviour
     {
         string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
         JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        EnemyUtil.ResetEnemyStatus();
         GoToGameplayScene();
     }
 
