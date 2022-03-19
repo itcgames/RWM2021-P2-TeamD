@@ -18,12 +18,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!EnemyUtil.s_enemyAliveStatus[GetComponent<EnemyID>().ID - 1])
+        if (GetComponent<EnemyID>())
         {
-            Debug.Log("Enemy " + GetComponent<EnemyID>().ID + " inactive");
-            gameObject.SetActive(false);
+            if (!EnemyUtil.s_enemyAliveStatus[GetComponent<EnemyID>().ID - 1])
+            {
+                Debug.Log("Enemy " + GetComponent<EnemyID>().ID + " inactive");
+                gameObject.SetActive(false);
+            }
         }
-        
 
         if (shotCooldown >= 0.0f)
         {
