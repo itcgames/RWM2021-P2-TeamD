@@ -34,6 +34,16 @@ public class CombatCursorController : MonoBehaviour
         }
     }
 
+    public void RevertAttackAction()
+    {
+        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+                   CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+                   CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            ChooseEnemyTarget = false;
+        }
+    }
+
     public void ItemsAction()
     {
         if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&

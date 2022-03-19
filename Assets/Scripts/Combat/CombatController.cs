@@ -46,6 +46,10 @@ public class CombatController : MonoBehaviour
             {
                 m_statusTxt.text = "CHOOSE ENEMY";
 
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    GetComponent<CombatCursorController>().RevertAttackAction();
+                }
             }
             else
             {
@@ -268,6 +272,15 @@ public class CombatController : MonoBehaviour
             }
 
             EnemyList.Add(enemy);
+        }
+
+        // check for enemies that failed to load
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            if(EnemyList[i].GetComponent<CharacterAttributes>().Name == "")
+            {
+                EnemyList[i].SetActive(false);
+            }
         }
     }
 
