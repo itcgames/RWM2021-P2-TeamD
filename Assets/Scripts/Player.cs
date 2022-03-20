@@ -22,71 +22,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Town" || SceneManager.GetActiveScene().name == "Castle")
-        {
-            if (!GetComponent<InteractionController>().InInteractMode)
-            {
-                if (!m_isMoving)
-                {
-                    m_input.x = Input.GetAxisRaw("Horizontal");
-                    m_input.y = Input.GetAxisRaw("Vertical");
+        m_input.x = Input.GetAxisRaw("Horizontal");
+        m_input.y = Input.GetAxisRaw("Vertical");
 
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
-                        Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
-                        Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-                        Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        GetComponent<InteractionController>().SetDirection(m_input);
-                    }
+        this.GetComponent<Rigidbody2D>().velocity = m_input * m_speed;
 
-                    if (m_input.x != 0) m_input.y = 0;
-
-                    if (m_input != Vector2.zero)
-                    {
-                        var m_targetPos = transform.position;
-                        m_targetPos.x += (m_input.x / 16);
-                        m_targetPos.y += (m_input.y / 16);
-
-                        StartCoroutine(Move(m_targetPos));
-                    }
-                }
-                PlayerMenu();
-            }
-        }
-        else
-        {
-            if (!m_isMoving)
-            {
-                m_input.x = Input.GetAxisRaw("Horizontal");
-                m_input.y = Input.GetAxisRaw("Vertical");
-
-                if (m_input.x != 0) m_input.y = 0;
-
-                if (m_input != Vector2.zero)
-                {
-                    var m_targetPos = transform.position;
-                    m_targetPos.x += (m_input.x / 16);
-                    m_targetPos.y += (m_input.y / 16);
-
-                    StartCoroutine(Move(m_targetPos));
-                }
-            }
-            PlayerMenu();
-        }
-    }
-
-    IEnumerator Move(Vector3 t_targetPos)
-    {
-        //CombatEncounter();
-
-        m_isMoving = true;
-        if ((t_targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, t_targetPos, m_speed * Time.deltaTime);
-            yield return new WaitForSeconds(0.05f);
-        }
-        transform.position = t_targetPos;
-        m_isMoving = false;
+        PlayerMenu();
     }
 
     void CombatEncounter()
