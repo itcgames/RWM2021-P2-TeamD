@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Town" || SceneManager.GetActiveScene().name == "Castle")
+        if (SceneManager.GetActiveScene().name == "Town" || SceneManager.GetActiveScene().name == "Castle") // town movement
         {
             if (!GetComponent<InteractionController>().InInteractMode)
             {
@@ -46,14 +46,14 @@ public class Player : MonoBehaviour
                         var m_targetPos = transform.position;
                         m_targetPos.x += (m_input.x / 16);
                         m_targetPos.y += (m_input.y / 16);
-
                         StartCoroutine(Move(m_targetPos));
                     }
+
                 }
                 PlayerMenu();
             }
         }
-        else
+        else // overworld movement
         {
             if (!m_isMoving)
             {
@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
                     var m_targetPos = transform.position;
                     m_targetPos.x += (m_input.x / 16);
                     m_targetPos.y += (m_input.y / 16);
-
                     StartCoroutine(Move(m_targetPos));
                 }
             }
