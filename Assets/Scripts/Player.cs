@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     public void PlayerMenu()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToPauseScreen();
         }
