@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatController : MonoBehaviour
 {
@@ -15,15 +16,22 @@ public class CombatController : MonoBehaviour
 
     private int m_currentChar;
 
+    public Text m_statusTxt;
+    public Text m_rewardTxt;
+
+    private int m_goldReward = 0;
+    private int m_xpReward = 0;
+
     // analytics
     CombatData data;
 
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
+
         // for testing 
         data = new CombatData {enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
-
         Combat();
     }
 
@@ -32,20 +40,34 @@ public class CombatController : MonoBehaviour
     {
         if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
-            if (Input.GetKeyUp(KeyCode.LeftArrow)) GetComponent<CombatCursorController>().MoveCol(-1);
-            if (Input.GetKeyUp(KeyCode.RightArrow)) GetComponent<CombatCursorController>().MoveCol(1);
+            m_statusTxt.text = "CHOOSE ACTION";
 
-            if (Input.GetKeyUp(KeyCode.UpArrow)) GetComponent<CombatCursorController>().MoveRow(-1);
-            if (Input.GetKeyUp(KeyCode.DownArrow)) GetComponent<CombatCursorController>().MoveRow(1);
-
-            if (GetComponent<CombatCursorController>().DecideAction)
+            if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
             {
-                if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
+                m_statusTxt.text = "CHOOSE ENEMY";
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    GetComponent<CombatCursorController>().RevertAttackAction();
+                }
             }
-
-            else if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
+            else
             {
-                if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
+                // action selection shortcuts
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    GetComponent<CombatCursorController>().AttackAction();
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    GetComponent<CombatCursorController>().FleeAction();
+                }
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    GetComponent<CombatCursorController>().ItemsAction();
+                }
             }
         }
 
@@ -68,12 +90,25 @@ public class CombatController : MonoBehaviour
             CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState ||
             CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
+            {
+                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                       " + m_xpReward + "XP";
+            }
+
+            else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
+            {
+                m_statusTxt.text = "ESCAPED!";
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) ||
+                Input.GetKeyDown(KeyCode.Escape) ||
+                Input.GetMouseButtonDown(0))
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
-                    // implement rewards here
                     UpdateStats();
+                    Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
+                    EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
@@ -86,8 +121,8 @@ public class CombatController : MonoBehaviour
                 }
                 else
                 {
+                    EnemyUtil.ResetEnemyStatus();
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
-
                     DataCollectionUtility.PostData(data, this);
                 }
 
@@ -121,8 +156,6 @@ public class CombatController : MonoBehaviour
             GetComponent<CombatUIController>().UpdateHpTexts(Party);
 
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
-            GetComponent<CombatCursorController>().SetupCursor();
-            GetComponent<CombatCursorController>().EnterActionSelect();
 
             m_currentChar = -1;
             ChangeActivePartyMember();
@@ -202,25 +235,52 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = EnemyType.Imp;
+            EnemyType enemyType = (EnemyType)Random.Range(0, 8);
 
             switch (enemyType)
             {
-                case EnemyType.Imp:
-                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
-                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                case EnemyType.Bandit:
+                    EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
                     break;
-                case EnemyType.Wolf:
-                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.DesertWarrior:
+                    EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
                     break;
-                case EnemyType.Spider:
-                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.Cactus:
+                    EnemyUtil.SetupCactus(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cactus-revenge");
+                    break;
+                case EnemyType.DesertShinobi:
+                    EnemyUtil.SetupShinobiDesert(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-shinobi");
+                    break;
+                case EnemyType.DarkShinobi:
+                    EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+                    break;
+                case EnemyType.ShadeShinobi:
+                    EnemyUtil.SetupShinobiShade(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("shade-shinobi");
+                    break;
+                case EnemyType.Snail:
+                    EnemyUtil.SetupSnail(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("snail");
                     break;
                 default:
                     break;
             }
 
             EnemyList.Add(enemy);
+        }
+
+        // check for enemies that failed to load
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            if(EnemyList[i].GetComponent<CharacterAttributes>().Name == "")
+            {
+                EnemyList[i].SetActive(false);
+            }
         }
     }
 
@@ -236,19 +296,37 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = EnemyType.Imp;
+            EnemyType enemyType = EnemyType.Bandit;
 
             switch (enemyType)
             {
-                case EnemyType.Imp:
-                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
-                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                case EnemyType.Bandit:
+                    EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
                     break;
-                case EnemyType.Wolf:
-                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.DesertWarrior:
+                    EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
                     break;
-                case EnemyType.Spider:
-                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.Cactus:
+                    EnemyUtil.SetupCactus(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cactus-revenge");
+                    break;
+                case EnemyType.DesertShinobi:
+                    EnemyUtil.SetupShinobiDesert(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-shinobi");
+                    break;
+                case EnemyType.DarkShinobi:
+                    EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+                    break;
+                case EnemyType.ShadeShinobi:
+                    EnemyUtil.SetupShinobiShade(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("shade-shinobi");
+                    break;
+                case EnemyType.Snail:
+                    EnemyUtil.SetupSnail(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("snail");
                     break;
                 default:
                     break;
@@ -290,10 +368,13 @@ public class CombatController : MonoBehaviour
         if (m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
 
         m_currentChar++;
+        GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
 
         while (m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
         {
             m_currentChar++;
+            GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
+            Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
         }
 
         // if current character is the last character, return to first character and start battle
@@ -301,6 +382,8 @@ public class CombatController : MonoBehaviour
         {
             Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
             m_currentChar = 0;
+            GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
+            Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Battle;
             return;
         }
@@ -309,13 +392,19 @@ public class CombatController : MonoBehaviour
 
     public void GenEnemyActions()
     {
-        foreach (var enemy in EnemyList)
+        for (int i = 0; i < EnemyList.Count; ++i)
         {
-            enemy.GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+            EnemyList[i].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
 
             int targetPartyMember = Random.Range(0, 4);
 
-            enemy.GetComponent<ActionController>().Target = Party[targetPartyMember];
+            if(!Party[targetPartyMember].activeSelf)
+            {
+                --i;
+                continue;
+            }
+
+            EnemyList[i].GetComponent<ActionController>().Target = Party[targetPartyMember];
         }
     }
 
@@ -361,6 +450,7 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
                 Debug.Log("You have lost the battle...");
+                m_statusTxt.text = "YOU LOST THE BATTLE...";
                 data.victory = 0;
                 return true;
             }
@@ -373,7 +463,8 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
-                
+                m_statusTxt.text = "YOU WON THE BATTLE!";
+
                 data.victory = 1;
                 
                 FindObjectOfType<EndPoint>().FightWon();

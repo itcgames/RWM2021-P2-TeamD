@@ -17,7 +17,7 @@ public class GunController : MonoBehaviour
             Vector2 pos = transform.position;
             Vector2 direction = (mousePos - pos).normalized;
 
-            bullet.GetComponent<Rigidbody2D>().velocity = direction * 10.0f;
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * 2.0f;
         }
     }
 }
