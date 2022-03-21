@@ -26,7 +26,7 @@ namespace Tests
             m_player = GameObject.Find("Player");
             m_player.transform.position = new Vector2(-4.9f, 1.4f);
             m_player.transform.position += new Vector3(-0.5f, 0,0);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
             Assert.AreEqual(true, m_player.GetComponent<Player>().getCollisionCheck());
         }
 
@@ -34,9 +34,9 @@ namespace Tests
         public IEnumerator BoulderCollision()
         {
             m_player = GameObject.Find("Player");
-            m_player.transform.position = new Vector2(-0.75f, 4.9f);
-            m_player.transform.position += new Vector3(0, 0.5f, 0);
-            yield return new WaitForSeconds(0.2f);
+            m_player.transform.position = new Vector2(-0.75f, 4.0f);
+            m_player.transform.position += new Vector3(0, 1f, 0);
+            yield return new WaitForSeconds(0.5f);
             Assert.AreEqual(true,m_player.GetComponent<Player>().getCollisionCheck());
         }
 
