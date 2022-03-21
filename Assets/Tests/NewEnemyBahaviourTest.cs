@@ -22,7 +22,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
 
-            var enemy = GameObject.Find("Enemy");
+            var enemy = GameObject.Find("Enemy (1)");
             var player = GameObject.Find("Player");
 
             yield return new WaitForSeconds(0.1f);
@@ -52,7 +52,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
 
-            var enemy = GameObject.Find("Enemy");
+            var enemy = GameObject.Find("Enemy (1)");
             var player = GameObject.Find("Player");
 
             Assert.AreEqual(true, enemy.GetComponent<EnemyBehaviours>().m_wander);

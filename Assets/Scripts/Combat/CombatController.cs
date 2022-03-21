@@ -20,6 +20,7 @@ public class CombatController : MonoBehaviour
     public Text m_rewardTxt;
 
     private int m_goldReward = 0;
+    private int m_xpReward = 0;
 
     // analytics
     CombatData data;
@@ -45,6 +46,10 @@ public class CombatController : MonoBehaviour
             {
                 m_statusTxt.text = "CHOOSE ENEMY";
 
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    GetComponent<CombatCursorController>().RevertAttackAction();
+                }
             }
             else
             {
@@ -87,7 +92,7 @@ public class CombatController : MonoBehaviour
         {
             if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
             {
-                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G';
+                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                       " + m_xpReward + "XP";
             }
 
             else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
@@ -230,25 +235,52 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = EnemyType.Imp;
+            EnemyType enemyType = (EnemyType)Random.Range(0, 8);
 
             switch (enemyType)
             {
-                case EnemyType.Imp:
-                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
-                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                case EnemyType.Bandit:
+                    EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
                     break;
-                case EnemyType.Wolf:
-                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.DesertWarrior:
+                    EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
                     break;
-                case EnemyType.Spider:
-                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.Cactus:
+                    EnemyUtil.SetupCactus(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cactus-revenge");
+                    break;
+                case EnemyType.DesertShinobi:
+                    EnemyUtil.SetupShinobiDesert(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-shinobi");
+                    break;
+                case EnemyType.DarkShinobi:
+                    EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+                    break;
+                case EnemyType.ShadeShinobi:
+                    EnemyUtil.SetupShinobiShade(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("shade-shinobi");
+                    break;
+                case EnemyType.Snail:
+                    EnemyUtil.SetupSnail(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("snail");
                     break;
                 default:
                     break;
             }
 
             EnemyList.Add(enemy);
+        }
+
+        // check for enemies that failed to load
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            if(EnemyList[i].GetComponent<CharacterAttributes>().Name == "")
+            {
+                EnemyList[i].SetActive(false);
+            }
         }
     }
 
@@ -264,19 +296,37 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = EnemyType.Imp;
+            EnemyType enemyType = EnemyType.Bandit;
 
             switch (enemyType)
             {
-                case EnemyType.Imp:
-                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
-                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                case EnemyType.Bandit:
+                    EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
                     break;
-                case EnemyType.Wolf:
-                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.DesertWarrior:
+                    EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
                     break;
-                case EnemyType.Spider:
-                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.Cactus:
+                    EnemyUtil.SetupCactus(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cactus-revenge");
+                    break;
+                case EnemyType.DesertShinobi:
+                    EnemyUtil.SetupShinobiDesert(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-shinobi");
+                    break;
+                case EnemyType.DarkShinobi:
+                    EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+                    break;
+                case EnemyType.ShadeShinobi:
+                    EnemyUtil.SetupShinobiShade(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("shade-shinobi");
+                    break;
+                case EnemyType.Snail:
+                    EnemyUtil.SetupSnail(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("snail");
                     break;
                 default:
                     break;
