@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private int m_gil = 500;
     private bool m_isMoving;
     private Vector2 m_input;
+    public bool m_hasCollided;
 
     // Start is called before the first frame update
     void Start()
@@ -65,5 +66,28 @@ public class Player : MonoBehaviour
     public void setGil(int t_num)
     {
         m_gil += t_num;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Fence" || collision.gameObject.name == "Boulder"
+            || collision.gameObject.name == "River")
+        {
+            m_hasCollided = true;
+            Debug.Log("has collided with " + collision.gameObject.name);
+
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Debug.Log("no Collision");
+        m_hasCollided = false;
+    }
+
+
+    public bool getCollisionCheck()
+    {
+        return m_hasCollided;
     }
 }
