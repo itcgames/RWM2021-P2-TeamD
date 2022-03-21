@@ -39,16 +39,16 @@ public class armor
     public void isEquiped(bool equipped)
     {
 
-        if(equipped && !this.m_name.StartsWith("E:"))
+        if (equipped && !m_name.StartsWith("E:"))
         {
-            this.m_name = "E:" + m_name;
+            m_name = "E:" + m_name;
         }
-        else
+        else if (!equipped)
         {
-            if(this.m_name.StartsWith("E:"))
+            if (m_name.StartsWith("E:"))
             {
-                this.m_name.Remove(0);
-                this.m_name.Remove(1);
+               m_name.Remove(0,2);
+         
 
             }
         }

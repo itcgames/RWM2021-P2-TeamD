@@ -51,6 +51,7 @@ public class inventorArmor : MonoBehaviour
         this.transform.GetChild(3).transform.GetChild(0).GetChild(2).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name;
         this.transform.GetChild(3).transform.GetChild(0).GetChild(3).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name;
 
+        
     }
     private void OnEnable()
     {
@@ -148,5 +149,249 @@ public class inventorArmor : MonoBehaviour
 
         }
     }
-    
+    public void Equiping(int i, bool equipped)
+    {
+      
+        switch (i)
+        {
+            case 0:
+                
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name.StartsWith("E:"))
+                    {
+
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name.Remove(0,2);
+                        
+                    }
+                }
+
+                break;
+            case 1:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 2:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name.Remove(0,2);
+
+                    }
+                }
+                break;
+            case 3:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 4:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name.Remove(0,2);
+
+                    }
+                }
+                break;
+            case 5:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 6:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 7:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name.Remove(0,2);
+
+                    }
+                }
+                break;
+            case 8:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 9:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 10:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name.Remove(0,2);
+
+                    }
+                }
+                break;
+            case 11:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name.Remove(0,2);
+
+                    }
+                }
+                break;
+            case 12:
+                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name.Remove(0,2);
+
+                    }
+                }
+                break;
+            case 13:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 14:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+            case 15:
+                if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name.StartsWith("E:"))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name;
+                }
+                else if (!equipped)
+                {
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name.StartsWith("E:"))
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name.Remove(0,2);
+
+                    }
+                }
+
+                break;
+        }
+    }
 }
+
+

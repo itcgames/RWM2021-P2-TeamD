@@ -18,7 +18,7 @@ public class DropTradeEquip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
    public bool Drop()
     {
@@ -53,26 +53,26 @@ public class DropTradeEquip : MonoBehaviour
         {
             case 0:
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name = "";
-                FindObjectOfType<inventorArmor>().setNameBlank(0);
+                FindObjectOfType<inventorArmor>().setNameBlank(i);
                 break;
             case 1:
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name = "";
-                FindObjectOfType<inventorArmor>().setNameBlank(1);
+                FindObjectOfType<inventorArmor>().setNameBlank(i);
 
                 break;
             case 2:
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name = "";
-                FindObjectOfType<inventorArmor>().setNameBlank(2);
+                FindObjectOfType<inventorArmor>().setNameBlank(i);
 
                 break;
             case 3:
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name = "";
-                FindObjectOfType<inventorArmor>().setNameBlank(3);
+                FindObjectOfType<inventorArmor>().setNameBlank(i);
 
                 break;
             case 4:
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name = "";
-                FindObjectOfType<inventorArmor>().setNameBlank(4);
+                FindObjectOfType<inventorArmor>().setNameBlank(i);
 
                 break;
             case 5:
@@ -136,6 +136,155 @@ public class DropTradeEquip : MonoBehaviour
     }
     public void Equiping(int i)
     {
+        switch (i)
+        {
+            case 0:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
+               
+
+                break;
+            case 1:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
+             
+
+                break;
+            case 2:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
+              
+
+                break;
+            case 3:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
+         
+
+
+                break;
+            case 4:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
+           
+
+                break;
+            case 5:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
+               
+
+                break;
+            case 6:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
+               
+
+                break;
+            case 7:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
+              
+
+                break;
+            case 8:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
+            
+
+                break;
+            case 9:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
+                
+
+                break;
+            case 10:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
+               
+
+                break;
+            case 11:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
+               
+
+                break;
+            case 12:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
+              
+                break;
+            case 13:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
+                
+
+                break;
+            case 14:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
+                
+
+                break;
+            case 15:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
+               
+
+
+                break;
+
+        }
+        FindObjectOfType<inventorArmor>().Equiping(0, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(1, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(2, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(3, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(4, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(5, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(6, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(7, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(8, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(9, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(10, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(11, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(12, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(13, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(14, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip);
+        FindObjectOfType<inventorArmor>().Equiping(15, FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip);
 
     }
     public void Trading(int i)
