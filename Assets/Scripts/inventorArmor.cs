@@ -95,97 +95,113 @@ public class inventorArmor : MonoBehaviour
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = 0;
 
 
-                    break;
+                break;
                 case 1:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = 0;
 
-                    break;
+                break;
                 case 2:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = 0;
 
-                    break;
+                break;
                 case 3:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = 0;
 
-                    break;
+                break;
                 case 4:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = 0;
 
-                    break;
+                break;
                 case 5:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = 0;
 
-                    break;
+                break;
                 case 6:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Value = 0;
-                    break;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = 0;
+
+                break;
                 case 7:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = 0;
 
-                    break;
+                break;
                 case 8:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = 0;
 
-                    break;
+                break;
                 case 9:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = 0;
 
-                    break;
+                break;
                 case 10:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = 0;
 
-                    break;
+                break;
                 case 11:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = 0;
 
-                    break;
+                break;
                 case 12:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = 0;
 
-                    break;
+                break;
                 case 13:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = 0;
 
-                    break;
+                break;
                 case 14:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Value = 0;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = 0;
 
-                    break;
+                break;
                 case 15:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name = " ";
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Value = 0;
-
+                   FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = 0; 
                     break;
 
             
