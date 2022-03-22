@@ -16,11 +16,12 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon1_2 = "";
         public string m_weapon1_3 = "";
         public string m_weapon1_4 = "";
-        public armor m_armor1_1 = new armor("Leather", 5, true);
-        public armor m_armor1_2 = new armor("Iron", 0, false);
-        public armor m_armor1_3 = new armor("Mythril", 0, false);
-        public armor m_armor1_4 = new armor("Orichalcum", 0, false);
+        public armor m_armor1_1 = new armor("Leather", 5, false);
+        public armor m_armor1_2 = new armor("Iron", 7, false);
+        public armor m_armor1_3 = new armor("Mythril", 12, false);
+        public armor m_armor1_4 = new armor("Orichalcum", 16, false);
         public Attribute m_attributeHP1;
+        public Attribute m_attributeHPMax1;
         public Attribute m_attributeDam1;
         public int m_type1;
         public string m_name2;
@@ -29,11 +30,13 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon2_2 = "";
         public string m_weapon2_3 = "";
         public string m_weapon2_4 = "";
-        public armor m_armor2_1 = new armor("Leather", 0, false);
-        public armor m_armor2_2 = new armor("Iron", 7, true);
-        public armor m_armor2_3 = new armor("Mythril", 0, false);
-        public armor m_armor2_4 = new armor("Orichalcum", 0, false);
+        public armor m_armor2_1 = new armor("Leather", 5, false);
+        public armor m_armor2_2 = new armor("Iron", 7, false);
+        public armor m_armor2_3 = new armor("Mythril", 12, false);
+        public armor m_armor2_4 = new armor("Orichalcum", 16, false);
         public Attribute m_attributeHP2;
+        public Attribute m_attributeHPMax2;
+
         public Attribute m_attributeDam2;
         public int m_type2;
         public string m_name3;
@@ -42,11 +45,13 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon3_2 = "";
         public string m_weapon3_3 = "";
         public string m_weapon3_4 = "";
-        public armor m_armor3_1 = new armor("Leather", 0,false);
-        public armor m_armor3_2 = new armor("Iron", 0, false);
-        public armor m_armor3_3 = new armor("Mythril", 12, true);
-        public armor m_armor3_4 = new armor("Orichalcum", 0, false);
+        public armor m_armor3_1 = new armor("Leather", 5,false);
+        public armor m_armor3_2 = new armor("Iron", 7, false);
+        public armor m_armor3_3 = new armor("Mythril", 12, false);
+        public armor m_armor3_4 = new armor("Orichalcum", 16, false);
         public Attribute m_attributeHP3;
+        public Attribute m_attributeHPMax3;
+
         public Attribute m_attributeDam3;
         public int m_type3;
         public string m_name4;
@@ -55,11 +60,14 @@ public class PlayerAndGameInfo : MonoBehaviour
         public string m_weapon4_2 = "";
         public string m_weapon4_3 = "";
         public string m_weapon4_4 = "";
-        public armor m_armor4_1 = new armor("Leather", 0, false);
-        public armor m_armor4_2 = new armor("Iron", 0, false);
-        public armor m_armor4_3 = new armor("Mythril", 0, false);
-        public armor m_armor4_4 = new armor("Orichalcum", 16, true);
+        public armor m_armor4_1 = new armor("Leather", 5, false);
+        public armor m_armor4_2 = new armor("Iron", 7, false);
+        public armor m_armor4_3 = new armor("Mythril", 12, false);
+        public armor m_armor4_4 = new armor("Orichalcum", 16, false);
         public Attribute m_attributeHP4;
+        public Attribute m_attributeHPMax4;
+
+
         public Attribute m_attributeDam4;
         public int m_type4;
     }
@@ -77,7 +85,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void SetCharacter(int charNum, string name, Sprite sprite, Attribute attributeHP, Attribute attributeDam, int type)
+    public void SetCharacter(int charNum, string name, Sprite sprite, Attribute attributeHP, Attribute attributeDam, int type, Attribute attributeMHP)
     {
         if(charNum == 1)
         {
@@ -86,6 +94,7 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_attributeHP1 = attributeHP;
             infos.m_attributeDam1 = attributeDam;
             infos.m_type1 = type;
+            infos.m_attributeHPMax1 = attributeMHP;
         }
         else if (charNum == 2)
         {
@@ -94,6 +103,8 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_attributeHP2 = attributeHP;
             infos.m_attributeDam2 = attributeDam;
             infos.m_type2 = type;
+            infos.m_attributeHPMax2 = attributeMHP;
+
         }
         else if (charNum == 3)
         {
@@ -102,6 +113,8 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_attributeHP3 = attributeHP;
             infos.m_attributeDam3 = attributeDam;
             infos.m_type3 = type;
+            infos.m_attributeHPMax3 = attributeMHP;
+
         }
         else if (charNum == 4)
         {
@@ -110,6 +123,8 @@ public class PlayerAndGameInfo : MonoBehaviour
             infos.m_attributeHP4 = attributeHP;
             infos.m_attributeDam4 = attributeDam; 
             infos.m_type4 = type;
+            infos.m_attributeHPMax4 = attributeMHP;
+
         }
     }
 

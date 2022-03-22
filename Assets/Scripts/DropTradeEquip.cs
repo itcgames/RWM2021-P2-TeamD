@@ -139,7 +139,7 @@ public class DropTradeEquip : MonoBehaviour
         switch (i)
         {
             case 0:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
@@ -147,7 +147,8 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 1:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip;
+
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
@@ -155,7 +156,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 2:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
@@ -163,7 +164,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 3:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Equip = false;
@@ -172,7 +173,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 4:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
@@ -180,7 +181,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 5:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
@@ -188,7 +189,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 6:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
@@ -196,7 +197,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 7:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Equip = false;
@@ -204,7 +205,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 8:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
@@ -212,7 +213,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 9:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
@@ -220,7 +221,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 10:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
@@ -228,7 +229,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 11:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Equip ;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Equip = false;
@@ -236,14 +237,14 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 12:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip ;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
               
                 break;
             case 13:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
@@ -251,7 +252,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 14:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
@@ -259,7 +260,7 @@ public class DropTradeEquip : MonoBehaviour
 
                 break;
             case 15:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = true;
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip = !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Equip; 
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;

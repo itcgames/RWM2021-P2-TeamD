@@ -13,6 +13,8 @@ public class PartyUtil
     {
         if(t_s == "HP")
             return new Attribute("HP", 35);
+        if (t_s == "MHP")
+            return new Attribute("MHP", 35);
         else
             return new Attribute("Dmg", 10);
     }
@@ -21,6 +23,8 @@ public class PartyUtil
     {
         if (t_s == "HP")
             return new Attribute("HP", 25);
+        if (t_s == "MHP")
+            return new Attribute("MHP", 25);
         else
             return new Attribute("Dmg", 1);
     }
@@ -29,6 +33,8 @@ public class PartyUtil
     {
         if (t_s == "HP")
             return new Attribute("HP", 30);
+        if (t_s == "MHP")
+            return new Attribute("MHP", 30);
         else
             return new Attribute("Dmg", 3);
     }
@@ -37,6 +43,8 @@ public class PartyUtil
     {
         if (t_s == "HP")
             return new Attribute("HP", 33);
+        if (t_s == "MHP")
+            return new Attribute("MHP", 33);
         else
             return new Attribute("Dmg", 3);
     }
@@ -46,13 +54,13 @@ public class PartyUtil
         switch (t_s)
         {
             case ((int)PartyType.BL_Belt):
-                return 33.0f;
+                return SetupBlackBelt("MHP").Value;
             case ((int)PartyType.Fighter):
-                return 35.0f;
+                return SetupFighter("MHP").Value;
             case ((int)PartyType.Thief):
-                return 30.0f;
+                return SetupThief("MHP").Value;
             case ((int)PartyType.B_Mage):
-                return 25.0f;
+                return SetupMage("MHP").Value;
             default:
                 return 0.0f;
         }
