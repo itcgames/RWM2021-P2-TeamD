@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private int m_gil = 500;
     private bool m_isMoving;
     private Vector2 m_input;
+    public bool m_hasCollided;
 
     // Start is called before the first frame update
     void Start()
@@ -22,57 +23,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Town" || SceneManager.GetActiveScene().name == "Castle")
-        {
-            if (!GetComponent<InteractionController>().InInteractMode)
-            {
-                if (!m_isMoving)
-                {
-                    m_input.x = Input.GetAxisRaw("Horizontal");
-                    m_input.y = Input.GetAxisRaw("Vertical");
+        m_input.x = Input.GetAxisRaw("Horizontal");
+        m_input.y = Input.GetAxisRaw("Vertical");
 
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
-                        Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) ||
-                        Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-                        Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        GetComponent<InteractionController>().SetDirection(m_input);
-                    }
+        this.GetComponent<Rigidbody2D>().velocity = m_input * m_speed;
 
-                    if (m_input.x != 0) m_input.y = 0;
-
-                    if (m_input != Vector2.zero)
-                    {
-                        var m_targetPos = transform.position;
-                        m_targetPos.x += (m_input.x / 16);
-                        m_targetPos.y += (m_input.y / 16);
-
-                        StartCoroutine(Move(m_targetPos));
-                    }
-                }
-                PlayerMenu();
-            }
-        }
-        else
-        {
-            if (!m_isMoving)
-            {
-                m_input.x = Input.GetAxisRaw("Horizontal");
-                m_input.y = Input.GetAxisRaw("Vertical");
-
-                if (m_input.x != 0) m_input.y = 0;
-
-                if (m_input != Vector2.zero)
-                {
-                    var m_targetPos = transform.position;
-                    m_targetPos.x += (m_input.x / 16);
-                    m_targetPos.y += (m_input.y / 16);
-
-                    StartCoroutine(Move(m_targetPos));
-                }
-            }
-            PlayerMenu();
-        }
+        PlayerMenu();
     }
 
     IEnumerator Move(Vector3 t_targetPos)
@@ -104,7 +60,7 @@ public class Player : MonoBehaviour
 
     public void PlayerMenu()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToPauseScreen();
         }
@@ -124,5 +80,28 @@ public class Player : MonoBehaviour
     public void setGil(int t_num)
     {
         m_gil += t_num;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Fence" || collision.gameObject.name == "Boulder"
+            || collision.gameObject.name == "River")
+        {
+            m_hasCollided = true;
+            Debug.Log("has collided with " + collision.gameObject.name);
+
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Debug.Log("no Collision");
+        m_hasCollided = false;
+    }
+
+
+    public bool getCollisionCheck()
+    {
+        return m_hasCollided;
     }
 }
