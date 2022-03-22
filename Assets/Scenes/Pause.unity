@@ -10223,26 +10223,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1118548931}
     m_Modifications:
-    - target: {fileID: 3775130036679961348, guid: 3a6feec9b5129e24fa9a523241b7ae33,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1065043147}
-    - target: {fileID: 3775130036679961349, guid: 3a6feec9b5129e24fa9a523241b7ae33,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1065043147}
-    - target: {fileID: 3775130036679961350, guid: 3a6feec9b5129e24fa9a523241b7ae33,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1065043147}
-    - target: {fileID: 3775130036679961396, guid: 3a6feec9b5129e24fa9a523241b7ae33,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6596893954725069420, guid: 3a6feec9b5129e24fa9a523241b7ae33,
         type: 3}
       propertyPath: m_RootOrder
