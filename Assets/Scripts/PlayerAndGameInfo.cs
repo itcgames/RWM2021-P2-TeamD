@@ -19,10 +19,12 @@ public class PlayerAndGameInfo : MonoBehaviour
         public armor m_armor1_1 = new armor("Leather", 5, false);
         public armor m_armor1_2 = new armor("Iron", 7, false);
         public armor m_armor1_3 = new armor("Mythril", 12, false);
-        public armor m_armor1_4 = new armor("Orichalcum", 16, false);
+        public armor m_armor1_4 = new armor("Orichalcum", 100, false);
         public Attribute m_attributeHP1;
         public Attribute m_attributeHPMax1;
         public Attribute m_attributeDam1;
+        public Attribute m_attributeArmor1 = new Attribute("Defence", 0);
+
         public int m_type1;
         public string m_name2;
         public Sprite m_charImage2;
@@ -33,11 +35,13 @@ public class PlayerAndGameInfo : MonoBehaviour
         public armor m_armor2_1 = new armor("Leather", 5, false);
         public armor m_armor2_2 = new armor("Iron", 7, false);
         public armor m_armor2_3 = new armor("Mythril", 12, false);
-        public armor m_armor2_4 = new armor("Orichalcum", 16, false);
+        public armor m_armor2_4 = new armor("Orichalcum", 100, false);
         public Attribute m_attributeHP2;
         public Attribute m_attributeHPMax2;
 
         public Attribute m_attributeDam2;
+        public Attribute m_attributeArmor2 =new Attribute("Defence",0);
+
         public int m_type2;
         public string m_name3;
         public Sprite m_charImage3;
@@ -48,11 +52,13 @@ public class PlayerAndGameInfo : MonoBehaviour
         public armor m_armor3_1 = new armor("Leather", 5,false);
         public armor m_armor3_2 = new armor("Iron", 7, false);
         public armor m_armor3_3 = new armor("Mythril", 12, false);
-        public armor m_armor3_4 = new armor("Orichalcum", 16, false);
+        public armor m_armor3_4 = new armor("Orichalcum", 100, false);
         public Attribute m_attributeHP3;
         public Attribute m_attributeHPMax3;
 
         public Attribute m_attributeDam3;
+        public Attribute m_attributeArmor3 =new Attribute("Defence",0);
+
         public int m_type3;
         public string m_name4;
         public Sprite m_charImage4;
@@ -63,9 +69,10 @@ public class PlayerAndGameInfo : MonoBehaviour
         public armor m_armor4_1 = new armor("Leather", 5, false);
         public armor m_armor4_2 = new armor("Iron", 7, false);
         public armor m_armor4_3 = new armor("Mythril", 12, false);
-        public armor m_armor4_4 = new armor("Orichalcum", 16, false);
+        public armor m_armor4_4 = new armor("Orichalcum", 100, false);
         public Attribute m_attributeHP4;
         public Attribute m_attributeHPMax4;
+        public Attribute m_attributeArmor4 = new Attribute("Defence", 0);
 
 
         public Attribute m_attributeDam4;

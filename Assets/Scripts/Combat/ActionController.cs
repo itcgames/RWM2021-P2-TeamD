@@ -57,9 +57,21 @@ public class ActionController : MonoBehaviour
     {
         if (Target != null)
         {
-            Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
-                GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+            if (Target.GetComponent<CharacterAttributes>().FindAttribute("Def") != null)
+            {
+
+                Debug.Log(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value);
+                int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
+                 emotionalDamage);
+            }
+            else
+            {
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                    GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+            }
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
             {
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value = 0.0f;

@@ -5,18 +5,18 @@ using UnityEngine.UI;
 public class inventorArmor : MonoBehaviour
 {
     private GameObject armour;
-    public float mhp1;
-    public float mhp2; 
-    public float mhp3; 
-    public float mhp4; 
+    public float defense1;
+    public float defense2; 
+    public float defense3; 
+    public float defense4; 
 
     // Start is called before the first frame update
     void Start()
     {
-        mhp1 = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value;
-        mhp2 = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value;
-        mhp2 = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value;
-        mhp2 = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value;
+        defense1 =0;
+        defense2 = 0;
+        defense2 =0;
+        defense2 = 0;
 
     }
 
@@ -167,7 +167,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = mhp1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Value;
                 }
                 else if (!equipped)
                 {
@@ -175,7 +175,7 @@ public class inventorArmor : MonoBehaviour
                     {
 
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1.Name.Remove(0,2);
-                     
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1;
 
                     }
                 }
@@ -185,7 +185,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = mhp1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Value;
 
                 }
                 else if (!equipped)
@@ -193,7 +193,8 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Name.Remove(0,2);
-                     
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1;
+
 
                     }
                 }
@@ -203,7 +204,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = mhp1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Value;
 
                 }
                 else if (!equipped)
@@ -211,6 +212,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1;
 
                     }
                 }
@@ -219,7 +221,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = mhp1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Value;
 
                 }
                 else if (!equipped)
@@ -227,6 +229,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value = defense1;
 
                     }
                 }
@@ -236,7 +239,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value = mhp2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Value;
 
                 }
                 else if (!equipped)
@@ -244,6 +247,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2;
 
                     }
                 }
@@ -252,7 +256,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value = mhp2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Value;
 
                 }
                 else if (!equipped)
@@ -260,6 +264,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2;
 
                     }
                 }
@@ -269,7 +274,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value = mhp2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Value;
 
                 }
                 else if (!equipped)
@@ -277,6 +282,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2;
 
                     }
                 }
@@ -286,7 +292,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value = mhp2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Value;
 
                 }
                 else if (!equipped)
@@ -294,6 +300,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value = defense2;
 
                     }
                 }
@@ -302,7 +309,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value = mhp3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Value;
 
                 }
                 else if (!equipped)
@@ -310,6 +317,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3;
 
                     }
                 }
@@ -319,7 +327,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value = mhp3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Value;
 
                 }
                 else if (!equipped)
@@ -327,6 +335,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3;
 
                     }
                 }
@@ -336,7 +345,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value = mhp3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Value;
 
                 }
                 else if (!equipped)
@@ -344,6 +353,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3;
 
                     }
                 }
@@ -352,7 +362,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value = mhp3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Value;
 
                 }
                 else if (!equipped)
@@ -360,6 +370,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value = defense3;
 
                     }
                 }
@@ -368,7 +379,7 @@ public class inventorArmor : MonoBehaviour
                  if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value = mhp4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Value;
 
                 }
                 else if (!equipped)
@@ -376,6 +387,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4;
 
                     }
                 }
@@ -384,7 +396,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value = mhp4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Value;
 
                 }
                 else if (!equipped)
@@ -392,6 +404,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4;
 
                     }
                 }
@@ -401,7 +414,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value = mhp4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Value;
 
                 }
                 else if (!equipped)
@@ -409,6 +422,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4;
 
                     }
                 }
@@ -418,7 +432,7 @@ public class inventorArmor : MonoBehaviour
                 if (equipped && !FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name.StartsWith("E:"))
                 {
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name = "E:" + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value = mhp4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Value;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4 + FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Value;
                
 
                 }
@@ -427,6 +441,7 @@ public class inventorArmor : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name.StartsWith("E:"))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4.Name.Remove(0,2);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value = defense4;
 
                     }
                 }
