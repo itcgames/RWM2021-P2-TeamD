@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -133,7 +133,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -277,7 +277,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -488,8 +488,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Equiping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -499,8 +499,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: dropping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -712,8 +712,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Equiping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -723,8 +723,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: dropping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -867,7 +867,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -1089,7 +1089,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -1222,7 +1222,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: setEquip
         m_Mode: 6
         m_Arguments:
@@ -1233,7 +1233,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: setDrop
         m_Mode: 6
         m_Arguments:
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -1377,7 +1377,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -1521,7 +1521,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -1847,7 +1847,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -1858,7 +1858,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -2191,8 +2191,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Equiping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2202,8 +2202,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: dropping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2335,8 +2335,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Equiping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2346,8 +2346,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: dropping
+      - m_Target: {fileID: 7003863929392685720}
+        m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2479,7 +2479,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -2490,7 +2490,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -2921,7 +2921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: setDrop
         m_Mode: 6
         m_Arguments:
@@ -2932,7 +2932,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: setEquip
         m_Mode: 6
         m_Arguments:
@@ -3168,7 +3168,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -3179,7 +3179,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -3312,7 +3312,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -3323,7 +3323,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -3546,7 +3546,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -3557,7 +3557,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: Equiping
         m_Mode: 3
         m_Arguments:
@@ -3804,7 +3804,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7003863929392685720}
         m_MethodName: dropping
         m_Mode: 3
         m_Arguments:
