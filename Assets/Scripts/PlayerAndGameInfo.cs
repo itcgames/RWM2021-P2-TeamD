@@ -12,10 +12,10 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Vector2 player_pos = new Vector2(-0.75f, 2.5f);
         public string m_name1;
         public Sprite m_charImage1;
-        public string m_weapon1_1 = "";
-        public string m_weapon1_2 = "";
-        public string m_weapon1_3 = "";
-        public string m_weapon1_4 = "";
+        public weapon m_weapon1_1 = new weapon("Fist", 2, false);
+        public weapon m_weapon1_2 = new weapon("Battle Axe", 5, false);
+        public weapon m_weapon1_3 = new weapon("Bastard Sword", 7, false);
+        public weapon m_weapon1_4 = new weapon("Trap of Argalia", 100, false);
         public armor m_armor1_1 = new armor("Leather", 5, false);
         public armor m_armor1_2 = new armor("Iron", 7, false);
         public armor m_armor1_3 = new armor("Mythril", 12, false);
@@ -24,14 +24,15 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Attribute m_attributeHPMax1;
         public Attribute m_attributeDam1;
         public Attribute m_attributeArmor1 = new Attribute("Defence", 0);
+        public Attribute m_attributeAttack1 = new Attribute("Attack", 0);
 
         public int m_type1;
         public string m_name2;
         public Sprite m_charImage2;
-        public string m_weapon2_1 = "";
-        public string m_weapon2_2 = "";
-        public string m_weapon2_3 = "";
-        public string m_weapon2_4 = "";
+        public weapon m_weapon2_1 = new weapon("Fist", 2, false);
+        public weapon m_weapon2_2 = new weapon("Battle Axe", 5, false);
+        public weapon m_weapon2_3 = new weapon("Bastard Sword", 7, false);
+        public weapon m_weapon2_4 = new weapon("Trap of Argalia", 100, false);
         public armor m_armor2_1 = new armor("Leather", 5, false);
         public armor m_armor2_2 = new armor("Iron", 7, false);
         public armor m_armor2_3 = new armor("Mythril", 12, false);
@@ -41,14 +42,16 @@ public class PlayerAndGameInfo : MonoBehaviour
 
         public Attribute m_attributeDam2;
         public Attribute m_attributeArmor2 =new Attribute("Defence",0);
+        public Attribute m_attributeAttack2 = new Attribute("Attack", 0);
+
 
         public int m_type2;
         public string m_name3;
         public Sprite m_charImage3;
-        public string m_weapon3_1 = "";
-        public string m_weapon3_2 = "";
-        public string m_weapon3_3 = "";
-        public string m_weapon3_4 = "";
+        public weapon m_weapon3_1 = new weapon("Fist", 2, false);
+        public weapon m_weapon3_2 = new weapon("Battle Axe", 5, false);
+        public weapon m_weapon3_3 = new weapon("Bastard Sword", 7, false);
+        public weapon m_weapon3_4 = new weapon("Trap of Argalia", 100, false);
         public armor m_armor3_1 = new armor("Leather", 5,false);
         public armor m_armor3_2 = new armor("Iron", 7, false);
         public armor m_armor3_3 = new armor("Mythril", 12, false);
@@ -58,14 +61,15 @@ public class PlayerAndGameInfo : MonoBehaviour
 
         public Attribute m_attributeDam3;
         public Attribute m_attributeArmor3 =new Attribute("Defence",0);
+        public Attribute m_attributeAttack3 = new Attribute("Attack", 0);
 
         public int m_type3;
         public string m_name4;
         public Sprite m_charImage4;
-        public string m_weapon4_1 = "";
-        public string m_weapon4_2 = "";
-        public string m_weapon4_3 = "";
-        public string m_weapon4_4 = "";
+        public weapon m_weapon4_2 = new weapon("Battle Axe", 5, false);
+        public weapon m_weapon4_1 = new weapon("Fist", 2, false);
+        public weapon m_weapon4_3 = new weapon("Bastard Sword", 7, false);
+        public weapon m_weapon4_4 = new weapon("Trap of Argalia", 100, false);
         public armor m_armor4_1 = new armor("Leather", 5, false);
         public armor m_armor4_2 = new armor("Iron", 7, false);
         public armor m_armor4_3 = new armor("Mythril", 12, false);
@@ -73,6 +77,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Attribute m_attributeHP4;
         public Attribute m_attributeHPMax4;
         public Attribute m_attributeArmor4 = new Attribute("Defence", 0);
+        public Attribute m_attributeAttack4 = new Attribute("Attack", 0);
 
 
         public Attribute m_attributeDam4;
