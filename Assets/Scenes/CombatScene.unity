@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -306,12 +306,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
+      propertyPath: m_attributes.Array.data[3].m_name
+      value: Ack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
       propertyPath: m_attributes.Array.data[0].m_value
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.data[2].m_value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
+      propertyPath: m_attributes.Array.data[3].m_value
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6119805356343178988, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
@@ -526,7 +536,7 @@ PrefabInstance:
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -545,12 +555,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
+      propertyPath: m_attributes.Array.data[3].m_name
+      value: Ack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
       propertyPath: m_attributes.Array.data[0].m_value
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.data[2].m_value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
+      propertyPath: m_attributes.Array.data[3].m_value
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6119805356343178988, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
@@ -758,7 +778,7 @@ PrefabInstance:
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -777,12 +797,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
+      propertyPath: m_attributes.Array.data[3].m_name
+      value: Ack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
       propertyPath: m_attributes.Array.data[0].m_value
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.data[2].m_value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
+      propertyPath: m_attributes.Array.data[3].m_value
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6119805356343178988, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
@@ -1599,7 +1629,7 @@ PrefabInstance:
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
@@ -1618,12 +1648,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
+      propertyPath: m_attributes.Array.data[3].m_name
+      value: Ack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
       propertyPath: m_attributes.Array.data[0].m_value
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
         type: 3}
       propertyPath: m_attributes.Array.data[2].m_value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923728522767852028, guid: 75c21d4992438ad4ab2dfebf6623e2c2,
+        type: 3}
+      propertyPath: m_attributes.Array.data[3].m_value
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6119805356343178988, guid: 75c21d4992438ad4ab2dfebf6623e2c2,

@@ -69,8 +69,17 @@ public class ActionController : MonoBehaviour
             }
             else
             {
+                if (GetComponent<CharacterAttributes>().FindAttribute("Ack") != null)
+                {
+                    Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                    GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
+
+                }
+                else
+                { 
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
                     GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+            }
             }
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
             {
