@@ -594,6 +594,11 @@ public class CombatController : MonoBehaviour
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        
+        if(m_party[0].activeSelf)
+        {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 += m_xpReward;
+        }
 
 
         // member 2
