@@ -46,7 +46,7 @@ public class CombatController : MonoBehaviour
             {
                 m_statusTxt.text = "CHOOSE ENEMY";
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetMouseButtonUp(1))
                 {
                     GetComponent<CombatCursorController>().RevertAttackAction();
                 }
@@ -54,7 +54,7 @@ public class CombatController : MonoBehaviour
             else
             {
                 // action selection shortcuts
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetMouseButtonUp(1))
                 {
                     GetComponent<CombatCursorController>().AttackAction();
                 }
@@ -106,7 +106,6 @@ public class CombatController : MonoBehaviour
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_goldReward;
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
                     EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
@@ -115,6 +114,7 @@ public class CombatController : MonoBehaviour
                 }
                 else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
                 {
+                    UpdateStats();
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
@@ -560,9 +560,14 @@ public class CombatController : MonoBehaviour
     }
 
     public void UpdateStats()
-    { 
+    {
+        if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
+        {
+            // updating gold
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_goldReward;
+        }
         // member 1
-        if (m_party[0].activeSelf)
+        if (m_party[0].activeSelf && CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
         {
             m_party[0].GetComponent<CharacterAttributes>().Xp += m_xpReward;
 
@@ -594,15 +599,9 @@ public class CombatController : MonoBehaviour
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
-        
-        if(m_party[0].activeSelf)
-        {
-            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 += m_xpReward;
-        }
-
 
         // member 2
-        if (m_party[1].activeSelf)
+        if (m_party[1].activeSelf && CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
         {
             m_party[1].GetComponent<CharacterAttributes>().Xp += m_xpReward;
 
@@ -637,7 +636,7 @@ public class CombatController : MonoBehaviour
 
 
         // member 3
-        if (m_party[2].activeSelf)
+        if (m_party[2].activeSelf && CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
         {
             m_party[2].GetComponent<CharacterAttributes>().Xp += m_xpReward;
 
@@ -672,7 +671,7 @@ public class CombatController : MonoBehaviour
 
 
         // member 4
-        if (m_party[3].activeSelf)
+        if (m_party[3].activeSelf && CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
         {
             m_party[3].GetComponent<CharacterAttributes>().Xp += m_xpReward;
 
