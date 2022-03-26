@@ -31,7 +31,7 @@ public class CombatController : MonoBehaviour
         GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
 
         // for testing 
-        data = new CombatData {enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
+        data = new CombatData { enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
         Combat();
     }
 
@@ -92,7 +92,7 @@ public class CombatController : MonoBehaviour
         {
             if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
             {
-                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                       " + m_xpReward + "XP";
+                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP";
             }
 
             else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
@@ -107,6 +107,7 @@ public class CombatController : MonoBehaviour
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
                     UpdateStats();
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_goldReward;
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
                     EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
@@ -146,6 +147,7 @@ public class CombatController : MonoBehaviour
         {
             InitParty();
             GenerateEnemies();
+            CalculateGoldXpRewards(ref m_goldReward, ref m_xpReward, EnemyList);
             StartCombat();
             GetComponent<GenerateGrids>().CreatePartyGrid();
             GetComponent<GenerateGrids>().CreateEnemyGrid();
@@ -235,7 +237,7 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = (EnemyType)Random.Range(0, 8);
+            EnemyType enemyType = (EnemyType)Random.Range(0, 7);
 
             switch (enemyType)
             {
@@ -272,15 +274,6 @@ public class CombatController : MonoBehaviour
             }
 
             EnemyList.Add(enemy);
-        }
-
-        // check for enemies that failed to load
-        for (int i = 0; i < m_enemyCount; i++)
-        {
-            if(EnemyList[i].GetComponent<CharacterAttributes>().Name == "")
-            {
-                EnemyList[i].SetActive(false);
-            }
         }
     }
 
@@ -398,7 +391,7 @@ public class CombatController : MonoBehaviour
 
             int targetPartyMember = Random.Range(0, 4);
 
-            if(!Party[targetPartyMember].activeSelf)
+            if (!Party[targetPartyMember].activeSelf)
             {
                 --i;
                 continue;
@@ -466,7 +459,7 @@ public class CombatController : MonoBehaviour
                 m_statusTxt.text = "YOU WON THE BATTLE!";
 
                 data.victory = 1;
-                
+
                 FindObjectOfType<EndPoint>().FightWon();
                 return true;
             }
@@ -550,14 +543,43 @@ public class CombatController : MonoBehaviour
     {
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        
+        if(m_party[0].activeSelf)
+        {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 += m_xpReward;
+        }
 
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+        if (m_party[1].activeSelf)
+        {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp2 += m_xpReward;
+        }
+
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+        if (m_party[2].activeSelf)
+        {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp3 += m_xpReward;
+        }
+
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value =m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+
+        if (m_party[3].activeSelf)
+        {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp4 += m_xpReward;
+        }
+    }
+
+    public static void CalculateGoldXpRewards(ref int goldReward, ref int xpReward, List<GameObject> enemies)
+    {
+        foreach (var enemy in enemies)
+        {
+            goldReward += enemy.GetComponent<CharacterAttributes>().Gold;
+            xpReward += enemy.GetComponent<CharacterAttributes>().Xp;
+        }
     }
 }
