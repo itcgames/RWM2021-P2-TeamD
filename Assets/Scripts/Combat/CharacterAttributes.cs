@@ -22,10 +22,18 @@ public class CharacterAttributes : MonoBehaviour
         set { m_playable = value; }
     }
 
+    private int m_level;
     private int m_gil;
     private int m_xp;
+    private int m_levelUpThreshold;
 
-    public int Gil
+    public int Level
+    {
+        get { return m_level; }
+        set { m_level = value; }
+    }
+
+    public int Gold
     {
         get { return m_gil; }
         set { m_gil = value; }
@@ -35,6 +43,12 @@ public class CharacterAttributes : MonoBehaviour
     {
         get { return m_xp; }
         set { m_xp = value; }
+    }
+
+    public int LevelUpThreshold
+    {
+        get { return m_levelUpThreshold; }
+        set { m_levelUpThreshold = value; }
     }
 
     [SerializeField]
@@ -53,7 +67,6 @@ public class CharacterAttributes : MonoBehaviour
 
     public void SetAttribute(string name, float value)
     {
-
         int found = m_attributes.FindIndex(attribute => attribute.Name == name);
 
         if (found != -1)
