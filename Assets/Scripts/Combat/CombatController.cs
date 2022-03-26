@@ -599,6 +599,39 @@ public class CombatController : MonoBehaviour
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        
+        if(m_party[0].activeSelf)
+        {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 += m_xpReward;
+        }
+
+
+        // member 2
+        if (m_party[1].activeSelf)
+        {
+            m_party[1].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[1].GetComponent<CharacterAttributes>().Xp >= m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[1].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
+        }
 
         // member 2
         if (m_party[1].activeSelf && CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
