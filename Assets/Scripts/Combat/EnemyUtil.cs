@@ -32,7 +32,7 @@ public class EnemyUtil
 
         attrs.Name = "Bandit";
         attrs.Playable = false;
-        attrs.Gil = 6;
+        attrs.Gold = 6;
         attrs.Xp = 8;
 
         Attribute hp = new Attribute("HP", 8);
@@ -47,7 +47,7 @@ public class EnemyUtil
 
         attrs.Name = "Desert Warrior";
         attrs.Playable = false;
-        attrs.Gil = 10;
+        attrs.Gold = 10;
         attrs.Xp = 10;
 
         Attribute hp = new Attribute("HP", 10);
@@ -62,7 +62,7 @@ public class EnemyUtil
 
         attrs.Name = "Cactus";
         attrs.Playable = false;
-        attrs.Gil = 3;
+        attrs.Gold = 3;
         attrs.Xp = 4;
 
         Attribute hp = new Attribute("HP", 5);
@@ -77,7 +77,7 @@ public class EnemyUtil
 
         attrs.Name = "Desert Shinobi";
         attrs.Playable = false;
-        attrs.Gil = 20;
+        attrs.Gold = 20;
         attrs.Xp = 40;
 
         Attribute hp = new Attribute("HP", 15);
@@ -92,7 +92,7 @@ public class EnemyUtil
 
         attrs.Name = "Dark Shinobi";
         attrs.Playable = false;
-        attrs.Gil = 30;
+        attrs.Gold = 30;
         attrs.Xp = 45;
 
         Attribute hp = new Attribute("HP", 25);
@@ -107,7 +107,7 @@ public class EnemyUtil
 
         attrs.Name = "Shade Shinobi";
         attrs.Playable = false;
-        attrs.Gil = 50;
+        attrs.Gold = 50;
         attrs.Xp = 65;
 
         Attribute hp = new Attribute("HP", 10);
@@ -122,7 +122,7 @@ public class EnemyUtil
 
         attrs.Name = "Snail";
         attrs.Playable = false;
-        attrs.Gil = 2;
+        attrs.Gold = 2;
         attrs.Xp = 1;
 
         Attribute hp = new Attribute("HP", 2);
