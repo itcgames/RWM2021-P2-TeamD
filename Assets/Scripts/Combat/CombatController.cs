@@ -106,7 +106,6 @@ public class CombatController : MonoBehaviour
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
-                    UpdateStats();
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_goldReward;
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
                     EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
@@ -457,6 +456,7 @@ public class CombatController : MonoBehaviour
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
                 m_statusTxt.text = "YOU WON THE BATTLE!";
+                UpdateStats();
 
                 data.victory = 1;
 
@@ -498,6 +498,7 @@ public class CombatController : MonoBehaviour
 
     public void InitParty()
     {
+        m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value;
         m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value;
         m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value;
         m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value;
@@ -505,7 +506,12 @@ public class CombatController : MonoBehaviour
 
         m_party[0].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name1;
         m_party[0].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage1;
+        
+        m_party[0].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl1;
+        m_party[0].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1;
+        m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold1;
 
+        m_party[1].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value;
         m_party[1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value;
         m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam2.Value;
         m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value;
@@ -514,6 +520,11 @@ public class CombatController : MonoBehaviour
         m_party[1].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name2;
         m_party[1].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage2;
 
+        m_party[1].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl2;
+        m_party[1].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp2;
+        m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold2;
+
+        m_party[2].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam3.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value;
@@ -522,6 +533,11 @@ public class CombatController : MonoBehaviour
         m_party[2].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name3;
         m_party[2].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage3;
 
+        m_party[2].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl3;
+        m_party[2].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp3;
+        m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold3;
+
+        m_party[3].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value;
@@ -529,6 +545,10 @@ public class CombatController : MonoBehaviour
 
         m_party[3].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name4;
         m_party[3].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage4;
+
+        m_party[3].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl4;
+        m_party[3].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp4;
+        m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold4;
 
         foreach (var member in m_party)
         {
@@ -540,38 +560,145 @@ public class CombatController : MonoBehaviour
     }
 
     public void UpdateStats()
-    {
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
-        
-        if(m_party[0].activeSelf)
+    { 
+        // member 1
+        if (m_party[0].activeSelf)
         {
-            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 += m_xpReward;
+            m_party[0].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[0].GetComponent<CharacterAttributes>().Xp >= m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[0].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
         }
 
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 = m_party[0].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl1 = m_party[0].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold1 = m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+        // member 2
         if (m_party[1].activeSelf)
         {
-            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp2 += m_xpReward;
+            m_party[1].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[1].GetComponent<CharacterAttributes>().Xp >= m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[1].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
         }
 
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp2 = m_party[1].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl2 = m_party[1].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold2 = m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+        // member 3
         if (m_party[2].activeSelf)
         {
-            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp3 += m_xpReward;
+            m_party[2].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[2].GetComponent<CharacterAttributes>().Xp >= m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[2].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
         }
 
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
-        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp3 = m_party[2].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl3 = m_party[2].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold3 = m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+        // member 4
         if (m_party[3].activeSelf)
         {
-            FindObjectOfType<PlayerAndGameInfo>().infos.m_xp4 += m_xpReward;
+            m_party[3].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[3].GetComponent<CharacterAttributes>().Xp >= m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[3].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
         }
+
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp4 = m_party[3].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl4 = m_party[3].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold4 = m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
     }
 
     public static void CalculateGoldXpRewards(ref int goldReward, ref int xpReward, List<GameObject> enemies)

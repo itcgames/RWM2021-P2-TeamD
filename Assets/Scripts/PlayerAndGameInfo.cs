@@ -26,6 +26,8 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Attribute m_attributeArmor1 = new Attribute("Defence", 0);
         public Attribute m_attributeAttack1 = new Attribute("Attack", 0);
         public int m_xp1 = 0;
+        public int m_lvl1 = 1;
+        public int m_lvlThreshold1 = 100;
 
         public int m_type1;
         public string m_name2;
@@ -41,6 +43,8 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Attribute m_attributeHP2;
         public Attribute m_attributeHPMax2;
         public int m_xp2 = 0;
+        public int m_lvl2 = 1;
+        public int m_lvlThreshold2 = 100;
 
         public Attribute m_attributeDam2;
         public Attribute m_attributeArmor2 =new Attribute("Defence",0);
@@ -61,6 +65,8 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Attribute m_attributeHP3;
         public Attribute m_attributeHPMax3;
         public int m_xp3 = 0;
+        public int m_lvl3 = 1;
+        public int m_lvlThreshold3 = 100;
 
         public Attribute m_attributeDam3;
         public Attribute m_attributeArmor3 =new Attribute("Defence",0);
@@ -82,6 +88,8 @@ public class PlayerAndGameInfo : MonoBehaviour
         public Attribute m_attributeArmor4 = new Attribute("Defence", 0);
         public Attribute m_attributeAttack4 = new Attribute("Attack", 0);
         public int m_xp4 = 0;
+        public int m_lvl4 = 1;
+        public int m_lvlThreshold4 = 100;
 
 
         public Attribute m_attributeDam4;

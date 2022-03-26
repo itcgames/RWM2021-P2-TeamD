@@ -25,6 +25,7 @@ public class CharacterAttributes : MonoBehaviour
     private int m_level;
     private int m_gil;
     private int m_xp;
+    private int m_levelUpThreshold;
 
     public int Level
     {
@@ -42,6 +43,12 @@ public class CharacterAttributes : MonoBehaviour
     {
         get { return m_xp; }
         set { m_xp = value; }
+    }
+
+    public int LevelUpThreshold
+    {
+        get { return m_levelUpThreshold; }
+        set { m_levelUpThreshold = value; }
     }
 
     [SerializeField]
