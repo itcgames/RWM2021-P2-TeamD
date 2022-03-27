@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InteractionTempScene.unity
     guid: 883f364f0cc4c394490f6af6dd6d3a7b
+  - enabled: 1
+    path: Assets/Scenes/TavernMiniGame.unity
+    guid: 54d639bcff5d87048a83a37ffb4cb696
   m_configObjects: {}

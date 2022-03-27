@@ -100,6 +100,11 @@ public class ScreenSystem : MonoBehaviour
 
     public void EndpointHit()
     {
+        SceneManager.LoadScene(13);
+    }
+
+    public void EndGame()
+    {
         SceneManager.LoadScene(0);
     }
 }
