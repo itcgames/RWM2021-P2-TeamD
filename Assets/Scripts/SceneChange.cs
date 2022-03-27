@@ -13,7 +13,7 @@ public class SceneChange : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if(m_scene != 2 && FindObjectOfType<PlayerAndGameInfo>()!=null)
+            if(/*m_scene != 2*/ SceneManager.GetActiveScene().buildIndex == 2 && FindObjectOfType<PlayerAndGameInfo>()!=null)
                 FindObjectOfType<PlayerAndGameInfo>().infos.player_pos = (collision.gameObject.transform.position - new Vector3(0f, 0.4f, 0f));
 
             StartCoroutine("LoadLevel");
