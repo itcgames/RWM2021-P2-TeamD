@@ -43,7 +43,11 @@ public class ScreenSystem : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 3)
         { 
-            if (Input.GetKeyDown(KeyCode.Return))
+            //if (Input.GetKeyDown(KeyCode.Return))
+            //{
+            //    GoToGameplayScene();
+            //}
+            if(Input.GetMouseButtonDown(1))
             {
                 GoToGameplayScene();
             }
