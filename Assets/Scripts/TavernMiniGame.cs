@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TavernMiniGame : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class TavernMiniGame : MonoBehaviour
 
     const int LEVELS_NEEDED = 3;
     int currentLevels = 0;
+    Slider bar;
+    public GameObject levelParent;
+    public GameObject buttonDidplay;
 
     void Start()
     {
@@ -27,6 +31,8 @@ public class TavernMiniGame : MonoBehaviour
         keyCodes[3] = KeyCode.D;
 
         keyNeeded = Random.Range(0, 4);
+
+        bar = this.gameObject.GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -40,14 +46,12 @@ public class TavernMiniGame : MonoBehaviour
             if (Input.GetKeyDown(keyCodes[keyNeeded]))
             {
                 addPercent();
-                timeLeft = keyPressTimeInterval;
-                keyNeeded = Random.Range(0, 4);
+                pickKey();
             }
         }
         else
         {
-            timeLeft = keyPressTimeInterval;
-            keyNeeded = Random.Range(0, 4);
+            pickKey();
         }
 
     }
@@ -56,16 +60,26 @@ public class TavernMiniGame : MonoBehaviour
     {
         currentPercent += 10;
 
+        bar.value = currentPercent;
+
         Debug.Log(currentPercent);
 
         if (currentPercent >= PERCENT_NEEDED)
         {
+            levelParent.transform.GetChild(currentLevels).gameObject.GetComponent<Image>().color = Color.green;
             currentLevels++;
             currentPercent = 0;
-
         }
 
         if (currentLevels >= LEVELS_NEEDED)
             FindObjectOfType<ScreenSystem>().EndGame();
+    }
+
+    void pickKey()
+    {
+
+        timeLeft = keyPressTimeInterval;
+        keyNeeded = Random.Range(0, 4);
+        buttonDidplay.GetComponent<Text>().text = keyCodes[keyNeeded].ToString();
     }
 }
