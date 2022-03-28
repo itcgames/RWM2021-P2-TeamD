@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Options : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static Options instance;
+    [SerializeField]
+    public AudioManager audioManager;
     [SerializeField]
     public Slider m_sfxVolume;
     [SerializeField]
@@ -19,7 +20,13 @@ public class Options : MonoBehaviour
     {
         instance = this;
 
-        //if(SceneManager.)
+        if(SceneManager.GetActiveScene().name == "Pause")
+        {
+            m_sfxVolume.value = audioManager.getSFXVolume();
+            m_musicVolume.value = audioManager.getMusicVolume();
+            m_isMuted.isOn = audioManager.getMuteVolume();
+
+        }
 
         DontDestroyOnLoad(this.gameObject);
     }
