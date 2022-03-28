@@ -10,6 +10,7 @@ public class TavernMiniGame : MonoBehaviour
     int keyNeeded;
 
     float keyPressTimeInterval = 2.0f;
+    float enemyTimeInterval = 0.75f;
     float timeLeft;
 
     const int PERCENT_NEEDED = 100;
@@ -20,6 +21,8 @@ public class TavernMiniGame : MonoBehaviour
     Slider bar;
     public GameObject levelParent;
     public GameObject buttonDidplay;
+
+    public bool isEnemy = false;
 
     void Start()
     {
@@ -39,19 +42,34 @@ public class TavernMiniGame : MonoBehaviour
     void Update()
     {
 
-        if(timeLeft > 0f)
+        if (!isEnemy)
         {
-            timeLeft -= Time.deltaTime;
-
-            if (Input.GetKeyDown(keyCodes[keyNeeded]))
+            if (timeLeft > 0f)
             {
-                addPercent();
+                timeLeft -= Time.deltaTime;
+
+                if (Input.GetKeyDown(keyCodes[keyNeeded]))
+                {
+                    addPercent();
+                    pickKey();
+                }
+            }
+            else
+            {
                 pickKey();
             }
         }
         else
         {
-            pickKey();
+            if (timeLeft > 0f)
+            {
+                timeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                timeLeft = enemyTimeInterval;
+                addPercent();
+            }
         }
 
     }
@@ -59,8 +77,6 @@ public class TavernMiniGame : MonoBehaviour
     void addPercent()
     {
         currentPercent += 10;
-
-        bar.value = currentPercent;
 
         Debug.Log(currentPercent);
 
@@ -73,6 +89,8 @@ public class TavernMiniGame : MonoBehaviour
 
         if (currentLevels >= LEVELS_NEEDED)
             FindObjectOfType<ScreenSystem>().EndGame();
+
+        bar.value = currentPercent;
     }
 
     void pickKey()
