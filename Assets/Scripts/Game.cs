@@ -21,7 +21,6 @@ public class Game : MonoBehaviour
         int m_sceneNum = SceneManager.GetActiveScene().buildIndex;
         m_gameInstance = this;
         m_animator = GameObject.FindWithTag("Fade");
-
     }
 
     // Creates a new game for testing purposes
