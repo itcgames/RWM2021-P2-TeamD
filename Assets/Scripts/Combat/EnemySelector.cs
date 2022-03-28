@@ -18,6 +18,25 @@ public class EnemySelector : MonoBehaviour
         m_combatCursorScript = GameObject.Find("CombatSystem").GetComponent<CombatCursorController>();
     }
 
+    private void Update()
+    {
+        if ((id - 1) < m_combatScript.EnemyList.Count)
+        {
+            if (!m_combatScript.EnemyList[id - 1].activeSelf)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+                return;
+            }
+        }
+
+        if (!transform.GetChild(0).gameObject.activeSelf && (id - 1) < m_combatScript.EnemyList.Count)
+        {
+
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+    }
+
     public void OnMouseDown()
     {
         if (m_combatCursorScript.ChooseEnemyTarget)
