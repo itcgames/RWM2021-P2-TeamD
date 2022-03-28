@@ -14,5 +14,18 @@ public class AudioManager : MonoBehaviour
         print("music: " + music);
         print("sfx :" + sfx);
         print("Mute is " + mute);
+
+    }
+    public float getMusicVolume()
+    {
+        return music;
+    }
+    public float getSFXVolume()
+    {
+        return sfx;
+    }
+    public bool getMuteVolume()
+    {
+        return mute;
     }
 }

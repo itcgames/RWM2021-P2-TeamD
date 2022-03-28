@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Options : MonoBehaviour
 {
     // Start is called before the first frame update
     public static Options instance;
-    [SerializeField]
-    GameObject characterInfo;
     [SerializeField]
     public Slider m_sfxVolume;
     [SerializeField]
@@ -19,15 +18,9 @@ public class Options : MonoBehaviour
     void Awake()
     {
         instance = this;
-        m_sfxVolume.value = characterInfo.GetComponent<PlayerAndGameInfo>().infos.m_sfxVolume;
-        m_musicVolume.value = characterInfo.GetComponent<PlayerAndGameInfo>().infos.m_musicVolume;
-        m_isMuted.isOn = characterInfo.GetComponent<PlayerAndGameInfo>().infos.m_isMuted;
-        DontDestroyOnLoad(this.gameObject);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        characterInfo.GetComponent<PlayerAndGameInfo>().settingSetup(m_sfxVolume.value, m_musicVolume.value, m_isMuted.isOn);
+        //if(SceneManager.)
+
+        DontDestroyOnLoad(this.gameObject);
     }
 }
