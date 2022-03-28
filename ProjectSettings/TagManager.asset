@@ -11,6 +11,7 @@ TagManager:
   - Player Bullet
   - Enemy Bullet
   - Bullet
+  - Quest
   layers:
   - Default
   - TransparentFX
