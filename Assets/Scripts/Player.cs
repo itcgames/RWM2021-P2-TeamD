@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            FindObjectOfType<PlayerAndGameInfo>().infos.player_pos = transform.position;
             GameObject.Find("SceneManager").GetComponent<ScreenSystem>().GoToPauseScreen();
         }
     }
