@@ -94,18 +94,25 @@ public class PlayerAndGameInfo : MonoBehaviour
 
         public Attribute m_attributeDam4;
         public int m_type4;
+
+
+        // Option audio master
+        public float m_sfxVolume = 0.8f;
+        public float m_musicVolume = 0.8f;
+        public bool m_isMuted = false;
+
     }
 
 
     public CharacterInfo infos;
     public CheckpointSystem t_system;
 
+
     // Start is called before the first frame update
     void Start()
     {
         infos = new CharacterInfo();
         t_system = new CheckpointSystem();
-
         DontDestroyOnLoad(this);
     }
 
@@ -160,5 +167,12 @@ public class PlayerAndGameInfo : MonoBehaviour
     public string JsonLoadString()
     {
         return t_system.LoadData().ToString();
+    }
+
+    public void settingSetup(float t_sfxVolume, float t_musicVolume, bool t_isMuted)
+    {
+        infos.m_sfxVolume = t_sfxVolume;
+        infos.m_musicVolume = t_musicVolume;
+        infos.m_isMuted = t_isMuted;
     }
 }
