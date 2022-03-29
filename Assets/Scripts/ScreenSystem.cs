@@ -49,7 +49,10 @@ public class ScreenSystem : MonoBehaviour
             //}
             if(Input.GetMouseButtonDown(1))
             {
-                GoToGameplayScene();
+                if (m_currentInventory != 0)
+                    FindObjectOfType<Cursor>().GoBack();
+                else
+                    GoToGameplayScene();
             }
         }
         if (SceneManager.GetActiveScene().buildIndex == 2 && m_switchToGameplay)
@@ -74,7 +77,7 @@ public class ScreenSystem : MonoBehaviour
                     //else
                        // this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 }
-                this.transform.GetChild(t_i).gameObject.SetActive(true);
+                this.transform.GetChild(t_i-1).gameObject.SetActive(true);
             }
     }
 
