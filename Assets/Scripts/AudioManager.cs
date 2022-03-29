@@ -64,6 +64,12 @@ public class AudioManager : MonoBehaviour
         //PlayMusic("Theme");
     }
 
+
+    public void playClick()
+    {
+        PlaySFX("ButtonClick");
+    }
+
     public void PlaySFX(string name)
     {
         Sound sfx = Array.Find(sounds, sound => sound.name == name);
