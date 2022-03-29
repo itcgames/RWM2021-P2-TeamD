@@ -1101,6 +1101,8 @@ MonoBehaviour:
   - {x: 25, y: 200}
   - {x: -350, y: -100}
   - {x: 25, y: -100}
+  currentInvPos: 0
+  currentCharPos: 0
   t_screenSystem: {fileID: 0}
   pickChar: 0
   activeInventories: 0
@@ -1114,6 +1116,7 @@ MonoBehaviour:
   - {fileID: 1954695651}
   - {fileID: 1181628232}
   useNavi: []
+  charPickButtons: []
 --- !u!114 &757963398
 MonoBehaviour:
   m_ObjectHideFlags: 0
