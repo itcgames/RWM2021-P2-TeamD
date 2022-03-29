@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716009e8318a57f4eadea2109dc53808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   m_sfxVolume: {fileID: 5641840344823431126}
   m_musicVolume: {fileID: 7083283330149569235}
   m_isMuted: {fileID: 5882278124511793438}

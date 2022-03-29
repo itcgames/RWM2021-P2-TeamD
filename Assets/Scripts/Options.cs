@@ -8,8 +8,6 @@ public class Options : MonoBehaviour
 {
     public static Options instance;
     [SerializeField]
-    public AudioManager audioManager;
-    [SerializeField]
     public Slider m_sfxVolume;
     [SerializeField]
     public Slider m_musicVolume;
@@ -18,15 +16,18 @@ public class Options : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-
-        if(SceneManager.GetActiveScene().name == "Pause")
+        if (instance == null)
+            instance = this;
+        else
         {
-            m_sfxVolume.value = audioManager.getSFXVolume();
-            m_musicVolume.value = audioManager.getMusicVolume();
-            m_isMuted.isOn = audioManager.getMuteVolume();
-
+            Destroy(gameObject);
+            return;
         }
+
+        m_sfxVolume.value = 0.8f;
+        m_musicVolume.value = 0.8f;
+        m_isMuted.isOn = false;
+
 
         DontDestroyOnLoad(this.gameObject);
     }

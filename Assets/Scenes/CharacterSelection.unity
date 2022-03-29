@@ -214,6 +214,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &36008137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +520,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+          type: 3}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &232069782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,6 +820,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &348035065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +972,92 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &611780323
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 665.81146
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 360.6352
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -638.604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183520491532731158, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393837813926494099, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: OptionsMenu
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 82122fb3225b8ed42aca4c003d1b0faa, type: 3}
+--- !u!114 &611780325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+    type: 3}
+  m_PrefabInstance: {fileID: 611780323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2d900cb36ba0d46a02d9d10813bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &652300125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1221,8 @@ MonoBehaviour:
   - {x: 25, y: 200}
   - {x: -350, y: -100}
   - {x: 25, y: -100}
+  currentInvPos: 0
+  currentCharPos: 0
   t_screenSystem: {fileID: 0}
   pickChar: 0
   activeInventories: 0
@@ -1114,6 +1236,7 @@ MonoBehaviour:
   - {fileID: 1954695651}
   - {fileID: 1181628232}
   useNavi: []
+  charPickButtons: []
 --- !u!114 &757963398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,6 +1445,17 @@ MonoBehaviour:
           m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &851743048
@@ -1863,6 +1997,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1029940670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1991,6 +2136,17 @@ MonoBehaviour:
           m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1079220658
@@ -2460,6 +2616,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1369602650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2901,6 +3068,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1747389927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3292,6 +3470,17 @@ MonoBehaviour:
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 611780325}
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2058658365

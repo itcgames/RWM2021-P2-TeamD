@@ -43,3 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2d900cb36ba0d46a02d9d10813bdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionsMenu: {fileID: 2593901195175888923, guid: fb18e3704124f8d4dad0510c350b8853,
+    type: 3}
+  sounds:
+  - name: Click
+    clip: {fileID: 8300000, guid: ec33e17f665f7488e828df8c69f6932c, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  musics:
+  - name: Theme
+    clip: {fileID: 8300000, guid: db7c4bd7ec7a1473a838cc2b5fab070f, type: 3}
+    loop: 1
+    source: {fileID: 0}
