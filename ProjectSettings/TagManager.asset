@@ -11,6 +11,10 @@ TagManager:
   - Player Bullet
   - Enemy Bullet
   - Bullet
+  - Quest
+  - Quest2
+  - Quest3
+  - Barrier
   layers:
   - Default
   - TransparentFX
