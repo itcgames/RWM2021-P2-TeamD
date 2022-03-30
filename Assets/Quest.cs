@@ -42,6 +42,17 @@ public class Quest : MonoBehaviour
             this.enabled = false;
 
         }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
+        {
+            for (int i = 0; i < this.transform.GetChildCount(); i++)
+            {
+
+
+                this.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            this.enabled = false;
+
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
