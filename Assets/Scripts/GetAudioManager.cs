@@ -17,4 +17,13 @@ public class GetAudioManager : MonoBehaviour
     {
         manager.GetComponent<AudioManager>().playClick();
     }
+
+    public void Mute()
+    {
+        if (Setting.instance.mute == true)
+        {
+            manager.GetComponent<AudioManager>().MuteAll();
+        }
+
+    }
 }

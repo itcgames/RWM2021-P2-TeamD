@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Options : MonoBehaviour
 {
-    public static Options instance;
     [SerializeField]
     public Slider m_sfxVolume;
     [SerializeField]
@@ -14,20 +13,43 @@ public class Options : MonoBehaviour
     [SerializeField]
     public Toggle m_isMuted;
 
+
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
+        m_sfxVolume.value = Setting.instance.sfx;
+        m_musicVolume.value = Setting.instance.music;
+        m_isMuted.isOn = Setting.instance.mute;
+    }
+
+    public void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Pause" ||
+            SceneManager.GetActiveScene().name == "Menu")
         {
-            Destroy(gameObject);
-            return;
+            if (gameObject.activeSelf)
+            {
+                Setting.instance.sfx = m_sfxVolume.value;
+                Setting.instance.music = m_musicVolume.value;
+                Setting.instance.mute = m_isMuted.isOn;
+
+                print("sfx:" + Setting.instance.sfx);
+                print("music:" + Setting.instance.music);
+                print("Mute is " + Setting.instance.mute);
+            }
         }
+    }
 
-        m_sfxVolume.value = 0.8f;
-        m_musicVolume.value = 0.8f;
-        m_isMuted.isOn = false;
+    public float getSFX()
+    {
+        return m_sfxVolume.value;
+    }
 
-        DontDestroyOnLoad(this.gameObject);
+    public float getMusic()
+    {
+        return m_musicVolume.value;
+    }
+    public bool getMute()
+    {
+        return m_isMuted.isOn;
     }
 }

@@ -12,9 +12,6 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    public GameObject OptionsMenu;
-
-
     public Sound[] sounds;
     public Sound[] musics;
 
@@ -110,7 +107,7 @@ public class AudioManager : MonoBehaviour
     public void MuteAll()
     {
 
-        if(Options.instance.m_isMuted.isOn == true)
+        if(Setting.instance.mute == true)
         {
             foreach (Sound s in sounds)
             {
@@ -142,24 +139,19 @@ public class AudioManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Pause" ||
             SceneManager.GetActiveScene().name == "Menu")
         {
-            if (Options.instance.gameObject.activeSelf)
+            foreach (Sound s in sounds)
             {
-                music = Options.instance.m_musicVolume.value;
-                sfx = Options.instance.m_sfxVolume.value;
-                mute = Options.instance.m_isMuted.isOn;
-
-                foreach (Sound s in sounds)
-                {
-                    s.source.volume = sfx;
-                }
-
-                foreach (Sound m in musics)
-                {
-                    m.source.volume = music;
-                }
+                s.source.volume = Setting.instance.sfx;
+                s.source.mute = Setting.instance.mute;
             }
 
-        }
+            foreach (Sound m in musics)
+            {
+                m.source.volume = Setting.instance.music;
+                m.source.mute = Setting.instance.mute;
+            }
 
+
+        }
     }
 }
