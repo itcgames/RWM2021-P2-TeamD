@@ -58,6 +58,28 @@ public class ActionController : MonoBehaviour
     {
         if (Target != null)
         {
+            if (!Target.activeSelf)
+            {
+                if(Target.GetComponent<CharacterAttributes>().Playable)
+                {
+                    GameObject obj = GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewPartyTarget();
+
+                    if(obj != null)
+                    {
+                        Target = obj;
+                    }
+                }
+                else
+                {
+                    GameObject obj = GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewEnemyTarget();
+
+                    if (obj != null)
+                    {
+                        Target = obj;
+                    }
+                }
+            }
+
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("Def") != null)
             {
                 int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
@@ -111,13 +133,12 @@ public class ActionController : MonoBehaviour
 
         if (success > 50)
         {
-            Debug.Log("Successfully escaped!");
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
         }
 
         else
         {
-            Debug.Log("failed to escape...");
+            StatusTxt.text = GetComponent<CharacterAttributes>().Name + " ESCAPE\nATTEMPT FAILED";
         }
     }
 }

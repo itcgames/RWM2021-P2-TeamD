@@ -404,6 +404,32 @@ public class CombatController : MonoBehaviour
         }
     }
 
+    public GameObject GetNewEnemyTarget()
+    {
+        for (int i = 0; i < EnemyList.Count; ++i)
+        {
+            if(EnemyList[i].activeSelf)
+            {
+                return EnemyList[i];
+            }
+        }
+
+        return null;
+    }
+
+    public GameObject GetNewPartyTarget()
+    {
+        for (int i = 0; i < Party.Count; ++i)
+        {
+            if (Party[i].activeSelf)
+            {
+                return Party[i];
+            }
+        }
+
+        return null;
+    }
+
     public IEnumerator ExecuteBattleOrder()
     {
         int playableChar = -1;
