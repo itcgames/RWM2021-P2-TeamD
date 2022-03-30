@@ -10,7 +10,7 @@ public class questTracker : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Text>().text = "1: Head to the nearest town and beat the raiding bandits";
         this.transform.GetChild(1).GetComponent<Text>().text = "2: Head to the lake and beat the dessert warriors";
         this.transform.GetChild(2).GetComponent<Text>().text = "3: Head to the south town and beat the ninjas";
-        this.transform.GetChild(3).GetComponent<Text>().text = "4: Cross the bridge";
+        this.transform.GetChild(3).GetComponent<Text>().text = "4: Gain access to the bridge";
 
 
 
