@@ -12,6 +12,8 @@ TagManager:
   - Enemy Bullet
   - Bullet
   - Quest
+  - Quest2
+  - Quest3
   layers:
   - Default
   - TransparentFX

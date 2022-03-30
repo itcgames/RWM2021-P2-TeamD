@@ -107,7 +107,12 @@ public class CombatController : MonoBehaviour
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
-                    EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
+                    if (!FindObjectOfType<PlayerAndGameInfo>().infos.questTriggered)
+                    {
+                        EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
+                    }
+                    FindObjectOfType<PlayerAndGameInfo>().infos.questTriggered = false;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.questFinished = true;
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
@@ -115,6 +120,8 @@ public class CombatController : MonoBehaviour
                 else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
                 {
                     UpdateStats();
+                    FindObjectOfType<PlayerAndGameInfo>().infos.questTriggered = false;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.questFinished = true;
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
@@ -125,8 +132,6 @@ public class CombatController : MonoBehaviour
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
                     DataCollectionUtility.PostData(data, this);
                 }
-
-
             }
 
             else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
@@ -145,7 +150,15 @@ public class CombatController : MonoBehaviour
         if (!Utilities.s_testMode)
         {
             InitParty();
-            GenerateEnemies();
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.questTriggered == true)
+            {
+                SpawnBoss();
+
+            }
+            else
+            {
+                GenerateEnemies();
+            }
             CalculateGoldXpRewards(ref m_goldReward, ref m_xpReward, EnemyList);
             StartCombat();
             GetComponent<GenerateGrids>().CreatePartyGrid();
@@ -712,6 +725,28 @@ public class CombatController : MonoBehaviour
         {
             goldReward += enemy.GetComponent<CharacterAttributes>().Gold;
             xpReward += enemy.GetComponent<CharacterAttributes>().Xp;
+        }
+    }
+    public void SpawnBoss()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
+
+
+
+            EnemyList.Add(enemy);
         }
     }
 }
