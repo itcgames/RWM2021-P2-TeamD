@@ -66,6 +66,7 @@ public class ActionController : MonoBehaviour
                 int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
                  emotionalDamage);
+                AudioManager.instance.PlaySFX("Attack");
             }
             else
             {
@@ -85,6 +86,8 @@ public class ActionController : MonoBehaviour
             {
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value = 0.0f;
                 Target.SetActive(false);
+                //death sound
+                AudioManager.instance.PlaySFX("Death");
             }
             else
             {
@@ -105,7 +108,10 @@ public class ActionController : MonoBehaviour
         {
             Debug.Log("Successfully escaped!");
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
-
+            //flee sounds
+            AudioManager.instance.PauseMusic("BattleTheme");
+            AudioManager.instance.PlaySFX("Flee");
+            AudioManager.instance.PlayMusic("Theme");
             yield return new WaitForSeconds(2);
         }
 

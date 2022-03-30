@@ -49,6 +49,7 @@ public class CombatController : MonoBehaviour
                 if (Input.GetMouseButtonUp(1))
                 {
                     GetComponent<CombatCursorController>().RevertAttackAction();
+                    //cancel sound
                 }
             }
             else
@@ -207,6 +208,9 @@ public class CombatController : MonoBehaviour
 
     public void StartCombat()
     {
+        //music play
+        AudioManager.instance.PauseMusic("Theme");
+        AudioManager.instance.PlayMusic("BattleTheme");
         m_battleOrder = new Dictionary<int, GameObject>();
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
@@ -496,6 +500,8 @@ public class CombatController : MonoBehaviour
                 data.victory = 1;
 
                 FindObjectOfType<EndPoint>().FightWon();
+                AudioManager.instance.PauseMusic("BattleTheme");
+                AudioManager.instance.PlayMusic("Theme");                
                 return true;
             }
         }

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7393837813926494099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5183520491532731158}
+  - component: {fileID: 7520422070121602680}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5183520491532731158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393837813926494099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 665.81146, y: 360.6352, z: -638.604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7520422070121602680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393837813926494099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2d900cb36ba0d46a02d9d10813bdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionsMenu: {fileID: 2593901195175888923, guid: fb18e3704124f8d4dad0510c350b8853,
+    type: 3}
+  sounds:
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: ec33e17f665f7488e828df8c69f6932c, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 70b9101edd9ac414eb2cd6ae827fb398, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 162afda90beba65499773a74b6b6b34c, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: Flee
+    clip: {fileID: 8300000, guid: 504796679383fe641986b7f52d290aa5, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  musics:
+  - name: Theme
+    clip: {fileID: 8300000, guid: db7c4bd7ec7a1473a838cc2b5fab070f, type: 3}
+    loop: 1
+    source: {fileID: 0}
+  - name: BattleTheme
+    clip: {fileID: 8300000, guid: 9f1bc02ca323fc942910065d2e32ecfb, type: 3}
+    loop: 1
+    source: {fileID: 0}
