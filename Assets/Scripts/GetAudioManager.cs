@@ -13,7 +13,6 @@ public class GetAudioManager : MonoBehaviour
     {
         manager = GameObject.Find("AudioManager");
     }
-
     public void ClickSFX()
     {
         manager.GetComponent<AudioManager>().playClick();

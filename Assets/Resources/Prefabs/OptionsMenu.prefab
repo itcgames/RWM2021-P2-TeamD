@@ -348,10 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716009e8318a57f4eadea2109dc53808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioManager: {fileID: 0}
-  m_sfxVolume: {fileID: 5641840344823431126}
-  m_musicVolume: {fileID: 7083283330149569235}
-  m_isMuted: {fileID: 5882278124511793438}
+  m_sfxVolume: {fileID: 3542896072790239369}
+  m_musicVolume: {fileID: 7635655675116560326}
+  m_isMuted: {fileID: 5592453466421858560}
 --- !u!1 &2611697849734915534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,8 +1072,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5592453466421858560}
-        m_MethodName: set_enabled
+        m_MethodName: set_isOn
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: MuteAll
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

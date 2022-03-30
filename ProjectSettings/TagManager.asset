@@ -11,6 +11,12 @@ TagManager:
   - Player Bullet
   - Enemy Bullet
   - Bullet
+  - Quest
+  - Quest2
+  - Quest3
+  - Barrier
+  - drop
+  - equip
   layers:
   - Default
   - TransparentFX

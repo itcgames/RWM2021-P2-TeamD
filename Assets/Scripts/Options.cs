@@ -28,7 +28,6 @@ public class Options : MonoBehaviour
         m_musicVolume.value = 0.8f;
         m_isMuted.isOn = false;
 
-
         DontDestroyOnLoad(this.gameObject);
     }
 }

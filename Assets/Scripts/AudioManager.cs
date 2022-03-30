@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (instance == null)
             instance = this;
         else
@@ -43,7 +44,6 @@ public class AudioManager : MonoBehaviour
             m.source.clip = m.clip;
             m.source.loop = m.loop;
         }
-
         DontDestroyOnLoad(this.gameObject);
     }
     public float getMusicVolume()
@@ -142,7 +142,7 @@ public class AudioManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Pause" ||
             SceneManager.GetActiveScene().name == "Menu")
         {
-            if (OptionsMenu.activeSelf)
+            if (Options.instance.gameObject.activeSelf)
             {
                 music = Options.instance.m_musicVolume.value;
                 sfx = Options.instance.m_sfxVolume.value;
