@@ -764,6 +764,61 @@ PrefabInstance:
       propertyPath: OptionsMenu
       value: 
       objectReference: {fileID: 4825490284178579601}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: musics.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: musics.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: db7c4bd7ec7a1473a838cc2b5fab070f, type: 3}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: musics.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: musics.Array.data[1].name
+      value: BattleTheme
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec33e17f665f7488e828df8c69f6932c, type: 3}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec33e17f665f7488e828df8c69f6932c, type: 3}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec33e17f665f7488e828df8c69f6932c, type: 3}
+    - target: {fileID: 7520422070121602680, guid: 82122fb3225b8ed42aca4c003d1b0faa,
+        type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: Flee
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82122fb3225b8ed42aca4c003d1b0faa, type: 3}
 --- !u!114 &728380989 stripped

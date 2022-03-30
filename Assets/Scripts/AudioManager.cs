@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayMusic("Theme");
+        PlayMusic("Theme");
     }
 
 
@@ -69,6 +69,7 @@ public class AudioManager : MonoBehaviour
     {
         PlaySFX("ButtonClick");
     }
+
 
     public void PlaySFX(string name)
     {
@@ -79,7 +80,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
         sfx.source.Play();
-
     }
 
     public void PlayMusic(string name)
@@ -94,6 +94,48 @@ public class AudioManager : MonoBehaviour
         music.source.Play();
 
     }
+    public void PauseMusic(string name)
+    {
+
+        Sound music = Array.Find(musics, sound => sound.name == name);
+        if (music == null)
+        {
+            Debug.LogWarning("Music: " + name + " not found!");
+            return;
+        }
+        music.source.Pause();
+
+    }
+
+    public void MuteAll()
+    {
+
+        if(Options.instance.m_isMuted.isOn == true)
+        {
+            foreach (Sound s in sounds)
+            {
+                s.source.mute = true;
+            }
+
+            foreach (Sound m in musics)
+            {
+                m.source.mute = true;
+            }
+        }
+        else
+        {
+            foreach (Sound s in sounds)
+            {
+                s.source.mute = false;
+            }
+
+            foreach (Sound m in musics)
+            {
+                m.source.mute = false;
+            }
+        }
+    }
+
 
     public void Update()
     {

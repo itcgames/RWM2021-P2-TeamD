@@ -26,6 +26,7 @@ public class EnemySelector : MonoBehaviour
             {
                 Debug.Log("Enemy: " + id + " selected");
                 //Attack sound
+                AudioManager.instance.PlaySFX("Attack");
                 m_combatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
                 m_combatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Target = m_combatScript.EnemyList[id - 1];
 

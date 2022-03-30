@@ -50,8 +50,24 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ec33e17f665f7488e828df8c69f6932c, type: 3}
     loop: 0
     source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 70b9101edd9ac414eb2cd6ae827fb398, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 162afda90beba65499773a74b6b6b34c, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - name: Flee
+    clip: {fileID: 8300000, guid: 504796679383fe641986b7f52d290aa5, type: 3}
+    loop: 0
+    source: {fileID: 0}
   musics:
   - name: Theme
     clip: {fileID: 8300000, guid: db7c4bd7ec7a1473a838cc2b5fab070f, type: 3}
+    loop: 1
+    source: {fileID: 0}
+  - name: BattleTheme
+    clip: {fileID: 8300000, guid: 9f1bc02ca323fc942910065d2e32ecfb, type: 3}
     loop: 1
     source: {fileID: 0}
