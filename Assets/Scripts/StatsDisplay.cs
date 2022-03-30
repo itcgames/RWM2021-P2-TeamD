@@ -34,7 +34,7 @@ public class StatsDisplay : MonoBehaviour
             healthText.text = "HP \n\t" + info.m_attributeHP1.Value + " / " + info.m_attributeHPMax1.Value;
             charImage.sprite = info.m_charImage1;
             defenseText.text = "Defense " + info.m_attributeArmor1.Value;
-            attackText.text = "Attack " + info.m_attributeAttack1.Value;
+            attackText.text = "W.DMG " + info.m_attributeAttack1.Value;
             damageText.text = "Damage " + info.m_attributeDam1.Value;
         }
         else if (current_char == 1)
@@ -44,7 +44,7 @@ public class StatsDisplay : MonoBehaviour
             healthText.text = "HP \n\t" + info.m_attributeHP2.Value + " / " + info.m_attributeHPMax2.Value;
             charImage.sprite = info.m_charImage2;
             defenseText.text = "Defense " + info.m_attributeArmor2.Value;
-            attackText.text = "Attack " + info.m_attributeAttack2.Value;
+            attackText.text = "W.DMG " + info.m_attributeAttack2.Value;
             damageText.text = "Damage " + info.m_attributeDam2.Value;
         }
         else if (current_char == 2)
@@ -54,7 +54,7 @@ public class StatsDisplay : MonoBehaviour
             healthText.text = "HP \n\t" + info.m_attributeHP3.Value + " / " + info.m_attributeHPMax3.Value;
             charImage.sprite = info.m_charImage3;
             defenseText.text = "Defense " + info.m_attributeArmor3.Value;
-            attackText.text = "Attack " + info.m_attributeAttack3.Value;
+            attackText.text = "W.DMG " + info.m_attributeAttack3.Value;
             damageText.text = "Damage " + info.m_attributeDam3.Value;
         }
         else if (current_char == 3)
@@ -64,7 +64,7 @@ public class StatsDisplay : MonoBehaviour
             healthText.text = "HP \n\t" + info.m_attributeHP4.Value + " / " + info.m_attributeHPMax4.Value;
             charImage.sprite = info.m_charImage4;
             defenseText.text = "Defense " + info.m_attributeArmor4.Value;
-            attackText.text = "Attack " + info.m_attributeAttack4.Value;
+            attackText.text = "W.DMG " + info.m_attributeAttack4.Value;
             damageText.text = "Damage " + info.m_attributeDam4.Value;
         }
     }
