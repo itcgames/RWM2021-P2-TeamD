@@ -206,7 +206,7 @@ public class InventorWeapon : MonoBehaviour
 
 
         }
-        FindObjectOfType<DropTradeEquip>().setDrop(false);
+       
 
     }
     public void Equiping(int i, bool equipped)

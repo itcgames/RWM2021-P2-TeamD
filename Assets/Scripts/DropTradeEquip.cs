@@ -18,7 +18,24 @@ public class DropTradeEquip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+       if(drop && this.CompareTag("drop"))
+        {
+            this.GetComponentInChildren<Text>().GetComponentInChildren<Text>().color = Color.green;
+        }
+        if (equip && this.CompareTag("equip"))
+        {
+            this.GetComponentInChildren<Text>().GetComponentInChildren<Text>().color = Color.green;
+
+        }
+        if (equip && this.CompareTag("drop"))
+        {
+            this.GetComponentInChildren<Text>().GetComponentInChildren<Text>().color = Color.gray;
+
+        }
+        if (drop && this.CompareTag("equip"))
+        {
+            this.GetComponentInChildren<Text>().GetComponentInChildren<Text>().color = Color.grey;
+        }
     }
    public bool Drop()
     {
