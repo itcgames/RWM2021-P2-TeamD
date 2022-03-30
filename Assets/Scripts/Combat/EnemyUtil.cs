@@ -30,7 +30,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Bandit";
+        attrs.Name = "BANDIT";
         attrs.Playable = false;
         attrs.Gold = 6;
         attrs.Xp = 8;
@@ -47,7 +47,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Desert Warrior";
+        attrs.Name = "WARRIOR";
         attrs.Playable = false;
         attrs.Gold = 10;
         attrs.Xp = 10;
@@ -64,7 +64,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Cactus";
+        attrs.Name = "CACTUS";
         attrs.Playable = false;
         attrs.Gold = 3;
         attrs.Xp = 4;
@@ -81,7 +81,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Desert Shinobi";
+        attrs.Name = "DESERT NINJA";
         attrs.Playable = false;
         attrs.Gold = 20;
         attrs.Xp = 40;
@@ -98,7 +98,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Dark Shinobi";
+        attrs.Name = "DARK NINJA";
         attrs.Playable = false;
         attrs.Gold = 30;
         attrs.Xp = 45;
@@ -115,7 +115,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Shade Shinobi";
+        attrs.Name = "SHADE NINJA";
         attrs.Playable = false;
         attrs.Gold = 50;
         attrs.Xp = 65;
@@ -132,7 +132,7 @@ public class EnemyUtil
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "Snail";
+        attrs.Name = "SNAIL";
         attrs.Playable = false;
         attrs.Gold = 2;
         attrs.Xp = 1;

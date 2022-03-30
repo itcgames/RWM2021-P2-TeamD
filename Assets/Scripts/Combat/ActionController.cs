@@ -15,6 +15,7 @@ public class ActionController : MonoBehaviour
     }
 
     public GameObject Target { get; set; }
+    public Text StatusTxt;
 
     public CombatAction Action { get; set; } = CombatAction.None;
 
@@ -37,10 +38,10 @@ public class ActionController : MonoBehaviour
             case CombatAction.None:
                 break;
             case CombatAction.Fight:
-                StartCoroutine(Fight());
+                Fight();
                 break;
             case CombatAction.Flee:
-                StartCoroutine(Flee());
+                Flee();
                 break;
             case CombatAction.Magic:
                 break;
@@ -53,19 +54,42 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    private IEnumerator Fight()
+    private void Fight()
     {
         if (Target != null)
         {
+            if (!Target.activeSelf)
+            {
+                if(Target.GetComponent<CharacterAttributes>().Playable)
+                {
+                    GameObject obj = GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewPartyTarget();
 
+                    if(obj != null)
+                    {
+                        Target = obj;
+                    }
+                }
+                else
+                {
+                    GameObject obj = GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewEnemyTarget();
+
+                    if (obj != null)
+                    {
+                        Target = obj;
+                    }
+                }
+            }
 
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("Def") != null)
             {
-
-                Debug.Log(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value);
                 int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
                  emotionalDamage);
+
+                StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
+                + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
+                 emotionalDamage) + " TO "
+                + Target.GetComponent<CharacterAttributes>().Name;
             }
             else
             {
@@ -74,47 +98,47 @@ public class ActionController : MonoBehaviour
                     Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
                     GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
 
+                    StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
+                + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value) + " TO "
+                + Target.GetComponent<CharacterAttributes>().Name;
                 }
                 else
-                { 
-                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
-                    GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+                {
+                    Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                        GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+
+                    StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
+                + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + " TO "
+                + Target.GetComponent<CharacterAttributes>().Name;
+                }
             }
-            }
+
+            Debug.Log(GetComponent<CharacterAttributes>().Name + " Dealt " + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value +
+                   " to " + Target.GetComponent<CharacterAttributes>().Name);
+
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
             {
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value = 0.0f;
+                Debug.Log(Target.GetComponent<CharacterAttributes>().Name + " Defeated");
                 Target.SetActive(false);
             }
-            else
-            {
-                Debug.Log(GetComponent<CharacterAttributes>().Name + " Dealt " + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value +
-                    " to " + Target.GetComponent<CharacterAttributes>().Name);
-            }
-            yield return new WaitForSeconds(4);
         }
 
         Action = CombatAction.None;
     }
 
-    private IEnumerator Flee()
+    private void Flee()
     {
         int success = Random.Range(1, 101);
 
         if (success > 50)
         {
-            Debug.Log("Successfully escaped!");
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
-
-            yield return new WaitForSeconds(2);
         }
 
         else
         {
-            Debug.Log("failed to escape...");
-            yield return new WaitForSeconds(2);
+            StatusTxt.text = GetComponent<CharacterAttributes>().Name + " ESCAPE\nATTEMPT FAILED";
         }
-
-        Action = CombatAction.None;
     }
 }
