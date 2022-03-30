@@ -94,8 +94,12 @@ public class PlayerAndGameInfo : MonoBehaviour
 
         public Attribute m_attributeDam4;
         public int m_type4;
-        public bool questTriggered = false;
-        public bool questFinished = false;
+        public bool quest1Triggered = false;
+        public bool quest1Finished = false;
+        public bool quest2Triggered = false;
+        public bool quest2Finished = false;
+        public bool quest3Triggered = false;
+        public bool quest3Finished = false;
     }
 
 
