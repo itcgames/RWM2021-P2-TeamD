@@ -9,6 +9,8 @@ public class CombatController : MonoBehaviour
 
     private Dictionary<int, GameObject> m_battleOrder;
 
+    private float m_battleWait = 1.5f;
+
     [SerializeField]
     private List<GameObject> m_party;
     public List<GameObject> Party { get { return m_party; } set { m_party = value; } }
@@ -398,40 +400,51 @@ public class CombatController : MonoBehaviour
             }
 
             EnemyList[i].GetComponent<ActionController>().Target = Party[targetPartyMember];
+            EnemyList[i].GetComponent<ActionController>().StatusTxt = m_statusTxt;
         }
     }
 
     public IEnumerator ExecuteBattleOrder()
     {
+        int playableChar = -1;
+
         foreach (var character in m_battleOrder)
         {
             if (character.Value.activeSelf)
             {
                 if (character.Value.GetComponent<CharacterAttributes>().Playable)
                 {
-                    if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight)
+                    playableChar++;
+                    if (character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight)
                     {
-                        character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
+                        character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[playableChar, 0];
                     }
                     character.Value.GetComponent<ActionController>().ExecuteAction();
-                    yield return new WaitForSeconds(1.0f);
-                    character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 1];
+                    GetComponent<CombatUIController>().UpdateHpTexts(Party);
+                    UpdateHpBars();
+                    yield return new WaitForSeconds(m_battleWait);
+                    character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[playableChar, 1];
                 }
                 else
                 {
                     character.Value.GetComponent<ActionController>().ExecuteAction();
-                    yield return new WaitForSeconds(1.0f);
+                    GetComponent<CombatUIController>().UpdateHpTexts(Party);
+                    UpdateHpBars();
+                    yield return new WaitForSeconds(m_battleWait);
+                }
+            }
+            else if (!character.Value.activeSelf)
+            {
+                if (character.Value.GetComponent<CharacterAttributes>().Playable)
+                {
+                    playableChar++;
                 }
             }
 
             if (CombatEnum.s_currentCombatState == CombatEnum.CombatState.Escape || BattleEnd()) yield break;
         }
 
-        GetComponent<CombatUIController>().UpdateHpTexts(Party);
-
         data.turnTotal++;
-
-        UpdateHpBars();
 
         if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
             CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
@@ -520,7 +533,7 @@ public class CombatController : MonoBehaviour
 
         m_party[0].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name1;
         m_party[0].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage1;
-        
+
         m_party[0].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl1;
         m_party[0].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1;
         m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold1;
@@ -739,10 +752,10 @@ public class CombatController : MonoBehaviour
 
     void SetupSelectors()
     {
-        for(int i = 0; i < EnemySelectors.Length; ++i)
+        for (int i = 0; i < EnemySelectors.Length; ++i)
         {
-            Debug.Log("EnemyPos" + (i+1).ToString());
-            EnemySelectors[i] = GameObject.Find("EnemyPos" + (i+1).ToString());
+            Debug.Log("EnemyPos" + (i + 1).ToString());
+            EnemySelectors[i] = GameObject.Find("EnemyPos" + (i + 1).ToString());
         }
     }
 
