@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class CombatController : MonoBehaviour
     public List<GameObject> EnemyList { get; set; }
 
     private GameObject[] EnemySelectors;
+    private GameObject[] XpBars;
 
     private int m_currentChar;
 
@@ -31,12 +33,14 @@ public class CombatController : MonoBehaviour
     void Start()
     {
         EnemySelectors = new GameObject[9];
+        XpBars = new GameObject[4];
 
         GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
 
         // for testing 
         data = new CombatData { enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
         SetupSelectors();
+        SetupXpBars();
         Combat();
     }
 
@@ -79,16 +83,8 @@ public class CombatController : MonoBehaviour
         else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
         {
             GenEnemyActions();
-            ExecuteBattleOrder();
-
-            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
-            {
-                CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
-                m_currentChar = -1;
-                ChangeActivePartyMember();
-            }
+            StartCoroutine(ExecuteBattleOrder());
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.Inactive;
         }
 
         else if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState ||
@@ -150,6 +146,7 @@ public class CombatController : MonoBehaviour
         if (!Utilities.s_testMode)
         {
             InitParty();
+            UpdateXpBars();
             GenerateEnemies();
             CalculateGoldXpRewards(ref m_goldReward, ref m_xpReward, EnemyList);
             StartCombat();
@@ -371,7 +368,6 @@ public class CombatController : MonoBehaviour
         {
             m_currentChar++;
             GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
-            Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
         }
 
         // if current character is the last character, return to first character and start battle
@@ -405,29 +401,30 @@ public class CombatController : MonoBehaviour
         }
     }
 
-    public void ExecuteBattleOrder()
+    public IEnumerator ExecuteBattleOrder()
     {
         foreach (var character in m_battleOrder)
         {
-            if (character.Value.GetComponent<CharacterAttributes>().Playable)
+            if (character.Value.activeSelf)
             {
-                if (character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight && character.Value.activeSelf)
+                if (character.Value.GetComponent<CharacterAttributes>().Playable)
                 {
-                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
+                    if(character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight)
+                    {
+                        character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
+                    }
                     character.Value.GetComponent<ActionController>().ExecuteAction();
-                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 1];
+                    yield return new WaitForSeconds(1.0f);
+                    character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 1];
                 }
-                else if (character.Value.activeSelf)
+                else
                 {
                     character.Value.GetComponent<ActionController>().ExecuteAction();
+                    yield return new WaitForSeconds(1.0f);
                 }
-            }
-            else if (character.Value.activeSelf)
-            {
-                character.Value.GetComponent<ActionController>().ExecuteAction();
             }
 
-            if (CombatEnum.s_currentCombatState == CombatEnum.CombatState.Escape || BattleEnd()) return;
+            if (CombatEnum.s_currentCombatState == CombatEnum.CombatState.Escape || BattleEnd()) yield break;
         }
 
         GetComponent<CombatUIController>().UpdateHpTexts(Party);
@@ -435,6 +432,15 @@ public class CombatController : MonoBehaviour
         data.turnTotal++;
 
         UpdateHpBars();
+
+        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+            m_currentChar = -1;
+            ChangeActivePartyMember();
+        }
     }
 
     private bool BattleEnd()
@@ -464,6 +470,7 @@ public class CombatController : MonoBehaviour
                 Debug.Log("All enemies terminated!");
                 m_statusTxt.text = "YOU WON THE BATTLE!";
                 UpdateStats();
+                UpdateXpBars();
 
                 data.victory = 1;
 
@@ -737,5 +744,27 @@ public class CombatController : MonoBehaviour
             Debug.Log("EnemyPos" + (i+1).ToString());
             EnemySelectors[i] = GameObject.Find("EnemyPos" + (i+1).ToString());
         }
+    }
+
+    void SetupXpBars()
+    {
+        for (int i = 0; i < XpBars.Length; ++i)
+        {
+            Debug.Log("XpBar" + (i + 1).ToString());
+            XpBars[i] = GameObject.Find("XPBar" + (i + 1).ToString());
+        }
+    }
+
+    public void UpdateXpBars()
+    {
+        for (int i = 0; i < XpBars.Length; ++i)
+        {
+            XpBars[i].GetComponent<XpBarController>().UpdateXpBar(Party[i]);
+        }
+    }
+
+    public IEnumerator StartBattleOrderCoroutine()
+    {
+        yield return StartCoroutine(ExecuteBattleOrder());
     }
 }
