@@ -35,6 +35,7 @@ public class Quest : MonoBehaviour
         }
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Quest3"))
         {
+            
 
             this.transform.GetChild(0).gameObject.SetActive(false);
             this.transform.GetChild(1).gameObject.SetActive(false);
@@ -44,14 +45,17 @@ public class Quest : MonoBehaviour
         }
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
         {
-            for (int i = 0; i < this.transform.GetChildCount(); i++)
-            {
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Equip = false;
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Equip = false;
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Equip = false;
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Equip = false;
 
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
 
-                this.transform.GetChild(i).gameObject.SetActive(false);
-            }
-            this.enabled = false;
-
+            Destroy(this.gameObject);
         }
     }
 
@@ -120,15 +124,7 @@ public class Quest : MonoBehaviour
             {
                 if ((FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished == false))
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Equip = false;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Equip = false;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Equip = false;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Equip = false;
-
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2.Equip = false;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2.Equip = false;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2.Equip = false;
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2.Equip = false;
+                
 
 
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3 = new weapon("Stack of Dynamite", 13, true);
