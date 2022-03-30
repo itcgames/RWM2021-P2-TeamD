@@ -14,6 +14,8 @@ public class CombatController : MonoBehaviour
 
     public List<GameObject> EnemyList { get; set; }
 
+    private GameObject[] EnemySelectors;
+
     private int m_currentChar;
 
     public Text m_statusTxt;
@@ -28,10 +30,13 @@ public class CombatController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EnemySelectors = new GameObject[9];
+
         GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
 
         // for testing 
         data = new CombatData { enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
+        SetupSelectors();
         Combat();
     }
 
@@ -428,6 +433,8 @@ public class CombatController : MonoBehaviour
         GetComponent<CombatUIController>().UpdateHpTexts(Party);
 
         data.turnTotal++;
+
+        UpdateHpBars();
     }
 
     private bool BattleEnd()
@@ -712,6 +719,23 @@ public class CombatController : MonoBehaviour
         {
             goldReward += enemy.GetComponent<CharacterAttributes>().Gold;
             xpReward += enemy.GetComponent<CharacterAttributes>().Xp;
+        }
+    }
+
+    public void UpdateHpBars()
+    {
+        foreach (var selector in EnemySelectors)
+        {
+            selector.GetComponent<EnemySelector>().transform.GetChild(0).GetComponent<HPDisplayController>().UpdateHpBar(selector.GetComponent<EnemySelector>());
+        }
+    }
+
+    void SetupSelectors()
+    {
+        for(int i = 0; i < EnemySelectors.Length; ++i)
+        {
+            Debug.Log("EnemyPos" + (i+1).ToString());
+            EnemySelectors[i] = GameObject.Find("EnemyPos" + (i+1).ToString());
         }
     }
 }

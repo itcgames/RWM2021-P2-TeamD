@@ -1906,6 +1906,16 @@ MonoBehaviour:
   - {fileID: 964385673}
   - {fileID: 1145587624}
   - {fileID: 1118354453}
+  EnemySelectors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_statusTxt: {fileID: 764737894}
   m_rewardTxt: {fileID: 1167374509}
 --- !u!114 &1041616287
@@ -3179,6 +3189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: LevelUpSigns.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364298571800792900, guid: 169c3852ef5957943b8ccf9bc6bb55e3,
+        type: 3}
+      propertyPath: EnemySelectors.Array.size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2799242880736487372, guid: 169c3852ef5957943b8ccf9bc6bb55e3,
         type: 3}

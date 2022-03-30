@@ -57,8 +57,10 @@ public class EnemySelector : MonoBehaviour
     {
         if ((id - 1) < CombatScript.EnemyList.Count)
         {
-            hp = CombatScript.EnemyList[id - 1].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
-            maxHp = CombatScript.EnemyList[id - 1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+            hp = CombatScript.EnemyList[id - 1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+            maxHp = CombatScript.EnemyList[id - 1].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
+
+            Debug.Log("Enemy " + id + " HP: " + hp + "/" + maxHp);
         }
     }
 }

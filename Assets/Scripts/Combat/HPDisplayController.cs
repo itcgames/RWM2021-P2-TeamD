@@ -4,32 +4,40 @@ using UnityEngine;
 
 public class HPDisplayController : MonoBehaviour
 {
-    public float InitialHp; // 100% of enemy's hp
+    private float initialHp; // 100% of enemy's hp
     private float HpReduction; // % based
-    private float HpScale; // x axis scale
+    private float hpScale = 3.25f;
     private float currentHp;
-
-    private EnemySelector m_parentScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_parentScript = transform.parent.GetComponent<EnemySelector>();
+        HpReduction = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_parentScript.GetEnemyHP(ref currentHp, ref InitialHp);
-
-        transform.GetChild(0).transform.localScale = new Vector2(transform.GetChild(0).transform.localScale.x - HpReduction,
-            transform.GetChild(0).transform.localScale.y);
     }
 
     void CalculateReduction(float currentHp)
     {
-        float reduction = (InitialHp - currentHp) / InitialHp * 100;
+        float reduction = (initialHp - currentHp) / initialHp * 100;
 
-        HpReduction = (transform.GetChild(0).transform.localScale.x / 100 * reduction);
+        HpReduction = (hpScale / 100 * reduction);
+    }
+
+    public void UpdateHpBar(EnemySelector enemySelector)
+    {
+        if ((enemySelector.id - 1) < enemySelector.CombatScript.EnemyList.Count
+            && enemySelector.CombatScript.EnemyList[enemySelector.id - 1].activeSelf)
+        {
+            enemySelector.GetEnemyHP(ref currentHp, ref initialHp);
+            CalculateReduction(currentHp);
+
+            transform.GetChild(0).transform.localScale = new Vector2(hpScale - HpReduction,
+                transform.GetChild(0).transform.localScale.y);
+
+        }
     }
 }
