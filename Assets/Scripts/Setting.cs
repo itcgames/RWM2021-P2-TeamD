@@ -22,7 +22,7 @@ public class Setting : MonoBehaviour
             return;
         }
 
-        music = 0.8f;
+        music = 0.4f;
         sfx = 0.8f;
         mute = false;
 
