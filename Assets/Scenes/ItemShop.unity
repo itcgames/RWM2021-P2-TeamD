@@ -964,6 +964,7 @@ MonoBehaviour:
   m_cost: 80
   m_amount: 0
   m_name: Pure
+  m_effects: 20
 --- !u!114 &1144596829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,7 @@ MonoBehaviour:
   m_cost: 60
   m_amount: 0
   m_name: Heal
+  m_effects: 10
 --- !u!114 &1246476070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,6 +1434,7 @@ MonoBehaviour:
   m_cost: 100
   m_amount: 0
   m_name: Tent
+  m_effects: 100
 --- !u!114 &1406529980
 MonoBehaviour:
   m_ObjectHideFlags: 0
