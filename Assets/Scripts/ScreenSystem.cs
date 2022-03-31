@@ -47,7 +47,7 @@ public class ScreenSystem : MonoBehaviour
             //{
             //    GoToGameplayScene();
             //}
-            if(Input.GetMouseButtonDown(1))
+            if(Input.GetMouseButtonUp(1))
             {
                 if (m_currentInventory != 0)
                     FindObjectOfType<Cursor>().GoBack();
@@ -72,7 +72,7 @@ public class ScreenSystem : MonoBehaviour
             {
                 for (int i = 0; i < this.transform.childCount; i++)
                 {
-                    if(i < this.transform.childCount-1)
+                    if(i < this.transform.childCount-2)
                         this.transform.GetChild(i).gameObject.SetActive(false);
                     //else
                        // this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);

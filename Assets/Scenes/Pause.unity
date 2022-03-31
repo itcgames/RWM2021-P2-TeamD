@@ -5278,7 +5278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1965568314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9659,22 +9659,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -160
       objectReference: {fileID: 0}
-    - target: {fileID: 7257390407844280960, guid: 7f2dd3eb555c77d428de81b8175010e7,
+    - target: {fileID: 7257390407844280962, guid: 7f2dd3eb555c77d428de81b8175010e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 7257390407844280960, guid: 7f2dd3eb555c77d428de81b8175010e7,
+    - target: {fileID: 7257390407844280962, guid: 7f2dd3eb555c77d428de81b8175010e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 7257390407844280960, guid: 7f2dd3eb555c77d428de81b8175010e7,
+    - target: {fileID: 7257390407844280962, guid: 7f2dd3eb555c77d428de81b8175010e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 7668156684808089985}
-    - target: {fileID: 7257390407844280960, guid: 7f2dd3eb555c77d428de81b8175010e7,
+    - target: {fileID: 7257390407844280962, guid: 7f2dd3eb555c77d428de81b8175010e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2

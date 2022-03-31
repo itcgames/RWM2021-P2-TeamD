@@ -27,13 +27,4 @@ public class EndPoint : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
             FindObjectOfType<ScreenSystem>().EndpointHit();
     }
-
-    public void FightWon()
-    {
-        fightsWon++;
-        if(fightsWon >= FIGHT_WINS_TO_END)
-        {
-            FindObjectOfType<ScreenSystem>().EndpointHit();
-        }
-    }
 }

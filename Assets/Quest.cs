@@ -14,6 +14,8 @@ public class Quest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (FindObjectOfType<PlayerAndGameInfo>() == null) return;
+
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && CompareTag("Quest"))
         {
            
@@ -102,15 +104,15 @@ public class Quest : MonoBehaviour
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1.Equip = false;
 
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2 = new weapon("Dynamite", 9, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2 = new weapon("Repeater", 7, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2 = new weapon("Big iron", 13, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2 = new weapon("Molitove Cocktail", 14, true);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2 = new weapon("Dynamite", 9, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2 = new weapon("Repeater", 7, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2 = new weapon("Big iron", 13, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2 = new weapon("Molotov Cocktail", 14, false);
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2 = new armor("Leather", 4, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2 = new armor("Sherrif outfit", 6, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2 = new armor("Texas Red outfit", 7, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2 = new armor("Evil Gunslinger Outfit", 5, true);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2 = new armor("Leather", 4, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2 = new armor("Sherrif outfit", 6, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2 = new armor("Texas Red outfit", 7, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2 = new armor("Evil Gunslinger Outfit", 5, false);
                     FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = true;
                     GameObject sceneManager = GameObject.Find("SceneManager");
 
@@ -127,15 +129,15 @@ public class Quest : MonoBehaviour
                 
 
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3 = new weapon("Stack of Dynamite", 13, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3 = new weapon("Hunting rifle", 15, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3 = new weapon("Bigger iron", 17, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3 = new weapon("Molitove Cocktail with oil", 16, true);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3 = new weapon("Stack of Dynamite", 13, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3 = new weapon("Hunting rifle", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3 = new weapon("Bigger iron", 17, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3 = new weapon("Molotov Cocktail with oil", 16, false);
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3 = new armor("Bull Leather", 8, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3 = new armor("Elite Sherrif outfit", 11, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3 = new armor("The Stranger Gear", 13, true);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3 = new armor("Bandit leader Outfit", 10, true);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3 = new armor("Bull Leather", 8, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3 = new armor("Elite Sherrif outfit", 11, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3 = new armor("The Stranger Gear", 13, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3 = new armor("Bandit leader Outfit", 10, false);
                     FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = true;
                     GameObject sceneManager = GameObject.Find("SceneManager");
 

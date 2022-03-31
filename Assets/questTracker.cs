@@ -19,7 +19,9 @@ public class questTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == true)
+        if (FindObjectOfType<PlayerAndGameInfo>() == null) return;
+
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == true)
         {
             this.transform.GetChild(0).GetComponent<Text>().color = Color.green;
         }
