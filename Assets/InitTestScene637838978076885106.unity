@@ -121,7 +121,19 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &726761406
+--- !u!114 &294325826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e1b3cbf3fac6a459b1a602167ad311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1166504074
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +141,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 726761409}
-  - component: {fileID: 726761408}
-  - component: {fileID: 726761407}
+  - component: {fileID: 1166504077}
+  - component: {fileID: 1166504076}
+  - component: {fileID: 1166504075}
   m_Layer: 0
   m_Name: Code-based tests runner
   m_TagString: Untagged
@@ -139,25 +151,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &726761407
+--- !u!114 &1166504075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726761406}
+  m_GameObject: {fileID: 1166504074}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cf5cb9e1ef590c48b1f919f2a7bd895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &726761408
+--- !u!114 &1166504076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726761406}
+  m_GameObject: {fileID: 1166504074}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102e512f651ee834f951a2516c1ea3b8, type: 3}
@@ -169,7 +181,7 @@ MonoBehaviour:
   testStartedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726761407}
+      - m_Target: {fileID: 1166504075}
         m_MethodName: TestStarted
         m_Mode: 0
         m_Arguments:
@@ -180,7 +192,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1248391784}
+      - m_Target: {fileID: 2142878345}
         m_MethodName: TestStarted
         m_Mode: 0
         m_Arguments:
@@ -191,7 +203,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1309251484}
+      - m_Target: {fileID: 294325826}
         m_MethodName: TestStarted
         m_Mode: 0
         m_Arguments:
@@ -202,7 +214,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1170865839}
+      - m_Target: {fileID: 1700323040}
         m_MethodName: TestStarted
         m_Mode: 0
         m_Arguments:
@@ -216,7 +228,7 @@ MonoBehaviour:
   testFinishedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726761407}
+      - m_Target: {fileID: 1166504075}
         m_MethodName: TestFinished
         m_Mode: 0
         m_Arguments:
@@ -227,7 +239,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1248391784}
+      - m_Target: {fileID: 2142878345}
         m_MethodName: TestFinished
         m_Mode: 0
         m_Arguments:
@@ -238,7 +250,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1309251484}
+      - m_Target: {fileID: 294325826}
         m_MethodName: TestFinished
         m_Mode: 0
         m_Arguments:
@@ -249,7 +261,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1170865839}
+      - m_Target: {fileID: 1700323040}
         m_MethodName: TestFinished
         m_Mode: 0
         m_Arguments:
@@ -263,7 +275,7 @@ MonoBehaviour:
   runStartedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726761407}
+      - m_Target: {fileID: 1166504075}
         m_MethodName: RunStarted
         m_Mode: 0
         m_Arguments:
@@ -274,7 +286,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1248391784}
+      - m_Target: {fileID: 2142878345}
         m_MethodName: RunStarted
         m_Mode: 0
         m_Arguments:
@@ -285,7 +297,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1309251484}
+      - m_Target: {fileID: 294325826}
         m_MethodName: RunStarted
         m_Mode: 0
         m_Arguments:
@@ -296,7 +308,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1170865839}
+      - m_Target: {fileID: 1700323040}
         m_MethodName: RunStarted
         m_Mode: 0
         m_Arguments:
@@ -310,7 +322,7 @@ MonoBehaviour:
   runFinishedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 726761407}
+      - m_Target: {fileID: 1166504075}
         m_MethodName: RunFinished
         m_Mode: 0
         m_Arguments:
@@ -321,7 +333,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1248391784}
+      - m_Target: {fileID: 2142878345}
         m_MethodName: RunFinished
         m_Mode: 0
         m_Arguments:
@@ -332,7 +344,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1309251484}
+      - m_Target: {fileID: 294325826}
         m_MethodName: RunFinished
         m_Mode: 0
         m_Arguments:
@@ -343,7 +355,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1170865839}
+      - m_Target: {fileID: 1700323040}
         m_MethodName: RunFinished
         m_Mode: 0
         m_Arguments:
@@ -359,19 +371,18 @@ MonoBehaviour:
     - assemblyNames: []
       groupNames: []
       categoryNames: []
-      testNames:
-      - Tests.LoadingTests.AssignPlayerData
+      testNames: []
       synchronousOnly: 0
     sceneBased: 0
     originalScene: Assets/Scenes/Menu.unity
-    bootstrapScene: Assets/InitTestScene637743356748592953.unity
---- !u!4 &726761409
+    bootstrapScene: Assets/InitTestScene637838978076885106.unity
+--- !u!4 &1166504077
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726761406}
+  m_GameObject: {fileID: 1166504074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -379,7 +390,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1170865839
+--- !u!114 &1700323040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f09f0f82599b5448579854e622a4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1248391784
+--- !u!114 &2142878345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -401,17 +412,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d44e6804bc58be84ea71a619b468f150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1309251484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e1b3cbf3fac6a459b1a602167ad311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

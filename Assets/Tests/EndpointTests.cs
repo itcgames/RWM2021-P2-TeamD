@@ -29,7 +29,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
 
-            Assert.AreEqual(0, SceneManager.GetActiveScene().buildIndex);
+            Assert.AreEqual(13, SceneManager.GetActiveScene().buildIndex);
         }
 
         [UnityTest]
@@ -55,7 +55,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
 
-            Assert.AreEqual(0, SceneManager.GetActiveScene().buildIndex);
+            Assert.AreEqual(13, SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

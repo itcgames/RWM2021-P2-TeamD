@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour
 {
     public List<Vector2> cursorInvPositions;
     public List<Vector2> cursorCharPositions;
-    int currentInvPos = 0;
-    int currentCharPos = 0;
+    public int currentInvPos = 0;
+    public int currentCharPos = 0;
     int col2 = 0;
     public ScreenSystem t_screenSystem;
     public bool pickChar;
@@ -24,9 +25,14 @@ public class Cursor : MonoBehaviour
     int row = 0;
     int col = 0;
     CheckpointSystem checkpointSystem;
+
+    public List<GameObject> charPickButtons;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("Gold").transform.GetChild(0).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().GetCharInfo().m_gil.ToString() + " G";
+
         naviArmor = new Vector2[2,8];
 
         naviArmor[0, 0] = new Vector2( -180, 120 );
@@ -73,6 +79,14 @@ public class Cursor : MonoBehaviour
         info = new CharacterInfo();
 
         checkpointSystem = GameObject.FindObjectOfType<CheckpointSystem>();
+
+        //if (charPickButtons != null)
+        //{
+        //    charPickButtons[0].SetActive(false);
+        //    charPickButtons[1].SetActive(false);
+        //    charPickButtons[2].SetActive(false);
+        //    charPickButtons[3].SetActive(false);
+        //}
     }
 
     // Update is called once per frame
@@ -82,6 +96,11 @@ public class Cursor : MonoBehaviour
         {
             if (!pickChar)
             {
+                //charPickButtons[0].SetActive(false);
+                //charPickButtons[1].SetActive(false);
+                //charPickButtons[2].SetActive(false);
+                //charPickButtons[3].SetActive(false);
+
                 this.gameObject.GetComponent<RectTransform>().localPosition = cursorInvPositions[currentInvPos];
 
                 if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -94,11 +113,16 @@ public class Cursor : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.X))
                 {
-                    UseFunctionality();
+                    UseFunctionality(currentInvPos);
                 }
             }
             else
             {
+                //charPickButtons[0].SetActive(true);
+                //charPickButtons[1].SetActive(true);
+                //charPickButtons[2].SetActive(true);
+                //charPickButtons[3].SetActive(true);
+
                 this.gameObject.GetComponent<RectTransform>().localPosition = cursorCharPositions[currentCharPos];
 
                 if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -119,7 +143,7 @@ public class Cursor : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.X))
                 {
-                    GoToCharInventory();
+                    GoToCharInventory(currentCharPos);
                 }
             }
             if (Input.GetKeyDown(KeyCode.Z))
@@ -284,7 +308,7 @@ public class Cursor : MonoBehaviour
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(4, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute3());
 
 
                     FindObjectOfType<CheckpointSystem>().SaveData(JsonUtility.ToJson(FindObjectOfType<PlayerAndGameInfo>().GetCharInfo()));
@@ -296,7 +320,7 @@ public class Cursor : MonoBehaviour
                     GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(currentCharPos + 1, charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetName(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetImage(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute1(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
-                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType());
+                        charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute3());
                     currentCharPos++;
                 }
 
@@ -314,36 +338,37 @@ public class Cursor : MonoBehaviour
         }
     }
 
-    public void UseFunctionality()
+    public void SetIsNavi(bool navi)
     {
-        switch (currentInvPos)
+        isNavi = navi;
+    }
+
+    public void UseFunctionality(int invPos)
+    {
+        switch (invPos)
         {
-            case 0:
-                t_screenSystem.GoToInventoryScreen(currentInvPos);
-                break;
             case 1:
-                pickChar = true;
+                currentInvPos = invPos;
+                t_screenSystem.GoToInventoryScreen(invPos);
                 break;
             case 2:
-                t_screenSystem.GoToInventoryScreen(currentInvPos);
+                currentInvPos = invPos;
+                t_screenSystem.GoToInventoryScreen(invPos);
                 break;
             case 3:
+                currentInvPos = invPos;
                 isInventory = false;
                 isArmour = true;
                 isNavi = true;
-                t_screenSystem.GoToInventoryScreen(currentInvPos);
-                
-               
-                break;
-            case 4:
-                pickChar = true;
+                t_screenSystem.GoToInventoryScreen(invPos);
                 break;
             default:
                 break;
         }
     }
-    public void GoToCharInventory()
+    public void GoToCharInventory(int charPos)
     {
+        currentCharPos = charPos;
         t_screenSystem.GoToInventoryScreen(currentInvPos);
     }
     public void MoveUp()

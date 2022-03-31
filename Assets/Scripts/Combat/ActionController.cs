@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActionController : MonoBehaviour
 {
@@ -56,13 +57,37 @@ public class ActionController : MonoBehaviour
     {
         if (Target != null)
         {
-            Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
-                GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+            if (Target.GetComponent<CharacterAttributes>().FindAttribute("Def") != null)
+            {
+
+                Debug.Log(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value);
+                int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
+                 emotionalDamage);
+                AudioManager.instance.PlaySFX("Attack");
+            }
+            else
+            {
+                if (GetComponent<CharacterAttributes>().FindAttribute("Ack") != null)
+                {
+                    Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                    GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
+
+                }
+                else
+                { 
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                    GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+            }
+            }
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value <= 0.0f)
             {
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value = 0.0f;
                 Target.SetActive(false);
+                //death sound
+                AudioManager.instance.PlaySFX("Death");
             }
             else
             {
@@ -83,7 +108,10 @@ public class ActionController : MonoBehaviour
         {
             Debug.Log("Successfully escaped!");
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
-
+            //flee sounds
+            AudioManager.instance.PauseMusic("BattleTheme");
+            AudioManager.instance.PlaySFX("Flee");
+            AudioManager.instance.PlayMusic("Theme");
             yield return new WaitForSeconds(2);
         }
 

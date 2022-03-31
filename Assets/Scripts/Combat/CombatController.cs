@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatController : MonoBehaviour
 {
@@ -15,15 +16,22 @@ public class CombatController : MonoBehaviour
 
     private int m_currentChar;
 
+    public Text m_statusTxt;
+    public Text m_rewardTxt;
+
+    private int m_goldReward = 0;
+    private int m_xpReward = 0;
+
     // analytics
     CombatData data;
 
     // Start is called before the first frame update
     void Start()
     {
-        // for testing 
-        data = new CombatData {enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
+        GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
 
+        // for testing 
+        data = new CombatData { enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
         Combat();
     }
 
@@ -32,20 +40,35 @@ public class CombatController : MonoBehaviour
     {
         if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
-            if (Input.GetKeyUp(KeyCode.LeftArrow)) GetComponent<CombatCursorController>().MoveCol(-1);
-            if (Input.GetKeyUp(KeyCode.RightArrow)) GetComponent<CombatCursorController>().MoveCol(1);
+            m_statusTxt.text = "CHOOSE ACTION";
 
-            if (Input.GetKeyUp(KeyCode.UpArrow)) GetComponent<CombatCursorController>().MoveRow(-1);
-            if (Input.GetKeyUp(KeyCode.DownArrow)) GetComponent<CombatCursorController>().MoveRow(1);
-
-            if (GetComponent<CombatCursorController>().DecideAction)
+            if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
             {
-                if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseAction(m_currentChar);
+                m_statusTxt.text = "CHOOSE ENEMY";
+
+                if (Input.GetMouseButtonUp(1))
+                {
+                    GetComponent<CombatCursorController>().RevertAttackAction();
+                    //cancel sound
+                }
             }
-
-            else if (GetComponent<CombatCursorController>().ChooseEnemyTarget)
+            else
             {
-                if (Input.GetKeyUp(KeyCode.X)) GetComponent<CombatCursorController>().ChooseTarget(m_currentChar);
+                // action selection shortcuts
+                if (Input.GetMouseButtonUp(1))
+                {
+                    GetComponent<CombatCursorController>().AttackAction();
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    GetComponent<CombatCursorController>().FleeAction();
+                }
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    GetComponent<CombatCursorController>().ItemsAction();
+                }
             }
         }
 
@@ -68,30 +91,60 @@ public class CombatController : MonoBehaviour
             CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState ||
             CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
+            {
+                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP";
+            }
+
+            else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
+            {
+                m_statusTxt.text = "ESCAPED!";
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) ||
+                Input.GetKeyDown(KeyCode.Escape) ||
+                Input.GetMouseButtonDown(0))
             {
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
-                    // implement rewards here
-                    UpdateStats();
+                    Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
+                    if (!FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered && !FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered
+                        && !FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered)
+                    {
+                        EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished = true;
+                    }
+                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished = true;
+                    }
+                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished = true;
+                    }
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
                 }
                 else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
                 {
+                    UpdateStats();
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
                 }
                 else
                 {
+                    EnemyUtil.ResetEnemyStatus();
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
-
                     DataCollectionUtility.PostData(data, this);
                 }
-
-
             }
 
             else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
@@ -110,7 +163,26 @@ public class CombatController : MonoBehaviour
         if (!Utilities.s_testMode)
         {
             InitParty();
-            GenerateEnemies();
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == true)
+            {
+                SpawnBoss();
+
+            }
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
+            {
+                SpawnBoss2();
+
+            }
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
+            {
+                SpawnBoss3();
+
+            }
+            else if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == false)
+            {
+                GenerateEnemies();
+            }
+            CalculateGoldXpRewards(ref m_goldReward, ref m_xpReward, EnemyList);
             StartCombat();
             GetComponent<GenerateGrids>().CreatePartyGrid();
             GetComponent<GenerateGrids>().CreateEnemyGrid();
@@ -121,8 +193,6 @@ public class CombatController : MonoBehaviour
             GetComponent<CombatUIController>().UpdateHpTexts(Party);
 
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
-            GetComponent<CombatCursorController>().SetupCursor();
-            GetComponent<CombatCursorController>().EnterActionSelect();
 
             m_currentChar = -1;
             ChangeActivePartyMember();
@@ -138,6 +208,9 @@ public class CombatController : MonoBehaviour
 
     public void StartCombat()
     {
+        //music play
+        AudioManager.instance.PauseMusic("Theme");
+        AudioManager.instance.PlayMusic("BattleTheme");
         m_battleOrder = new Dictionary<int, GameObject>();
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
@@ -202,19 +275,37 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = EnemyType.Imp;
+            EnemyType enemyType = (EnemyType)Random.Range(0, 7);
 
             switch (enemyType)
             {
-                case EnemyType.Imp:
-                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
-                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                case EnemyType.Bandit:
+                    EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
                     break;
-                case EnemyType.Wolf:
-                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.DesertWarrior:
+                    EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
                     break;
-                case EnemyType.Spider:
-                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.Cactus:
+                    EnemyUtil.SetupCactus(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cactus-revenge");
+                    break;
+                case EnemyType.DesertShinobi:
+                    EnemyUtil.SetupShinobiDesert(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-shinobi");
+                    break;
+                case EnemyType.DarkShinobi:
+                    EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+                    break;
+                case EnemyType.ShadeShinobi:
+                    EnemyUtil.SetupShinobiShade(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("shade-shinobi");
+                    break;
+                case EnemyType.Snail:
+                    EnemyUtil.SetupSnail(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("snail");
                     break;
                 default:
                     break;
@@ -236,19 +327,37 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = EnemyType.Imp;
+            EnemyType enemyType = EnemyType.Bandit;
 
             switch (enemyType)
             {
-                case EnemyType.Imp:
-                    EnemyUtil.SetupImp(enemy.GetComponent<CharacterAttributes>());
-                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("imp-sprite");
+                case EnemyType.Bandit:
+                    EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
                     break;
-                case EnemyType.Wolf:
-                    EnemyUtil.SetupWolf(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.DesertWarrior:
+                    EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
                     break;
-                case EnemyType.Spider:
-                    EnemyUtil.SetupSpider(enemy.GetComponent<CharacterAttributes>());
+                case EnemyType.Cactus:
+                    EnemyUtil.SetupCactus(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cactus-revenge");
+                    break;
+                case EnemyType.DesertShinobi:
+                    EnemyUtil.SetupShinobiDesert(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-shinobi");
+                    break;
+                case EnemyType.DarkShinobi:
+                    EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+                    break;
+                case EnemyType.ShadeShinobi:
+                    EnemyUtil.SetupShinobiShade(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("shade-shinobi");
+                    break;
+                case EnemyType.Snail:
+                    EnemyUtil.SetupSnail(enemy.GetComponent<CharacterAttributes>());
+                    enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("snail");
                     break;
                 default:
                     break;
@@ -290,10 +399,13 @@ public class CombatController : MonoBehaviour
         if (m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
 
         m_currentChar++;
+        GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
 
         while (m_currentChar < Party.Count && !Party[m_currentChar].activeSelf)
         {
             m_currentChar++;
+            GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
+            Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
         }
 
         // if current character is the last character, return to first character and start battle
@@ -301,6 +413,8 @@ public class CombatController : MonoBehaviour
         {
             Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
             m_currentChar = 0;
+            GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
+            Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Battle;
             return;
         }
@@ -309,13 +423,19 @@ public class CombatController : MonoBehaviour
 
     public void GenEnemyActions()
     {
-        foreach (var enemy in EnemyList)
+        for (int i = 0; i < EnemyList.Count; ++i)
         {
-            enemy.GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
+            EnemyList[i].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
 
             int targetPartyMember = Random.Range(0, 4);
 
-            enemy.GetComponent<ActionController>().Target = Party[targetPartyMember];
+            if (!Party[targetPartyMember].activeSelf)
+            {
+                --i;
+                continue;
+            }
+
+            EnemyList[i].GetComponent<ActionController>().Target = Party[targetPartyMember];
         }
     }
 
@@ -361,6 +481,7 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Failure;
                 Debug.Log("You have lost the battle...");
+                m_statusTxt.text = "YOU LOST THE BATTLE...";
                 data.victory = 0;
                 return true;
             }
@@ -373,10 +494,14 @@ public class CombatController : MonoBehaviour
             {
                 CombatEnum.s_currentCombatState = CombatEnum.CombatState.Victory;
                 Debug.Log("All enemies terminated!");
-                
+                m_statusTxt.text = "YOU WON THE BATTLE!";
+                UpdateStats();
+
                 data.victory = 1;
-                
+
                 FindObjectOfType<EndPoint>().FightWon();
+                AudioManager.instance.PauseMusic("BattleTheme");
+                AudioManager.instance.PlayMusic("Theme");                
                 return true;
             }
         }
@@ -414,25 +539,57 @@ public class CombatController : MonoBehaviour
 
     public void InitParty()
     {
+        m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value;
         m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value;
         m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value;
+        m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor1.Value;
+        m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Ack").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack1.Value;
+
         m_party[0].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name1;
         m_party[0].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage1;
+        
+        m_party[0].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl1;
+        m_party[0].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1;
+        m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold1;
 
+        m_party[1].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value;
         m_party[1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value;
         m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam2.Value;
+        m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor2.Value;
+        m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Ack").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack2.Value;
+
         m_party[1].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name2;
         m_party[1].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage2;
 
+        m_party[1].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl2;
+        m_party[1].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp2;
+        m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold2;
+
+        m_party[2].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam3.Value;
+        m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor3.Value;
+        m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Ack").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack3.Value;
+
         m_party[2].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name3;
         m_party[2].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage3;
 
+        m_party[2].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl3;
+        m_party[2].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp3;
+        m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold3;
+
+        m_party[3].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("HP").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value;
+        m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeArmor4.Value;
+        m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Ack").Value = FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack4.Value;
+
         m_party[3].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name4;
         m_party[3].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage4;
+
+        m_party[3].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl4;
+        m_party[3].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp4;
+        m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold4;
 
         foreach (var member in m_party)
         {
@@ -445,16 +602,223 @@ public class CombatController : MonoBehaviour
 
     public void UpdateStats()
     {
+        if (CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            // updating gold
+            FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_goldReward;
+        }
+
+        // member 1
+        if (m_party[0].activeSelf && CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            m_party[0].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[0].GetComponent<CharacterAttributes>().Xp >= m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[0].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[0].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
+        }
+
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1 = m_party[0].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl1 = m_party[0].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold1 = m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam1.Value = m_party[0].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+        // member 2
+        if (m_party[1].activeSelf && CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            m_party[1].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[1].GetComponent<CharacterAttributes>().Xp >= m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[1].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[1].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
+        }
+
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp2 = m_party[1].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl2 = m_party[1].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold2 = m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam2.Value = m_party[1].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+        // member 3
+        if (m_party[2].activeSelf && CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            m_party[2].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[2].GetComponent<CharacterAttributes>().Xp >= m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[2].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[2].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
+        }
+
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp3 = m_party[2].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl3 = m_party[2].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold3 = m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam3.Value = m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
+
+        // member 4
+        if (m_party[3].activeSelf && CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            m_party[3].GetComponent<CharacterAttributes>().Xp += m_xpReward;
+
+            if (m_party[3].GetComponent<CharacterAttributes>().Xp >= m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold)
+            {
+                Party[3].transform.GetChild(0).gameObject.SetActive(true);
+
+                switch (FindObjectOfType<PlayerAndGameInfo>().infos.m_type1)
+                {
+                    case (int)PartyType.Fighter:
+                        PartyUtil.LevelUpFighter(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.B_Mage:
+                        PartyUtil.LevelUpMage(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.Thief:
+                        PartyUtil.LevelUpThief(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                    case (int)PartyType.BL_Belt:
+                        PartyUtil.LevelUpBlackBelt(m_party[3].GetComponent<CharacterAttributes>());
+                        break;
+                }
+            }
+        }
+
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_xp4 = m_party[3].GetComponent<CharacterAttributes>().Xp;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl4 = m_party[3].GetComponent<CharacterAttributes>().Level;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold4 = m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("HP").Value;
+        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value;
         FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeDam4.Value = m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+    }
+
+    public static void CalculateGoldXpRewards(ref int goldReward, ref int xpReward, List<GameObject> enemies)
+    {
+        foreach (var enemy in enemies)
+        {
+            goldReward += enemy.GetComponent<CharacterAttributes>().Gold;
+            xpReward += enemy.GetComponent<CharacterAttributes>().Xp;
+        }
+    }
+    public void SpawnBoss()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
+
+
+
+            EnemyList.Add(enemy);
+        }
+    }
+    public void SpawnBoss3()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+
+
+
+            EnemyList.Add(enemy);
+        }
+    }
+    public void SpawnBoss2()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
+
+
+
+            EnemyList.Add(enemy);
+        }
     }
 }

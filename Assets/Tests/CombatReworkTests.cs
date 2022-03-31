@@ -24,6 +24,9 @@ public class CombatReworkTests
     {
         GameObject enemy = new GameObject();
         enemy.AddComponent<EnemyController>();
+        enemy.AddComponent<EnemyID>();
+
+        enemy.GetComponent<EnemyID>().ID = 1;
         enemy.GetComponent<EnemyController>().m_bullet = m_enemyBullet;
 
         enemy.GetComponent<EnemyController>().Fire(new Vector2(10, 10));
