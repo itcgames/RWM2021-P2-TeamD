@@ -14,7 +14,7 @@ public class EnemyUtil
 {
     public static int s_currentEnemyID = 0;
 
-    public static bool[] s_enemyAliveStatus = new bool[20];
+    public static bool[] s_enemyAliveStatus = new bool[18];
 
     public static void ResetEnemyStatus()
     {

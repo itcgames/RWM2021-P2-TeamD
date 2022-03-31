@@ -12,12 +12,12 @@ public class ScreenSystem : MonoBehaviour
     {
         if (this.gameObject.name != "Canvas")
             DontDestroyOnLoad(this.gameObject);
-        EnemyUtil.ResetEnemyStatus();
     }
 
     public void GoToCharacterSelcetionScene()
     {
         SceneManager.LoadScene(1);
+        EnemyUtil.ResetEnemyStatus();
     }
 
     public void GoToGameplayScene()
