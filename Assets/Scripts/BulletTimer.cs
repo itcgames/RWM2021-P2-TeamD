@@ -51,5 +51,9 @@ public class BulletTimer : MonoBehaviour
                 sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
             }
         }
+        else if (other.CompareTag("BulletDestroyer") && tag == "Player Bullet")
+        {
+            Destroy(gameObject);
+        }
     }
 }
