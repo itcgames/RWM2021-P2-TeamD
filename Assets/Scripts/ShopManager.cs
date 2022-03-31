@@ -162,7 +162,7 @@ public class ShopManager : MonoBehaviour
                 // add the item here
                 if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
                 {
-                    GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
+                    //GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
                     //m_inventory
                 }
                 m_shopItems.GetComponent<ItemCost>().addInventory();
