@@ -85,12 +85,9 @@ public class ActionController : MonoBehaviour
 
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("Def") != null)
             {
-                int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
-
-                if(Target.GetComponent<ActionController>().Action == CombatAction.Block)
-                {
-                    emotionalDamage *= 2;
-                }
+                int emotionalDamage = CalculateDmgReduction(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value,
+                    Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value,
+                    Target.GetComponent<ActionController>().Action == CombatAction.Block);
 
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
                  emotionalDamage);
@@ -101,9 +98,12 @@ public class ActionController : MonoBehaviour
                 + Target.GetComponent<CharacterAttributes>().Name;
 
                 StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
-                
+
                 //Attack sound
-                AudioManager.instance.PlaySFX("Attack");
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlaySFX("Attack");
+                }
             }
             else
             {
@@ -117,9 +117,12 @@ public class ActionController : MonoBehaviour
                 + Target.GetComponent<CharacterAttributes>().Name;
 
                     StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
-                    
+
                     //Attack sound
-                    AudioManager.instance.PlaySFX("Attack");
+                    if (AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX("Attack");
+                    }
                 }
                 else
                 {
@@ -131,9 +134,12 @@ public class ActionController : MonoBehaviour
                 + Target.GetComponent<CharacterAttributes>().Name;
 
                     StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
-                    
+
                     //Attack sound
-                    AudioManager.instance.PlaySFX("Attack");
+                    if (AudioManager.instance != null)
+                    {
+                        AudioManager.instance.PlaySFX("Attack");
+                    }
                 }
             }
 
@@ -146,7 +152,10 @@ public class ActionController : MonoBehaviour
                 Debug.Log(Target.GetComponent<CharacterAttributes>().Name + " Defeated");
                 Target.SetActive(false);
                 //death sound
-                AudioManager.instance.PlaySFX("Death");
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlaySFX("Death");
+                }
             }
         }
 
@@ -161,9 +170,12 @@ public class ActionController : MonoBehaviour
         {
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
             //flee sounds
-            AudioManager.instance.PauseMusic("BattleTheme");
-            AudioManager.instance.PlaySFX("Flee");
-            AudioManager.instance.PlayMusic("Theme");
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PauseMusic("BattleTheme");
+                AudioManager.instance.PlaySFX("Flee");
+                AudioManager.instance.PlayMusic("Theme");
+            }
         }
 
         else
@@ -175,5 +187,21 @@ public class ActionController : MonoBehaviour
     private void Block()
     {
         StatusTxt.text = GetComponent<CharacterAttributes>().Name + "\nIS BLOCKING";
+    }
+
+    public static int CalculateDmgReduction(float dmg, float targetDef, bool targetIsBlocking)
+    {
+        int reduction = 0;
+
+        if (targetIsBlocking)
+        {
+            reduction = (int)(dmg / 100 * (targetDef * 2));
+        }
+        else
+        {
+            reduction = (int)(dmg / 100 * targetDef);
+        }
+
+        return reduction;
     }
 }

@@ -228,8 +228,11 @@ public class CombatController : MonoBehaviour
     public void StartCombat()
     {
         //music play
-        AudioManager.instance.PauseMusic("Theme");
-        AudioManager.instance.PlayMusic("BattleTheme");
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PauseMusic("Theme");
+            AudioManager.instance.PlayMusic("BattleTheme");
+        }
         m_battleOrder = new Dictionary<int, GameObject>();
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
@@ -594,9 +597,11 @@ public class CombatController : MonoBehaviour
 
                 data.victory = 1;
 
-                FindObjectOfType<EndPoint>().FightWon();
-                AudioManager.instance.PauseMusic("BattleTheme");
-                AudioManager.instance.PlayMusic("Theme");                
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PauseMusic("BattleTheme");
+                    AudioManager.instance.PlayMusic("Theme");
+                }
                 return true;
             }
         }
