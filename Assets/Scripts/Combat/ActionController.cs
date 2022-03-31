@@ -15,6 +15,8 @@ public class ActionController : MonoBehaviour
     }
 
     public GameObject Target { get; set; }
+    public Vector2 TargetInitPos;
+
     public Text StatusTxt;
 
     public CombatAction Action { get; set; } = CombatAction.None;
@@ -60,22 +62,28 @@ public class ActionController : MonoBehaviour
         {
             if (!Target.activeSelf)
             {
-                if(Target.GetComponent<CharacterAttributes>().Playable)
+                if (Target.GetComponent<CharacterAttributes>().Playable)
                 {
-                    GameObject obj = GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewPartyTarget();
-
-                    if(obj != null)
-                    {
-                        Target = obj;
-                    }
-                }
-                else
-                {
-                    GameObject obj = GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewEnemyTarget();
+                    GameObject obj;
+                    Vector2 newTargetPos;
+                    GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewPartyTarget(out obj, out newTargetPos);
 
                     if (obj != null)
                     {
                         Target = obj;
+                        TargetInitPos = newTargetPos;
+                    }
+                }
+                else
+                {
+                    GameObject obj;
+                    Vector2 newTargetPos;
+                    GameObject.Find("CombatSystem").GetComponent<CombatController>().GetNewEnemyTarget(out obj, out newTargetPos);
+
+                    if (obj != null)
+                    {
+                        Target = obj;
+                        TargetInitPos = newTargetPos;
                     }
                 }
             }
@@ -88,8 +96,10 @@ public class ActionController : MonoBehaviour
 
                 StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
                 + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
-                 emotionalDamage) + " TO "
+                 emotionalDamage) + " DMG\nTO "
                 + Target.GetComponent<CharacterAttributes>().Name;
+
+                StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
             }
             else
             {
@@ -99,8 +109,10 @@ public class ActionController : MonoBehaviour
                     GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
 
                     StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
-                + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value) + " TO "
+                + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value) + " DMG\nTO "
                 + Target.GetComponent<CharacterAttributes>().Name;
+
+                    StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
                 }
                 else
                 {
@@ -108,8 +120,10 @@ public class ActionController : MonoBehaviour
                         GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
 
                     StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
-                + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + " TO "
+                + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + " DMG\nTO "
                 + Target.GetComponent<CharacterAttributes>().Name;
+
+                    StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
                 }
             }
 
