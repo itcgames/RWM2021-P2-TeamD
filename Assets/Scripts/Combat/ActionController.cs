@@ -9,9 +9,7 @@ public class ActionController : MonoBehaviour
         None,
         Fight,
         Flee,
-        Magic,
-        Drink,
-        Item
+        Block
     }
 
     public GameObject Target { get; set; }
@@ -45,11 +43,8 @@ public class ActionController : MonoBehaviour
             case CombatAction.Flee:
                 Flee();
                 break;
-            case CombatAction.Magic:
-                break;
-            case CombatAction.Drink:
-                break;
-            case CombatAction.Item:
+            case CombatAction.Block:
+                Block();
                 break;
             default:
                 break;
@@ -91,6 +86,12 @@ public class ActionController : MonoBehaviour
             if (Target.GetComponent<CharacterAttributes>().FindAttribute("Def") != null)
             {
                 int emotionalDamage = ((int)(GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value / 100 * Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value));
+
+                if(Target.GetComponent<ActionController>().Action == CombatAction.Block)
+                {
+                    emotionalDamage *= 2;
+                }
+
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
                  emotionalDamage);
 
@@ -169,5 +170,10 @@ public class ActionController : MonoBehaviour
         {
             StatusTxt.text = GetComponent<CharacterAttributes>().Name + " ESCAPE\nATTEMPT FAILED";
         }
+    }
+
+    private void Block()
+    {
+        StatusTxt.text = GetComponent<CharacterAttributes>().Name + "\nIS BLOCKING";
     }
 }

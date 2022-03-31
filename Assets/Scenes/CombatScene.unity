@@ -4732,11 +4732,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1041616289}
+    - target: {fileID: 1451704618320252255, guid: 19a9b705d57acc44f9a538cff7ddebdf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1451704618320252255, guid: 19a9b705d57acc44f9a538cff7ddebdf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClickSFX
+      value: BlockAction
       objectReference: {fileID: 0}
     - target: {fileID: 1451704618320252255, guid: 19a9b705d57acc44f9a538cff7ddebdf,
         type: 3}
@@ -4987,6 +4992,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActionBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770180251478357324, guid: 19a9b705d57acc44f9a538cff7ddebdf,
+        type: 3}
+      propertyPath: m_Text
+      value: BLOCK
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770180251478357330, guid: 19a9b705d57acc44f9a538cff7ddebdf,
+        type: 3}
+      propertyPath: m_Name
+      value: Block
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a9b705d57acc44f9a538cff7ddebdf, type: 3}

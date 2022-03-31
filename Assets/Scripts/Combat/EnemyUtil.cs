@@ -38,9 +38,11 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 8);
         Attribute hp = new Attribute("HP", 8);
         Attribute dmg = new Attribute("Dmg", 4);
+        Attribute def = new Attribute("Def", 2);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 
     public static void SetupWarrior(CharacterAttributes attrs)
@@ -55,9 +57,11 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 10);
         Attribute hp = new Attribute("HP", 10);
         Attribute dmg = new Attribute("Dmg", 6);
+        Attribute def = new Attribute("Def", 40);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 
     public static void SetupCactus(CharacterAttributes attrs)
@@ -72,9 +76,11 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 5);
         Attribute hp = new Attribute("HP", 5);
         Attribute dmg = new Attribute("Dmg", 3);
+        Attribute def = new Attribute("Def", 1);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 
     public static void SetupShinobiDesert(CharacterAttributes attrs)
@@ -89,9 +95,11 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 15);
         Attribute hp = new Attribute("HP", 15);
         Attribute dmg = new Attribute("Dmg", 6);
+        Attribute def = new Attribute("Def", 2);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 
     public static void SetupShinobiDark(CharacterAttributes attrs)
@@ -106,9 +114,11 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 25);
         Attribute hp = new Attribute("HP", 25);
         Attribute dmg = new Attribute("Dmg", 8);
+        Attribute def = new Attribute("Def", 10);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 
     public static void SetupShinobiShade(CharacterAttributes attrs)
@@ -123,9 +133,11 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 10);
         Attribute hp = new Attribute("HP", 10);
         Attribute dmg = new Attribute("Dmg", 15);
+        Attribute def = new Attribute("Def", 1);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 
     public static void SetupSnail(CharacterAttributes attrs)
@@ -140,8 +152,10 @@ public class EnemyUtil
         Attribute mhp = new Attribute("MHP", 2);
         Attribute hp = new Attribute("HP", 2);
         Attribute dmg = new Attribute("Dmg", 1);
+        Attribute def = new Attribute("Def", 1);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
     }
 }
