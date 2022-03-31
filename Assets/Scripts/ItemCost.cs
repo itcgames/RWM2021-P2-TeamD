@@ -43,7 +43,8 @@ public class ItemCost : MonoBehaviour
 
     public void addInventory()
     {
-        m_itemObject.GetComponent<ItemID>().addAmount();
+        //new code
+        ItemManager.instance.AddItem(m_itemObject.GetComponent<ItemID>().getName());
     }
 
     public void removeInventory()

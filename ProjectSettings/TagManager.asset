@@ -17,6 +17,7 @@ TagManager:
   - Barrier
   - drop
   - equip
+  - Money
   layers:
   - Default
   - TransparentFX
