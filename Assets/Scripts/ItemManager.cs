@@ -46,8 +46,12 @@ public class ItemManager : MonoBehaviour
                 newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
 
                 if (SceneManager.GetActiveScene().name == "Pause")
-                    newButton.GetComponent<Button>().onClick.AddListener(() => { print("inventory rn"); });
+                {
+                    newButton.GetComponent<Button>().onClick.AddListener(() => {
+                        print("inventory rn");
+                    });
                     //using item;
+                }
                 else if (SceneManager.GetActiveScene().name == "ItemShop")
                 {
                     newButton.GetComponent<Button>().onClick.AddListener(() => {
@@ -56,8 +60,6 @@ public class ItemManager : MonoBehaviour
                         {
                             i.m_amount--;
                             newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
-
-
                         }
                         else
                         {
