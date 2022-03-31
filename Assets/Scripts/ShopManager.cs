@@ -12,7 +12,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     GameObject m_shopItems;
     [SerializeField]
-    GameObject m_sellItems;
+    GameObject m_shopText;
+    [SerializeField]
+    GameObject m_shopGil;
     [SerializeField]
     GameObject m_confirmSelection;
     [SerializeField]
@@ -56,7 +58,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void Update()
     {
         backSelection();
 
@@ -76,6 +78,8 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
+
+        m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
     }
 
 
@@ -88,9 +92,11 @@ public class ShopManager : MonoBehaviour
 
     public void sellShop()
     {
-        m_sellItems.SetActive(true);
         m_shopSelection.SetActive(false);
+        m_shopItems.SetActive(false);
+        m_shopText.SetActive(false);
         m_dialog.text = "Whose item do want to sell?";
+        m_itemArea.SetActive(true);
     }
 
     public void ClinicPayment()
@@ -112,6 +118,11 @@ public class ShopManager : MonoBehaviour
     public void cancelSelling()
     {
         m_sell = false;
+        m_itemArea.SetActive(false);
+        m_shopSelection.SetActive(true);
+        m_shopItems.SetActive(true);
+        m_shopGil.SetActive(true);
+        m_shopText.SetActive(true);
         checkSelling();
     }
 
@@ -162,7 +173,7 @@ public class ShopManager : MonoBehaviour
                 // add the item here
                 if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
                 {
-                    GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
+                    //GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
                     //m_inventory
                 }
                 m_shopItems.GetComponent<ItemCost>().addInventory();
@@ -175,7 +186,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            m_dialog.text = "Too bad\n...\nSomething else?";
+            m_dialog.text = "Thank you!\n...\nSomething else?";
         }
         m_purchase = false;
         m_confirmSelection.SetActive(false);

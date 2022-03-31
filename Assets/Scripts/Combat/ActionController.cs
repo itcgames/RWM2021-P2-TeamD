@@ -169,6 +169,7 @@ public class ActionController : MonoBehaviour
         if (success > 50)
         {
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
+            StatusTxt.text = GetComponent<CharacterAttributes>().Name + " ESCAPE\nATTEMPT SUCCESSFUL";
             //flee sounds
             if (AudioManager.instance != null)
             {

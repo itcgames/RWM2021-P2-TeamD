@@ -26,50 +26,62 @@ public class CombatCursorController : MonoBehaviour
 
     public void AttackAction()
     {
-        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+        if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
+        {
+            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
             CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
             CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
-        {
-            ChooseEnemyTarget = true;
+            {
+                ChooseEnemyTarget = true;
+            }
         }
     }
 
     public void RevertAttackAction()
     {
-        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
-                   CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
-                   CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
-            ChooseEnemyTarget = false;
+            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+                       CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+                       CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+            {
+                ChooseEnemyTarget = false;
+            }
         }
     }
 
     public void BlockAction()
     {
-        if (!ChooseEnemyTarget)
+        if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
-            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
-                CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
-                CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+            if (!ChooseEnemyTarget)
             {
-                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Block;
-                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = GetComponent<CombatController>().m_statusTxt;
-                GetComponent<CombatController>().ChangeActivePartyMember();
+                if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+                {
+                    GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Block;
+                    GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = GetComponent<CombatController>().m_statusTxt;
+                    GetComponent<CombatController>().ChangeActivePartyMember();
+                }
             }
         }
     }
 
     public void FleeAction()
     {
-        if (!ChooseEnemyTarget)
+        if (CombatEnum.CombatState.ActionSelect == CombatEnum.s_currentCombatState)
         {
-            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+            if (!ChooseEnemyTarget)
             {
-                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Flee;
-                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = GetComponent<CombatController>().m_statusTxt;
-                GetComponent<CombatController>().ChangeActivePartyMember();
+                if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+                CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+                CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+                {
+                    GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Flee;
+                    GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = GetComponent<CombatController>().m_statusTxt;
+                    GetComponent<CombatController>().ChangeActivePartyMember();
+                }
             }
         }
     }

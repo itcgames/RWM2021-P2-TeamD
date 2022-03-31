@@ -454,6 +454,8 @@ public class CombatController : MonoBehaviour
     {
         for (int i = 0; i < EnemyList.Count; ++i)
         {
+            if (!EnemyList[i].activeSelf) continue;
+
             // if hp less than half
             if(EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value <=
                 EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value / 2)
@@ -907,10 +909,19 @@ public class CombatController : MonoBehaviour
             EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
             enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
 
-
-
             EnemyList.Add(enemy);
         }
+
+        GameObject temp = Instantiate(characterTemp);
+        EnemyList.Add(temp);
+        EnemyList[EnemyList.IndexOf(temp)].SetActive(false);
+
+        GameObject boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossMan(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-man");
+
+        EnemyList.Add(boss);
     }
     public void SpawnBoss3()
     {
@@ -929,10 +940,19 @@ public class CombatController : MonoBehaviour
             EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
             enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
 
-
-
             EnemyList.Add(enemy);
         }
+
+        GameObject temp = Instantiate(characterTemp);
+        EnemyList.Add(temp);
+        EnemyList[EnemyList.IndexOf(temp)].SetActive(false);
+
+        GameObject boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossWalk(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-walk");
+
+        EnemyList.Add(boss);
     }
     public void SpawnBoss2()
     {
@@ -951,9 +971,18 @@ public class CombatController : MonoBehaviour
             EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
             enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
 
-
-
             EnemyList.Add(enemy);
         }
+
+        GameObject temp = Instantiate(characterTemp);
+        EnemyList.Add(temp);
+        EnemyList[EnemyList.IndexOf(temp)].SetActive(false);
+
+        GameObject boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossBoss(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-boss");
+
+        EnemyList.Add(boss);
     }
 }

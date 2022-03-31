@@ -7,7 +7,11 @@ enum EnemyType
     DesertShinobi,
     DarkShinobi,
     ShadeShinobi,
-    Snail
+    Snail,
+    BossBoss,
+    BossSpy,
+    BossMan,
+    BossWalk
 }
 
 public class EnemyUtil
@@ -153,6 +157,82 @@ public class EnemyUtil
         Attribute hp = new Attribute("HP", 2);
         Attribute dmg = new Attribute("Dmg", 1);
         Attribute def = new Attribute("Def", 1);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossBoss(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "STOIC MASS";
+        attrs.Playable = false;
+        attrs.Gold = 6;
+        attrs.Xp = 8;
+
+        Attribute mhp = new Attribute("MHP", 8);
+        Attribute hp = new Attribute("HP", 8);
+        Attribute dmg = new Attribute("Dmg", 4);
+        Attribute def = new Attribute("Def", 2);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossMan(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "THE SKINHEAD";
+        attrs.Playable = false;
+        attrs.Gold = 6;
+        attrs.Xp = 8;
+
+        Attribute mhp = new Attribute("MHP", 8);
+        Attribute hp = new Attribute("HP", 8);
+        Attribute dmg = new Attribute("Dmg", 4);
+        Attribute def = new Attribute("Def", 2);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossSpy(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "SLEEPING THUG";
+        attrs.Playable = false;
+        attrs.Gold = 6;
+        attrs.Xp = 8;
+
+        Attribute mhp = new Attribute("MHP", 8);
+        Attribute hp = new Attribute("HP", 8);
+        Attribute dmg = new Attribute("Dmg", 4);
+        Attribute def = new Attribute("Def", 2);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossWalk(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "STOIC WALKER";
+        attrs.Playable = false;
+        attrs.Gold = 6;
+        attrs.Xp = 8;
+
+        Attribute mhp = new Attribute("MHP", 8);
+        Attribute hp = new Attribute("HP", 8);
+        Attribute dmg = new Attribute("Dmg", 4);
+        Attribute def = new Attribute("Def", 2);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
