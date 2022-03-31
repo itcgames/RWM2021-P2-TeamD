@@ -472,7 +472,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -524,7 +524,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -574,7 +574,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -625,7 +625,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -676,7 +676,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -727,7 +727,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -779,7 +779,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -829,7 +829,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -880,7 +880,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -930,7 +930,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -981,7 +981,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -1032,7 +1032,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -1082,7 +1082,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -1133,7 +1133,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -1184,7 +1184,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
@@ -1235,7 +1235,7 @@ public class weaponDE : MonoBehaviour
                         upgradeCost = 99999999;
 
                     }
-                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost && FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Value != 0)
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
