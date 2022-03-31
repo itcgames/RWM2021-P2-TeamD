@@ -37,7 +37,7 @@ public class CombatController : MonoBehaviour
     {
         EnemySelectors = new GameObject[9];
         XpBars = new GameObject[4];
-
+        
         PartyInitPositions = new Vector2[4];
         EnemyInitPositions = new Vector2[9];
 
@@ -445,6 +445,8 @@ public class CombatController : MonoBehaviour
                 newTargetInitPos = PartyInitPositions[i];
             }
         }
+
+        return null;
     }
 
     public IEnumerator ExecuteBattleOrder()

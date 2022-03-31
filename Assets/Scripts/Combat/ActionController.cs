@@ -16,6 +16,7 @@ public class ActionController : MonoBehaviour
 
     public GameObject Target { get; set; }
     public Vector2 TargetInitPos;
+
     public Text StatusTxt;
 
     public CombatAction Action { get; set; } = CombatAction.None;
