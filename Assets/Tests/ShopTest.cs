@@ -15,11 +15,13 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
+
             SceneManager.LoadScene("ItemShop", LoadSceneMode.Single);
         }
         [TearDown]
         public void TearDown()
         {
+
             SceneManager.UnloadSceneAsync("ItemShop");
         }
         [UnityTest]
@@ -71,11 +73,13 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
+            Utilities.s_testMode = true;
             SceneManager.LoadScene("WeaponShop", LoadSceneMode.Single);
         }
         [TearDown]
         public void TearDown()
         {
+            Utilities.s_testMode = false;
             SceneManager.UnloadSceneAsync("WeaponShop");
         }
 

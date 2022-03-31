@@ -15,13 +15,13 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            SceneManager.LoadScene("item");
+            SceneManager.LoadScene("itemScene");
             
         }
        [TearDown]
        public void TearDown()
         {
-            SceneManager.UnloadSceneAsync("item");
+            SceneManager.UnloadSceneAsync("itemScene");
         }
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // `yield return null;` to skip a frame.
