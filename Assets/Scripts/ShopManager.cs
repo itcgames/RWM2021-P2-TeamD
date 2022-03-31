@@ -12,7 +12,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     GameObject m_shopItems;
     [SerializeField]
-    GameObject m_sellItems;
+    GameObject m_shopText;
+    [SerializeField]
+    GameObject m_shopGil;
     [SerializeField]
     GameObject m_confirmSelection;
     [SerializeField]
@@ -88,9 +90,13 @@ public class ShopManager : MonoBehaviour
 
     public void sellShop()
     {
-        m_sellItems.SetActive(true);
         m_shopSelection.SetActive(false);
+        m_shopItems.SetActive(false);
+        m_shopGil.SetActive(false);
+        m_shopText.SetActive(false);
         m_dialog.text = "Whose item do want to sell?";
+        m_itemArea.SetActive(true);
+
     }
 
     public void ClinicPayment()
@@ -112,6 +118,11 @@ public class ShopManager : MonoBehaviour
     public void cancelSelling()
     {
         m_sell = false;
+        m_itemArea.SetActive(false);
+        m_shopSelection.SetActive(true);
+        m_shopItems.SetActive(true);
+        m_shopGil.SetActive(true);
+        m_shopText.SetActive(true);
         checkSelling();
     }
 
