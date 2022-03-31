@@ -63,6 +63,7 @@ public class CombatCursorController : MonoBehaviour
             CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
             {
                 GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Flee;
+                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = GetComponent<CombatController>().m_statusTxt;
                 GetComponent<CombatController>().ChangeActivePartyMember();
             }
         }

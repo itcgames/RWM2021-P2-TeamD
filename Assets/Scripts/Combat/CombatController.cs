@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,17 @@ public class CombatController : MonoBehaviour
 
     private Dictionary<int, GameObject> m_battleOrder;
 
+    private float m_battleWait = 1.5f;
+
     [SerializeField]
     private List<GameObject> m_party;
     public List<GameObject> Party { get { return m_party; } set { m_party = value; } }
-
+    public Vector2[] PartyInitPositions;
+    public Vector2[] EnemyInitPositions;
     public List<GameObject> EnemyList { get; set; }
+
+    private GameObject[] EnemySelectors;
+    private GameObject[] XpBars;
 
     private int m_currentChar;
 
@@ -28,10 +35,18 @@ public class CombatController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EnemySelectors = new GameObject[9];
+        XpBars = new GameObject[4];
+        
+        PartyInitPositions = new Vector2[4];
+        EnemyInitPositions = new Vector2[9];
+
         GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
 
         // for testing 
         data = new CombatData { enemyCount = 0, id = 0, onAdvantage = 0, turnTotal = 0, victory = 0 };
+        SetupSelectors();
+        SetupXpBars();
         Combat();
     }
 
@@ -75,16 +90,8 @@ public class CombatController : MonoBehaviour
         else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
         {
             GenEnemyActions();
-            ExecuteBattleOrder();
-
-            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
-            {
-                CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
-                m_currentChar = -1;
-                ChangeActivePartyMember();
-            }
+            StartCoroutine(ExecuteBattleOrder());
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.Inactive;
         }
 
         else if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState ||
@@ -93,7 +100,16 @@ public class CombatController : MonoBehaviour
         {
             if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
             {
-                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP";
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered
+                    || FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered
+                        || FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered)
+                {
+                    m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP\nGOT NEW GEAR";
+                }
+                else
+                {
+                    m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP";
+                }
             }
 
             else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
@@ -163,6 +179,8 @@ public class CombatController : MonoBehaviour
         if (!Utilities.s_testMode)
         {
             InitParty();
+            UpdateXpBars();
+
             if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == true)
             {
                 SpawnBoss();
@@ -182,6 +200,7 @@ public class CombatController : MonoBehaviour
             {
                 GenerateEnemies();
             }
+
             CalculateGoldXpRewards(ref m_goldReward, ref m_xpReward, EnemyList);
             StartCombat();
             GetComponent<GenerateGrids>().CreatePartyGrid();
@@ -373,6 +392,7 @@ public class CombatController : MonoBehaviour
         for (int i = 0; i < Party.Count; ++i)
         {
             Party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
+            PartyInitPositions[i] = GetComponent<GenerateGrids>().PartyGrid[i, 1];
         }
     }
 
@@ -385,6 +405,7 @@ public class CombatController : MonoBehaviour
             for (int j = 0; j < GetComponent<GenerateGrids>().ColumnEnemy; ++j)
             {
                 EnemyList[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
+                EnemyInitPositions[k] = GetComponent<GenerateGrids>().EnemyGrid[j, i];
                 ++k;
 
                 if (k >= EnemyList.Count) break;
@@ -396,7 +417,11 @@ public class CombatController : MonoBehaviour
     public void ChangeActivePartyMember()
     {
         // shift previous character back
-        if (m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+        if (m_currentChar != -1)
+        {
+            Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+            PartyInitPositions[m_currentChar] = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+        }
 
         m_currentChar++;
         GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
@@ -405,13 +430,13 @@ public class CombatController : MonoBehaviour
         {
             m_currentChar++;
             GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
-            Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
         }
 
         // if current character is the last character, return to first character and start battle
         if (m_currentChar >= Party.Count)
         {
             Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
+            PartyInitPositions[Party.Count - 1] = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
             m_currentChar = 0;
             GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
             Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
@@ -419,6 +444,7 @@ public class CombatController : MonoBehaviour
             return;
         }
         Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
+        PartyInitPositions[m_currentChar] = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
     }
 
     public void GenEnemyActions()
@@ -436,37 +462,91 @@ public class CombatController : MonoBehaviour
             }
 
             EnemyList[i].GetComponent<ActionController>().Target = Party[targetPartyMember];
+            EnemyList[i].GetComponent<ActionController>().TargetInitPos = PartyInitPositions[targetPartyMember];
+            EnemyList[i].GetComponent<ActionController>().StatusTxt = m_statusTxt;
         }
     }
 
-    public void ExecuteBattleOrder()
+    public void GetNewEnemyTarget(out GameObject newTarget, out Vector2 newTargetInitPos)
     {
+        newTarget = null;
+        newTargetInitPos = new Vector2();
+
+        for (int i = 0; i < EnemyList.Count; ++i)
+        {
+            if(EnemyList[i].activeSelf)
+            {
+                newTarget = EnemyList[i];
+                newTargetInitPos = EnemyInitPositions[i];
+            }
+        }
+    }
+
+    public void GetNewPartyTarget(out GameObject newTarget, out Vector2 newTargetInitPos)
+    {
+        newTarget = null;
+        newTargetInitPos = new Vector2();
+
+        for (int i = 0; i < Party.Count; ++i)
+        {
+            if (Party[i].activeSelf)
+            {
+                newTarget = Party[i];
+                newTargetInitPos = PartyInitPositions[i];
+            }
+        }
+    }
+
+    public IEnumerator ExecuteBattleOrder()
+    {
+        int playableChar = -1;
+
         foreach (var character in m_battleOrder)
         {
-            if (character.Value.GetComponent<CharacterAttributes>().Playable)
+            if (character.Value.activeSelf)
             {
-                if (character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight && character.Value.activeSelf)
+                if (character.Value.GetComponent<CharacterAttributes>().Playable)
                 {
-                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 0];
+                    playableChar++;
+                    if (character.Value.GetComponent<ActionController>().Action == ActionController.CombatAction.Fight)
+                    {
+                        character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[playableChar, 0];
+                    }
                     character.Value.GetComponent<ActionController>().ExecuteAction();
-                    //character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[character.Key - 1, 1];
+                    GetComponent<CombatUIController>().UpdateHpTexts(Party);
+                    UpdateHpBars();
+                    yield return new WaitForSeconds(m_battleWait);
+                    character.Value.transform.position = GetComponent<GenerateGrids>().PartyGrid[playableChar, 1];
                 }
-                else if (character.Value.activeSelf)
+                else
                 {
                     character.Value.GetComponent<ActionController>().ExecuteAction();
+                    GetComponent<CombatUIController>().UpdateHpTexts(Party);
+                    UpdateHpBars();
+                    yield return new WaitForSeconds(m_battleWait);
                 }
             }
-            else if (character.Value.activeSelf)
+            else if (!character.Value.activeSelf)
             {
-                character.Value.GetComponent<ActionController>().ExecuteAction();
+                if (character.Value.GetComponent<CharacterAttributes>().Playable)
+                {
+                    playableChar++;
+                }
             }
 
-            if (CombatEnum.s_currentCombatState == CombatEnum.CombatState.Escape || BattleEnd()) return;
+            if (CombatEnum.s_currentCombatState == CombatEnum.CombatState.Escape || BattleEnd()) yield break;
         }
 
-        GetComponent<CombatUIController>().UpdateHpTexts(Party);
-
         data.turnTotal++;
+
+        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        {
+            CombatEnum.s_currentCombatState = CombatEnum.CombatState.ActionSelect;
+            m_currentChar = -1;
+            ChangeActivePartyMember();
+        }
     }
 
     private bool BattleEnd()
@@ -496,6 +576,7 @@ public class CombatController : MonoBehaviour
                 Debug.Log("All enemies terminated!");
                 m_statusTxt.text = "YOU WON THE BATTLE!";
                 UpdateStats();
+                UpdateXpBars();
 
                 data.victory = 1;
 
@@ -547,7 +628,7 @@ public class CombatController : MonoBehaviour
 
         m_party[0].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_name1;
         m_party[0].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.m_charImage1;
-        
+
         m_party[0].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvl1;
         m_party[0].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.m_xp1;
         m_party[0].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.m_lvlThreshold1;
@@ -755,6 +836,41 @@ public class CombatController : MonoBehaviour
             xpReward += enemy.GetComponent<CharacterAttributes>().Xp;
         }
     }
+
+    public void UpdateHpBars()
+    {
+        foreach (var selector in EnemySelectors)
+        {
+            selector.GetComponent<EnemySelector>().transform.GetChild(0).GetComponent<HPDisplayController>().UpdateHpBar(selector.GetComponent<EnemySelector>());
+        }
+    }
+
+    void SetupSelectors()
+    {
+        for (int i = 0; i < EnemySelectors.Length; ++i)
+        {
+            Debug.Log("EnemyPos" + (i + 1).ToString());
+            EnemySelectors[i] = GameObject.Find("EnemyPos" + (i + 1).ToString());
+        }
+    }
+
+    void SetupXpBars()
+    {
+        for (int i = 0; i < XpBars.Length; ++i)
+        {
+            Debug.Log("XpBar" + (i + 1).ToString());
+            XpBars[i] = GameObject.Find("XPBar" + (i + 1).ToString());
+        }
+    }
+
+    public void UpdateXpBars()
+    {
+        for (int i = 0; i < XpBars.Length; ++i)
+        {
+            XpBars[i].GetComponent<XpBarController>().UpdateXpBar(Party[i]);
+        }
+    }
+
     public void SpawnBoss()
     {
         EnemyList = new List<GameObject>();
