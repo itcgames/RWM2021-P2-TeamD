@@ -100,7 +100,16 @@ public class CombatController : MonoBehaviour
         {
             if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
             {
-                m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP";
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered
+                    || FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered
+                        || FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered)
+                {
+                    m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP\nGOT NEW GEAR";
+                }
+                else
+                {
+                    m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP";
+                }
             }
 
             else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)

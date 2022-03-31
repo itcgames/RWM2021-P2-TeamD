@@ -2049,6 +2049,8 @@ MonoBehaviour:
   - {fileID: 964385673}
   - {fileID: 1145587624}
   - {fileID: 1118354453}
+  PartyInitPositions: []
+  EnemyInitPositions: []
   m_statusTxt: {fileID: 764737894}
   m_rewardTxt: {fileID: 1167374509}
 --- !u!114 &1041616287
@@ -2424,7 +2426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -270, y: -350}
+  m_AnchoredPosition: {x: -270, y: -320}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1167374509
@@ -4730,6 +4732,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1451704618320252255, guid: 19a9b705d57acc44f9a538cff7ddebdf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -4784,6 +4787,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2868555323454541935, guid: 19a9b705d57acc44f9a538cff7ddebdf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -4843,6 +4847,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4482558303643432962, guid: 19a9b705d57acc44f9a538cff7ddebdf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
