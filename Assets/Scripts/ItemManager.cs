@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ItemManager : MonoBehaviour
 {
@@ -40,10 +41,15 @@ public class ItemManager : MonoBehaviour
                 GameObject newButton = Instantiate(buttonPrefab) as GameObject;
                 newButton.transform.SetParent(itemCanvas.transform, false);
                 newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
+                newButton.GetComponent<Button>().onClick.AddListener(()=> { ButtonClicked(i.m_name); });
             }
         }
     }
 
+    public void ButtonClicked(string i)
+    {
+        Debug.Log( i + " is Clicked");
+    }
 
     public void AddItem(string name)
     {

@@ -5609,6 +5609,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 1925288770918194530, guid: febf6a5d736c58545ab7e53c58c37652,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1925288771358078023, guid: febf6a5d736c58545ab7e53c58c37652,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

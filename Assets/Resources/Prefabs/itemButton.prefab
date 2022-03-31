@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6466343317355822888}
   - component: {fileID: 6161646233500056371}
   - component: {fileID: 4647750262010874684}
-  - component: {fileID: 6922247696299223233}
+  - component: {fileID: -9185250627048226111}
   m_Layer: 5
   m_Name: itemButton
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name x 99
---- !u!114 &6922247696299223233
+--- !u!114 &-9185250627048226111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
