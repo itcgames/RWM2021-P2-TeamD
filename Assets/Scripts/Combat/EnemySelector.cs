@@ -46,6 +46,7 @@ public class EnemySelector : MonoBehaviour
                 Debug.Log("Enemy: " + id + " selected");
                 CombatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
                 CombatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().Target = CombatScript.EnemyList[id - 1];
+                CombatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().TargetInitPos = CombatScript.EnemyInitPositions[id - 1];
                 CombatScript.Party[m_combatCursorScript.CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = CombatScript.m_statusTxt;
 
                 CombatScript.ChangeActivePartyMember();

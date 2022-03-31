@@ -14,7 +14,8 @@ public class CombatController : MonoBehaviour
     [SerializeField]
     private List<GameObject> m_party;
     public List<GameObject> Party { get { return m_party; } set { m_party = value; } }
-
+    public Vector2[] PartyInitPositions;
+    public Vector2[] EnemyInitPositions;
     public List<GameObject> EnemyList { get; set; }
 
     private GameObject[] EnemySelectors;
@@ -36,6 +37,9 @@ public class CombatController : MonoBehaviour
     {
         EnemySelectors = new GameObject[9];
         XpBars = new GameObject[4];
+
+        PartyInitPositions = new Vector2[4];
+        EnemyInitPositions = new Vector2[9];
 
         GetComponent<CombatCursorController>().CurrentPartyIndex = 0;
 
@@ -338,6 +342,7 @@ public class CombatController : MonoBehaviour
         for (int i = 0; i < Party.Count; ++i)
         {
             Party[i].transform.position = GetComponent<GenerateGrids>().PartyGrid[i, 1];
+            PartyInitPositions[i] = GetComponent<GenerateGrids>().PartyGrid[i, 1];
         }
     }
 
@@ -350,6 +355,7 @@ public class CombatController : MonoBehaviour
             for (int j = 0; j < GetComponent<GenerateGrids>().ColumnEnemy; ++j)
             {
                 EnemyList[k].transform.position = GetComponent<GenerateGrids>().EnemyGrid[j, i];
+                EnemyInitPositions[k] = GetComponent<GenerateGrids>().EnemyGrid[j, i];
                 ++k;
 
                 if (k >= EnemyList.Count) break;
@@ -361,7 +367,11 @@ public class CombatController : MonoBehaviour
     public void ChangeActivePartyMember()
     {
         // shift previous character back
-        if (m_currentChar != -1) Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+        if (m_currentChar != -1)
+        {
+            Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+            PartyInitPositions[m_currentChar] = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 1];
+        }
 
         m_currentChar++;
         GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
@@ -376,6 +386,7 @@ public class CombatController : MonoBehaviour
         if (m_currentChar >= Party.Count)
         {
             Party[Party.Count - 1].transform.position = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
+            PartyInitPositions[Party.Count - 1] = GetComponent<GenerateGrids>().PartyGrid[Party.Count - 1, 1];
             m_currentChar = 0;
             GetComponent<CombatCursorController>().CurrentPartyIndex = m_currentChar;
             Debug.Log(GetComponent<CombatCursorController>().CurrentPartyIndex);
@@ -383,6 +394,7 @@ public class CombatController : MonoBehaviour
             return;
         }
         Party[m_currentChar].transform.position = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
+        PartyInitPositions[m_currentChar] = GetComponent<GenerateGrids>().PartyGrid[m_currentChar, 0];
     }
 
     public void GenEnemyActions()
@@ -400,34 +412,39 @@ public class CombatController : MonoBehaviour
             }
 
             EnemyList[i].GetComponent<ActionController>().Target = Party[targetPartyMember];
+            EnemyList[i].GetComponent<ActionController>().TargetInitPos = PartyInitPositions[targetPartyMember];
             EnemyList[i].GetComponent<ActionController>().StatusTxt = m_statusTxt;
         }
     }
 
-    public GameObject GetNewEnemyTarget()
+    public void GetNewEnemyTarget(out GameObject newTarget, out Vector2 newTargetInitPos)
     {
+        newTarget = null;
+        newTargetInitPos = new Vector2();
+
         for (int i = 0; i < EnemyList.Count; ++i)
         {
             if(EnemyList[i].activeSelf)
             {
-                return EnemyList[i];
+                newTarget = EnemyList[i];
+                newTargetInitPos = EnemyInitPositions[i];
             }
         }
-
-        return null;
     }
 
-    public GameObject GetNewPartyTarget()
+    public void GetNewPartyTarget(out GameObject newTarget, out Vector2 newTargetInitPos)
     {
+        newTarget = null;
+        newTargetInitPos = new Vector2();
+
         for (int i = 0; i < Party.Count; ++i)
         {
             if (Party[i].activeSelf)
             {
-                return Party[i];
+                newTarget = Party[i];
+                newTargetInitPos = PartyInitPositions[i];
             }
         }
-
-        return null;
     }
 
     public IEnumerator ExecuteBattleOrder()
