@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndPoint : MonoBehaviour
 {
-    private const int FIGHT_WINS_TO_END = 5;
+    private const int FIGHT_WINS_TO_END = 999;
     int fightsWon = 0;
 
     private void Awake()

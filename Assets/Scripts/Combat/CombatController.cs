@@ -64,6 +64,7 @@ public class CombatController : MonoBehaviour
                 if (Input.GetMouseButtonUp(1))
                 {
                     GetComponent<CombatCursorController>().RevertAttackAction();
+                    //cancel sound
                 }
             }
             else
@@ -114,7 +115,26 @@ public class CombatController : MonoBehaviour
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
-                    EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
+                    if (!FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered && !FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered
+                        && !FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered)
+                    {
+                        EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished = true;
+                    }
+                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished = true;
+                    }
+                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished = true;
+                    }
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
@@ -132,8 +152,6 @@ public class CombatController : MonoBehaviour
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
                     DataCollectionUtility.PostData(data, this);
                 }
-
-
             }
 
             else if (CombatEnum.CombatState.Battle == CombatEnum.s_currentCombatState)
@@ -153,7 +171,27 @@ public class CombatController : MonoBehaviour
         {
             InitParty();
             UpdateXpBars();
-            GenerateEnemies();
+
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == true)
+            {
+                SpawnBoss();
+
+            }
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
+            {
+                SpawnBoss2();
+
+            }
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
+            {
+                SpawnBoss3();
+
+            }
+            else if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == false)
+            {
+                GenerateEnemies();
+            }
+
             CalculateGoldXpRewards(ref m_goldReward, ref m_xpReward, EnemyList);
             StartCombat();
             GetComponent<GenerateGrids>().CreatePartyGrid();
@@ -180,6 +218,9 @@ public class CombatController : MonoBehaviour
 
     public void StartCombat()
     {
+        //music play
+        AudioManager.instance.PauseMusic("Theme");
+        AudioManager.instance.PlayMusic("BattleTheme");
         m_battleOrder = new Dictionary<int, GameObject>();
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
@@ -445,8 +486,6 @@ public class CombatController : MonoBehaviour
                 newTargetInitPos = PartyInitPositions[i];
             }
         }
-
-        return null;
     }
 
     public IEnumerator ExecuteBattleOrder()
@@ -533,6 +572,8 @@ public class CombatController : MonoBehaviour
                 data.victory = 1;
 
                 FindObjectOfType<EndPoint>().FightWon();
+                AudioManager.instance.PauseMusic("BattleTheme");
+                AudioManager.instance.PlayMusic("Theme");                
                 return true;
             }
         }
@@ -821,8 +862,70 @@ public class CombatController : MonoBehaviour
         }
     }
 
-    public IEnumerator StartBattleOrderCoroutine()
+    public void SpawnBoss()
     {
-        yield return StartCoroutine(ExecuteBattleOrder());
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
+
+
+
+            EnemyList.Add(enemy);
+        }
+    }
+    public void SpawnBoss3()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
+
+
+
+            EnemyList.Add(enemy);
+        }
+    }
+    public void SpawnBoss2()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
+
+
+
+            EnemyList.Add(enemy);
+        }
     }
 }

@@ -100,6 +100,9 @@ public class ActionController : MonoBehaviour
                 + Target.GetComponent<CharacterAttributes>().Name;
 
                 StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
+                
+                //Attack sound
+                AudioManager.instance.PlaySFX("Attack");
             }
             else
             {
@@ -113,6 +116,9 @@ public class ActionController : MonoBehaviour
                 + Target.GetComponent<CharacterAttributes>().Name;
 
                     StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
+                    
+                    //Attack sound
+                    AudioManager.instance.PlaySFX("Attack");
                 }
                 else
                 {
@@ -124,6 +130,9 @@ public class ActionController : MonoBehaviour
                 + Target.GetComponent<CharacterAttributes>().Name;
 
                     StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
+                    
+                    //Attack sound
+                    AudioManager.instance.PlaySFX("Attack");
                 }
             }
 
@@ -135,6 +144,8 @@ public class ActionController : MonoBehaviour
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value = 0.0f;
                 Debug.Log(Target.GetComponent<CharacterAttributes>().Name + " Defeated");
                 Target.SetActive(false);
+                //death sound
+                AudioManager.instance.PlaySFX("Death");
             }
         }
 
@@ -148,6 +159,10 @@ public class ActionController : MonoBehaviour
         if (success > 50)
         {
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
+            //flee sounds
+            AudioManager.instance.PauseMusic("BattleTheme");
+            AudioManager.instance.PlaySFX("Flee");
+            AudioManager.instance.PlayMusic("Theme");
         }
 
         else
