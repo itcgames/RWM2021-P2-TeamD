@@ -327,6 +327,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7312329026587432499}
     m_Modifications:
+    - target: {fileID: 263436391334306870, guid: febf6a5d736c58545ab7e53c58c37652,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925288770510944623, guid: febf6a5d736c58545ab7e53c58c37652,
+        type: 3}
+      propertyPath: MoneyBox
+      value: 
+      objectReference: {fileID: 1498016665}
     - target: {fileID: 1925288770918194525, guid: febf6a5d736c58545ab7e53c58c37652,
         type: 3}
       propertyPath: m_RootOrder
@@ -951,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ID: 1
-  m_cost: 75
+  m_cost: 80
   m_amount: 0
   m_name: Pure
 --- !u!114 &1144596829
@@ -1419,7 +1429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ID: 2
-  m_cost: 75
+  m_cost: 100
   m_amount: 0
   m_name: Tent
 --- !u!114 &1406529980
@@ -1500,7 +1510,7 @@ GameObject:
   - component: {fileID: 1498016667}
   m_Layer: 5
   m_Name: Money
-  m_TagString: Untagged
+  m_TagString: Money
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1540,7 +1550,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -58,7 +58,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void Update()
     {
         backSelection();
 
@@ -78,6 +78,8 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
+
+        m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
     }
 
 
@@ -92,11 +94,9 @@ public class ShopManager : MonoBehaviour
     {
         m_shopSelection.SetActive(false);
         m_shopItems.SetActive(false);
-        m_shopGil.SetActive(false);
         m_shopText.SetActive(false);
         m_dialog.text = "Whose item do want to sell?";
         m_itemArea.SetActive(true);
-
     }
 
     public void ClinicPayment()
@@ -186,7 +186,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            m_dialog.text = "Too bad\n...\nSomething else?";
+            m_dialog.text = "Thank you!\n...\nSomething else?";
         }
         m_purchase = false;
         m_confirmSelection.SetActive(false);
