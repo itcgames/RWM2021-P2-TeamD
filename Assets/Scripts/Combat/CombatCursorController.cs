@@ -44,13 +44,18 @@ public class CombatCursorController : MonoBehaviour
         }
     }
 
-    public void ItemsAction()
+    public void BlockAction()
     {
-        if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
-            CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+        if (!ChooseEnemyTarget)
         {
-            // implement items
+            if (CombatEnum.CombatState.Victory != CombatEnum.s_currentCombatState &&
+                CombatEnum.CombatState.Failure != CombatEnum.s_currentCombatState &&
+                CombatEnum.CombatState.Escape != CombatEnum.s_currentCombatState)
+            {
+                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().Action = ActionController.CombatAction.Block;
+                GetComponent<CombatController>().Party[CurrentPartyIndex].GetComponent<ActionController>().StatusTxt = GetComponent<CombatController>().m_statusTxt;
+                GetComponent<CombatController>().ChangeActivePartyMember();
+            }
         }
     }
 

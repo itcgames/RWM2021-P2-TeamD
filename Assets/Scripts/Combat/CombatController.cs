@@ -80,9 +80,9 @@ public class CombatController : MonoBehaviour
                     GetComponent<CombatCursorController>().FleeAction();
                 }
 
-                if (Input.GetKeyDown(KeyCode.I))
+                if (Input.GetKeyDown(KeyCode.B))
                 {
-                    GetComponent<CombatCursorController>().ItemsAction();
+                    GetComponent<CombatCursorController>().BlockAction();
                 }
             }
         }
@@ -228,8 +228,11 @@ public class CombatController : MonoBehaviour
     public void StartCombat()
     {
         //music play
-        AudioManager.instance.PauseMusic("Theme");
-        AudioManager.instance.PlayMusic("BattleTheme");
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PauseMusic("Theme");
+            AudioManager.instance.PlayMusic("BattleTheme");
+        }
         m_battleOrder = new Dictionary<int, GameObject>();
 
         m_firstStrikeScript = GetComponent<FirstStrikeChance>();
@@ -451,6 +454,20 @@ public class CombatController : MonoBehaviour
     {
         for (int i = 0; i < EnemyList.Count; ++i)
         {
+            // if hp less than half
+            if(EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value <=
+                EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value / 2)
+            {
+                int chance = Random.Range(1, 101);
+
+                if(chance >= 60)
+                {
+                    EnemyList[i].GetComponent<ActionController>().Action = ActionController.CombatAction.Block;
+                    EnemyList[i].GetComponent<ActionController>().StatusTxt = m_statusTxt;
+                    continue;
+                }
+            }
+
             EnemyList[i].GetComponent<ActionController>().Action = ActionController.CombatAction.Fight;
 
             int targetPartyMember = Random.Range(0, 4);
@@ -580,9 +597,11 @@ public class CombatController : MonoBehaviour
 
                 data.victory = 1;
 
-                FindObjectOfType<EndPoint>().FightWon();
-                AudioManager.instance.PauseMusic("BattleTheme");
-                AudioManager.instance.PlayMusic("Theme");                
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PauseMusic("BattleTheme");
+                    AudioManager.instance.PlayMusic("Theme");
+                }
                 return true;
             }
         }
