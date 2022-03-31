@@ -48,7 +48,7 @@ public class ItemManager : MonoBehaviour
                 if (SceneManager.GetActiveScene().name == "Pause")
                 {
                     newButton.GetComponent<Button>().onClick.AddListener(() => {
-                        print("inventory rn");
+                        print("");
                     });
                     //using item;
                 }
