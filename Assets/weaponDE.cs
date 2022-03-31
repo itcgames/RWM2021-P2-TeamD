@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class weaponDE : MonoBehaviour
 {
     bool drop;
-    bool trade;
+    bool upgrade;
     bool equip;
+    int upgradeCost = 25;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +26,9 @@ public class weaponDE : MonoBehaviour
         return drop;
     }
 
-    public bool Trade()
+    public bool Upgrade()
     {
-        return trade;
+        return upgrade;
     }
     public bool Equip()
     {
@@ -42,9 +43,9 @@ public class weaponDE : MonoBehaviour
     {
         drop = t_b;
     }
-    public void setTrade(bool t_b)
+    public void setUpgrade(bool t_b)
     {
-        trade = t_b;
+        upgrade = t_b;
     }
 
     public void dropping(int i)
@@ -420,8 +421,832 @@ public class weaponDE : MonoBehaviour
             FindObjectOfType<InventorWeapon>().Equiping(15, FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Equip);
         }
     }
-    public void Trading(int i)
+    public void Upgrading(int i)
     {
+        if (upgrade)
+        {
 
+            int amount = 1;
+                switch (i)
+                {
+                    case 0:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                    }
+
+                    break;
+                    case 1:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 1") )
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                    }
+                    break;
+                    case 2:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                    }
+
+                    break;
+                    case 3:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 4:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 5:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 9"))
+                    {
+                        
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+
+                    break;
+                    case 6:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 7:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 8:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 9:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+
+                    break;
+                    case 10:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 8"))
+                    { 
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 11:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 12:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+
+                    break;
+                    case 13:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+
+                    break;
+                    case 14:
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+                    case 15:
+
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 1"))
+                    {
+                        amount = 2;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 2"))
+                    {
+                        amount = 3;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 3"))
+                    {
+                        amount = 4;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 4"))
+                    {
+                        upgradeCost = 50;
+                        amount = 5;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 5"))
+                    {
+                        amount = 6;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 6"))
+                    {
+                        amount = 7;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 7"))
+                    {
+                        amount = 8;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 8"))
+                    {
+                        amount = 9;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 9"))
+                    {
+                        amount = 10;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains("+ 10"))
+                    {
+                        upgradeCost = 99999999;
+
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= upgradeCost)
+                    {
+                        FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+
+                    }
+                    break;
+
+                }
+               
+        }
+         upgradeCost = 25;
     }
 }
+

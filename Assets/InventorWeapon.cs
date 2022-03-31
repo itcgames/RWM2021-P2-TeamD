@@ -227,7 +227,7 @@ public class InventorWeapon : MonoBehaviour
                     {
 
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Remove(0, 2);
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack1.Value = attack1;
+                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Value += 1;
 
                     }
                 }
@@ -245,7 +245,7 @@ public class InventorWeapon : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.StartsWith("E:") && !(FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name == " "))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Remove(0, 2);
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack1.Value = attack1;
+                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Value += 1;
 
 
                     }
@@ -264,7 +264,7 @@ public class InventorWeapon : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.StartsWith("E:") && !(FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name == " "))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Remove(0, 2);
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack1.Value = attack1;
+                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Value += 1;
 
                     }
                 }
@@ -281,7 +281,7 @@ public class InventorWeapon : MonoBehaviour
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.StartsWith("E:") && !(FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name == " "))
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Remove(0, 2);
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeAttack1.Value = attack1;
+                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Value += 1;
 
                     }
                 }
@@ -499,6 +499,298 @@ public class InventorWeapon : MonoBehaviour
                 }
 
                 break;
+
+        }
+    }
+    public void Upgrading(int i,int upgradeAmount)
+    {
+        switch (i)
+        {
+            case 0:
+
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Replace((upgradeAmount-1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if(FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Value += 1;
+                break;
+            case 1:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Value += 1;
+                break;
+            case 2:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Value += 1;
+                break;
+            case 3:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Value += 1;
+                break;
+            case 4:
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Value += 1;
+                break;
+            case 5:
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Value += 1;
+                break;
+            case 6:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Value += 1;
+                break;
+            case 7:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Value += 1;
+                break;
+            case 8:
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Value += 1;
+                break;
+            case 9:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Value += 1;
+                break;
+            case 10:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Value += 1;
+                break;
+            case 11:
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Value += 1;
+                break;
+            case 12:
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Value += 1;
+                break;
+            case 13:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Value += 1;
+                break;
+            case 14:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Value += 1;
+                break;
+            case 15:
+
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains(" + "))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Replace((upgradeAmount - 1).ToString(), upgradeAmount.ToString());
+
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name = FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name + " + " + upgradeAmount.ToString();
+
+                }
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name.Contains(" + 10"))
+                {
+                    break;
+                }
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Value += 1;
+                break;
+
         }
     }
 }
