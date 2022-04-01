@@ -16,7 +16,6 @@ public class ItemManager : MonoBehaviour
     GameObject itemCanvas;
     GameObject desc;
     GameObject MemeberSelect;
-    GameObject Holderobject;
     GameObject m_member1;
     GameObject m_member2;
     GameObject m_member3;
@@ -42,7 +41,6 @@ public class ItemManager : MonoBehaviour
         if(MemeberSelect == null)
         {
             MemeberSelect = GameObject.Find("MemberSelection");
-            Holderobject = GameObject.Find("Holder");
         }
         itemCanvas = GameObject.Find("Itemarea");
         desc = GameObject.Find("Description");
@@ -54,15 +52,24 @@ public class ItemManager : MonoBehaviour
             if (i.m_amount > 0)
             {
                 GameObject newButton = Instantiate(buttonPrefab) as GameObject;
-
                 newButton.transform.SetParent(itemCanvas.transform, false);
                 newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
                 if (SceneManager.GetActiveScene().name == "Pause")
                 {
-                    newButton.GetComponent<Button>().onClick.AddListener(() => {
-                        ChangeDesc(i.m_desc);
-                        MemeberSelect.transform.position = new Vector3(487, 295,0);
-                        selectPartyMemeber(i.m_name);
+                    newButton.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        if (i.m_amount > 1)
+                        {
+                            ChangeDesc(i.m_desc);
+                            MemeberSelect.transform.position = new Vector3(487, 295, 0);
+                            selectPartyMemeber(i.m_name);
+
+                        }
+                        else
+                        {
+                            Destroy(newButton);
+                        }
+                        i.m_amount--;
                     });
 
                 }
@@ -72,13 +79,13 @@ public class ItemManager : MonoBehaviour
 
                         if (i.m_amount > 1)
                         {
-                            i.m_amount--;
                             newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
                         }
                         else
                         {
                             Destroy(newButton);
                         }
+                        i.m_amount--;
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += i.m_cost / 2;
                     });
 
@@ -106,33 +113,61 @@ public class ItemManager : MonoBehaviour
 
     public void UseItem(string t_name, int t_number)
     {
-        ItemInventory itemDetail = Array.Find(items, items => items.m_name == name);
+        ItemInventory itemDetail = Array.Find(items, items => items.m_name == t_name);
         if (itemDetail == null)
         {
             Debug.LogWarning("Item: " + name + " not found!");
             return;
         }
+       
         switch (t_number)
         {
+
             case 1:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value += itemDetail.m_effects;
+                if(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value)
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type1);
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value += itemDetail.m_effects;
+                }
                 break;
             case 2:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value += itemDetail.m_effects;
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value)
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type2);
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value += itemDetail.m_effects;
+                }
                 break;
             case 3:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value += itemDetail.m_effects;
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value)
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type3);
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value += itemDetail.m_effects;
+                }
                 break;
             case 4:
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value += itemDetail.m_effects;
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value)
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type4);
+                }
+                else
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value += itemDetail.m_effects;
+                }
                 break;
             default:
                 break;
         }
         MemeberSelect.transform.position = new Vector3(25, -532, 0);
-        itemDetail.m_amount--;
-        print(t_name + ": " + itemDetail.m_amount);
-        print(t_name + ": " + itemDetail.m_desc);
+
     }
 
     public void ChangeDesc(string t_desc)
@@ -150,22 +185,21 @@ public class ItemManager : MonoBehaviour
 
     public void selectPartyMemeber(string name)
     {
+        m_member1.GetComponent<Button>().onClick.AddListener(() =>
+        { {
+                UseItem(name, 1); } });
 
-        foreach (ItemInventory i in items)
-        {
+        m_member2.GetComponent<Button>().onClick.AddListener(() =>
+        { {
+                UseItem(name, 2); } });
 
-            m_member1.GetComponent<Button>().onClick.AddListener(() =>
-            { { UseItem(name, 1); } });
+        m_member3.GetComponent<Button>().onClick.AddListener(() =>
+        { {
+                UseItem(name, 3); } });
 
-            m_member2.GetComponent<Button>().onClick.AddListener(() =>
-            { { UseItem(name, 2); } });
-
-            m_member3.GetComponent<Button>().onClick.AddListener(() =>
-            { { UseItem(name, 3); } });
-
-            m_member4.GetComponent<Button>().onClick.AddListener(() =>
-            { { UseItem(name, 4); } });
-        }
+        m_member4.GetComponent<Button>().onClick.AddListener(() =>
+        { {
+                UseItem(name, 4); } });
     }
 
     public void setupPartyMembers()
