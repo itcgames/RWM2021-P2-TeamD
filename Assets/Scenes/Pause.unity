@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+  m_Color: {r: 0.3207547, g: 0.31808472, b: 0.31318974, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2875,7 +2875,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1286258504}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3332,6 +3332,7 @@ GameObject:
   - component: {fileID: 1286258504}
   - component: {fileID: 1286258506}
   - component: {fileID: 1286258505}
+  - component: {fileID: 1286258507}
   m_Layer: 5
   m_Name: Orbs
   m_TagString: Untagged
@@ -3352,8 +3353,8 @@ RectTransform:
   m_Children:
   - {fileID: 849541486}
   - {fileID: 1184569829}
-  - {fileID: 1504031496}
   - {fileID: 1189467117}
+  - {fileID: 1504031496}
   m_Father: {fileID: 2085537537}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3399,6 +3400,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286258503}
   m_CullTransparentMesh: 0
+--- !u!114 &1286258507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286258503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7b5285f67d97944992f53919c34081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1303115820
 GameObject:
   m_ObjectHideFlags: 0
@@ -4075,7 +4088,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1286258504}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

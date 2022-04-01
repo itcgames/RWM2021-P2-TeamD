@@ -19,6 +19,7 @@ TagManager:
   - equip
   - Money
   - ItemData
+  - BulletDestroyer
   layers:
   - Default
   - TransparentFX
