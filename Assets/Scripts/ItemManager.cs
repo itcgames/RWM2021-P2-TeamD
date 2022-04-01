@@ -15,6 +15,12 @@ public class ItemManager : MonoBehaviour
     public Text textPrefab;
     GameObject itemCanvas;
     GameObject desc;
+    GameObject MemeberSelect;
+    GameObject Holderobject;
+    GameObject m_member1;
+    GameObject m_member2;
+    GameObject m_member3;
+    GameObject m_member4;
     Text desc1;
     private void Awake()
     {
@@ -33,9 +39,14 @@ public class ItemManager : MonoBehaviour
 
     public void setAllItems()
     {
+        if(MemeberSelect == null)
+        {
+            MemeberSelect = GameObject.Find("MemberSelection");
+            Holderobject = GameObject.Find("Holder");
+        }
         itemCanvas = GameObject.Find("Itemarea");
         desc = GameObject.Find("Description");
-
+        setupPartyMembers();
 
         foreach (ItemInventory i in items)
         {
@@ -50,6 +61,8 @@ public class ItemManager : MonoBehaviour
                 {
                     newButton.GetComponent<Button>().onClick.AddListener(() => {
                         ChangeDesc(i.m_desc);
+                        MemeberSelect.transform.position = new Vector3(487, 295,0);
+                        selectPartyMemeber(i.m_name);
                     });
 
                 }
@@ -91,7 +104,7 @@ public class ItemManager : MonoBehaviour
         itemDetail.m_amount++;
     }
 
-    public void UseItem(string t_name)
+    public void UseItem(string t_name, int t_number)
     {
         ItemInventory itemDetail = Array.Find(items, items => items.m_name == name);
         if (itemDetail == null)
@@ -99,8 +112,25 @@ public class ItemManager : MonoBehaviour
             Debug.LogWarning("Item: " + name + " not found!");
             return;
         }
+        switch (t_number)
+        {
+            case 1:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value += itemDetail.m_effects;
+                break;
+            case 2:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value += itemDetail.m_effects;
+                break;
+            case 3:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value += itemDetail.m_effects;
+                break;
+            case 4:
+                FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value += itemDetail.m_effects;
+                break;
+            default:
+                break;
+        }
+        MemeberSelect.transform.position = new Vector3(25, -532, 0);
         itemDetail.m_amount--;
-
         print(t_name + ": " + itemDetail.m_amount);
         print(t_name + ": " + itemDetail.m_desc);
     }
@@ -116,7 +146,50 @@ public class ItemManager : MonoBehaviour
         }
 
         desc1.text = t_desc;
+    }
 
+    public void selectPartyMemeber(string name)
+    {
 
+        foreach (ItemInventory i in items)
+        {
+
+            m_member1.GetComponent<Button>().onClick.AddListener(() =>
+            { { UseItem(name, 1); } });
+
+            m_member2.GetComponent<Button>().onClick.AddListener(() =>
+            { { UseItem(name, 2); } });
+
+            m_member3.GetComponent<Button>().onClick.AddListener(() =>
+            { { UseItem(name, 3); } });
+
+            m_member4.GetComponent<Button>().onClick.AddListener(() =>
+            { { UseItem(name, 4); } });
+        }
+    }
+
+    public void setupPartyMembers()
+    {
+        m_member1 = GameObject.Find("Member1");
+        m_member2 = GameObject.Find("Member2");
+        m_member3 = GameObject.Find("Member3");
+        m_member4 = GameObject.Find("Member4");
+
+        m_member1.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_name1 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHP1.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHPMax1.Value.ToString();
+        m_member2.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_name2 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHP2.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHPMax2.Value.ToString();
+        m_member3.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_name3 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHP3.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHPMax3.Value.ToString();
+        m_member4.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_name4 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHP4.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.m_attributeHPMax4.Value.ToString();
     }
 }
