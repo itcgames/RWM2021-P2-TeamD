@@ -24,6 +24,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         m_input.x = Input.GetAxisRaw("Horizontal");
+
+        if(m_input.x > 0)
+        {
+            this.transform.localScale = new Vector3(1, this.transform.localScale.y, this.transform.localScale.z);
+        }
+        if (m_input.x < 0)
+        {
+            this.transform.localScale = new Vector3(-1, this.transform.localScale.y, this.transform.localScale.z);
+        }
         m_input.y = Input.GetAxisRaw("Vertical");
 
         this.GetComponent<Rigidbody2D>().velocity = m_input * m_speed;
