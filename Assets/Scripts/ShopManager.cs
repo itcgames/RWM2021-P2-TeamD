@@ -51,7 +51,6 @@ public class ShopManager : MonoBehaviour
         m_dialog.text = "Welcome!";
         if (!Utilities.s_testMode) m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
         else m_gilText.text = ""; // don't need for testing
-
         if (SceneManager.GetActiveScene().name == "ClinicShop")
         {
             setupClinic();
