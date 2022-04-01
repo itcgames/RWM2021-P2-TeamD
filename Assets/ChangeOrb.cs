@@ -16,7 +16,7 @@ public class ChangeOrb : MonoBehaviour
     {
         if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished)
         {
-            this.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.5f, 0);
+            this.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
         }
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished)
         {
@@ -24,7 +24,7 @@ public class ChangeOrb : MonoBehaviour
         }
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished)
         {
-            this.transform.GetChild(2).GetComponent<Image>().color = new Color(255, 165,0);
+            this.transform.GetChild(2).GetComponent<Image>().color = new Color(1, 0.5f, 0);
         }
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished)
         {
