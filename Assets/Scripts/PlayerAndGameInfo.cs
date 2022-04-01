@@ -100,6 +100,8 @@ public class PlayerAndGameInfo : MonoBehaviour
         public bool quest2Finished = false;
         public bool quest3Triggered = false;
         public bool quest3Finished = false;
+        public bool quest4Triggered = false;
+        public bool quest4Finished = false;
     }
 
 
