@@ -176,6 +176,7 @@ public class ShopManager : MonoBehaviour
                     //m_inventory
                 }
                 m_shopItems.GetComponent<ItemCost>().addInventory();
+
                 m_confirmSelection.SetActive(false);
             }
             else

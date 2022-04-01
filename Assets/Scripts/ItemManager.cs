@@ -30,74 +30,67 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         DontDestroyOnLoad(this.gameObject);
     }
 
-
-
     public void setAllItems()
     {
-        if(MemeberSelect == null)
-        {
             MemeberSelect = GameObject.Find("MemberSelection");
-        }
-        itemCanvas = GameObject.Find("Itemarea");
-        desc = GameObject.Find("Description");
-        setupPartyMembers();
+            itemCanvas = GameObject.Find("Itemarea");
+            desc = GameObject.Find("Description");
+
+
 
         foreach (ItemInventory i in items)
         {
-            i.m_amount++;
+            //creates the item
             if (i.m_amount > 0)
             {
                 GameObject newButton = Instantiate(buttonPrefab) as GameObject;
                 newButton.transform.SetParent(itemCanvas.transform, false);
-                newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
+                newButton.GetComponentInChildren<Text>().text = i.m_name + " x" + i.m_amount;
+
                 if (SceneManager.GetActiveScene().name == "Pause")
                 {
                     newButton.GetComponent<Button>().onClick.AddListener(() =>
                     {
-                        if (i.m_amount > 1)
-                        {
-                            ChangeDesc(i.m_desc);
-                            MemeberSelect.transform.position = new Vector3(487, 295, 0);
-                            selectPartyMemeber(i.m_name);
-
-                        }
-                        else
+                        ChangeDesc(i.m_desc);
+                        MemeberSelect.transform.position = new Vector3(487, 295, 0);
+                        selectPartyMemeber(i.m_name);
+                        i.m_amount--;
+                        newButton.GetComponentInChildren<Text>().text = i.m_name + " x" + i.m_amount;
+                        if (i.m_amount == 0)
                         {
                             Destroy(newButton);
                         }
-                        i.m_amount--;
                     });
-
+                    setupPartyMembers();
                 }
                 else if (SceneManager.GetActiveScene().name == "ItemShop")
                 {
                     newButton.GetComponent<Button>().onClick.AddListener(() => {
 
-                        if (i.m_amount > 1)
-                        {
-                            newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
-                        }
-                        else
+                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += i.m_cost / 2;
+                        i.m_amount--;
+                        newButton.GetComponentInChildren<Text>().text = i.m_name + " x" + i.m_amount;
+                        if (i.m_amount == 0)
                         {
                             Destroy(newButton);
                         }
-                        i.m_amount--;
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += i.m_cost / 2;
                     });
+                }
 
-                }
-                else
-                {
-                    print("nothing");
-                }
             }
+
         }
     }
 
+
+
+    public void updateItemAmount(GameObject newbutton, ItemInventory i)
+    {
+        newbutton.GetComponentInChildren<Text>().text = i.m_name + " x" + i.m_amount;
+    }
 
     public void AddItem(string t_name)
     {
@@ -109,6 +102,7 @@ public class ItemManager : MonoBehaviour
         }
 
         itemDetail.m_amount++;
+
     }
 
     public void UseItem(string t_name, int t_number)
@@ -122,7 +116,6 @@ public class ItemManager : MonoBehaviour
        
         switch (t_number)
         {
-
             case 1:
                 if(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value)
                 {
@@ -166,6 +159,7 @@ public class ItemManager : MonoBehaviour
             default:
                 break;
         }
+        setupPartyMembers();
         MemeberSelect.transform.position = new Vector3(25, -532, 0);
 
     }

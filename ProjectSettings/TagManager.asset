@@ -18,6 +18,7 @@ TagManager:
   - drop
   - equip
   - Money
+  - ItemData
   layers:
   - Default
   - TransparentFX

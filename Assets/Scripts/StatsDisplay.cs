@@ -27,6 +27,14 @@ public class StatsDisplay : MonoBehaviour
         damageText = transform.GetChild(6).GetComponent<Text>();
         info = FindObjectOfType<PlayerAndGameInfo>().GetCharInfo();
 
+
+    }
+
+    public void Update()
+    {
+
+        info = FindObjectOfType<PlayerAndGameInfo>().GetCharInfo();
+
         if (current_char == 0)
         {
             nameText.text = info.m_name1;
