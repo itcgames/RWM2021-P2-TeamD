@@ -12,13 +12,12 @@ public class ItemManager : MonoBehaviour
 
     public ItemInventory[] items;
     public GameObject buttonPrefab;
+    public Text textPrefab;
     GameObject itemCanvas;
-    
-    public GameObject PlayerInfo;
-
+    GameObject desc;
+    Text desc1;
     private void Awake()
     {
-        PlayerInfo = GameObject.Find("SceneManager");
         if (instance == null)
             instance = this;
         else
@@ -35,22 +34,24 @@ public class ItemManager : MonoBehaviour
     public void setAllItems()
     {
         itemCanvas = GameObject.Find("Itemarea");
+        desc = GameObject.Find("Description");
 
 
         foreach (ItemInventory i in items)
         {
-            if(i.m_amount > 0)
+            i.m_amount++;
+            if (i.m_amount > 0)
             {
                 GameObject newButton = Instantiate(buttonPrefab) as GameObject;
+
                 newButton.transform.SetParent(itemCanvas.transform, false);
                 newButton.GetComponent<Text>().text = i.m_name + " x" + i.m_amount;
-
                 if (SceneManager.GetActiveScene().name == "Pause")
                 {
                     newButton.GetComponent<Button>().onClick.AddListener(() => {
-                        print("");
+                        ChangeDesc(i.m_desc);
                     });
-                    //using item;
+
                 }
                 else if (SceneManager.GetActiveScene().name == "ItemShop")
                 {
@@ -78,29 +79,44 @@ public class ItemManager : MonoBehaviour
     }
 
 
-    public void AddItem(string name)
+    public void AddItem(string t_name)
     {
-        ItemInventory itemAmount = Array.Find(items, items => items.m_name == name);
-        if (itemAmount == null)
+        ItemInventory itemDetail = Array.Find(items, items => items.m_name == t_name);
+        if (itemDetail == null)
         {
             Debug.LogWarning("Item: " + name + " not found!");
             return;
         }
-        itemAmount.m_amount++;
 
-        print(name + ": " + itemAmount.m_amount);
+        itemDetail.m_amount++;
     }
 
-    public void UseItem(string name)
+    public void UseItem(string t_name)
     {
-        ItemInventory itemAmount = Array.Find(items, items => items.m_name == name);
-        if (itemAmount == null)
+        ItemInventory itemDetail = Array.Find(items, items => items.m_name == name);
+        if (itemDetail == null)
         {
             Debug.LogWarning("Item: " + name + " not found!");
             return;
         }
-        itemAmount.m_amount--;
+        itemDetail.m_amount--;
 
-        print(name + ": " + itemAmount.m_amount);
+        print(t_name + ": " + itemDetail.m_amount);
+        print(t_name + ": " + itemDetail.m_desc);
+    }
+
+    public void ChangeDesc(string t_desc)
+    {
+        if (desc1 == null)
+        {
+            desc1 = Instantiate(textPrefab) as Text;
+
+            desc1.transform.SetParent(desc.transform, false);
+            desc1.transform.position = desc.transform.position;
+        }
+
+        desc1.text = t_desc;
+
+
     }
 }
