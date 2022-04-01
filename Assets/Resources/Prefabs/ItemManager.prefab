@@ -48,13 +48,21 @@ MonoBehaviour:
     m_cost: 60
     m_amount: 0
     m_name: Heal
+    m_effects: 10
+    m_desc: Heals 10 points
   - m_ID: 1
     m_cost: 80
     m_amount: 0
     m_name: Pure
+    m_effects: 20
+    m_desc: Heals 20 points
   - m_ID: 2
     m_cost: 100
     m_amount: 0
     m_name: Tent
+    m_effects: 50
+    m_desc: Heals 50 points
   buttonPrefab: {fileID: 3154635749077316744, guid: c2e9a0f128f1e144d8273f59d4eaa300,
+    type: 3}
+  textPrefab: {fileID: 6132677918162269700, guid: 578190cfc59cc47f289d30b1965413ac,
     type: 3}
