@@ -566,6 +566,7 @@ public class CombatController : MonoBehaviour
             m_currentChar = -1;
             ChangeActivePartyMember();
         }
+
     }
 
     private bool BattleEnd()

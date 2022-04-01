@@ -58,10 +58,10 @@ public class EnemyUtil
         attrs.Gold = 10;
         attrs.Xp = 10;
 
-        Attribute mhp = new Attribute("MHP", 10);
-        Attribute hp = new Attribute("HP", 10);
-        Attribute dmg = new Attribute("Dmg", 6);
-        Attribute def = new Attribute("Def", 40);
+        Attribute mhp = new Attribute("MHP", 75);
+        Attribute hp = new Attribute("HP", 75);
+        Attribute dmg = new Attribute("Dmg", 4);
+        Attribute def = new Attribute("Def", 50);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
@@ -188,6 +188,44 @@ public class EnemyUtil
 
         attrs.Name = "THE SKINHEAD";
         attrs.Playable = false;
+        attrs.Gold = 50;
+        attrs.Xp = 40;
+
+        Attribute mhp = new Attribute("MHP", 50);
+        Attribute hp = new Attribute("HP", 50);
+        Attribute dmg = new Attribute("Dmg", 5);
+        Attribute def = new Attribute("Def", 2);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossWife(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "THE GATEKEEPER";
+        attrs.Playable = false;
+        attrs.Gold = 50;
+        attrs.Xp = 40;
+
+        Attribute mhp = new Attribute("MHP", 500);
+        Attribute hp = new Attribute("HP", 500);
+        Attribute dmg = new Attribute("Dmg", 25);
+        Attribute def = new Attribute("Def", 40);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossSpy(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "SLEEPING THUG";
+        attrs.Playable = false;
         attrs.Gold = 6;
         attrs.Xp = 8;
 
@@ -201,11 +239,11 @@ public class EnemyUtil
         attrs.AddAttribute(def);
     }
 
-    public static void SetupBossSpy(CharacterAttributes attrs)
+    public static void SetupBossBossBoss(CharacterAttributes attrs)
     {
         attrs.ClearAttributes();
 
-        attrs.Name = "SLEEPING THUG";
+        attrs.Name = "AWOKEN THUG";
         attrs.Playable = false;
         attrs.Gold = 6;
         attrs.Xp = 8;
