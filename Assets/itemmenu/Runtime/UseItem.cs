@@ -10,29 +10,16 @@ public class UseItem : MonoBehaviour
     public string playername= "Player";
     public Text playerHP;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-      
-    }
      void OnEnable()
     {
         playerHP = this.gameObject.GetComponent<Text>();
         playerHP.text = playername + " \n HP" + PlayerHealth.ToString() + "/ " + max_health.ToString();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
-    
-
     }
 
     public void heal()
     {
         if (PlayerHealth < max_health && PlayerHealth != 0)
         {
-           
             PlayerHealth += healAmount;
         }
         if(PlayerHealth > max_health)

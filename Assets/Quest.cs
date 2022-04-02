@@ -1,0 +1,161 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Quest : MonoBehaviour
+{
+ 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (FindObjectOfType<PlayerAndGameInfo>() == null) return;
+
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && CompareTag("Quest"))
+        {
+           
+                this.transform.GetChild(0).gameObject.SetActive(false);
+                this.transform.GetChild(1).gameObject.SetActive(false);
+                this.transform.GetChild(2).gameObject.SetActive(false);
+                this.enabled = false;
+           
+        }
+
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && CompareTag("Quest2"))
+        {
+
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            this.transform.GetChild(2).gameObject.SetActive(false);
+            this.enabled = false;
+
+        }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Quest3"))
+        {
+            
+
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            this.transform.GetChild(2).gameObject.SetActive(false);
+            this.enabled = false;
+
+        }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
+        {
+
+            this.GetComponent<Collider2D>().isTrigger = true;
+            //Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if (other.tag == "Player")
+        {
+            if (CompareTag("Quest"))
+                { 
+            if ((FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == false))
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon1 = new weapon("Hip Crack", 3, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon1 = new weapon("Sour", 7, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon1 = new weapon("Windows", 5, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon1 = new weapon("Plush", 2, false);
+
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor1 = new armor("Socks",1 , false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor1 = new armor("Hoodie", 5, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor1 = new armor("Big Chest", 5, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor1 = new armor("Gura Pin", 1, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = true;
+                    GameObject sceneManager = GameObject.Find("SceneManager");
+
+                    if (sceneManager != null)
+                    {
+                        sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+                    }
+
+                }
+            }
+            if (CompareTag("Quest2"))
+            {
+                if ((FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished == false))
+                {
+                    
+
+
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon2 = new weapon("Shame Walk", 12, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon2 = new weapon("Jaeger Bomb", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon2 = new weapon("Ubuntu", 16, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon2 = new weapon("Gura Plush", 11, false);
+
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor2 = new armor("Suit", 11, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor2 = new armor("Gray Hoodie", 20, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor2 = new armor("Polo Shirt", 14, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor2 = new armor("Gura Hat", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = true;
+                    GameObject sceneManager = GameObject.Find("SceneManager");
+
+                    if (sceneManager != null)
+                    {
+                        sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+                    }
+                }
+            }
+            if (CompareTag("Quest3"))
+            {
+                if ((FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished == false))
+                {
+                
+
+
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon3 = new weapon("Penguin", 23, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon3 = new weapon("Tequila", 29, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon3 = new weapon("Linux", 28, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon3 = new weapon("Body Pillow", 26, false);
+
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor3 = new armor("Penguin Suit", 18, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor3 = new armor("Grey Hoodie", 25, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor3 = new armor("Tavern Jacket", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor3 = new armor("Gura Hoodie", 20, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = true;
+                    GameObject sceneManager = GameObject.Find("SceneManager");
+
+                    if (sceneManager != null)
+                    {
+                        sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+                    }
+
+                }
+            }
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
+            {
+
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon4 = new weapon("War Penguin", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon4 = new weapon("Chateruse", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon4 = new weapon("Arch Linux", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon4 = new weapon("Gura Pillow", 100, false);
+
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor4 = new armor("Stopy Amrour", 25, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor4 = new armor("Hoodie Amrour", 50, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor4 = new armor("TOYOTA Amrour", 35, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor4 = new armor("Gura Amrour", 40, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered = true;
+                GameObject sceneManager = GameObject.Find("SceneManager");
+
+                if (sceneManager != null)
+                {
+                    sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+                }
+                //Destroy(this.gameObject);
+            }
+        }
+
+    }
+
+
+}

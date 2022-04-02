@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class ScreenSystem : MonoBehaviour
 {
     int m_currentInventory = 0;
+    bool m_switchToGameplay = true;
 
     private void Awake()
     {
         if (this.gameObject.name != "Canvas")
             DontDestroyOnLoad(this.gameObject);
+        EnemyUtil.ResetEnemyStatus();
     }
 
     public void GoToCharacterSelcetionScene()
@@ -20,13 +22,15 @@ public class ScreenSystem : MonoBehaviour
 
     public void GoToGameplayScene()
     {
+        m_switchToGameplay = true;
         SceneManager.LoadScene(2);
     }
 
     public void ContinueGame()
     {
-        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
-        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        //string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        //JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        EnemyUtil.ResetEnemyStatus();
         GoToGameplayScene();
     }
 
@@ -39,10 +43,22 @@ public class ScreenSystem : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 3)
         { 
-            if (Input.GetKeyDown(KeyCode.Return))
+            //if (Input.GetKeyDown(KeyCode.Return))
+            //{
+            //    GoToGameplayScene();
+            //}
+            if(Input.GetMouseButtonUp(1))
             {
-                GoToGameplayScene();
+                if (m_currentInventory != 0)
+                    FindObjectOfType<Cursor>().GoBack();
+                else
+                    GoToGameplayScene();
             }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2 && m_switchToGameplay)
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = FindObjectOfType<PlayerAndGameInfo>().infos.player_pos;
+            m_switchToGameplay = false;
         }
 
     }
@@ -56,12 +72,12 @@ public class ScreenSystem : MonoBehaviour
             {
                 for (int i = 0; i < this.transform.childCount; i++)
                 {
-                    if(i < this.transform.childCount-1)
+                    if(i < this.transform.childCount-2)
                         this.transform.GetChild(i).gameObject.SetActive(false);
-                    else
-                        this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    //else
+                       // this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 }
-                this.transform.GetChild(t_i).gameObject.SetActive(true);
+                this.transform.GetChild(t_i-1).gameObject.SetActive(true);
             }
     }
 
@@ -77,18 +93,24 @@ public class ScreenSystem : MonoBehaviour
 
     public void LoadSaveAfterLose()
     {
-        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
-        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        //string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        //JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
 
         GoToScene(FindObjectOfType<PlayerAndGameInfo>().infos.m_currentScene);
     }
 
     public void GoToCombatScene()
     {
+        FindObjectOfType<PlayerAndGameInfo>().infos.player_pos = GameObject.FindGameObjectWithTag("Player").transform.position;
         SceneManager.LoadScene(7);
     }
 
     public void EndpointHit()
+    {
+        SceneManager.LoadScene(13);
+    }
+
+    public void EndGame()
     {
         SceneManager.LoadScene(0);
     }

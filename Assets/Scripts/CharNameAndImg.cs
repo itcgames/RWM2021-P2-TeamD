@@ -8,6 +8,7 @@ public class CharNameAndImg : MonoBehaviour
     public List<Sprite> images;
     public List<string> names;
     int listPos;
+    public int charNum;
     public List<string> partyTypes;
 
     private void Start()
@@ -15,6 +16,9 @@ public class CharNameAndImg : MonoBehaviour
         listPos = 0;
         this.transform.GetChild(0).GetComponent<Text>().text = names[listPos];
         this.transform.GetChild(1).GetComponent<Image>().sprite = images[listPos];
+
+        GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(charNum, GetName(), GetImage(), GetAttribute1(),
+                        GetAttribute2(), GetType(), GetAttribute3());
     }
 
     public void Next()
@@ -31,6 +35,9 @@ public class CharNameAndImg : MonoBehaviour
             this.transform.GetChild(0).GetComponent<Text>().text = names[listPos];
             this.transform.GetChild(1).GetComponent<Image>().sprite = images[listPos];
         }
+
+        GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(charNum, GetName(), GetImage(), GetAttribute1(),
+                        GetAttribute2(), GetType() ,GetAttribute3());
     }
 
     public void Previous()
@@ -47,6 +54,9 @@ public class CharNameAndImg : MonoBehaviour
             this.transform.GetChild(0).GetComponent<Text>().text = names[listPos];
             this.transform.GetChild(1).GetComponent<Image>().sprite = images[listPos];
         }
+
+        GameObject.FindObjectOfType<PlayerAndGameInfo>().SetCharacter(charNum, GetName(), GetImage(), GetAttribute1(),
+                       GetAttribute2(), GetType(), GetAttribute3());
     }
 
     public Sprite GetImage()
@@ -96,6 +106,26 @@ public class CharNameAndImg : MonoBehaviour
         else if (partyTypes[listPos] == PartyType.Thief.ToString())
         {
             return PartyUtil.SetupThief("DMG");
+        }
+        return null;
+    }
+    public Attribute GetAttribute3()
+    {
+        if (partyTypes[listPos] == PartyType.B_Mage.ToString())
+        {
+            return PartyUtil.SetupMage("MHP");
+        }
+        else if (partyTypes[listPos] == PartyType.BL_Belt.ToString())
+        {
+            return PartyUtil.SetupBlackBelt("MHP");
+        }
+        else if (partyTypes[listPos] == PartyType.Fighter.ToString())
+        {
+            return PartyUtil.SetupFighter("MHP");
+        }
+        else if (partyTypes[listPos] == PartyType.Thief.ToString())
+        {
+            return PartyUtil.SetupThief("MHP");
         }
         return null;
     }

@@ -12,7 +12,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     GameObject m_shopItems;
     [SerializeField]
-    GameObject m_sellItems;
+    GameObject m_shopText;
+    [SerializeField]
+    GameObject m_shopGil;
     [SerializeField]
     GameObject m_confirmSelection;
     [SerializeField]
@@ -49,14 +51,13 @@ public class ShopManager : MonoBehaviour
         m_dialog.text = "Welcome!";
         if (!Utilities.s_testMode) m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
         else m_gilText.text = ""; // don't need for testing
-
         if (SceneManager.GetActiveScene().name == "ClinicShop")
         {
             setupClinic();
         }
     }
 
-    private void Update()
+    public void Update()
     {
         backSelection();
 
@@ -76,6 +77,8 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
+
+        m_gilText.text = FindObjectOfType<PlayerAndGameInfo>().infos.m_gil.ToString() + " G";
     }
 
 
@@ -88,9 +91,11 @@ public class ShopManager : MonoBehaviour
 
     public void sellShop()
     {
-        m_sellItems.SetActive(true);
         m_shopSelection.SetActive(false);
+        m_shopItems.SetActive(false);
+        m_shopText.SetActive(false);
         m_dialog.text = "Whose item do want to sell?";
+        m_itemArea.SetActive(true);
     }
 
     public void ClinicPayment()
@@ -112,6 +117,11 @@ public class ShopManager : MonoBehaviour
     public void cancelSelling()
     {
         m_sell = false;
+        m_itemArea.SetActive(false);
+        m_shopSelection.SetActive(true);
+        m_shopItems.SetActive(true);
+        m_shopGil.SetActive(true);
+        m_shopText.SetActive(true);
         checkSelling();
     }
 
@@ -162,10 +172,11 @@ public class ShopManager : MonoBehaviour
                 // add the item here
                 if (m_shopItems.GetComponent<ItemCost>().GetInventory() == 0)
                 {
-                    GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
+                    //GameObject gameObject = Instantiate(m_itemPrefab, m_itemArea.transform);
                     //m_inventory
                 }
                 m_shopItems.GetComponent<ItemCost>().addInventory();
+
                 m_confirmSelection.SetActive(false);
             }
             else
@@ -175,7 +186,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            m_dialog.text = "Too bad\n...\nSomething else?";
+            m_dialog.text = "Thank you!\n...\nSomething else?";
         }
         m_purchase = false;
         m_confirmSelection.SetActive(false);
@@ -232,20 +243,20 @@ public class ShopManager : MonoBehaviour
                 switch (type)
                 {
                     case 1:
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type1);
-                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_type);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value);
                         break;
                     case 2:
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type2);
-                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_type);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value);
                         break;
                     case 3:
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type3);
-                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_type);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value);
                         break;
                     case 4:
-                        FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type4);
-                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value);
+                        FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_type);
+                        Debug.Log("Health: " + FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value);
                         break;
                     default:
                         break;
@@ -274,15 +285,15 @@ public class ShopManager : MonoBehaviour
 
     public void setupClinic()
     {
-        Debug.Log(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value);
+        Debug.Log(FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value);
         m_member1 = GameObject.Find("Member1");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value, m_member1, FindObjectOfType<PlayerAndGameInfo>().infos.m_name1);
-        m_member2 = GameObject.Find("Member2");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value, m_member2, FindObjectOfType<PlayerAndGameInfo>().infos.m_name2);
-        m_member3 = GameObject.Find("Member3");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value, m_member3, FindObjectOfType<PlayerAndGameInfo>().infos.m_name3);
-        m_member4 = GameObject.Find("Member4");
-        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value, m_member4, FindObjectOfType<PlayerAndGameInfo>().infos.m_name4);
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value, m_member1, FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_name);
+        m_member2 = GameObject.Find("Member2");                                                                                                   
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value, m_member2, FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_name);
+        m_member3 = GameObject.Find("Member3");                                                                                                   
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value, m_member3, FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_name);
+        m_member4 = GameObject.Find("Member4");                                                                                                   
+        checkHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value, m_member4, FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_name);
     }
 
     public void checkHealth(float t_health, GameObject t_data, string t_name)
@@ -300,8 +311,8 @@ public class ShopManager : MonoBehaviour
 
     public bool fullHealth()
     {
-        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value <= 0 || FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value <= 0 ||
-            FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value <= 0 || FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value <= 0)
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value <= 0 || FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value <= 0 ||
+            FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value <= 0 || FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value <= 0)
         {
             return true;
         }
@@ -313,22 +324,22 @@ public class ShopManager : MonoBehaviour
 
     public int FindButton()
     {
-        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value <= 0)
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value <= 0)
         {
             Button btn = m_member1.GetComponent<Button>();
             type = 1;
         }
-        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value <= 0)
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value <= 0)
         {
             Button btn = m_member2.GetComponent<Button>();
             type = 2;
         }
-        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value <= 0)
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value <= 0)
         {
             Button btn = m_member3.GetComponent<Button>();
             type = 3;
         }
-        if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value <= 0)
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value <= 0)
         {
             Button btn = m_member4.GetComponent<Button>();
             type = 4;

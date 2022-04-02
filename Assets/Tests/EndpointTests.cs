@@ -29,33 +29,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
 
-            Assert.AreEqual(0, SceneManager.GetActiveScene().buildIndex);
-        }
-
-        [UnityTest]
-        public IEnumerator FightEndpointWorks()
-        {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
-
-            yield return new WaitForSeconds(0.1f);
-
-            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
-
-            t_system.GoToGameplayScene();
-
-            yield return new WaitForSeconds(0.1f);
-
-            var endpoint = GameObject.FindObjectOfType<EndPoint>();
-
-            endpoint.FightWon();
-            endpoint.FightWon();
-            endpoint.FightWon();
-            endpoint.FightWon();
-            endpoint.FightWon();
-
-            yield return new WaitForSeconds(0.1f);
-
-            Assert.AreEqual(0, SceneManager.GetActiveScene().buildIndex);
+            Assert.AreEqual(13, SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

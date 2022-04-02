@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Town.unity
     guid: ddfd9a424ec776547bdeccb734262516
   - enabled: 1
-    path: Assets/Scenes/item.unity
+    path: Assets/Scenes/itemScene.unity
     guid: 0f00014fd6b520a498ed95690f215c4e
   - enabled: 1
     path: Assets/Scenes/CombatScene.unity
@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InteractionTempScene.unity
     guid: 883f364f0cc4c394490f6af6dd6d3a7b
+  - enabled: 1
+    path: Assets/Scenes/TavernMiniGame.unity
+    guid: 54d639bcff5d87048a83a37ffb4cb696
   m_configObjects: {}
