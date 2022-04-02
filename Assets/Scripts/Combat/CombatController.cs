@@ -37,7 +37,7 @@ public class CombatController : MonoBehaviour
     {
         EnemySelectors = new GameObject[9];
         XpBars = new GameObject[4];
-        
+
         PartyInitPositions = new Vector2[4];
         EnemyInitPositions = new Vector2[9];
 
@@ -134,12 +134,12 @@ public class CombatController : MonoBehaviour
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished = true;
                     }
-                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished = true;
                     }
-                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished = true;
@@ -206,7 +206,7 @@ public class CombatController : MonoBehaviour
                 SpawnBoss3();
 
             }
-            else if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false
+            else if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false
                 && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == false)
             {
                 GenerateEnemies();
@@ -466,12 +466,12 @@ public class CombatController : MonoBehaviour
         for (int i = 0; i < EnemyList.Count; ++i)
         {
             // if hp less than half
-            if(EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value <=
+            if (EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value <=
                 EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value / 2)
             {
                 int chance = Random.Range(1, 101);
 
-                if(chance >= 60)
+                if (chance >= 60)
                 {
                     EnemyList[i].GetComponent<ActionController>().Action = ActionController.CombatAction.Block;
                     EnemyList[i].GetComponent<ActionController>().StatusTxt = m_statusTxt;
@@ -502,7 +502,7 @@ public class CombatController : MonoBehaviour
 
         for (int i = 0; i < EnemyList.Count; ++i)
         {
-            if(EnemyList[i].activeSelf)
+            if (EnemyList[i].activeSelf)
             {
                 newTarget = EnemyList[i];
                 newTargetInitPos = EnemyInitPositions[i];
@@ -671,7 +671,7 @@ public class CombatController : MonoBehaviour
 
         m_party[1].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_name;
         m_party[1].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_charImage;
-                
+
         m_party[1].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_lvl;
         m_party[1].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_xp;
         m_party[1].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_lvlThreshold;
@@ -681,10 +681,10 @@ public class CombatController : MonoBehaviour
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeDam.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeArmor.Value;
         m_party[2].GetComponent<CharacterAttributes>().FindAttribute("Ack").Value = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeAttack.Value;
-                
+
         m_party[2].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_name;
         m_party[2].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_charImage;
-                
+
         m_party[2].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_lvl;
         m_party[2].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_xp;
         m_party[2].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_lvlThreshold;
@@ -694,10 +694,14 @@ public class CombatController : MonoBehaviour
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeDam.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Def").Value = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeArmor.Value;
         m_party[3].GetComponent<CharacterAttributes>().FindAttribute("Ack").Value = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeAttack.Value;
-                
+
         m_party[3].GetComponent<CharacterAttributes>().Name = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_name;
         m_party[3].GetComponent<SpriteRenderer>().sprite = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_charImage;
-                
+
+        m_party[3].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_lvl;
+        m_party[3].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_xp;
+        m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_lvlThreshold;
+
         m_party[3].GetComponent<CharacterAttributes>().Level = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_lvl;
         m_party[3].GetComponent<CharacterAttributes>().Xp = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_xp;
         m_party[3].GetComponent<CharacterAttributes>().LevelUpThreshold = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_lvlThreshold;
