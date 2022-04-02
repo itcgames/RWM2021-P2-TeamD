@@ -57,7 +57,16 @@ public class PlayerAndGameInfo : MonoBehaviour
     void Start()
     {
         infos = new GameData();
-        t_system = new CheckpointSystem();
+        t_system = FindObjectOfType<CheckpointSystem>();
+
+        infos.character.Add(new CharacterInfo());
+        infos.character.Add(new CharacterInfo());
+        infos.character.Add(new CharacterInfo());
+        infos.character.Add(new CharacterInfo());
+
+        string save = JsonUtility.ToJson(GameObject.FindObjectOfType<PlayerAndGameInfo>().GetCharInfo());
+        t_system.AddToStringList("Test", save);
+
         DontDestroyOnLoad(this);
     }
 
@@ -72,7 +81,7 @@ public class PlayerAndGameInfo : MonoBehaviour
         info.m_type = type;
         info.m_attributeHPMax = attributeMHP;
 
-        infos.character.Add(info);
+        infos.character[charNum-1] = info;
     }
 
     public GameData GetCharInfo()
