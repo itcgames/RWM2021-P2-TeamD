@@ -28,8 +28,8 @@ public class ScreenSystem : MonoBehaviour
 
     public void ContinueGame()
     {
-        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
-        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        //string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        //JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
         EnemyUtil.ResetEnemyStatus();
         GoToGameplayScene();
     }
@@ -93,8 +93,8 @@ public class ScreenSystem : MonoBehaviour
 
     public void LoadSaveAfterLose()
     {
-        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
-        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        //string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        //JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
 
         GoToScene(FindObjectOfType<PlayerAndGameInfo>().infos.m_currentScene);
     }
