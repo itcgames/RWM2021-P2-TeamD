@@ -25,6 +25,10 @@ public class Quest : MonoBehaviour
                 this.enabled = false;
            
         }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && CompareTag("Quest2"))
+        {
+            this.GetComponent<Collider2D>().isTrigger = true;
+        }
 
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && CompareTag("Quest2"))
         {
@@ -35,6 +39,11 @@ public class Quest : MonoBehaviour
             this.enabled = false;
 
         }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && CompareTag("Quest3"))
+        {
+            this.GetComponent<Collider2D>().isTrigger = true;
+        }
+
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Quest3"))
         {
             
@@ -45,11 +54,11 @@ public class Quest : MonoBehaviour
             this.enabled = false;
 
         }
+
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
         {
 
             this.GetComponent<Collider2D>().isTrigger = true;
-            //Destroy(this.gameObject);
         }
     }
 
