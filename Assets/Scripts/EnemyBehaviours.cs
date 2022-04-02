@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviours : MonoBehaviour
 {
-	public float m_movement_speed = 0.5f;
+	public float m_movement_speed = 1.5f;
 
 	public bool m_wander = true;
 	public bool m_player_detected = false;
@@ -39,7 +39,17 @@ public class EnemyBehaviours : MonoBehaviour
 			DetectPlayer();
 			FollowPlayer();
 		}
+        if (direction.x > 0)
+        {
+			this.transform.localScale = new Vector3(1, this.transform.localScale.y, this.transform.localScale.z);
 
+        }
+        else if (direction.x < 0)
+        {
+			this.transform.localScale = new Vector3(-1, this.transform.localScale.y, this.transform.localScale.z);
+
+
+		}
 		rb.velocity = direction * m_movement_speed;
 
 		if (m_wander && m_current_wait_time <= 0)
@@ -50,8 +60,9 @@ public class EnemyBehaviours : MonoBehaviour
 		else
 			m_current_wait_time = NEW_WANDER_DIR_WAIT;
 
-		transform.rotation = Quaternion.Euler(
-				new Vector3(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
+		direction =	new Vector3(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+	//transform.rotation = Quaternion.Euler(
+				//new Vector3(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
 	}
 
 	void DetectPlayer()

@@ -125,7 +125,7 @@ public class CombatController : MonoBehaviour
                 {
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
                     if (!FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered && !FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered
-                        && !FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered)
+                        && !FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered && !FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered)
                     {
                         EnemyUtil.s_enemyAliveStatus[EnemyUtil.s_currentEnemyID - 1] = false;
                     }
@@ -143,6 +143,11 @@ public class CombatController : MonoBehaviour
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished = true;
+                    }
+                    if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == true)
+                    {
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered = false;
+                        FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished = true;
                     }
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
@@ -196,7 +201,13 @@ public class CombatController : MonoBehaviour
                 SpawnBoss3();
 
             }
-            else if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == false)
+            if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == true)
+            {
+                SpawnBoss3();
+
+            }
+            else if(FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false
+                && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == false)
             {
                 GenerateEnemies();
             }

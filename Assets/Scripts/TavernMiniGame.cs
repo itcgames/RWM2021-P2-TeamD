@@ -12,7 +12,8 @@ public class TavernMiniGame : MonoBehaviour
     float keyPressTimeInterval = 2.0f;
     float enemyTimeInterval = 0.75f;
     float timeLeft;
-
+    float stun = 1.0f;
+    bool stuned = false;
     const int PERCENT_NEEDED = 100;
     int currentPercent = 0;
 
@@ -47,12 +48,36 @@ public class TavernMiniGame : MonoBehaviour
             if (timeLeft > 0f)
             {
                 timeLeft -= Time.deltaTime;
-
-                if (Input.GetKeyDown(keyCodes[keyNeeded]))
+               if(stuned)
                 {
-                    addPercent();
-                    pickKey();
+                    stun -= Time.deltaTime;
+                    if(stun <= 0)
+                    {
+                        stuned = false;
+                    }
                 }
+                if (Input.anyKeyDown && !stuned)
+                {
+                    if(Input.GetKeyDown(keyCodes[keyNeeded]))
+                    {
+                        addPercent();
+                        pickKey();
+                    }
+                    else
+                    {
+
+                        if (currentPercent >= 0)
+                        {
+                            currentPercent -= 10;
+                            stun = 1.0f;
+                            stuned = true;
+                            bar.value = currentPercent;
+                        }
+                        
+                        pickKey();
+                    }
+                }
+            
             }
             else
             {
