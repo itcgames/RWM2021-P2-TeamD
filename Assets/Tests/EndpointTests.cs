@@ -30,7 +30,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.1f);
 
-            Assert.AreEqual(13, SceneManager.GetActiveScene().buildIndex);
+            Assert.AreEqual(2, SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

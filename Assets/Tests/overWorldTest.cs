@@ -60,6 +60,7 @@ namespace Tests
             m_intance = GameObject.Find("TownNorth");
             m_player = GameObject.Find("Player");
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
+            m_player.tag = "Untagged";
             m_intance.transform.position = m_player.transform.position;
             m_intance.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             Debug.Log("Has entered Town");
@@ -67,7 +68,7 @@ namespace Tests
             m_intance.transform.position = m_player.transform.position;
             yield return new WaitForSeconds(4.0f);
             int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(5, m_sceneNum);
+            Assert.AreEqual(2, m_sceneNum);
         }
 
         [UnityTest]
