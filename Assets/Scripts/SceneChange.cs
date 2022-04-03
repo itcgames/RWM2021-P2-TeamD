@@ -43,4 +43,9 @@ public class SceneChange : MonoBehaviour
         Application.Quit();
     }
 
+    public void Change(int t_scene)
+    {
+        SceneManager.LoadScene(t_scene);
+    }
+
 }
