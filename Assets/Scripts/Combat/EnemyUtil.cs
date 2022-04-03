@@ -172,7 +172,7 @@ public class EnemyUtil
 
         attrs.Name = "STOIC MASS";
         attrs.Playable = false;
-        attrs.Gold = 93;
+        attrs.Gold = 132;
         attrs.Xp = 87;
 
         Attribute mhp = new Attribute("MHP", 120);
@@ -191,8 +191,8 @@ public class EnemyUtil
 
         attrs.Name = "THE SKINHEAD";
         attrs.Playable = false;
-        attrs.Gold = 54;
-        attrs.Xp = 42;
+        attrs.Gold = 67;
+        attrs.Xp = 89;
 
         Attribute mhp = new Attribute("MHP", 50);
         Attribute hp = new Attribute("HP", 50);
@@ -211,11 +211,11 @@ public class EnemyUtil
         attrs.Name = "GATEKEEPER";
         attrs.Playable = false;
         attrs.Gold = 104;
-        attrs.Xp = 84;
+        attrs.Xp = 102;
 
         Attribute mhp = new Attribute("MHP", 100);
         Attribute hp = new Attribute("HP", 100);
-        Attribute dmg = new Attribute("Dmg", 10);
+        Attribute dmg = new Attribute("Dmg", 5);
         Attribute def = new Attribute("Def", 20);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
@@ -229,7 +229,7 @@ public class EnemyUtil
 
         attrs.Name = "SLEEPING THUG";
         attrs.Playable = false;
-        attrs.Gold = 76;
+        attrs.Gold = 98;
         attrs.Xp = 56;
 
         Attribute mhp = new Attribute("MHP", 45);
@@ -251,9 +251,9 @@ public class EnemyUtil
         attrs.Gold = 1300;
         attrs.Xp = 520;
 
-        Attribute mhp = new Attribute("MHP", 500);
-        Attribute hp = new Attribute("HP", 500);
-        Attribute dmg = new Attribute("Dmg", 50);
+        Attribute mhp = new Attribute("MHP", 250);
+        Attribute hp = new Attribute("HP", 250);
+        Attribute dmg = new Attribute("Dmg", 10);
         Attribute def = new Attribute("Def", 50);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
@@ -268,11 +268,11 @@ public class EnemyUtil
         attrs.Name = "STOIC WALKER";
         attrs.Playable = false;
         attrs.Gold = 124;
-        attrs.Xp = 89;
+        attrs.Xp = 96;
 
         Attribute mhp = new Attribute("MHP", 75);
         Attribute hp = new Attribute("HP", 75);
-        Attribute dmg = new Attribute("Dmg", 50);
+        Attribute dmg = new Attribute("Dmg", 25);
         Attribute def = new Attribute("Def", 20);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);

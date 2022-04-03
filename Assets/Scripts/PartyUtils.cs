@@ -12,41 +12,41 @@ public class PartyUtil
     public static Attribute SetupFighter(string t_s)
     {
         if (t_s == "HP")
-            return new Attribute("HP", 60);
+            return new Attribute("HP", 80);
         if (t_s == "MHP")
-            return new Attribute("MHP", 60);
+            return new Attribute("MHP", 80);
         else
-            return new Attribute("Dmg", 5);
+            return new Attribute("Dmg", 7);
     }
 
     public static Attribute SetupMage(string t_s)
     {
         if (t_s == "HP")
-            return new Attribute("HP", 40);
+            return new Attribute("HP", 60);
         if (t_s == "MHP")
-            return new Attribute("MHP", 40);
+            return new Attribute("MHP", 60);
         else
-            return new Attribute("Dmg", 15);
+            return new Attribute("Dmg", 17);
     }
 
     public static Attribute SetupThief(string t_s)
     {
         if (t_s == "HP")
-            return new Attribute("HP", 40);
+            return new Attribute("HP", 25);
         if (t_s == "MHP")
-            return new Attribute("MHP", 40);
+            return new Attribute("MHP", 25);
         else
-            return new Attribute("Dmg", 7);
+            return new Attribute("Dmg", 30);
     }
 
     public static Attribute SetupBlackBelt(string t_s)
     {
         if (t_s == "HP")
-            return new Attribute("HP", 46);
+            return new Attribute("HP", 55);
         if (t_s == "MHP")
-            return new Attribute("MHP", 46);
+            return new Attribute("MHP", 55);
         else
-            return new Attribute("Dmg", 5);
+            return new Attribute("Dmg", 12);
     }
 
     public static void LevelUpFighter(CharacterAttributes attrs)
