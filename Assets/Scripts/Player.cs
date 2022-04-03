@@ -27,11 +27,11 @@ public class Player : MonoBehaviour
 
         if(m_input.x > 0)
         {
-            this.transform.localScale = new Vector3(1, this.transform.localScale.y, this.transform.localScale.z);
+            this.transform.localScale = new Vector3(0.5f, this.transform.localScale.y, this.transform.localScale.z);
         }
         if (m_input.x < 0)
         {
-            this.transform.localScale = new Vector3(-1, this.transform.localScale.y, this.transform.localScale.z);
+            this.transform.localScale = new Vector3(-0.5f, this.transform.localScale.y, this.transform.localScale.z);
         }
         m_input.y = Input.GetAxisRaw("Vertical");
 

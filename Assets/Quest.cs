@@ -25,6 +25,10 @@ public class Quest : MonoBehaviour
                 this.enabled = false;
            
         }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && CompareTag("Quest2"))
+        {
+            this.GetComponent<Collider2D>().isTrigger = true;
+        }
 
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && CompareTag("Quest2"))
         {
@@ -35,6 +39,11 @@ public class Quest : MonoBehaviour
             this.enabled = false;
 
         }
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && CompareTag("Quest3"))
+        {
+            this.GetComponent<Collider2D>().isTrigger = true;
+        }
+
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Quest3"))
         {
             
@@ -45,11 +54,29 @@ public class Quest : MonoBehaviour
             this.enabled = false;
 
         }
+
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished && CompareTag("Barrier"))
+        {
+
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            this.transform.GetChild(2).gameObject.SetActive(false);
+            this.transform.GetChild(3).gameObject.SetActive(false);
+            this.transform.GetChild(4).gameObject.SetActive(false);
+            this.transform.GetChild(5).gameObject.SetActive(false);
+            this.transform.GetChild(6).gameObject.SetActive(false);
+            this.transform.GetChild(7).gameObject.SetActive(false);
+            this.transform.GetChild(8).gameObject.SetActive(false);
+            this.transform.GetChild(9).gameObject.SetActive(false);
+            this.transform.GetChild(10).gameObject.SetActive(false);
+            this.transform.GetChild(11).gameObject.SetActive(false);
+            this.enabled = false;
+        }
+
         if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
         {
 
             this.GetComponent<Collider2D>().isTrigger = true;
-            //Destroy(this.gameObject);
         }
     }
 
@@ -134,8 +161,9 @@ public class Quest : MonoBehaviour
             }
             if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
             {
-
-                FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon4 = new weapon("War Penguin", 100, false);
+                if (!FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished)
+                {
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon4 = new weapon("War Penguin", 100, false);
                 FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon4 = new weapon("Chateruse", 100, false);
                 FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon4 = new weapon("Arch Linux", 100, false);
                 FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon4 = new weapon("Gura Pillow", 100, false);
@@ -147,11 +175,11 @@ public class Quest : MonoBehaviour
                 FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered = true;
                 GameObject sceneManager = GameObject.Find("SceneManager");
 
-                if (sceneManager != null)
-                {
-                    sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+                    if (sceneManager != null)
+                    {
+                        sceneManager.GetComponent<ScreenSystem>().GoToCombatScene();
+                    }
                 }
-                //Destroy(this.gameObject);
             }
         }
 

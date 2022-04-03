@@ -1,20 +1,26 @@
 ﻿using System.Collections.Generic;
 enum EnemyType
 {
+    Snail,
+    Cactus,
     Bandit,
     DesertWarrior,
-    Cactus,
     DesertShinobi,
     DarkShinobi,
     ShadeShinobi,
-    Snail
+    BossBoss,
+    BossSpy,
+    BossMan,
+    BossWalk,
+    BossBossBoss,
+    BossWife
 }
 
 public class EnemyUtil
 {
     public static int s_currentEnemyID = 0;
 
-    public static bool[] s_enemyAliveStatus = new bool[20];
+    public static bool[] s_enemyAliveStatus = new bool[18];
 
     public static void ResetEnemyStatus()
     {
@@ -35,8 +41,8 @@ public class EnemyUtil
         attrs.Gold = 6;
         attrs.Xp = 8;
 
-        Attribute mhp = new Attribute("MHP", 8);
-        Attribute hp = new Attribute("HP", 8);
+        Attribute mhp = new Attribute("MHP", 15);
+        Attribute hp = new Attribute("HP", 15);
         Attribute dmg = new Attribute("Dmg", 4);
         Attribute def = new Attribute("Def", 2);
         attrs.AddAttribute(mhp);
@@ -51,13 +57,13 @@ public class EnemyUtil
 
         attrs.Name = "WARRIOR";
         attrs.Playable = false;
-        attrs.Gold = 10;
-        attrs.Xp = 10;
+        attrs.Gold = 52;
+        attrs.Xp = 45;
 
-        Attribute mhp = new Attribute("MHP", 10);
-        Attribute hp = new Attribute("HP", 10);
-        Attribute dmg = new Attribute("Dmg", 6);
-        Attribute def = new Attribute("Def", 40);
+        Attribute mhp = new Attribute("MHP", 75);
+        Attribute hp = new Attribute("HP", 75);
+        Attribute dmg = new Attribute("Dmg", 2);
+        Attribute def = new Attribute("Def", 50);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
@@ -89,8 +95,8 @@ public class EnemyUtil
 
         attrs.Name = "DESERT NINJA";
         attrs.Playable = false;
-        attrs.Gold = 20;
-        attrs.Xp = 40;
+        attrs.Gold = 15;
+        attrs.Xp = 35;
 
         Attribute mhp = new Attribute("MHP", 15);
         Attribute hp = new Attribute("HP", 15);
@@ -108,12 +114,12 @@ public class EnemyUtil
 
         attrs.Name = "DARK NINJA";
         attrs.Playable = false;
-        attrs.Gold = 30;
-        attrs.Xp = 45;
+        attrs.Gold = 67;
+        attrs.Xp = 64;
 
         Attribute mhp = new Attribute("MHP", 25);
         Attribute hp = new Attribute("HP", 25);
-        Attribute dmg = new Attribute("Dmg", 8);
+        Attribute dmg = new Attribute("Dmg", 9);
         Attribute def = new Attribute("Def", 10);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
@@ -121,19 +127,20 @@ public class EnemyUtil
         attrs.AddAttribute(def);
     }
 
+    // rare enemy
     public static void SetupShinobiShade(CharacterAttributes attrs)
     {
         attrs.ClearAttributes();
 
         attrs.Name = "SHADE NINJA";
         attrs.Playable = false;
-        attrs.Gold = 50;
-        attrs.Xp = 65;
+        attrs.Gold = 142;
+        attrs.Xp = 312;
 
-        Attribute mhp = new Attribute("MHP", 10);
-        Attribute hp = new Attribute("HP", 10);
-        Attribute dmg = new Attribute("Dmg", 15);
-        Attribute def = new Attribute("Def", 1);
+        Attribute mhp = new Attribute("MHP", 50);
+        Attribute hp = new Attribute("HP", 50);
+        Attribute dmg = new Attribute("Dmg", 35);
+        Attribute def = new Attribute("Def", 10);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);
@@ -153,6 +160,120 @@ public class EnemyUtil
         Attribute hp = new Attribute("HP", 2);
         Attribute dmg = new Attribute("Dmg", 1);
         Attribute def = new Attribute("Def", 1);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossBoss(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "STOIC MASS";
+        attrs.Playable = false;
+        attrs.Gold = 132;
+        attrs.Xp = 87;
+
+        Attribute mhp = new Attribute("MHP", 120);
+        Attribute hp = new Attribute("HP", 120);
+        Attribute dmg = new Attribute("Dmg", 3);
+        Attribute def = new Attribute("Def", 50);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossMan(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "THE SKINHEAD";
+        attrs.Playable = false;
+        attrs.Gold = 67;
+        attrs.Xp = 89;
+
+        Attribute mhp = new Attribute("MHP", 50);
+        Attribute hp = new Attribute("HP", 50);
+        Attribute dmg = new Attribute("Dmg", 6);
+        Attribute def = new Attribute("Def", 2);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossWife(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "GATEKEEPER";
+        attrs.Playable = false;
+        attrs.Gold = 104;
+        attrs.Xp = 102;
+
+        Attribute mhp = new Attribute("MHP", 100);
+        Attribute hp = new Attribute("HP", 100);
+        Attribute dmg = new Attribute("Dmg", 5);
+        Attribute def = new Attribute("Def", 20);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossSpy(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "SLEEPING THUG";
+        attrs.Playable = false;
+        attrs.Gold = 98;
+        attrs.Xp = 56;
+
+        Attribute mhp = new Attribute("MHP", 45);
+        Attribute hp = new Attribute("HP", 45);
+        Attribute dmg = new Attribute("Dmg", 30);
+        Attribute def = new Attribute("Def", 20);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossBossBoss(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "AWOKEN THUG";
+        attrs.Playable = false;
+        attrs.Gold = 1300;
+        attrs.Xp = 520;
+
+        Attribute mhp = new Attribute("MHP", 250);
+        Attribute hp = new Attribute("HP", 250);
+        Attribute dmg = new Attribute("Dmg", 10);
+        Attribute def = new Attribute("Def", 50);
+        attrs.AddAttribute(mhp);
+        attrs.AddAttribute(hp);
+        attrs.AddAttribute(dmg);
+        attrs.AddAttribute(def);
+    }
+
+    public static void SetupBossWalk(CharacterAttributes attrs)
+    {
+        attrs.ClearAttributes();
+
+        attrs.Name = "STOIC WALKER";
+        attrs.Playable = false;
+        attrs.Gold = 124;
+        attrs.Xp = 96;
+
+        Attribute mhp = new Attribute("MHP", 75);
+        Attribute hp = new Attribute("HP", 75);
+        Attribute dmg = new Attribute("Dmg", 25);
+        Attribute def = new Attribute("Def", 20);
         attrs.AddAttribute(mhp);
         attrs.AddAttribute(hp);
         attrs.AddAttribute(dmg);

@@ -89,11 +89,27 @@ public class ActionController : MonoBehaviour
                     Target.GetComponent<CharacterAttributes>().FindAttribute("Def").Value,
                     Target.GetComponent<ActionController>().Action == CombatAction.Block);
 
-                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
+                int totalDamage = (int)GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+
+                if (GetComponent<CharacterAttributes>().FindAttribute("Ack") != null)
+                {
+                    totalDamage += (int)GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
+                }
+
+                if(Target.GetComponent<CharacterAttributes>().Playable)
+                {
+                    GlobalAnalytics.s_actionsData.damageTaken += totalDamage;
+                }
+                else
+                {
+                    GlobalAnalytics.s_actionsData.damageDealt += totalDamage;
+                }
+
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (totalDamage -
                  emotionalDamage);
 
                 StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
-                + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value -
+                + (totalDamage -
                  emotionalDamage) + " DMG\nTO "
                 + Target.GetComponent<CharacterAttributes>().Name;
 
@@ -107,39 +123,35 @@ public class ActionController : MonoBehaviour
             }
             else
             {
+                int totalDamage = (int)GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+
                 if (GetComponent<CharacterAttributes>().FindAttribute("Ack") != null)
                 {
-                    Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
-                    GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
+                    totalDamage += (int)GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
+                }
 
-                    StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
-                + (GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + GetComponent<CharacterAttributes>().FindAttribute("Ack").Value) + " DMG\nTO "
-                + Target.GetComponent<CharacterAttributes>().Name;
-
-                    StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
-
-                    //Attack sound
-                    if (AudioManager.instance != null)
-                    {
-                        AudioManager.instance.PlaySFX("Attack");
-                    }
+                if (Target.GetComponent<CharacterAttributes>().Playable)
+                {
+                    GlobalAnalytics.s_actionsData.damageTaken += totalDamage;
                 }
                 else
                 {
-                    Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
-                        GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value;
+                    GlobalAnalytics.s_actionsData.damageDealt += totalDamage;
+                }
 
-                    StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
-                + GetComponent<CharacterAttributes>().FindAttribute("Dmg").Value + " DMG\nTO "
-                + Target.GetComponent<CharacterAttributes>().Name;
+                Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
+                    totalDamage;
 
-                    StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
+                StatusTxt.text = GetComponent<CharacterAttributes>().Name + " DEALS\n"
+            + totalDamage + " DMG\nTO "
+            + Target.GetComponent<CharacterAttributes>().Name;
 
-                    //Attack sound
-                    if (AudioManager.instance != null)
-                    {
-                        AudioManager.instance.PlaySFX("Attack");
-                    }
+                StartCoroutine(CameraShake.Shake(0.5f, 0.02f, 1.0f, Target.transform, TargetInitPos));
+
+                //Attack sound
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlaySFX("Attack");
                 }
             }
 
@@ -169,12 +181,11 @@ public class ActionController : MonoBehaviour
         if (success > 50)
         {
             CombatEnum.s_currentCombatState = CombatEnum.CombatState.Escape;
+            StatusTxt.text = GetComponent<CharacterAttributes>().Name + " ESCAPE\nATTEMPT SUCCESSFUL";
             //flee sounds
             if (AudioManager.instance != null)
             {
-                AudioManager.instance.PauseMusic("BattleTheme");
                 AudioManager.instance.PlaySFX("Flee");
-                AudioManager.instance.PlayMusic("Theme");
             }
         }
 

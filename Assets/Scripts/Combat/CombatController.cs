@@ -102,7 +102,8 @@ public class CombatController : MonoBehaviour
             {
                 if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered
                     || FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered
-                        || FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered)
+                        || FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered
+                        || FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered)
                 {
                     m_rewardTxt.text = "REWARD: " + m_goldReward + 'G' + "\n                  " + m_xpReward + "XP\nGOT NEW GEAR";
                 }
@@ -121,6 +122,12 @@ public class CombatController : MonoBehaviour
                 Input.GetKeyDown(KeyCode.Escape) ||
                 Input.GetMouseButtonDown(0))
             {
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PauseMusic("BattleTheme");
+                    AudioManager.instance.PlayMusic("Theme");
+                }
+
                 if (CombatEnum.CombatState.Victory == CombatEnum.s_currentCombatState)
                 {
                     Debug.Log("Enemy Killed: " + EnemyUtil.s_currentEnemyID);
@@ -133,25 +140,31 @@ public class CombatController : MonoBehaviour
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_actionsData, this);
+                    GlobalAnalytics.s_actionsData = new ActionsData { damageDealt = 0, damageTaken = 0, id = 1 };
                 }
                 else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
                 {
@@ -159,12 +172,18 @@ public class CombatController : MonoBehaviour
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_actionsData, this);
+                    GlobalAnalytics.s_actionsData = new ActionsData { damageDealt = 0, damageTaken = 0, id = 1 };
                 }
-                else
+                else if(CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState)
                 {
                     EnemyUtil.ResetEnemyStatus();
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
                     DataCollectionUtility.PostData(data, this);
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_actionsData, this);
+                    GlobalAnalytics.s_actionsData = new ActionsData { damageDealt = 0, damageTaken = 0, id = 1 };
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_endPointData, this);
+                    GlobalAnalytics.s_endPointData = new EndpointData { id = 2, endpointReached = 0, timeToReachEndpoint = 0.0f };
                 }
             }
 
@@ -203,7 +222,7 @@ public class CombatController : MonoBehaviour
             }
             if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == true)
             {
-                SpawnBoss3();
+                SpawnBoss4();
 
             }
             else if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered == false && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == false
@@ -308,7 +327,18 @@ public class CombatController : MonoBehaviour
         {
             GameObject enemy = Instantiate(characterTemp);
 
-            EnemyType enemyType = (EnemyType)Random.Range(0, 7);
+            int rareEnemyChance = Random.Range(1, 101);
+
+            EnemyType enemyType;
+
+            if (rareEnemyChance >= 90) // 10% chance
+            {
+                enemyType = (EnemyType)6;
+            }
+            else
+            {
+                enemyType = (EnemyType)Random.Range(0, 6);
+            }
 
             switch (enemyType)
             {
@@ -465,6 +495,8 @@ public class CombatController : MonoBehaviour
     {
         for (int i = 0; i < EnemyList.Count; ++i)
         {
+            if (!EnemyList[i].activeSelf) continue;
+
             // if hp less than half
             if (EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("HP").Value <=
                 EnemyList[i].GetComponent<CharacterAttributes>().FindAttribute("MHP").Value / 2)
@@ -575,6 +607,7 @@ public class CombatController : MonoBehaviour
             m_currentChar = -1;
             ChangeActivePartyMember();
         }
+
     }
 
     private bool BattleEnd()
@@ -608,11 +641,6 @@ public class CombatController : MonoBehaviour
 
                 data.victory = 1;
 
-                if (AudioManager.instance != null)
-                {
-                    AudioManager.instance.PauseMusic("BattleTheme");
-                    AudioManager.instance.PlayMusic("Theme");
-                }
                 return true;
             }
         }
@@ -960,10 +988,55 @@ public class CombatController : MonoBehaviour
             EnemyUtil.SetupBandit(enemy.GetComponent<CharacterAttributes>());
             enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bandit");
 
+            EnemyList.Add(enemy);
+        }
 
+        GameObject temp = Instantiate(characterTemp);
+        EnemyList.Add(temp);
+        EnemyList[EnemyList.IndexOf(temp)].SetActive(false);
+
+        GameObject boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossMan(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-man");
+
+        EnemyList.Add(boss);
+
+        data.enemyCount++;
+    }
+
+    public void SpawnBoss2()
+    {
+        EnemyList = new List<GameObject>();
+
+        GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
+
+        int m_enemyCount = 3;
+
+        data.enemyCount = m_enemyCount;
+
+        for (int i = 0; i < m_enemyCount; i++)
+        {
+            GameObject enemy = Instantiate(characterTemp);
+
+            EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
+            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
 
             EnemyList.Add(enemy);
         }
+
+        GameObject temp = Instantiate(characterTemp);
+        EnemyList.Add(temp);
+        EnemyList[EnemyList.IndexOf(temp)].SetActive(false);
+
+        GameObject boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossBoss(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-boss");
+
+        EnemyList.Add(boss);
+
+        data.enemyCount++;
     }
     public void SpawnBoss3()
     {
@@ -982,31 +1055,67 @@ public class CombatController : MonoBehaviour
             EnemyUtil.SetupShinobiDark(enemy.GetComponent<CharacterAttributes>());
             enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("dark-shinobi");
 
-
-
             EnemyList.Add(enemy);
         }
+
+        GameObject boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossSpy(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-spy");
+
+        EnemyList.Add(boss);
+
+        boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossWalk(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-walk");
+
+        EnemyList.Add(boss);
+
+        data.enemyCount++;
     }
-    public void SpawnBoss2()
+
+    public void SpawnBoss4()
     {
         EnemyList = new List<GameObject>();
 
         GameObject characterTemp = Resources.Load<GameObject>("CharacterTemplate");
 
-        int m_enemyCount = 3;
+        // first quest boss setup
+        GameObject boss = Instantiate(characterTemp);
 
-        data.enemyCount = m_enemyCount;
+        EnemyUtil.SetupBossWife(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-wife");
 
-        for (int i = 0; i < m_enemyCount; i++)
-        {
-            GameObject enemy = Instantiate(characterTemp);
+        EnemyList.Add(boss);
 
-            EnemyUtil.SetupWarrior(enemy.GetComponent<CharacterAttributes>());
-            enemy.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("desert-warrior");
+        // second quest boss setup
+        boss = Instantiate(characterTemp);
 
+        EnemyUtil.SetupBossBoss(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-boss");
 
+        EnemyList.Add(boss);
 
-            EnemyList.Add(enemy);
-        }
+        // third quest boss setup
+        boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossWalk(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-walk");
+
+        EnemyList.Add(boss);
+
+        GameObject temp = Instantiate(characterTemp);
+        EnemyList.Add(temp);
+        EnemyList[EnemyList.IndexOf(temp)].SetActive(false);
+
+        // fourth quest boss setup
+        boss = Instantiate(characterTemp);
+
+        EnemyUtil.SetupBossBossBoss(boss.GetComponent<CharacterAttributes>());
+        boss.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("boss-boss-boss");
+
+        EnemyList.Add(boss);
     }
+
 }

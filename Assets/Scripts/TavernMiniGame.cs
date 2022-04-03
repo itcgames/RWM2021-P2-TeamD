@@ -23,10 +23,15 @@ public class TavernMiniGame : MonoBehaviour
     public GameObject levelParent;
     public GameObject buttonDidplay;
 
+    private TavernData data;
+
     public bool isEnemy = false;
 
     void Start()
     {
+
+        data = new TavernData { id = 6, missPressedKeys = 0, tavernMinigameWon = 0 };
+
         timeLeft = keyPressTimeInterval;
 
         keyCodes[0] = KeyCode.A;
@@ -65,7 +70,7 @@ public class TavernMiniGame : MonoBehaviour
                     }
                     else
                     {
-
+                        data.missPressedKeys++;
                         if (currentPercent >= 0)
                         {
                             currentPercent -= 10;
@@ -114,6 +119,12 @@ public class TavernMiniGame : MonoBehaviour
 
         if (currentLevels >= LEVELS_NEEDED)
         {
+            if (!isEnemy)
+            {
+                data.tavernMinigameWon = 1;
+            }
+
+            DataCollectionUtility.PostData(data, this);
             AudioManager.instance.PauseMusic("Theme");
             AudioManager.instance.PlayMusic("EndCredits");
             FindObjectOfType<ScreenSystem>().WinGame();

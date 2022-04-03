@@ -26,10 +26,11 @@ namespace Tests
             var endpoint = GameObject.Find("EndPoint");
             var player = GameObject.Find("Player");
             endpoint.transform.position = player.transform.position;
+            endpoint.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
 
             yield return new WaitForSeconds(0.1f);
 
-            Assert.AreEqual(13, SceneManager.GetActiveScene().buildIndex);
+            Assert.AreEqual(2, SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

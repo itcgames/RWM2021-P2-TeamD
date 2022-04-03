@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Tests/BlockActionTests.cs.meta
 guid: fc56a3e70c938294681c696edd51d9cd
+=======
+guid: 6d93d4d79265d7d48ae9a6107c591b82
+>>>>>>> c52ffd970769fc484606666b08c790362779cb83:Assets/Scripts/ItemInventory.cs.meta
+=======
+guid: fc56a3e70c938294681c696edd51d9cd
+>>>>>>> c52ffd970769fc484606666b08c790362779cb83
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

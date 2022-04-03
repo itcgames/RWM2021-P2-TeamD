@@ -1063,15 +1063,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
-  - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
-  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
-  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: 21300000, guid: 5ab193c56a3c83a4796e984d74fbe106, type: 3}
+  - {fileID: 21300000, guid: 1b8f1360caba30c4db8946e6df334759, type: 3}
+  - {fileID: 21300000, guid: 56f778bedf3d32747861dc8b5e73a6cd, type: 3}
+  - {fileID: 21300000, guid: a4348b4b9501dab4cadf94a245c8346f, type: 3}
   names:
-  - Richard
-  - Mike
-  - Creek
-  - Spoons
+  - WOK
+  - BABA
+  - MIKE
+  - BENNY
   charNum: 2
   partyTypes:
   - Fighter
@@ -1699,15 +1699,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
-  - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
-  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
-  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: 21300000, guid: 1b8f1360caba30c4db8946e6df334759, type: 3}
+  - {fileID: 21300000, guid: 5ab193c56a3c83a4796e984d74fbe106, type: 3}
+  - {fileID: 21300000, guid: a4348b4b9501dab4cadf94a245c8346f, type: 3}
+  - {fileID: 21300000, guid: 56f778bedf3d32747861dc8b5e73a6cd, type: 3}
   names:
-  - Jeff
-  - Bob
-  - Sour
-  - Shot
+  - WALK
+  - SOUR
+  - CHEST
+  - BEN
   charNum: 1
   partyTypes:
   - B_Mage
@@ -2312,15 +2312,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
-  - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
-  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
-  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: 21300000, guid: 5ab193c56a3c83a4796e984d74fbe106, type: 3}
+  - {fileID: 21300000, guid: 1b8f1360caba30c4db8946e6df334759, type: 3}
+  - {fileID: 21300000, guid: 56f778bedf3d32747861dc8b5e73a6cd, type: 3}
+  - {fileID: 21300000, guid: a4348b4b9501dab4cadf94a245c8346f, type: 3}
   names:
-  - Ben
-  - Neb
-  - Yes
-  - Perhaps
+  - MEDS
+  - SHOT
+  - BIG
+  - WIFE
   charNum: 4
   partyTypes:
   - Fighter
@@ -3242,15 +3242,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {fileID: 21300000, guid: 21d4dd06f9028ba49a35bed191cec5a5, type: 3}
-  - {fileID: 21300000, guid: 587f60b5adbe4c54e9195245a4984fb3, type: 3}
-  - {fileID: -1149946304287864601, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
-  - {fileID: 6822863663669939212, guid: c3530dfd3e9183f44bbeefae31efe7e0, type: 3}
+  - {fileID: 21300000, guid: 1b8f1360caba30c4db8946e6df334759, type: 3}
+  - {fileID: 21300000, guid: 5ab193c56a3c83a4796e984d74fbe106, type: 3}
+  - {fileID: 21300000, guid: a4348b4b9501dab4cadf94a245c8346f, type: 3}
+  - {fileID: 21300000, guid: 56f778bedf3d32747861dc8b5e73a6cd, type: 3}
   names:
-  - Baba
-  - Jaeger
-  - Monke
-  - Allexwa
+  - MONKE
+  - STOIC
+  - CREEK
+  - WEEB
   charNum: 3
   partyTypes:
   - B_Mage

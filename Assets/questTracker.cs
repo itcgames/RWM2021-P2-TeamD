@@ -33,7 +33,7 @@ public class questTracker : MonoBehaviour
         {
             this.transform.GetChild(2).GetComponent<Text>().color = Color.green;
         }
-        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == true)
+        if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished == true && FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == true)
         {
             this.transform.GetChild(3).GetComponent<Text>().color = Color.green;
         }
