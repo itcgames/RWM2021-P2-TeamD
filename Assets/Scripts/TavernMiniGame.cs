@@ -113,8 +113,12 @@ public class TavernMiniGame : MonoBehaviour
         }
 
         if (currentLevels >= LEVELS_NEEDED)
-            FindObjectOfType<ScreenSystem>().EndGame();
+        {
+            AudioManager.instance.PauseMusic("Theme");
+            AudioManager.instance.PlayMusic("EndCredits");
+            FindObjectOfType<ScreenSystem>().WinGame();
 
+        }
         bar.value = currentPercent;
     }
 

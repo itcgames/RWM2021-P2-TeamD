@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TavernMiniGame.unity
     guid: 54d639bcff5d87048a83a37ffb4cb696
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: e55c2834e9aa30d478ffd5f4b8f7cdd9
   m_configObjects: {}
