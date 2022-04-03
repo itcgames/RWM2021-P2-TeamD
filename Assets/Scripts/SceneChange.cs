@@ -38,5 +38,14 @@ public class SceneChange : MonoBehaviour
         bool check = true;
         return check;
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void Change(int t_scene)
+    {
+        SceneManager.LoadScene(t_scene);
+    }
 
 }
