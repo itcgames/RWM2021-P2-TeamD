@@ -526,7 +526,7 @@ RectTransform:
   m_Children:
   - {fileID: 658562766}
   m_Father: {fileID: 563198519}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -718,6 +718,7 @@ RectTransform:
   - {fileID: 1550141195}
   - {fileID: 1019571376}
   - {fileID: 2271704}
+  - {fileID: 507161168}
   - {fileID: 4825490284178579600}
   - {fileID: 507161168}
   m_Father: {fileID: 0}
@@ -1644,7 +1645,7 @@ PrefabInstance:
     - target: {fileID: 2871273218154725081, guid: fb18e3704124f8d4dad0510c350b8853,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2871273218154725081, guid: fb18e3704124f8d4dad0510c350b8853,
         type: 3}
@@ -1915,6 +1916,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_LineSpacing
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407353489006207436, guid: fb18e3704124f8d4dad0510c350b8853,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407353489006207436, guid: fb18e3704124f8d4dad0510c350b8853,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407353489006207436, guid: fb18e3704124f8d4dad0510c350b8853,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8301887
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb18e3704124f8d4dad0510c350b8853, type: 3}
