@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
 
 namespace Tests
 {
@@ -12,6 +13,20 @@ namespace Tests
         [UnityTest]
         public IEnumerator ClassSpecificSpellWhite()
         {
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
+
             GameObject gameObject = new GameObject();
             gameObject.AddComponent<Spells>();
             Spells t_spells = gameObject.GetComponent<Spells>();
@@ -27,6 +42,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator ClassSpecificSpellBlack()
         {
+
             GameObject gameObject = new GameObject();
             gameObject.AddComponent<Spells>();
             Spells t_spells = gameObject.GetComponent<Spells>();
@@ -42,16 +58,25 @@ namespace Tests
         [UnityTest]
         public IEnumerator PickTheItemInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            gameObject.AddComponent<RectTransform>();
-            ScreenSystem t_system = new ScreenSystem();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f); ;
             t_system.GoToPauseScreen();
 
             yield return new WaitForSeconds(0.1f);
 
-            gameObject.AddComponent<Cursor>();
-            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+            
+            Cursor t_cursor =GameObject.FindObjectOfType<Cursor>();
 
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
@@ -63,16 +88,25 @@ namespace Tests
         [UnityTest]
         public IEnumerator PickTheWeaponsInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            gameObject.AddComponent<RectTransform>();
-            ScreenSystem t_system = new ScreenSystem();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
             t_system.GoToPauseScreen();
 
             yield return new WaitForSeconds(0.1f);
 
-            gameObject.AddComponent<Cursor>();
-            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+            
+            Cursor t_cursor = GameObject.FindObjectOfType<Cursor>();
 
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
@@ -86,16 +120,25 @@ namespace Tests
         [UnityTest]
         public IEnumerator PickTheArmourInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            gameObject.AddComponent<RectTransform>();
-            ScreenSystem t_system = new ScreenSystem();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
             t_system.GoToPauseScreen();
 
             yield return new WaitForSeconds(0.1f);
 
-            gameObject.AddComponent<Cursor>();
-            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+           
+            Cursor t_cursor = GameObject.FindObjectOfType<Cursor>();
 
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
@@ -110,16 +153,25 @@ namespace Tests
         [UnityTest]
         public IEnumerator PickTheMagicInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            gameObject.AddComponent<RectTransform>();
-            ScreenSystem t_system = new ScreenSystem();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
             t_system.GoToPauseScreen();
 
             yield return new WaitForSeconds(0.1f);
 
-            gameObject.AddComponent<Cursor>();
-            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+            
+            Cursor t_cursor = GameObject.FindObjectOfType<Cursor>();
 
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;
@@ -135,16 +187,25 @@ namespace Tests
         [UnityTest]
         public IEnumerator PickTheStatusInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            gameObject.AddComponent<RectTransform>();
-            ScreenSystem t_system = new ScreenSystem();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
             t_system.GoToPauseScreen();
 
             yield return new WaitForSeconds(0.1f);
 
-            gameObject.AddComponent<Cursor>();
-            Cursor t_cursor = gameObject.GetComponent<Cursor>();
+            
+            Cursor t_cursor = GameObject.FindObjectOfType<Cursor>();
 
             yield return new WaitForSeconds(0.1f);
             ScreenSystem t_cursScreenSys = t_cursor.t_screenSystem;

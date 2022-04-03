@@ -117,43 +117,43 @@ public class ItemManager : MonoBehaviour
         switch (t_number)
         {
             case 1:
-                if(FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax1.Value)
+                if(FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHPMax.Value)
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type1);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_type);
                 }
                 else
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP1.Value += itemDetail.m_effects;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_attributeHP.Value += itemDetail.m_effects;
                 }
                 break;
             case 2:
-                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax2.Value)
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHPMax.Value)
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type2);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_type);
                 }
                 else
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP2.Value += itemDetail.m_effects;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_attributeHP.Value += itemDetail.m_effects;
                 }
                 break;
             case 3:
-                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax3.Value)
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHPMax.Value)
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type3);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_type);
                 }
                 else
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP3.Value += itemDetail.m_effects;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_attributeHP.Value += itemDetail.m_effects;
                 }
                 break;
             case 4:
-                if (FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHPMax4.Value)
+                if (FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value + itemDetail.m_effects > FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHPMax.Value)
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.m_type4);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value = PartyUtil.MaxHealth(FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_type);
                 }
                 else
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_attributeHP4.Value += itemDetail.m_effects;
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_attributeHP.Value += itemDetail.m_effects;
                 }
                 break;
             default:
@@ -204,20 +204,20 @@ public class ItemManager : MonoBehaviour
         m_member4 = GameObject.Find("Member4");
 
         m_member1.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_name1 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHP1.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHPMax1.Value.ToString();
+            .infos.character[0].m_name + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[0].m_attributeHP.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[0].m_attributeHPMax.Value.ToString();
         m_member2.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_name2 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHP2.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHPMax2.Value.ToString();
+            .infos.character[1].m_name + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[1].m_attributeHP.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[1].m_attributeHPMax.Value.ToString();
         m_member3.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_name3 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHP3.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHPMax3.Value.ToString();
+            .infos.character[2].m_name + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[2].m_attributeHP.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[2].m_attributeHPMax.Value.ToString();
         m_member4.GetComponentInChildren<Text>().text = FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_name4 + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHP4.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
-            .infos.m_attributeHPMax4.Value.ToString();
+            .infos.character[3].m_name + "'s health " + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[3].m_attributeHP.Value.ToString() + "/" + FindObjectOfType<PlayerAndGameInfo>()
+            .infos.character[3].m_attributeHPMax.Value.ToString();
     }
 }

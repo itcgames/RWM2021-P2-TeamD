@@ -27,19 +27,19 @@ public class SetupInventory : MonoBehaviour
         switch (playerID)
         {
             case 1:
-                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_name1;
+                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_name;
                 break;
 
             case 2:
-                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_name2;
+                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_name;
                 break;
 
             case 3:
-                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_name3;
+                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_name;
                 break;
 
             case 4:
-                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.m_name4;
+                this.transform.GetChild(1).GetComponent<Text>().text = FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_name;
                 break;
         }
         

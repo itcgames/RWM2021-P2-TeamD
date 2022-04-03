@@ -12,6 +12,10 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToCharacterSelection()
         {
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
             ScreenSystem t_system = new ScreenSystem();
 
             t_system.GoToCharacterSelcetionScene();
@@ -24,6 +28,10 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToGame()
         {
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
             ScreenSystem t_system = new ScreenSystem();
 
             t_system.GoToGameplayScene();
@@ -36,6 +44,10 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToGameFromContinue()
         {
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
             ScreenSystem t_system = new ScreenSystem();
 
             t_system.ContinueGame();
@@ -48,7 +60,19 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToPauseFromGame()
         {
-            ScreenSystem t_system = new ScreenSystem();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
 
             t_system.GoToPauseScreen();
 
@@ -60,9 +84,19 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToItemInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            ScreenSystem t_system = gameObject.GetComponent<ScreenSystem>();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
 
             t_system.GoToPauseScreen();
             t_system.GoToInventoryScreen(0);
@@ -75,9 +109,19 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToMagicInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            ScreenSystem t_system = gameObject.GetComponent<ScreenSystem>();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
 
             t_system.GoToPauseScreen();
             t_system.GoToInventoryScreen(1);
@@ -90,9 +134,19 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToWeaponsInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            ScreenSystem t_system = gameObject.GetComponent<ScreenSystem>();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
 
             t_system.GoToPauseScreen();
             t_system.GoToInventoryScreen(2);
@@ -105,9 +159,19 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToArmourInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            ScreenSystem t_system = gameObject.GetComponent<ScreenSystem>();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
 
             t_system.GoToPauseScreen();
             t_system.GoToInventoryScreen(3);
@@ -120,9 +184,19 @@ namespace Tests
         [UnityTest]
         public IEnumerator SwitchToStatusInventory()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<ScreenSystem>();
-            ScreenSystem t_system = gameObject.GetComponent<ScreenSystem>();
+            SceneManager.LoadScene(0);
+
+            yield return new WaitForSeconds(0.1f);
+
+            ScreenSystem t_system = GameObject.FindObjectOfType<ScreenSystem>();
+
+            t_system.GoToCharacterSelcetionScene();
+
+            yield return new WaitForSeconds(0.1f);
+
+            t_system.GoToGameplayScene();
+
+            yield return new WaitForSeconds(0.1f);
 
             t_system.GoToPauseScreen();
             t_system.GoToInventoryScreen(4);
