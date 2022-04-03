@@ -93,7 +93,6 @@ public class AudioManager : MonoBehaviour
     }
     public void PauseMusic(string name)
     {
-
         Sound music = Array.Find(musics, sound => sound.name == name);
         if (music == null)
         {
@@ -101,7 +100,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
         music.source.Pause();
-
     }
 
     public void MuteAll()
