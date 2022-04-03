@@ -310,8 +310,6 @@ public class Cursor : MonoBehaviour
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute2(),
                         charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetType(), charAndImg[currentCharPos].GetComponent<CharNameAndImg>().GetAttribute3());
 
-
-                    FindObjectOfType<CheckpointSystem>().SaveData(JsonUtility.ToJson(FindObjectOfType<PlayerAndGameInfo>().GetCharInfo()));
                     GameObject.FindObjectOfType<ScreenSystem>().GoToGameplayScene();
                 }
                 else

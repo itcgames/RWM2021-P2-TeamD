@@ -22,13 +22,21 @@ public class ScreenSystem : MonoBehaviour
 
     public void GoToGameplayScene()
     {
+
+        string save = JsonUtility.ToJson(GameObject.FindObjectOfType<PlayerAndGameInfo>().GetCharInfo());
+        FindObjectOfType<CheckpointSystem>().info.stringList.name[0] = "Save";
+        FindObjectOfType<CheckpointSystem>().info.stringList.data[0] = save;
+        FindObjectOfType<CheckpointSystem>().SaveDataToFile();
+
         m_switchToGameplay = true;
         SceneManager.LoadScene(2);
     }
 
     public void ContinueGame()
     {
-        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        FindObjectOfType<CheckpointSystem>().LoadData();
+        string infoString = FindObjectOfType<CheckpointSystem>().info.stringList.data[0];
+
         JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
         EnemyUtil.ResetEnemyStatus();
         GoToGameplayScene();
@@ -93,8 +101,8 @@ public class ScreenSystem : MonoBehaviour
 
     public void LoadSaveAfterLose()
     {
-        string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
-        JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
+        //string infoString = FindObjectOfType<CheckpointSystem>().LoadData();
+        //JsonUtility.FromJsonOverwrite(infoString, FindObjectOfType<PlayerAndGameInfo>().infos);
 
         GoToScene(FindObjectOfType<PlayerAndGameInfo>().infos.m_currentScene);
     }

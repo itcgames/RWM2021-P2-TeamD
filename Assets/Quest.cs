@@ -62,15 +62,15 @@ public class Quest : MonoBehaviour
                 { 
             if ((FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished == false))
                 {
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1 = new weapon("Hip Crack", 3, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1 = new weapon("Sour", 7, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1 = new weapon("Windows", 5, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1 = new weapon("Plush", 2, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon1 = new weapon("Hip Crack", 3, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon1 = new weapon("Sour", 7, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon1 = new weapon("Windows", 5, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon1 = new weapon("Plush", 2, false);
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_1 = new armor("Socks",1 , false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_1 = new armor("Hoodie", 5, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_1 = new armor("Big Chest", 5, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_1 = new armor("Gura Pin", 1, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor1 = new armor("Socks",1 , false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor1 = new armor("Hoodie", 5, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor1 = new armor("Big Chest", 5, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor1 = new armor("Gura Pin", 1, false);
                     FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = true;
                     GameObject sceneManager = GameObject.Find("SceneManager");
 
@@ -88,15 +88,15 @@ public class Quest : MonoBehaviour
                     
 
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2 = new weapon("Shame Walk", 12, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2 = new weapon("Jaeger Bomb", 15, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2 = new weapon("Ubuntu", 16, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2 = new weapon("Gura Plush", 11, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon2 = new weapon("Shame Walk", 12, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon2 = new weapon("Jaeger Bomb", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon2 = new weapon("Ubuntu", 16, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon2 = new weapon("Gura Plush", 11, false);
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_2 = new armor("Suit", 11, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_2 = new armor("Gray Hoodie", 20, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_2 = new armor("Polo Shirt", 14, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_2 = new armor("Gura Hat", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor2 = new armor("Suit", 11, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor2 = new armor("Gray Hoodie", 20, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor2 = new armor("Polo Shirt", 14, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor2 = new armor("Gura Hat", 15, false);
                     FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = true;
                     GameObject sceneManager = GameObject.Find("SceneManager");
 
@@ -113,15 +113,15 @@ public class Quest : MonoBehaviour
                 
 
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3 = new weapon("Penguin", 23, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3 = new weapon("Tequila", 29, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3 = new weapon("Linux", 28, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3 = new weapon("Body Pillow", 26, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon3 = new weapon("Penguin", 23, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon3 = new weapon("Tequila", 29, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon3 = new weapon("Linux", 28, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon3 = new weapon("Body Pillow", 26, false);
 
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_3 = new armor("Penguin Suit", 18, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_3 = new armor("Grey Hoodie", 25, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_3 = new armor("Tavern Jacket", 15, false);
-                    FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_3 = new armor("Gura Hoodie", 20, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor3 = new armor("Penguin Suit", 18, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor3 = new armor("Grey Hoodie", 25, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor3 = new armor("Tavern Jacket", 15, false);
+                    FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor3 = new armor("Gura Hoodie", 20, false);
                     FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = true;
                     GameObject sceneManager = GameObject.Find("SceneManager");
 
@@ -135,15 +135,15 @@ public class Quest : MonoBehaviour
             if (FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished && FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished && CompareTag("Barrier"))
             {
 
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4 = new weapon("War Penguin", 100, false);
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4 = new weapon("Chateruse", 100, false);
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4 = new weapon("Arch Linux", 100, false);
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4 = new weapon("Gura Pillow", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_weapon4 = new weapon("War Penguin", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_weapon4 = new weapon("Chateruse", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_weapon4 = new weapon("Arch Linux", 100, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_weapon4 = new weapon("Gura Pillow", 100, false);
 
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor1_4 = new armor("Stopy Amrour", 25, false);
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor2_4 = new armor("Hoodie Amrour", 50, false);
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor3_4 = new armor("TOYOTA Amrour", 35, false);
-                FindObjectOfType<PlayerAndGameInfo>().infos.m_armor4_4 = new armor("Gura Amrour", 40, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[0].m_armor4 = new armor("Stopy Amrour", 25, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[1].m_armor4 = new armor("Hoodie Amrour", 50, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[2].m_armor4 = new armor("TOYOTA Amrour", 35, false);
+                FindObjectOfType<PlayerAndGameInfo>().infos.character[3].m_armor4 = new armor("Gura Amrour", 40, false);
                 FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered = true;
                 GameObject sceneManager = GameObject.Find("SceneManager");
 
