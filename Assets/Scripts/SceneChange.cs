@@ -39,4 +39,9 @@ public class SceneChange : MonoBehaviour
         return check;
     }
 
+    public void Change(int t_scene)
+    {
+        SceneManager.LoadScene(t_scene);
+    }
+
 }

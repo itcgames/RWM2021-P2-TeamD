@@ -114,4 +114,15 @@ public class ScreenSystem : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void WinGame()
+    {
+        SceneManager.LoadScene(14);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }
