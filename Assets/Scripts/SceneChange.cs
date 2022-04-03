@@ -38,10 +38,9 @@ public class SceneChange : MonoBehaviour
         bool check = true;
         return check;
     }
-
-    public void Change(int t_scene)
+    public void ExitGame()
     {
-        SceneManager.LoadScene(t_scene);
+        Application.Quit();
     }
 
 }

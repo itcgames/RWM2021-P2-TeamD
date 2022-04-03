@@ -343,7 +343,7 @@ MonoBehaviour:
 
 
 
-    Animatiors
+    Animators
 
 
     Pixel Artist
@@ -1191,12 +1191,12 @@ MonoBehaviour:
     Our Single Brain Cell
 
 
+
     Creek Food and Restaurant
 
     Weatherspoons
 
     Tullys
-
 
 
     Long
@@ -1894,8 +1894,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 885518983}
-        m_MethodName: Change
-        m_Mode: 3
+        m_MethodName: ExitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
