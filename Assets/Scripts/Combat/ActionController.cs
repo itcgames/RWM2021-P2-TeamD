@@ -96,6 +96,15 @@ public class ActionController : MonoBehaviour
                     totalDamage += (int)GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
                 }
 
+                if(Target.GetComponent<CharacterAttributes>().Playable)
+                {
+                    GlobalAnalytics.s_actionsData.damageTaken += totalDamage;
+                }
+                else
+                {
+                    GlobalAnalytics.s_actionsData.damageDealt += totalDamage;
+                }
+
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -= (totalDamage -
                  emotionalDamage);
 
@@ -119,6 +128,15 @@ public class ActionController : MonoBehaviour
                 if (GetComponent<CharacterAttributes>().FindAttribute("Ack") != null)
                 {
                     totalDamage += (int)GetComponent<CharacterAttributes>().FindAttribute("Ack").Value;
+                }
+
+                if (Target.GetComponent<CharacterAttributes>().Playable)
+                {
+                    GlobalAnalytics.s_actionsData.damageTaken += totalDamage;
+                }
+                else
+                {
+                    GlobalAnalytics.s_actionsData.damageDealt += totalDamage;
                 }
 
                 Target.GetComponent<CharacterAttributes>().FindAttribute("HP").Value -=
@@ -167,9 +185,7 @@ public class ActionController : MonoBehaviour
             //flee sounds
             if (AudioManager.instance != null)
             {
-                AudioManager.instance.PauseMusic("BattleTheme");
                 AudioManager.instance.PlaySFX("Flee");
-                AudioManager.instance.PlayMusic("Theme");
             }
         }
 

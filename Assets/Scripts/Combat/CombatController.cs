@@ -140,25 +140,31 @@ public class CombatController : MonoBehaviour
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest1Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest1Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest2Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest2Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest3Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     if (FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered == true)
                     {
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest4Triggered = false;
                         FindObjectOfType<PlayerAndGameInfo>().infos.quest4Finished = true;
+                        GlobalAnalytics.s_questData.questsCleared++;
                     }
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_actionsData, this);
+                    GlobalAnalytics.s_actionsData = new ActionsData { damageDealt = 0, damageTaken = 0, id = 1 };
                 }
                 else if (CombatEnum.CombatState.Escape == CombatEnum.s_currentCombatState)
                 {
@@ -166,12 +172,18 @@ public class CombatController : MonoBehaviour
                     FindObjectOfType<ScreenSystem>().GoToGameplayScene();
 
                     DataCollectionUtility.PostData(data, this);
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_actionsData, this);
+                    GlobalAnalytics.s_actionsData = new ActionsData { damageDealt = 0, damageTaken = 0, id = 1 };
                 }
-                else
+                else if(CombatEnum.CombatState.Failure == CombatEnum.s_currentCombatState)
                 {
                     EnemyUtil.ResetEnemyStatus();
                     FindObjectOfType<ScreenSystem>().GoToScene(0);
                     DataCollectionUtility.PostData(data, this);
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_actionsData, this);
+                    GlobalAnalytics.s_actionsData = new ActionsData { damageDealt = 0, damageTaken = 0, id = 1 };
+                    DataCollectionUtility.PostData(GlobalAnalytics.s_endPointData, this);
+                    GlobalAnalytics.s_endPointData = new EndpointData { id = 2, endpointReached = 0, timeToReachEndpoint = 0.0f };
                 }
             }
 
@@ -319,9 +331,9 @@ public class CombatController : MonoBehaviour
 
             EnemyType enemyType;
 
-            if (rareEnemyChance >= 80) // 20% chance
+            if (rareEnemyChance >= 90) // 10% chance
             {
-                enemyType = (EnemyType)7;
+                enemyType = (EnemyType)6;
             }
             else
             {

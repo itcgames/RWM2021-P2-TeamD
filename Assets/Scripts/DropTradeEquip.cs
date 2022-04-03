@@ -68,6 +68,7 @@ public class DropTradeEquip : MonoBehaviour
     {
         if (drop)
         {
+            GlobalAnalytics.s_equipmentData.totalGearDropped++;
             switch (i)
             {
                 case 0:
@@ -157,6 +158,8 @@ public class DropTradeEquip : MonoBehaviour
     {
         if (equip)
         {
+            GlobalAnalytics.s_equipmentData.armourEquipped++;
+
             switch (i)
             {
                 case 0:

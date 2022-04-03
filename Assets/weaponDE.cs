@@ -57,80 +57,96 @@ public class weaponDE : MonoBehaviour
                 case 0:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_1.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
                     break;
                 case 1:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_2.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 2:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_3.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 3:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon1_4.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 4:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_1.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 5:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_2.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 6:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_3.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 7:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon2_4.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 8:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_1.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 9:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_2.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 10:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_3.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 11:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon3_4.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 12:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_1.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 13:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_2.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 14:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_3.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
                 case 15:
                     FindObjectOfType<PlayerAndGameInfo>().infos.m_weapon4_4.Name = "";
                     FindObjectOfType<InventorWeapon>().setNameBlank(i);
+                    GlobalAnalytics.s_equipmentData.totalGearDropped++;
 
                     break;
 
@@ -141,6 +157,8 @@ public class weaponDE : MonoBehaviour
     {
         if (equip)
         {
+            GlobalAnalytics.s_equipmentData.weaponsEquipped++;
+
             switch (i)
             {
                 case 0:
@@ -476,6 +494,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
                     }
 
                     break;
@@ -528,6 +548,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
                     }
                     break;
                     case 2:
@@ -578,6 +600,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
                     }
 
                     break;
@@ -629,6 +653,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -680,6 +706,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -731,6 +759,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
 
@@ -783,6 +813,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -833,6 +865,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -884,6 +918,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -934,6 +970,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
 
@@ -985,6 +1023,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -1036,6 +1076,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -1086,6 +1128,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
 
@@ -1137,6 +1181,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
 
@@ -1188,6 +1234,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;
@@ -1239,6 +1287,8 @@ public class weaponDE : MonoBehaviour
                     {
                         FindObjectOfType<InventorWeapon>().Upgrading(i, amount);
                         FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= upgradeCost;
+                        GlobalAnalytics.s_equipmentData.weaponsUpgradedCount++;
+                        GlobalAnalytics.s_equipmentData.goldSpentOnUpgrades += upgradeCost;
 
                     }
                     break;

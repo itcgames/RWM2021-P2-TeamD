@@ -164,6 +164,7 @@ public class ShopManager : MonoBehaviour
             // 400 > 60/75
             if (FindObjectOfType<PlayerAndGameInfo>().infos.m_gil >= m_shopItems.GetComponent<ItemCost>().costProduct())
             {
+                GlobalAnalytics.s_itemsData.itemsBought++;
                 m_dialog.text = "Thank you!\nWhat else?";
                 // subtract the gil here
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_gil -= m_shopItems.GetComponent<ItemCost>().costProduct();
@@ -201,6 +202,8 @@ public class ShopManager : MonoBehaviour
             // checks the armor inventory of the member
             if (m_shopItems.GetComponent<ItemCost>().GetInventory() > 1) //!Change THIS FOR ARMOR/WEAPON
             {
+                GlobalAnalytics.s_itemsData.itemsSold++;
+
                 m_dialog.text = "Thank you!\nWhat else?";
                 // add the gil here
                 FindObjectOfType<PlayerAndGameInfo>().infos.m_gil += m_shopItems.GetComponent<ItemCost>().sellProduct();

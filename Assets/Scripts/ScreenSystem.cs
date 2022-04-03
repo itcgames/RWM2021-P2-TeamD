@@ -41,6 +41,8 @@ public class ScreenSystem : MonoBehaviour
 
     public void Update()
     {
+        GlobalAnalytics.s_endPointData.timeToReachEndpoint += Time.deltaTime;
+
         if (SceneManager.GetActiveScene().buildIndex == 3)
         { 
             //if (Input.GetKeyDown(KeyCode.Return))
@@ -107,6 +109,16 @@ public class ScreenSystem : MonoBehaviour
 
     public void EndpointHit()
     {
+        GlobalAnalytics.s_endPointData.endpointReached = 1;
+        DataCollectionUtility.PostData(GlobalAnalytics.s_endPointData, this);
+        DataCollectionUtility.PostData(GlobalAnalytics.s_equipmentData, this);
+        DataCollectionUtility.PostData(GlobalAnalytics.s_itemsData, this);
+        DataCollectionUtility.PostData(GlobalAnalytics.s_questData, this);
+        GlobalAnalytics.s_endPointData = new EndpointData { id = 2, endpointReached = 0, timeToReachEndpoint = 0.0f };
+        GlobalAnalytics.s_equipmentData = new EquipmentData { id = 3, armourEquipped = 0, goldSpentOnUpgrades = 0, totalGearDropped = 0, weaponsEquipped = 0, weaponsUpgradedCount = 0 };
+        GlobalAnalytics.s_itemsData = new ItemsData { id = 4, itemsBought = 0, itemsSold = 0 };
+        GlobalAnalytics.s_questData = new QuestData { id = 5, questsCleared = 0 };
+
         SceneManager.LoadScene(13);
     }
 
