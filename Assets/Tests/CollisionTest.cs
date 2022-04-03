@@ -29,16 +29,5 @@ namespace Tests
             yield return new WaitForSeconds(0.5f);
             Assert.AreEqual(true, m_player.GetComponent<Player>().getCollisionCheck());
         }
-
-        [UnityTest]
-        public IEnumerator BoulderCollision()
-        {
-            m_player = GameObject.Find("Player");
-            m_player.transform.position = new Vector2(-10.53f, 2.5f);
-            m_player.transform.position += new Vector3(0, 1f, 0);
-            yield return new WaitForSeconds(0.5f);
-            Assert.AreEqual(true,m_player.GetComponent<Player>().getCollisionCheck());
-        }
-
     }
 }

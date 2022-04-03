@@ -37,36 +37,7 @@ namespace Tests
             yield return null;
 
         }
-        [UnityTest]
-        public IEnumerator UseAmount()
-        {
-            SceneManager.LoadScene(6);
-            yield return new WaitForSeconds(0.1f);
 
-            setupItem itemTest = GameObject.FindObjectOfType<setupItem>();
-
-            ActivateAndDeactivate camera = GameObject.FindObjectOfType<ActivateAndDeactivate>();
-
-            yield return new WaitForSeconds(0.1f);
-
-            camera.GetComponent<ActivateAndDeactivate>().ChangeInventory(true);
-            camera.GetComponent<ActivateAndDeactivate>().ChangeUse(true);
-
-            yield return new WaitForSeconds(0.1f);
-
-            UseItem playerTest = GameObject.FindObjectOfType<UseItem>();
-
-            yield return new WaitForSeconds(0.1f);
-
-            playerTest.use();
-            int expected = itemTest.getAmount();
-
-
-            yield return null;
-            Assert.Less(expected, 55);
-          
-
-        }
         [UnityTest]
         public IEnumerator Healamount()
         {
